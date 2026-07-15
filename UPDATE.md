@@ -39,3 +39,14 @@ The calculator detects `images/.mirrored` on load and switches to local icons au
 4. Skill data: each `{Tree}_(skill_tree)` page has full tooltip tables; the pages also have a hidden "Show formulas" mode with exact attribute-scaling formulas if deeper accuracy is wanted.
 5. Verify calibration constants in-game (create a character, read the character sheet at level 1, level once).
 6. Reload `Stoneshard Calculator.dc.html` — no code changes needed unless new slots/mechanics were added.
+
+## Extraction ledger (full-coverage roadmap)
+Goal: every enemy, consumable, and item on the wiki, verbatim.
+
+**Enemies — done (20, verbatim 0.9.4.14):** Goon (Club), Restless, Wraith, Wolf, Thug (Spear), Zealot (Spear), Necromancer (Staff), Matriarch, Boar, Harpy, Ghoul, Cutthroat, Deserter (Sword), Marksman, Crawler, Bear, Bison, Young Troll, Manticore, Ascended Archon.
+
+**Enemies — remaining (~130):** every other entry in the https://stoneshard.com/wiki/Enemies navbox (all Goon/Thug/Henchman/Marauder/Deserter/Renegade/Ringleader/Robber Baron weapon variants, all Restless/Risen/Wraith/Ghast undead, all Proselytes, Hive, mini-bosses, Ancient Troll, quest uniques). Each enemy's stats live only on its own page — extract per page into data/enemies.json using the existing schema (per-bodypart prot object + xp).
+
+**Consumables:** data/consumables.json currently holds stat-affecting potions/food/beverages/drugs + psyche states. Remaining: full Food, Beverages, Potions, Drugs, Medicine, Scrolls list pages (including non-stat items) if full coverage is desired.
+
+**Items:** weapons (12 classes), armor (7 slots incl. cloaks), rings, amulets are complete from list pages. Remaining: Ammunition, Tools & Traps, Artifacts.
