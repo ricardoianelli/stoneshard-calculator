@@ -1,0 +1,23 @@
+{
+"$meta": {"game_version":"0.9.4.23","class":"sling","hands":1,"needs_ammo":true,"crit_bonus":"+50% Stagger Chance","source":"https://stoneshard.com/wiki/Slings","page_patch":"0.9.4.14","schema":"data/schema.md"},
+"items": [
+{"n":"Makeshift Sling","t":1,"r":"C","d":{"cr":9},"du":65,"range":6,"p":50,"s":{"ap":5,"dz":15,"sg":10,"acc":-70,"cc":2,"sec":5,"cd":-5}},
+{"n":"Wilder Sling","t":1,"r":"C","d":{"cr":9},"du":45,"range":6,"p":50,"s":{"ap":5,"bpd":5,"sg":18,"acc":-70,"cc":2,"sec":5,"cd":-5}},
+{"n":"Militia Sling","t":2,"r":"C","d":{"cr":11},"du":90,"range":6,"p":250,"s":{"ap":5,"dz":20,"sg":15,"acc":-65,"cc":4,"sec":5,"cd":-6}},
+{"n":"Hunting Sling","t":2,"r":"C","d":{"cr":10},"du":90,"range":6,"p":250,"s":{"bpd":10,"sg":23,"acc":-65,"cc":4,"sec":5,"cd":-7}},
+{"n":"Raider Sling","t":3,"r":"C","d":{"cr":12},"du":110,"range":7,"p":650,"s":{"ap":5,"dz":25,"sg":20,"acc":-57,"cc":6,"sec":5,"cd":-7}},
+{"n":"Scout Sling","t":3,"r":"C","d":{"cr":11},"du":110,"range":8,"p":650,"s":{"ap":5,"dz":38,"acc":-60,"cc":6,"sec":5,"cd":-7}},
+{"n":"Nomad Sling","t":3,"r":"C","d":{"cr":12},"du":125,"range":7,"p":725,"s":{"ap":5,"sg":30,"acc":-60,"cc":6,"cav":12,"sec":5,"cd":-8}},
+{"n":"Mercenary Sling","t":4,"r":"C","d":{"cr":13},"du":130,"range":7,"p":1450,"s":{"ap":5,"dz":30,"sg":25,"acc":-55,"cc":8,"sec":10,"cd":-8}},
+{"n":"Skirmisher Sling","t":4,"r":"C","d":{"cr":14},"du":110,"range":6,"p":1450,"s":{"ap":5,"sg":45,"acc":-55,"cc":8,"ce":15,"sec":5,"cd":-8}},
+{"n":"Sentian Sling","t":5,"r":"C","d":{"cr":15},"du":155,"range":7,"p":3050,"s":{"ap":8,"dz":42,"sg":30,"acc":-50,"cc":10,"sec":8,"cd":-9}},
+{"n":"Beastslayer Sling","t":5,"r":"C","d":{"cr":17},"du":155,"range":7,"p":3050,"s":{"ap":5,"bpd":15,"dz":35,"sg":30,"acc":-55,"cc":10,"sec":15,"cd":-9}},
+{"n":"Ornate Sling","t":5,"r":"U","d":{"cr":15},"du":155,"range":8,"p":3050,"s":{"ap":5,"bpd":20,"dz":35,"sg":30,"acc":-50,"cc":10,"fum":-5,"sec":8,"cd":-10,"ftr":10}},
+{"n":"Peasant Staff Sling","t":1,"r":"C","d":{"cr":10},"du":75,"range":6,"p":50,"s":{"ap":10,"bpd":10,"st":10,"sg":20,"acc":-75,"sec":10,"cd":-2}},
+{"n":"Militia Staff Sling","t":2,"r":"C","d":{"cr":12},"du":100,"range":7,"p":300,"s":{"ap":10,"bpd":15,"st":15,"sg":25,"acc":-70,"sec":10,"cd":-3}},
+{"n":"Woodwight Staff Sling","t":3,"r":"C","d":{"cr":14},"du":100,"range":7,"p":800,"s":{"ap":10,"bpd":20,"st":20,"sg":30,"acc":-65,"sec":15,"cd":-4}},
+{"n":"Soldier Staff Sling","t":3,"r":"C","d":{"cr":15},"du":125,"range":7,"p":1050,"s":{"ap":10,"ad":10,"bpd":20,"st":28,"acc":-65,"cc":3,"ce":10,"sec":15,"cd":-4}},
+{"n":"Veteran Staff Sling","t":4,"r":"C","d":{"cr":16},"du":150,"range":8,"p":1825,"s":{"ap":10,"bpd":25,"st":25,"sg":35,"acc":-60,"sec":20,"cd":-5}},
+{"n":"Highlander Staff Sling","t":5,"r":"C","d":{"cr":18},"du":175,"range":8,"p":3825,"s":{"ap":10,"bpd":30,"st":30,"sg":40,"acc":-55,"sec":25,"cd":-6}},
+{"n":"Theobrand's Staff Sling","t":5,"r":"U","d":{"cr":13,"sa":4},"du":175,"range":7,"p":3825,"s":{"ap":20,"ad":20,"bpd":30,"st":35,"sg":40,"acc":-55,"ce":20,"sec":33,"cd":-6}}
+]}

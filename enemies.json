@@ -1,0 +1,149 @@
+{
+ "$meta": {
+  "game_version": "0.9.4.23",
+  "source": "https://stoneshard.com/wiki (item names verified via character starting inventories + tavern stock)",
+  "schema": "data/schema.md",
+  "note": "Only verified-real item names are listed. Stat effects are conservative approximations of their in-game buffs (Satiety, Tipsy, drug effects) — tune against wiki item pages when updating. dur = duration in turns. psyche group added: positive Psyche states + Vigor as toggleable buffs (values approximate, morale-dependent).",
+  "img_url": "https://stoneshard.com/wiki/Special:FilePath/{name}.png"
+ },
+ "potions": [
+  {
+   "n": "Vivifying Essence",
+   "dur": 0,
+   "s": {
+    "hr": 5
+   },
+   "desc": "Restores 50% Health; brief regeneration"
+  },
+  {
+   "n": "Healing Salve",
+   "dur": 0,
+   "s": {
+    "hr": 3
+   },
+   "desc": "Restores body part condition; minor regeneration"
+  },
+  {
+   "n": "Leeches",
+   "dur": 0,
+   "s": {
+    "inr": 10
+   },
+   "desc": "Reduces Intoxication; stops internal bleeding"
+  }
+ ],
+ "food": [
+  {
+   "n": "Bread",
+   "dur": 400,
+   "s": {
+    "hr": 1,
+    "er": 1
+   },
+   "desc": "Satiety: minor restoration while fed"
+  },
+  {
+   "n": "Flatbread",
+   "dur": 300,
+   "s": {
+    "hr": 1
+   },
+   "desc": "Satiety: minor restoration"
+  },
+  {
+   "n": "Cheese",
+   "dur": 400,
+   "s": {
+    "hr": 1,
+    "er": 1
+   },
+   "desc": "Satiety: minor restoration"
+  },
+  {
+   "n": "Smoked Ham",
+   "dur": 500,
+   "s": {
+    "hr": 2,
+    "er": 1
+   },
+   "desc": "Hearty: better restoration while fed"
+  },
+  {
+   "n": "Roasted Tough Meat",
+   "dur": 500,
+   "s": {
+    "hr": 2
+   },
+   "desc": "Hearty meal"
+  },
+  {
+   "n": "Dried Fig",
+   "dur": 250,
+   "s": {
+    "er": 2
+   },
+   "desc": "Quick energy"
+  }
+ ],
+ "beverages": [
+  {
+   "n": "Mead",
+   "dur": 200,
+   "s": {
+    "pnr": 10,
+    "acc": -3
+   },
+   "desc": "Tipsy: +Pain Res, −Accuracy"
+  }
+ ],
+ "drugs": [
+  {
+   "n": "Elven Mud",
+   "dur": 300,
+   "s": {
+    "er": 8,
+    "mp": 5,
+    "bfc": 2
+   },
+   "desc": "+Energy Restoration, +Magic Power, +Backfire"
+  }
+ ],
+ "psyche": [
+  {
+   "n": "Psyche: Optimism",
+   "s": {
+    "fort": 13,
+    "xp": 10,
+    "ftr": 10
+   },
+   "desc": "+13% Fortitude (scales with Morale), +10% XP Gain, +10% Fatigue Res, -0.01% Pain Change"
+  },
+  {
+   "n": "Psyche: Heroism",
+   "s": {
+    "wd": 10,
+    "acc": 5,
+    "co": 5,
+    "pnr": 15
+   },
+   "desc": "+10% Weapon Damage, +5% Accuracy, +5% Counter, +15% Pain Res (approx.; scales with Morale)"
+  },
+  {
+   "n": "Psyche: Second Wind",
+   "s": {
+    "hr": 10,
+    "er": 10,
+    "dt": -10
+   },
+   "desc": "+10% Health/Energy Restoration, -10% Damage Taken (approx.)"
+  },
+  {
+   "n": "Vigor (rested)",
+   "s": {
+    "ftr": 5,
+    "en_pct": 5
+   },
+   "desc": "+5% Max Energy, +5% Fatigue Res; enhanced by Survival passives"
+  }
+ ]
+}

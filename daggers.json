@@ -1,0 +1,115 @@
+{
+ "$meta": {
+  "tree": "Armored Combat",
+  "cat": "utility",
+  "page_patch": "0.9.1.0",
+  "focus": "Crowd Control, Weakening Effects, Area Damage, Survivability, Mobility",
+  "source": "https://stoneshard.com/wiki/Armored_Combat_(skill_tree)",
+  "desc_note": "VERBATIM game data (0.9.4.x)"
+ },
+ "skills": [
+  {
+   "n": "Self-Repair",
+   "t": 1,
+   "type": "Passive",
+   "desc": "Grants -15% to the equipped armor and weapons' Durability loss rate.\n\nAllows dismantling pieces of armor into fragments, which can be used to repair other armor, and also occasionally receive them as loot when killing enemies.\nThe chance to receive fragments depends on the target's Armor Durability upon its death.\n\nIncreases the amount of Durability restored by repair kits by 33%.\n\nEach equipped piece of armor with Durability above 80% grants +5% Bleed Resistance to the respective body part and +3% Crit Avoidance.",
+   "fx": {
+    "cond": "per_piece_durability>80",
+    "cav": 3,
+    "blr_part": 5
+   }
+  },
+  {
+   "n": "Brace for Impact!",
+   "t": 1,
+   "type": "Maneuver",
+   "target": "No Target",
+   "en": 10,
+   "cd": 10,
+   "mod": [
+    "agi",
+    "prc",
+    "vit"
+   ],
+   "desc": "2 turns: +12% Dodge, +12% Block; received attacks +15% Fumble, -10% Accuracy, -25% Armor Pen. Light chest: +50% Crit Avoidance. Medium: received -33% Bodypart Damage. Heavy: skill -25% CD.",
+   "dyn": "Activates \"Brace for Impact!\" for 2 turns:\n+12% Dodge Chance\n+12% Block Chance\n+12% Control Resistance\n+12% Move Resistance\n\nGrants all received strikes and shots +{1.5*AGL}% Fumble Chance, -{5+0.5*PRC}% Accuracy, and -{5+2*VIT}% Armor Penetration.\n\nIf equipped with a light chestpiece, grants the effect +50% Crit Avoidance.\n\nIf equipped with a medium chestpiece, also grants received strikes and shots -33% Bodypart Damage.\n\nIf equipped with a heavy chestpiece, grants the skill -33% Cooldown Duration."
+  },
+  {
+   "n": "Hard Target",
+   "t": 1,
+   "type": "Passive",
+   "desc": "Each shot taken at the character grants +5% Dodge Chance for 5 turns and applies the attacker with -8% Accuracy for 5 turns.\n\nBoth effects stack up to 4 times and trigger twice if the shot hits its target.\n\nGrants all received strikes and shots -10% Armor Penetration."
+  },
+  {
+   "n": "Flexible Defense",
+   "t": 2,
+   "type": "Attack / Maneuver",
+   "target": "Target Area",
+   "range": 1,
+   "en": 14,
+   "cd": 14,
+   "mod": [
+    "agi",
+    "prc",
+    "wil"
+   ],
+   "desc": "Strike 3 tiles -50% WD, +100% Stagger. Hit: target -20% WD, +20% Fumble, -5% Acc 2 turns. Light chest: +1 turn. Medium: also -15% Control/Move Res, -15% Crit Avoid. Heavy: +5% Max Energy and +6% Energy Restoration 5 turns per enemy hit.",
+   "dyn": "Delivers a strike to three adjacent tiles with {-60+AGL}% Weapon Damage and +{80+2*PRC}% Stagger Chance.\n\nHitting a target applies it with -20% Weapon Damage, +20% Fumble Chance, and -5% Accuracy for 2 turns (the effect doesn't stack).\n\nIf equipped with a light chestpiece, grants additional +1 turn to the applied penalties' duration.\n\nIf equipped with a medium chestpiece, hitting a target applies it with -15% Control Resistance, -15% Move Resistance, and -15% Crit Avoidance for 2 turns (the effect doesn't stack).\n\nIf equipped with a heavy chestpiece, replenishes {-5+WIL}% Max Energy and grants +6% Energy Restoration for 5 turns for each enemy hit by the strike."
+  },
+  {
+   "n": "Battle-Forged",
+   "t": 2,
+   "type": "Passive",
+   "desc": "Using Stances and Maneuvers grants -10% Damage Taken until the next turn.\n\nIf equipped with a light chestpiece, moving to other tiles (Charges and Maneuvers count as well) grants +2% Dodge Chance and +2% Counter Chance for 4 turns for each traveled tile.\n\nIf equipped with a medium chestpiece, using Stances and Maneuvers also reduces this ability tree's cooldowns by 1 turn.\n\nIf equipped with a heavy chestpiece, remaining on the same tile grants -3% Abilities Energy Cost and +3% Crit Avoidance for 6 turns.\n\nAll effects stack up to 5 times."
+  },
+  {
+   "n": "Unyielding Defense",
+   "t": 2,
+   "type": "Maneuver",
+   "target": "Target Tile",
+   "range": 1,
+   "en": 20,
+   "cd": 14,
+   "desc": "Repositions to an adjacent tile, lowers the equipped helmet's visor, and activates \"Unyielding Defense\" for 8 turns:\n+6% to all body parts' Protection (no less than +1)\n+4% Fortitude\n+4% Block Power Recovery\n+4% Block Chance or +4% Dodge Chance (the priority is given to the highest Stat)\n\nEach received strike or shot grants an extra stack of the effect (up to V)."
+  },
+  {
+   "n": "Battering Ram",
+   "t": 3,
+   "type": "Attack / Charge",
+   "target": "Target Object",
+   "range": 3,
+   "en": 26,
+   "cd": 24,
+   "mod": [
+    "str",
+    "agi",
+    "prc",
+    "vit",
+    "dodge"
+   ],
+   "desc": "Charge, 5 Crushing, 100% Acc, 100% Stagger; damage scales with chestpiece Protection. Light: +1 Range, +2.5% WD 2 turns. Medium: on Stagger -25% CD 2 turns. Heavy: -1 Range, Stagger→100% Stun.",
+   "dyn": "Performs a charge towards the target and applies it with -100% Counter Chance until the next turn, then deals Crushing Damage (50% of chestpiece's Protection + {0.5*STR}) with {50+2.5*PRC+2.5*AGL}% Accuracy, {15-0.5*PRC}% Fumble Chance (min 0), {50+STR}% Armor Penetration, and {70+STR+VIT}% Stagger Chance.\n\nThe damage depends on the equipped chestpiece's Protection.\n\nIf equipped with a light chestpiece, grants the skill +1 Range and +33% of Dodge Chance as Weapon Damage for 2 turns.\n\nIf equipped with a medium chestpiece and the skill Staggers its target, grants -25% Cooldowns Duration for 2 turns.\n\nIf equipped with a heavy chestpiece, grants the skill -1 Range and {60+2*STR+2*VIT}% Stun Chance."
+  },
+  {
+   "n": "Custom Adjustments",
+   "t": 3,
+   "type": "Passive",
+   "desc": "Each equipped piece of light armor grants +25% to the respective body part's Protection (no less than +2) and -2% Damage Taken.\n\nEach equipped piece of medium armor grants +8% Bleed Resistance to the respective body part and +3% Dodge Chance.\n\nEach equipped piece of heavy armor grants -3% to its Durability loss rate and also +4 Max Energy and +2% Energy Restoration.",
+   "fx": {
+    "per_piece": {
+     "light": {
+      "prot_pct": 15
+     },
+     "medium": {
+      "dg": 1.5
+     },
+     "heavy": {
+      "en": 3,
+      "er": 1
+     }
+    },
+    "double_if_uniform": true
+   }
+  }
+ ]
+}

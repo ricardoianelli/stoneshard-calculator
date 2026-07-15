@@ -1,0 +1,28 @@
+{
+  "$meta": {"note":"Index of all skill tree files + which passives the calculator applies as permanent stat mods.","game_version":"0.9.4.23"},
+  "trees": [
+    {"id":"swords","file":"swords.json","label":"Swords"},
+    {"id":"axes","file":"axes.json","label":"Axes"},
+    {"id":"maces","file":"maces.json","label":"Maces"},
+    {"id":"daggers","file":"daggers.json","label":"Daggers"},
+    {"id":"swords2h","file":"swords2h.json","label":"Two-Handed Swords"},
+    {"id":"axes2h","file":"axes2h.json","label":"Two-Handed Axes"},
+    {"id":"maces2h","file":"maces2h.json","label":"Two-Handed Maces"},
+    {"id":"spears","file":"spears.json","label":"Spears"},
+    {"id":"staves","file":"staves.json","label":"Staves"},
+    {"id":"ranged","file":"ranged.json","label":"Ranged Weapons"},
+    {"id":"shields","file":"shields.json","label":"Shields"},
+    {"id":"dual_wielding","file":"dual_wielding.json","label":"Dual Wielding"},
+    {"id":"athletics","file":"athletics.json","label":"Athletics"},
+    {"id":"warfare","file":"warfare.json","label":"Warfare"},
+    {"id":"armored_combat","file":"armored_combat.json","label":"Armored Combat"},
+    {"id":"magic_mastery","file":"magic_mastery.json","label":"Magic Mastery"},
+    {"id":"survival","file":"survival.json","label":"Survival"},
+    {"id":"pyromancy","file":"pyromancy.json","label":"Pyromancy"},
+    {"id":"geomancy","file":"geomancy.json","label":"Geomancy"},
+    {"id":"electromancy","file":"electromancy.json","label":"Electromancy"},
+    {"id":"arcanistics","file":"arcanistics.json","label":"Arcanistics"}
+  ],
+  "unimplemented_in_0_9_4": ["venomancy", "cryomancy", "psionics", "chronomancy", "astromancy"],
+  "note": "Category:Skill_trees confirms 22 trees incl. Basic Skills (default, no AP cost — not in calculator) and Arcanistics (added by 0.9.4). No Sabotage tree exists."
+}

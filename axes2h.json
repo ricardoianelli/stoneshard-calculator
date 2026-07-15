@@ -1,0 +1,176 @@
+{
+ "$meta": {
+  "tree": "Arcanistics",
+  "cat": "magic",
+  "school": "arc",
+  "page_patch": "0.9.4.14",
+  "focus": "Positioning, Crowd Control, Weakening Effects, Support",
+  "formula": "dmg = base * MagicPower/100 * (1 + ArcanisticPower/100)",
+  "source": "https://stoneshard.com/wiki/Arcanistics_(skill_tree)",
+  "desc_note": "VERBATIM game data (0.9.4.x). Damage formulas evaluate with current Magic Power (MP) and Arcanistic Power (ARC). Entropy Flare/Aether Harmony mapping is order-based."
+ },
+ "skills": [
+  {
+   "n": "Wormhole",
+   "t": 1,
+   "type": "Spell",
+   "target": "Target Object",
+   "range": 5,
+   "en": 16,
+   "cd": 8,
+   "mod": [
+    "mp",
+    "arc"
+   ],
+   "desc": "Applies 'Wormhole' 3 turns, marks tile. On expiry/removal teleports target to mark: 8 Arcane Damage (12 + 60% Stun if tile occupied). While active, can recast free to trigger. Not usable on giant/stationary targets.",
+   "dyn": "Applies the target with \"Wormhole\" for 3 turns and marks its tile.\n\nWhen the effect expires or is removed, teleports the target to the marked tile, dealing {10*(1+(ARC-100)/100)*MP/100} Arcane Damage.\n\nIf the marked tile is occupied, teleports the target to the closest empty tile, dealing additional {12*(1+(ARC-100)/100)*MP/100} Arcane Damage and with {60*(MP+ARC)/200}% chance Stunning it.\n\nWhile \"Wormhole\" is active, the spell doesn't go on cooldown and can be used again without spending Energy to remove the effect from the target.\n\nThe spell can't be used on giant or stationary targets and doesn't harm the caster."
+  },
+  {
+   "n": "Dimensional Shift",
+   "t": 1,
+   "type": "Spell",
+   "target": "Target Object",
+   "range": 5,
+   "en": 10,
+   "cd": 8,
+   "mod": [
+    "mp",
+    "arc",
+    "wil",
+    "rng"
+   ],
+   "desc": "Swaps two targets: 5 Arcane + 1 per tile between them; 80% Confuse 3 turns or Daze 2. Both: -5% WD, -5% Accuracy, +5% Fumble 3 turns (x2).",
+   "dyn": "Marks two targets, then teleports them, swapping their positions and dealing {6*(1+(ARC-100)/100)*MP/100} Arcane Damage.\n\nAlso deals {1*(1+(ARC-100)/100)*MP/100} Arcane Damage to both targets for each tile of distance between them, and with {80*(MP+ARC)/200}% chance Confuses them for 3 turns or Dazes for 2 turns.\n\nApplies both targets with -{0.5*WIL}% Weapon Damage, -{0.5*WIL}% Accuracy, and +{0.5*WIL}% Fumble Chance for 3 turns.\n\nThe effect stacks up to 2 times.\n\nThe spell can't be used on giant or stationary targets, doesn't harm the caster, and doesn't apply penalties to entities summoned with Arcanistics."
+  },
+  {
+   "n": "Arcane Might",
+   "t": 1,
+   "type": "Passive",
+   "desc": "Dealing Arcane Damage with strikes, shots, and spells grants +2% Accuracy, -2% Fumble Chance, -2% Backfire Chance, +2% Crit Chance, and +2% Miracle Chance for 4 turns.\n\nThe effect stacks up to 3 times.\n\nTeleporting grants +1 Range to Arcanistics spells and -5% Backfire Damage Change for 4 turns."
+  },
+  {
+   "n": "Time Echo",
+   "t": 2,
+   "type": "Passive",
+   "desc": "When \"Wormhole\" expires or is removed after being applied to the character, replenishes 50% Health and Energy lost over the course of the effect.\n\nWhen \"Wormhole\" expires or is removed after being applied to an enemy, deals additional Arcane Damage equal to 33% of the damage they received over the course of the effect."
+  },
+  {
+   "n": "Schism",
+   "t": 2,
+   "type": "Spell",
+   "target": "Target Area",
+   "range": 5,
+   "en": 20,
+   "cd": 10,
+   "mod": [
+    "mp",
+    "arc",
+    "rng"
+   ],
+   "desc": "11 Arcane to 5x5 (minus center); 40% Stagger or Immobilize. 100% knockback adjacent to center, pulls targets 1 tile away.",
+   "dyn": "Deals {9*(1+(ARC-100)/100)*MP/100} Arcane Damage to a 5x5 tile area (except the central tile) and with {40*(MP+ARC)/200}% chance Staggers or Immobilizes all affected targets.\n\nWith {90*(MP+ARC)/200}% chance knocks back the targets adjacent to the area's center and pulls the targets that are 1 tile away from it.\n\nThe spell doesn't harm the caster, aside from Arcane Damage."
+  },
+  {
+   "n": "Transcendental Anchoring",
+   "t": 2,
+   "type": "Passive",
+   "desc": "Teleporting enemies burns 10% of their Max Energy and replenishes the same amount of Energy to the character.\n\nUsing \"Dimensional Shift\" on the character or entities summoned with Arcanistics reduces the spell's cooldown by 2 turns."
+  },
+  {
+   "n": "Aether Shield",
+   "t": 2,
+   "type": "Spell / Buff",
+   "target": "No Target",
+   "en": 26,
+   "cd": 18,
+   "mod": [
+    "mp",
+    "arc",
+    "wil"
+   ],
+   "desc": "'Aether Shield' 2 turns (+1 per other learned Arcanistics spell): +30% Control/Move/Bleed Res, -15% Damage Taken, Energy refund 20% of damage taken, destroys all projectiles aimed at caster. Teleporting +3 turns (max 8).",
+   "fx": {
+    "buff": true,
+    "ctr": 30,
+    "mvr": 30,
+    "blr": 30,
+    "dt": -15
+   },
+   "dyn": "Activates \"Aether Shield\" for 2 turns (+1 turn for each other learned Arcanistics spell):\n+{15+1.5*WIL}% Control Resistance\n+{15+1.5*WIL}% Move Resistance\n+{15+1.5*WIL}% Bleed Resistance\n-{10+0.5*WIL}% Damage Taken\nReplenishes Energy for 20% of the damage received.\nDestroys all physical and magical projectiles (including thrown items) that would hit the caster, preventing their damage and effects.\n\nTeleporting prolongs the effect's duration by 3 turns (up to 8), and each destroyed projectile reduces it by 1 turn."
+  },
+  {
+   "n": "Astral Tides",
+   "t": 3,
+   "type": "Passive",
+   "desc": "'Schism'/Phantasm pull-knockback success: target -10% Magic Res, -10% Arcane Res 3 turns (x2). On fail: 4 Arcane Damage instead.",
+   "dyn": "While affected by \"Aether Shield\", teleporting also grants all strikes and shots {0.1*WIL*(1+(ARC-100)/100)*MP/100} Arcane Damage for 4 turns.\n\nThe effect stacks up to 2 times.\n\nIf \"Schism\" (or \"Arcane Tether\" of the summoned Phantasm) successfully knocks back or pulls the target, applies it with -10% Magic Resistance and -10% Arcane Resistance for 3 turns.\n\nThe effect stacks up to 2 times.\n\nIf these spells fail to knock back or pull the target, deals {5*(1+(ARC-100)/100)} Arcane Damage to it instead."
+  },
+  {
+   "n": "Mana Crystal",
+   "t": 3,
+   "type": "Spell / Summon",
+   "target": "Target Point",
+   "range": 3,
+   "en": 32,
+   "cd": 20,
+   "mod": [
+    "mp",
+    "arc",
+    "prc",
+    "wil"
+   ],
+   "desc": "Summons Mana Crystal 8 turns; each turn shoots lowest-HP enemy within 4 tiles: 10 Arcane, 57.5% Accuracy, 10% Armor Pen, 2.5% Crit. Stats scale with caster's, reduced by distance.",
+   "dyn": "Summons a Mana Crystal on the targeted tile, which persists for 8 turns.\n\nEach turn, the Crystal shoots a bolt of Aether at the enemy with the lowest Health within 4 tiles, dealing {(1+(ARC-100)/100)*10} Arcane Damage.\n\nThe offensive capabilities and Max Health of the Crystal change dynamically depending on the caster's stats, decreasing with distance from the caster.\nThe Crystal doesn't move and is immune to all effects (except \"Stasis\" and \"Wormhole\").\n\nWhen teleported, the Crystal shoots 3 bolts at random enemies within 4 tiles, distributing them evenly."
+  },
+  {
+   "n": "Stasis",
+   "t": 3,
+   "type": "Spell",
+   "target": "Target Object",
+   "range": 2,
+   "en": 30,
+   "cd": 30,
+   "mod": [
+    "mp",
+    "arc",
+    "rng"
+   ],
+   "desc": "Applies the target with \"Stasis\" for 3 turns:\n+200% Move Resistance\n-50% Damage Taken\nImmunity to all damage types except Arcane.\nImmunity to all effects except \"Wormhole\".\nCan't perform any actions.\nPrevents death.\nFreezes all cooldowns and the duration of active effects.\n\nWhen the effect expires or is removed, deals 100% of the Arcane Damage the target received over the course of \"Stasis\" to a 3x3 tile area, and with 80% chance (scaled by Magic and Arcanistic Power) Dazes all affected targets.\n\nTeleporting a target affected by \"Stasis\" removes the effect and doubles the chance to Daze.\n\nThe spell can't be used on giant targets."
+  },
+  {
+   "n": "Phantasm",
+   "t": 4,
+   "type": "Spell / Summon",
+   "target": "Target Point",
+   "range": 3,
+   "en": 56,
+   "cd": 36,
+   "mod": [
+    "mp",
+    "arc",
+    "prc",
+    "wil"
+   ],
+   "desc": "Summons Phantasm 8 turns: 22 Arcane to random adjacent enemy/turn, 57.5% Accuracy, 7.5% Crit. Has Arcane Tether (pull), Mana Siphon (energy steal), Consonance (prolong). Teleporting it refreshes its cooldowns.",
+   "dyn": "Summons a Phantasm on the targeted tile, which persists for 8 turns.\n\nEach turn, the Phantasm deals {(1+(ARC-100)/100)*26} Arcane Damage to a random adjacent enemy.\n\nThe offensive capabilities and Max Health of the Phantasm change dynamically depending on the caster's stats, decreasing with distance from the caster.\nThe Phantasm can move within 2 tiles of its summoning or teleportation spot, is immune to all effects (except \"Stasis\" and \"Wormhole\"), and replenishes Health upon taking Arcane Damage.\n\nThe Phantasm has access to the following abilities: \"Arcane Tether\", which pulls enemies in, \"Mana Siphon\", which steals Energy, and \"Consonance\", which prolongs its summoning duration.\n\nTeleporting the Phantasm instantly refreshes all its cooldowns."
+  },
+  {
+   "n": "Entropy Flare",
+   "t": 4,
+   "type": "Passive",
+   "desc": "Teleporting a Mana Crystal grants it +1 Range, +25% Damage, +10% Accuracy, and +25% Damage Reflection for 3 turns.\n\nThe effect stacks up to 2 times.\n\nEach strike received by entities summoned with Arcanistics deals Arcane Damage to the attacker equal to 10% of the entities' Max Health.\n\nOnce per 10 turns, producing a miracle with \"Mana Crystal\" instantly refreshes the spell's cooldown and grants it -20% Energy Cost during the next use."
+  },
+  {
+   "n": "Aether Harmony",
+   "t": 4,
+   "type": "Passive",
+   "desc": "Each entity currently summoned with Arcanistics grants -5% Backfire Damage Change and +10% Magic Power."
+  },
+  {
+   "n": "Beyond the Veil",
+   "t": 4,
+   "type": "Passive",
+   "desc": "When \"Stasis\" expires or is removed after being applied to the character, it no longer harms them and also activates \"Intangibility\" for 1 turn, making them untargetable by strikes, shots, and spells.\n\nWhile \"Stasis\" is active on the character, grants the effect +50% Arcanistics Power, +25% Miracle Chance, and prevents it from freezing cooldowns."
+  }
+ ]
+}
