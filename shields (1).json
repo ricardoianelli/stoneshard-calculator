@@ -1,0 +1,113 @@
+{
+ "$meta": {
+  "tree": "Two-Handed Maces",
+  "cat": "weapon",
+  "page_patch": "0.9.3.9",
+  "focus": "Crowd Control, Area Damage",
+  "crit_effect": "Cleave 3 tiles; +50% Daze Chance",
+  "source": "https://stoneshard.com/wiki/Two-Handed_Maces_(skill_tree)",
+  "desc_note": "VERBATIM official wiki 0.9.3.9 + formulas from generated game data"
+ },
+ "skills": [
+  {
+   "n": "Keep Them Coming",
+   "t": 1,
+   "type": "Passive",
+   "desc": "Killing enemies with the ability tree's skills or critical two-handed mace strikes activates \"Mighty Swing\" for 1 turn and grants +15% Energy Restoration for 4 turns.\n\nThe effect stacks up to 2 times."
+  },
+  {
+   "n": "Mighty Swing",
+   "t": 1,
+   "type": "Maneuver",
+   "target": "No Target",
+   "en": 4,
+   "cd": 1,
+   "desc": "Activates \"Mighty Swing\" for 1 turn:\n+40% Weapon Damage\n+40% Stagger Chance\n+20% Stun Chance\n+40% Bodypart Damage\n+40% Armor Damage\n-200% Counter Chance"
+  },
+  {
+   "n": "Unstoppable Force",
+   "t": 1,
+   "type": "Attack",
+   "target": "Target Area",
+   "range": 1,
+   "en": 14,
+   "cd": 12,
+   "mod": [
+    "str",
+    "prc"
+   ],
+   "dyn": "Delivers a strike to three adjacent tiles with +{50+2*STR}% Knockback Chance and +{30+3*PRC}% Armor Damage.\n\nGrants -10% Skills Energy Cost for 3 turns for each target that is knocked back by the strike.\n\nThe effect stacks up to 3 times.\n\nIf affected by \"Mighty Swing\", and the strike knocked the target back, puts its abilities on a 2 turn cooldown.",
+   "desc": ""
+  },
+  {
+   "n": "Unbalance",
+   "t": 1,
+   "type": "Passive",
+   "desc": "Staggering or knocking targets back with two-handed mace strikes applies them with -5% Control Resistance, +5% Fumble Chance, and -10% Dodge Chance for 4 turns.\n\nThe effect stacks up to 3 times."
+  },
+  {
+   "n": "Striker Stance",
+   "t": 2,
+   "type": "Stance",
+   "target": "No Target",
+   "en": 14,
+   "cd": 12,
+   "desc": "Activates \"Striker Stance\" for 10 turns:\n+3% Crit Chance\n+10% Knockback Chance\n+10% Armor Penetration\n+15% Stagger Chance\nGrants +100% Daze Chance to every third strike.\n\nUsing the ability tree's skills grants an extra stack of the effect (up to IV).\n\nBasic two-handed mace strikes prolong the effect's duration by 1 turn (up to 10) but reduce its number of stacks (no more than once per turn).\n\nOnly one Stance effect can be active at a time.\n\nIf affected by \"Mighty Swing\", using the skill delivers a strike to a random adjacent enemy."
+  },
+  {
+   "n": "Bonebreaker",
+   "ico": "Bonebreaker (Two-Handed Mace skill)",
+   "t": 2,
+   "type": "Passive",
+   "desc": "Grants two-handed mace strikes +35% Armor Damage if the target's Armor Durability is above 50%.\n\nGrants two-handed mace strikes +20% Bodypart Damage if the target has no Armor or its Armor Durability is below 50%."
+  },
+  {
+   "n": "Forceful Slam",
+   "t": 2,
+   "type": "Attack",
+   "target": "Target Object",
+   "range": 1,
+   "en": 20,
+   "cd": 16,
+   "mod": [
+    "str",
+    "agi",
+    "prc"
+   ],
+   "dyn": "Delivers a strike with -50% Weapon Damage and +75% Immobilization Chance and also prolongs the target's Daze, Stun, and Stagger by 1 turn.\n\nThis strike can't knock back its targets.\n\nIf the next turn the target is adjacent, delivers a free strike to it with +{0.5*AGL+0.5*STR}% Crit Chance.\n\nIf the target is Immobilized, Stunned, Dazed, or Staggered, grants this strike +{25+PRC}% Weapon Damage.\n\nIf the target is Stunned, also doubles the bonus to Crit Chance.\n\nIf affected by \"Mighty Swing\", prolongs its duration by 1 turn, and the first strike applies the target with -10% Crushing Resistance for 3 turns (the effect doesn't stack).",
+   "desc": ""
+  },
+  {
+   "n": "Revel in Battle",
+   "t": 3,
+   "type": "Passive",
+   "mod": [
+    "wil"
+   ],
+   "dyn": "While affected by \"Striker Stance\", killing enemies with two-handed maces replenishes {10+WIL}% Max Energy.\n\nIf affected by both \"Striker Stance\" and \"Mighty Swing\" at the same time, killing enemies with two-handed maces reduces the ability tree's cooldowns by 4 turns and grants +20% Stun Chance for 3 turns.\n\nThe effect stacks up to 2 times.",
+   "desc": ""
+  },
+  {
+   "n": "Skull Crusher",
+   "t": 3,
+   "type": "Attack / Charge",
+   "target": "Target Object",
+   "range": 2,
+   "en": 26,
+   "cd": 20,
+   "mod": [
+    "str",
+    "agi",
+    "prc"
+   ],
+   "dyn": "Performs a charge towards the target and delivers a strike to its head with +{10+2*STR+2*PRC}% Stun Chance and +{5+PRC+AGL}% Bodypart Damage.\n\nIf affected by \"Mighty Swing\", grants the skill +1 Range, +50% Stagger Chance, and +50% Immobilization Chance.",
+   "desc": ""
+  },
+  {
+   "n": "Severe Concussion",
+   "t": 3,
+   "type": "Passive",
+   "desc": "Dazing, Stunning, or Staggering targets with two-handed mace strikes applies them with -15% Move Resistance, -10% Accuracy, and +10% Fumble Chance for 4 turns.\n\nThe effect stacks up to 2 times."
+  }
+ ]
+}

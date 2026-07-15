@@ -1,0 +1,151 @@
+{
+ "$meta": {
+  "tree": "Magic Mastery",
+  "cat": "utility",
+  "page_patch": "0.9.4.14",
+  "focus": "Support, Control, Weakening Effects",
+  "source": "https://stoneshard.com/wiki/Magic_Mastery_(skill_tree)",
+  "desc_note": "VERBATIM game data (0.9.4.x)"
+ },
+ "skills": [
+  {
+   "n": "Seal of Finesse",
+   "t": 1,
+   "type": "Spell",
+   "target": "No Target",
+   "en": 18,
+   "cd": 16,
+   "desc": "Reduces Backfire Damage by 40% and activates \"Seal of Finesse\" for 10 turns:\n-3% Backfire Chance\n-3% Fumble Chance\n-3% Backfire Damage Change\n-3% Cooldowns Duration\n\nRemaining on the same tile grants an extra stack of the effect (up to V).\n\nMoving to other tiles reduces the number of stacks. Removes the effect when moving with I stack."
+  },
+  {
+   "n": "Precise Movements",
+   "t": 1,
+   "type": "Passive",
+   "desc": "Remaining on the same tile grants -3% Backfire Chance.\n\nThe effect stacks up to 3 times.\n\nEach learned Sorcery ability grants -0.5% Backfire Chance and +1% Armor Penetration to the corresponding ability tree's spells.\n\nMagic Mastery also counts as a Sorcery tree for this ability.",
+   "fx": {
+    "per_sorcery_ability": {
+     "bfc": -0.5
+    }
+   }
+  },
+  {
+   "n": "Dissipation",
+   "t": 1,
+   "type": "Passive",
+   "desc": "Each point of received Magic or Nature Damage replenishes 1 Energy and grants +1% Magic or Nature Resistances for 5 turns.\n\nThe effect stacks up to 15 times."
+  },
+  {
+   "n": "Seal of Power",
+   "t": 1,
+   "type": "Spell",
+   "target": "No Target",
+   "en": 24,
+   "cd": 20,
+   "mod": [
+    "wil"
+   ],
+   "desc": "5 turns: +15% Magic Power, +1 Arcane Damage to strikes/shots, +1 Bonus Range. Spells morph it into School Seals with per-school bonuses (Pyro/Electro/Geo/Arcane).",
+   "fx": {
+    "buff": true,
+    "mp": 15,
+    "rng": 1
+   },
+   "dyn": "Activates \"Seal of Power\" for 5 turns:\n+15% Magic Power\n+{WIL*0.1} Arcane Damage to strikes and shots\n+10% Bonus Range\n\nUsing spells transforms the effect into a \"Seal\" of the corresponding School and prolongs its duration by 3 turns (up to 9):\n\nPyromancy: +15% Pyromantic Power, +{WIL*0.2} Fire Damage to strikes and shots, +3% Miracle Chance, and +3% Crit Chance.\nElectromancy: +15% Electromantic Power, +{WIL*0.2} Shock Damage to strikes and shots, -4% Backfire Chance, and -4% Fumble Chance.\nGeomancy: +15% Geomantic Power, -10% Damage Taken, +10% Damage Reflection, and -5% Backfire Damage Change.\nArcanistics: +15% Arcanistic Power, +{WIL*0.2} Arcane Damage to strikes and shots, and -7% Abilities Energy Cost.\n\nUsing the ability tree's spells transforms the effect back into \"Seal of Power\"."
+  },
+  {
+   "n": "Seal of Insight",
+   "t": 2,
+   "type": "Spell",
+   "target": "No Target",
+   "en": 20,
+   "cd": 12,
+   "desc": "Creates 3 random places of power within 2 tiles, which persist for 20 turns.\n\nWhen the caster moves to a place of power activates \"Place of Power\" for 3 turns:\n+7% Magic Power\n-4% Spells Energy Cost\n+3% Miracle Chance\n+10% Energy Restoration\n\nRemaining on a place of power grants an extra stack of the effect (up to IV) and prolongs its duration by 1 turn.\n\nUsing spells reduces the number of stacks.\n\nWhen the caster moves to a place of power for the first time, reduces all spells' cooldowns by 2 turns.\n\nPlaces of power prevent the creation of sigils on the same tile."
+  },
+  {
+   "n": "Lingering Incantations",
+   "t": 2,
+   "type": "Passive",
+   "desc": "Increases the duration of all effects, areas, and entities applied or created with spells by 20%.\n\nActivating a positive magical effect grants the next spell -10% Energy Cost and -10% Cooldown Duration."
+  },
+  {
+   "n": "Seal of Cleansing",
+   "t": 2,
+   "type": "Spell",
+   "target": "Target Object",
+   "range": 6,
+   "en": 24,
+   "cd": 24,
+   "mod": [
+    "vit",
+    "wil",
+    "rng"
+   ],
+   "desc": "Removes all effects from target + adjacent; destroys summoned entities in AoE. +3% HP/+5% EN per removal (doubled for own positive). Undead in AoE +33% Damage Taken 10 turns.",
+   "dyn": "Removes all physical and magical effects from the chosen target and every target adjacent to it.\n\nDestroys all summoned magical or elemental entities within the spell's area of effect (runes, fires, unholy blood, acid, magma, etc).\n\nReplenishes {-7+VIT}% Max Health and {0.5*WIL}% Max Energy for each removed effect or destroyed entity.\n\nDoubles the bonuses for each positive effect removed from the caster.\n\nApplies all Undead targets within the spell's area of effect with +33% Damage Taken for 10 turns."
+  },
+  {
+   "n": "Body and Spirit",
+   "t": 2,
+   "type": "Passive",
+   "desc": "Using spells grants +5% Weapon Damage and +2% Crit Chance for 4 turns.\n\nStrikes, shots, and using Attack skills grants +8% Magic Power and -4% Backfire Chance for 4 turns.\n\nBoth effects stack up to 3 times."
+  },
+  {
+   "n": "Thaumaturgy",
+   "t": 3,
+   "type": "Passive",
+   "mod": [
+    "wil"
+   ],
+   "desc": "Miracles: -1 turn all spell cooldowns; enemies in Vision -5% Magic/Nature Res 5 turns (x2). Grants +3% Miracle Chance and +10% Miracle Potency.",
+   "fx": {
+    "mic": 3,
+    "mip": 10
+   },
+   "dyn": "Miracles reduce all spells' cooldowns by 1 turn and apply all enemies within Vision with -{0.5*WIL}% Magic Resistance and -{0.5*WIL}% Nature Resistance for 5 turns.\n\nThe effect stacks up to 2 times.\n\nGrants +3% Miracle Chance and +10% Miracle Potency."
+  },
+  {
+   "n": "Seal of Reflection",
+   "t": 3,
+   "type": "Spell",
+   "target": "Target Object",
+   "range": 6,
+   "en": 42,
+   "cd": 36,
+   "mod": [
+    "rng"
+   ],
+   "desc": "Applies the target with \"Seal of Reflection\" for 8 turns:\n+30% Magic Resistance\n+25% Nature Resistance\n+10% Physical Resistance\n+33% Damage Reflection\nRedirects all received aimed spells towards a random target within 8 tiles, if there is one."
+  },
+  {
+   "n": "Seal of Shackles",
+   "t": 4,
+   "type": "Spell",
+   "target": "Target Object",
+   "range": 5,
+   "en": 32,
+   "cd": 32,
+   "mod": [
+    "wil",
+    "rng"
+   ],
+   "desc": "Target 6 turns: -50% Energy Restoration, +100% ability cost, +100% CD, +25% Fumble, +25% Backfire; abilities deal Arcane = 25% Energy spent.",
+   "dyn": "Applies the target with \"Seal of Shackles\" for 6 turns:\n-50% Energy Restoration\n+100% Abilities Energy Cost\n+100% Cooldowns Duration\n+25% Fumble Chance\n+25% Backfire Chance\nUsing abilities deals Arcane Damage equal to {(10+1.5*WIL)*MP/100}% of the Energy spent."
+  },
+  {
+   "n": "Forgotten Lore",
+   "t": 4,
+   "type": "Passive",
+   "desc": "Grants -0.5% Spells Energy Cost and -1% Cooldowns Duration for each learned spell.\n\nGrants +1% Magic Power and +1% Miracle Potency for each learned Sorcery passive, including those of Magic Mastery.",
+   "fx": {
+    "per_spell": {
+     "spec": -0.5,
+     "cd": -1
+    },
+    "per_sorcery_passive": {
+     "mp": 1,
+     "mip": 1
+    }
+   }
+  }
+ ]
+}

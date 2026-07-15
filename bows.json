@@ -1,0 +1,149 @@
+{
+ "$meta": {
+  "tree": "Two-Handed Swords",
+  "cat": "weapon",
+  "page_patch": "0.9.2.13",
+  "focus": "High Damage, Area Damage, Mobility, Survivability",
+  "crit_effect": "Cleave 3 tiles; +50% Bleed Chance",
+  "source": "https://stoneshard.com/wiki/Two-Handed_Swords_(skill_tree)",
+  "desc_note": "VERBATIM game data (0.9.4.x). Mapping of Taste of Victory/Courage passives is order-based."
+ },
+ "skills": [
+  {
+   "n": "Hewing Strike",
+   "t": 1,
+   "type": "Attack",
+   "target": "Target Object",
+   "range": 1,
+   "en": 10,
+   "cd": 8,
+   "mod": [
+    "str",
+    "agi",
+    "prc"
+   ],
+   "req": "two-handed sword",
+   "desc": "Hand strike +60% Bleed, +30% Bodypart Damage. On damage: target -20% Move Res, -20% Bleed Res 4 turns. Doubled if Staggered. 2H sword counters: -1 turn cooldown.",
+   "dyn": "Delivers a strike to one of the target's hands with +{30+1.5*AGL+1.5*STR}% Bleed Chance and +{3*PRC}% Bodypart Damage.\n\nIf the target takes damage, applies it with -{STR+PRC}% Move Resistance and -{AGL+PRC}% Bleed Resistance for 4 turns (the effect doesn't stack).\n\nDoubles the skill's effects if the target is Staggered."
+  },
+  {
+   "n": "Revanche",
+   "t": 1,
+   "type": "Passive",
+   "mod": [
+    "wil"
+   ],
+   "req": "two-handed sword",
+   "desc": "2H sword counters replenish 4% Max Energy, grant -10% Skills Energy Cost 2 turns (x2).",
+   "dyn": "Successful two-handed sword counters reduce the skill's cooldown by 1 turn.\n\nTwo-handed sword counters replenish {-6+WIL}% Max Energy and grant -10% Skills Energy Cost for 2 turns.\n\nThe effect stacks up to 2 times."
+  },
+  {
+   "n": "Parry",
+   "t": 1,
+   "type": "Maneuver",
+   "target": "No Target",
+   "en": 18,
+   "cd": 10,
+   "mod": [
+    "str",
+    "agi",
+    "prc"
+   ],
+   "req": "two-handed sword",
+   "desc": "'Parry' 3 turns: +20% Block Chance, +10% Max Block Power, +20% Counter; full Block Power refill. Blocked strikes: -2 turns CD, +20% BP Recovery 3 turns; counters +2% Crit Chance 5 turns (x4).",
+   "dyn": "Activates \"Parry\" for 3 turns:\n+{AGL+PRC}% Block Chance\n+{STR}% Max Block Power\n+{10+PRC}% Counter Chance\n\nFully replenishes Block Power.\n\nWhile affected by \"Parry\", each blocked strike reduces the skill's cooldown by 2 turns and grants +10% Block Power Recovery for 3 turns, and each counter grants +2% Crit Chance for 5 turns.\n\nThe effect stacks up to 4 times."
+  },
+  {
+   "n": "Recklessness",
+   "t": 2,
+   "type": "Passive",
+   "req": "two-handed sword",
+   "desc": "Grants +3% Crit Chance, +5% Counter Chance, and -5% Damage Taken for each adjacent enemy if there's more than one.\n\nThe effect stacks up to 3 times.",
+   "fx": {
+    "cond": "adjacent>1",
+    "per_stack": {
+     "cc": 3,
+     "co": 5,
+     "dt": -5
+    },
+    "stacks": 3
+   }
+  },
+  {
+   "n": "Feast of Steel",
+   "t": 2,
+   "type": "Stance",
+   "target": "No Target",
+   "en": 14,
+   "cd": 12,
+   "req": "two-handed sword",
+   "desc": "Activates \"Feast of Steel\" for 10 turns:\n+5% Counter Chance\n-4% Fumble Chance\n+5% Accuracy\n+3% Crit Chance\nGrants +100% Stagger Chance to every third strike.\n\nUsing the ability tree's skills grants an extra stack of the effect (up to IV).\n\nBasic two-handed sword strikes prolong the effect's duration by 1 turn (up to 10) but reduce its number of stacks (no more than once per turn).\n\nOnly one Stance effect can be active at a time.",
+   "fx": {
+    "buff": true,
+    "per_stack": {
+     "co": 5,
+     "fum": -4,
+     "acc": 5,
+     "cc": 2.5
+    },
+    "stacks": 4
+   }
+  },
+  {
+   "n": "Arc Cleave",
+   "t": 2,
+   "type": "Attack",
+   "target": "Target Area",
+   "range": 1,
+   "en": 20,
+   "cd": 20,
+   "mod": [
+    "str",
+    "agi",
+    "prc",
+    "wil"
+   ],
+   "req": "two-handed sword",
+   "desc": "Strike 5 adjacent tiles +20% WD, +60% Stagger, +40% Bleed. Tree CD -1 per enemy hit; +5% Max Energy per enemy Staggered.",
+   "dyn": "Delivers a strike to five adjacent tiles with +{10+PRC}% Weapon Damage, +{50+STR}% Stagger Chance, and +{20+2*AGL}% Bleed Chance.\n\nReduces the ability tree's cooldowns by 1 turn for each enemy hit by the strike and replenishes {-5+WIL}% Max Energy for each enemy Staggered by the strike."
+  },
+  {
+   "n": "Fight to the Death",
+   "t": 2,
+   "type": "Passive",
+   "req": "two-handed sword",
+   "desc": "Consecutive two-handed sword hits against the same target grant +7% Stagger Chance and +3% Counter Chance for 5 turns.\n\nEach received strike grants +3% Block Chance and +5% Block Power Recovery for 5 turns.\n\nBoth effects stack up to 3 times."
+  },
+  {
+   "n": "Taste of Victory",
+   "t": 3,
+   "type": "Passive",
+   "req": "two-handed sword",
+   "desc": "Killing enemies with two-handed swords prolongs the duration of \"Feast of Steel\" and \"Parry\" by 1 turn."
+  },
+  {
+   "n": "Heroic Charge",
+   "t": 3,
+   "type": "Attack / Charge",
+   "target": "Target Object",
+   "range": 3,
+   "en": 26,
+   "cd": 24,
+   "mod": [
+    "str",
+    "agi",
+    "prc"
+   ],
+   "req": "two-handed sword",
+   "desc": "Charge + strike +90% Stagger. Each tile traveled: +10% WD, +5% Crit Chance.",
+   "dyn": "Performs a charge towards the target and delivers a strike with +{70+AGL+STR}% Stagger Chance.\n\nEach traveled tile grants the strike +{PRC}% Weapon Damage and +{0.25*STR+0.25*AGL}% Crit Chance.\n\nIf the ability tree's skill kills its target, instantly refreshes its cooldown.\n\nIf the target survives, grants +5% Weapon Damage for 4 turns for each adjacent enemy.\n\nThe effect stacks up to 3 times."
+  },
+  {
+   "n": "Courage",
+   "t": 3,
+   "type": "Passive",
+   "req": "two-handed sword",
+   "desc": "Two-handed sword hits against Staggered targets grant +10% Bodypart Damage and +10% Bleed Chance for 5 turns.\n\nThe effect stacks up to 3 times."
+  }
+ ]
+}
