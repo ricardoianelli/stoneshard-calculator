@@ -1,0 +1,161 @@
+{
+ "$meta": {
+  "tree": "Athletics",
+  "cat": "utility",
+  "page_patch": "0.9.3.9",
+  "focus": "Mobility, Support, Weakening Effects",
+  "source": "https://stoneshard.com/wiki/Athletics_(skill_tree)",
+  "desc_note": "VERBATIM game data (0.9.4.x)"
+ },
+ "skills": [
+  {
+   "n": "Disengage",
+   "t": 1,
+   "type": "Passive",
+   "desc": "Reduces the chance of triggering attacks of opportunity (from 50% to 25%).\n\nGrants +0.2% Magic Resistance and +0.2% Nature Resistance for each 1% Dodge Chance.\n\nApplies all adjacent enemies with +3% Fumble Chance, -3% Accuracy, and -3% Crit Chance.",
+   "fx": {
+    "derived": {
+     "mgr_per_dodge": 0.2,
+     "ntr_per_dodge": 0.2
+    }
+   }
+  },
+  {
+   "n": "Leg Sweep",
+   "t": 1,
+   "type": "Maneuver",
+   "target": "Target Area",
+   "range": 1,
+   "en": 12,
+   "cd": 8,
+   "mod": [
+    "str",
+    "agi",
+    "prc"
+   ],
+   "desc": "7 Crushing to 3 adjacent tiles, 100% Accuracy, 85% Immobilization; then reposition. Damage scales with boots' Protection. Hit: +10% Fumble, -10% Crit Chance, -10% Weapon Damage on target 3 turns (x2).",
+   "dyn": "Applies three adjacent targets with -{1.5*AGL}% Counter Chance until the next turn (the effect doesn't stack), then deals Crushing Damage (4 + 20% of boots' Protection + {0.3*STR}) to them with {80+2*PRC}% Accuracy, {20-0.5*PRC}% Fumble Chance, {STR}% Armor Penetration, {AGL}% Crit Chance, and {65+2*AGL}% Immobilization Chance. Then allows the character to reposition to an adjacent tile.\n\nHitting a target applies it with +{5+0.5*AGL}% Fumble Chance, -{5+0.5*PRC}% Crit Chance, and -{5+0.5*STR}% Weapon Damage for 3 turns.\n\nThe effect stacks up to 2 times.\n\nWith {105+2*STR}% chance Staggers the target if it remains adjacent after receiving a hit."
+  },
+  {
+   "n": "Not This Time",
+   "t": 1,
+   "type": "Passive",
+   "desc": "Full blocks and dodges grant +5% Control Resistance and +5% Move Resistance for 5 turns.\n\nThe effect stacks up to 2 times.\n\nOnce per 90 turns, removes Stun, Daze, Stagger, or Immobilization upon receiving them."
+  },
+  {
+   "n": "Mighty Kick",
+   "t": 1,
+   "type": "Maneuver",
+   "target": "Target Object",
+   "range": 1,
+   "en": 6,
+   "cd": 6,
+   "mod": [
+    "str",
+    "agi",
+    "prc"
+   ],
+   "desc": "10 Crushing, 120% Accuracy, 100% Stagger, 80% Knockback. Scales with boots' Protection. Hit: -30% Max Block Power, -20% Control/Move Res, -15% Crit Avoidance 4 turns (x2).",
+   "dyn": "Applies the target with -{1.5*AGL}% Counter Chance until the next turn (the effect doesn't stack), then deals Crushing Damage (6 + 30% of boots' Protection + {0.4*STR}) with {100+2*PRC}% Accuracy, {20-0.5*PRC}% Fumble Chance, {STR}% Armor Penetration, {AGL}% Crit Chance, {80+2*AGL}% Stagger Chance, and {60+2*STR}% Knockback Chance.\n\nThe damage dealt depends on the equipped boots' Protection.\n\nHitting the target applies it with -{3*STR}% Max Block Power, -{AGL+PRC}% Control Resistance, -{AGL+PRC}% Move Resistance, and -{1.5*PRC}% Crit Avoidance for 4 turns.\n\nThe effect stacks up to 2 times."
+  },
+  {
+   "n": "Dash",
+   "t": 2,
+   "type": "Charge",
+   "target": "Target Tile",
+   "range": 4,
+   "en": 26,
+   "cd": 20,
+   "desc": "Performs a charge towards the targeted tile.\n\nGrants the skill -1 Range for each adjacent enemy (down to 2 Range).\n\nIf there are adjacent enemies after using the skill, grants +15% Dodge Chance and +15% Counter Chance for 2 turns."
+  },
+  {
+   "n": "Inner Reserves",
+   "t": 2,
+   "type": "Passive",
+   "mod": [
+    "wil",
+    "vit"
+   ],
+   "desc": "Once per 20 turns replenishes 20% Max Energy when Energy <50%.",
+   "dyn": "Once per {25-0.5*VIT} turns, replenishes {10+WIL}% Max Energy when Energy drops below 50%."
+  },
+  {
+   "n": "Sudden Lunge",
+   "t": 2,
+   "type": "Attack",
+   "target": "Target Object",
+   "range": 1,
+   "en": 20,
+   "cd": 14,
+   "mod": [
+    "agi",
+    "prc"
+   ],
+   "desc": "Strike -50% Weapon Damage, 80% Stagger. Reduces all cooldowns 2 turns. On damage: target abilities on 2-turn cooldown. Spear: +1 range.",
+   "dyn": "Delivers a strike with -50% Weapon Damage and +{40+2*AGL+2*PRC}% Stagger Chance.\n\nReduces all cooldowns by 2 turns.\n\nA successful, damaging hit puts all of the target's abilities on a 2 turn cooldown.\n\nIf equipped with a spear, grants the skill +1 Range."
+  },
+  {
+   "n": "Push the Falling",
+   "t": 2,
+   "type": "Passive",
+   "mod": [
+    "wil"
+   ],
+   "desc": "Applying Daze/Stun/Stagger/Confusion/Immobilization/Bleeding via strikes/shots replenishes 4% Max Energy. Mighty Kick prolongs those effects 1-2 turns.",
+   "dyn": "Dazing, Stunning, Staggering, Confusing, Immobilizing, and causing Bleeding with strikes and shots replenishes {-6+WIL}% Max Energy.\n\nUsing \"Mighty Kick\" against targets with these effects prolongs their duration by 1-2 turns, depending on each individual effect's duration cap."
+  },
+  {
+   "n": "Elusiveness",
+   "t": 3,
+   "type": "Maneuver",
+   "target": "No Target",
+   "en": 16,
+   "cd": 24,
+   "mod": [
+    "agi",
+    "vit",
+    "prc"
+   ],
+   "desc": "5 stacks 6 turns: +4% Dodge, -2% Damage Taken per stack. Movement adds stacks (up to V); dodges prolong. Adjacent enemies +5% Fumble 4 turns.",
+   "dyn": "Activates 5 stacks of \"Elusiveness\" for 6 turns:\n+{0.4*PRC}% Dodge Chance\n-{0.2*VIT}% Damage Taken\n\nEach dodge as well as received fumbled strikes and shots prolong the effect's duration by 1 turn (up to 6) but reduce its number of stacks.\n\nMoving to other tiles (Charges and Maneuvers count as well) grants an extra stack of the effect for each traveled tile (up to V).\n\nApplies all adjacent enemies with +{0.5*AGL}% Fumble Chance for 4 turns.\n\nThe effect doesn't stack."
+  },
+  {
+   "n": "No Time to Linger",
+   "t": 3,
+   "type": "Passive",
+   "desc": "Grants strikes and shots against Dazed, Stunned, Staggered, Confused, Immobilized, or Bleeding targets +4% Accuracy, -4% Fumble Chance, and +4% Crit Chance.\n\nUsing \"Sudden Lunge\" against targets with these effects grants the skill +75% Weapon Damage, -50% Cooldown Duration, and -50% Energy Cost."
+  },
+  {
+   "n": "Sprint Training",
+   "t": 4,
+   "type": "Passive",
+   "desc": "Grants +1 Range, -33% Energy Cost, and -33% Cooldown Duration to all Charge skills."
+  },
+  {
+   "n": "Adrenaline Rush",
+   "t": 4,
+   "type": "Maneuver",
+   "target": "No Target",
+   "en": 20,
+   "cd": 60,
+   "mod": [
+    "vit",
+    "wil"
+   ],
+   "desc": "Replenish 10% Max Energy, -20% Pain; 5 turns: -3% Damage Taken, -5% Energy Cost, +10% Energy Restoration, +3% Crit Chance, +10% Pain Res per stack (up to VI; +1 per enemy in Vision, adjacent x2). III: -1 all cooldowns/turn. VI: +4% HP if <40%.",
+   "dyn": "Replenishes Max Energy and reduces Pain based on missing Health (about {2*WIL}% Energy at full Health, doubling as Health drops), then activates \"Adrenaline Rush\" for up to {VIT} turns:\n-3% Damage Taken\n-5% Abilities Energy Cost\n+10% Energy Restoration\n+3% Crit Chance\n+10% Pain Resistance\nIII stacks: reduces all cooldowns by 1 turn.\nVI stacks: replenishes 4% Max Health if the current Health is below 40%.\n\nGrants an extra stack of the effect (up to VI) for each enemy within Vision upon its activation. Adjacent enemies are counted twice.\n\nThe effect's duration as well as the amount of reduced Pain and replenished Energy depend on missing Health."
+  },
+  {
+   "n": "Peak Performance",
+   "t": 4,
+   "type": "Passive",
+   "desc": "Grants +10% Weapon Damage, +10% Dodge Chance, and -10% Cooldowns Duration if Energy is above 50%.",
+   "fx": {
+    "cond": "energy>50",
+    "wd": 10,
+    "dg": 10,
+    "cd": -10
+   }
+  }
+ ]
+}

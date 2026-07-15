@@ -1,0 +1,26 @@
+{
+"$meta": {"game_version":"0.9.4.23","class":"sword2h","hands":2,"crit_bonus":"Cleave 3 tiles; +50% Bleed Chance","source":"https://stoneshard.com/wiki/Two-Handed_Swords","page_patch":"0.9.3.0","schema":"data/schema.md"},
+"items": [
+{"n":"War Scythe","t":1,"r":"C","d":{"sl":18},"du":70,"p":125,"s":{"ap":10,"sg":10,"bc":4,"acc":2,"sec":15}},
+{"n":"Crude Longsword","t":2,"r":"C","d":{"sl":21},"du":95,"p":675,"s":{"ap":10,"sg":15,"bc":6,"acc":4,"sec":20}},
+{"n":"Footman Longsword","t":3,"r":"C","d":{"sl":24},"du":120,"p":1775,"s":{"ap":15,"sg":20,"bc":8,"acc":6,"sec":25}},
+{"n":"Mercenary Longsword","t":4,"r":"C","d":{"sl":28},"du":145,"p":4000,"s":{"ap":20,"sg":25,"bc":8,"acc":10,"sec":30}},
+{"n":"Sergeant Longsword","t":4,"r":"C","d":{"sl":28},"du":150,"p":4000,"s":{"ap":20,"bl":15,"sg":15,"bc":10,"acc":8,"sec":30}},
+{"n":"Noble Longsword","t":5,"r":"C","d":{"sl":32},"du":170,"p":8425,"s":{"ap":20,"sg":30,"bc":12,"acc":10,"sec":35}},
+{"n":"Ornate Longsword","t":5,"r":"U","d":{"sl":32},"du":145,"p":8425,"s":{"ap":20,"sg":30,"bc":10,"acc":10,"co":5,"er":4,"sec":20}},
+{"n":"Warbrand","t":1,"r":"C","d":{"sl":18},"du":65,"p":125,"s":{"ap":10,"bl":5,"cc":2,"fum":2,"sec":15}},
+{"n":"Recruit Bastard Sword","t":2,"r":"C","d":{"sl":21},"du":90,"p":700,"s":{"ap":10,"bl":10,"cc":3,"fum":4,"sec":20}},
+{"n":"Footman Bastard Sword","t":3,"r":"C","d":{"sl":24},"du":110,"p":1825,"s":{"ap":15,"bl":15,"cc":4,"fum":6,"sec":25}},
+{"n":"Nistrian Rhomphaia","t":3,"r":"C","d":{"sl":25},"du":110,"p":2025,"s":{"ap":10,"bl":18,"sg":8,"acc":-3,"cc":4,"fum":7,"sec":20}},
+{"n":"Claymore","t":4,"r":"C","d":{"sl":28},"du":130,"p":4125,"s":{"ap":20,"bl":20,"cc":5,"fum":8,"sec":30}},
+{"n":"Flamberge","t":5,"r":"C","d":{"sl":34},"du":140,"p":8675,"s":{"ap":20,"bpd":15,"bl":30,"cc":6,"fum":14,"sec":35}},
+{"n":"Grossmesser","t":5,"r":"C","d":{"sl":32},"du":155,"p":8675,"s":{"ap":20,"bl":25,"acc":-3,"cc":7,"ce":10,"fum":10,"sec":40}},
+{"n":"Captain Greatsword","t":5,"r":"C","d":{"sl":32},"du":160,"p":8675,"s":{"ap":20,"bl":25,"acc":3,"cc":6,"fum":9,"sec":35}},
+{"n":"Blademaster Greatsword","t":5,"r":"U","d":{"sl":32},"du":170,"p":8675,"s":{"ap":33,"bl":30,"bc":3,"cc":6,"co":3,"fum":13,"sec":30}},
+{"n":"Vanguard Two-Hander","t":3,"r":"C","d":{"sl":24},"du":140,"p":1725,"s":{"ap":15,"bc":10,"bp":9,"co":6,"sec":25}},
+{"n":"Dueling Two-Hander","t":4,"r":"C","d":{"sl":28},"du":150,"p":3875,"s":{"ap":20,"bc":12,"bp":11,"co":8,"sec":30}},
+{"n":"Sergeant Two-Hander","t":4,"r":"C","d":{"sl":28},"du":170,"p":3875,"s":{"ap":20,"bl":7,"bc":10,"bp":11,"co":6,"sec":30}},
+{"n":"Knight Two-Hander","t":5,"r":"C","d":{"sl":32},"du":195,"p":8150,"s":{"ap":20,"bc":14,"bp":13,"co":10,"fum":-2,"sec":35}},
+{"n":"Exquisite Two-Hander","t":5,"r":"U","d":{"sl":34},"du":215,"p":8150,"s":{"ap":20,"sg":15,"bc":15,"bp":16,"co":12,"sec":30,"ftr":-5}},
+{"n":"Espadon","t":5,"r":"U","d":{"sl":32},"du":185,"p":8150,"s":{"ap":30,"bc":14,"bp":13,"acc":3,"cc":3,"co":10,"sec":35}}
+]}

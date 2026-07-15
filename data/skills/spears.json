@@ -1,0 +1,158 @@
+{
+ "$meta": {
+  "tree": "Spears",
+  "cat": "weapon",
+  "page_patch": "0.9.1.19",
+  "focus": "Positioning, Crowd Control, Weakening Effect",
+  "crit_effect": "+50% Immobilization Chance",
+  "source": "https://stoneshard.com/wiki/Spears_(skill_tree)",
+  "dyn_note": "dyn = description template with {formula} holes (STR/AGL/PRC/VIT/WIL), from each ability's wiki page 'Show formulas' view (0.9.4.14). Rendered with current attributes; base = all attributes 10.",
+  "desc_note": "Spears descriptions are VERBATIM wiki text (0.9.1.19 tree page / 0.9.4.14 formula pages); \\n\\n = paragraph breaks. Other trees still abbreviated — re-extract verbatim on demand."
+ },
+ "skills": [
+  {
+   "n": "Precise Hits",
+   "t": 1,
+   "type": "Passive",
+   "req": "spear",
+   "desc": "Grants spear strikes against targets affected by Immobilization or \"Net\" +10% Armor Penetration and +15% Bodypart Damage."
+  },
+  {
+   "n": "Nail Down",
+   "t": 1,
+   "type": "Attack",
+   "target": "Target Object",
+   "range": 2,
+   "en": 14,
+   "cd": 12,
+   "mod": [
+    "str",
+    "agi",
+    "prc"
+   ],
+   "req": "spear",
+   "desc": "Leg strike +5% Crit Chance. Adjacent: +25% WD, +50% Knockback. 1 tile away: +25% Bodypart Damage, +60% Immobilization.",
+   "dyn": "Delivers a strike to one of the target's legs with +{0.5*AGL}% Crit Chance.\n\nIf the target is adjacent, grants the strike +{5+AGL+PRC}% Weapon Damage and +{30+STR+AGL}% Knockback Chance.\n\nIf the target is 1 tile away, grants the strike +{5+AGL+PRC}% Bodypart Damage and +{30+(1.5*STR)+(1.5*PRC)}% Immobilization Chance."
+  },
+  {
+   "n": "Impaling Lunge",
+   "t": 1,
+   "type": "Attack",
+   "target": "Target Area",
+   "range": 2,
+   "en": 10,
+   "cd": 8,
+   "mod": [
+    "str",
+    "agi",
+    "prc"
+   ],
+   "req": "spear",
+   "desc": "Strike 2x1 area: +20% Bodypart Damage, +20% Armor Pen, +50% Bleed. Vs Immobilized/Netted: -35% WD, -100% Immobilization, halved bonuses, instantly refreshes cooldown.",
+   "dyn": "Delivers a strike to 2x1 tile area with +{2*PRC}% Bodypart Damage, +{2*AGL}% Armor Penetration, and +{30+(2*STR)}% Bleed Chance.\n\nIf the target is affected by Immobilization or \"Net\" grants the strike -35% Weapon Damage, -100% Immobilization Chance, halves all other bonuses, and instantly refreshes the skill's cooldown."
+  },
+  {
+   "n": "No Retreat",
+   "t": 1,
+   "type": "Passive",
+   "req": "spear",
+   "desc": "Remaining on the same tile grants -3% Cooldowns Duration, +3% Weapon Damage and +3% Counter Chance for 4 turns.\n\nThe effect stacks up to 3 times.\n\nMoving to other tiles removes the effect (except when moving with Maneuvers).",
+   "fx": {
+    "buff": true,
+    "per_stack": {
+     "cd": -3,
+     "wd": 3,
+     "co": 3
+    },
+    "stacks": 3
+   }
+  },
+  {
+   "n": "Pikeman Stance",
+   "t": 2,
+   "type": "Stance",
+   "target": "No Target",
+   "en": 14,
+   "cd": 12,
+   "req": "spear",
+   "desc": "Activates \"Pikeman Stance\" for 10 turns:\n+5% Accuracy\n+5% Bleed Chance\n+15% Knockback Chance\n+8% Immobilization Chance\n\nUsing the ability tree's skills grants an extra stack of the effect (up to IV).\n\nRemaining on the same tile prolongs the effect's duration by 1 turn (up to 10), and basic spear strikes reduce its number of stacks (no more than once per turn).\n\nOnly one Stance effect can be active at a time.",
+   "fx": {
+    "buff": true,
+    "per_stack": {
+     "acc": 5,
+     "bl": 5,
+     "kb": 15,
+     "im": 8
+    },
+    "stacks": 4
+   }
+  },
+  {
+   "n": "Wounding Spearhead",
+   "t": 2,
+   "type": "Passive",
+   "mod": [
+    "str",
+    "agi"
+   ],
+   "req": "spear",
+   "desc": "Critical spear strikes: +20% Bodypart Damage; bonus damage = 10% target Max Health (max 20).",
+   "dyn": "Grants critical spear strikes +20% Bodypart Damage.\n\nCritical spear strikes deal additional damage equal to 10% of the target's Max Health (but no more than {STR+AGL})."
+  },
+  {
+   "n": "Determination",
+   "t": 2,
+   "type": "Maneuver",
+   "target": "No Target",
+   "en": 12,
+   "cd": 14,
+   "mod": [
+    "prc",
+    "agi",
+    "str",
+    "wil"
+   ],
+   "req": "spear",
+   "desc": "'Determination' 2 turns: free strike (+20% WD, +75% Bleed) vs every enemy moving adjacent; on damage +5% Max Energy, target -20% Move Res 3 turns.",
+   "dyn": "Activates \"Determination\" for 2 turns:\n\nDelivers a free strike with +{AGL+PRC}% Weapon Damage and +{55+(2*STR)}% Bleed Chance to every enemy that moves to adjacent tiles.\n\nIf this strike does damage, replenishes {-5+WIL}% Max Energy and applies the target with -20% Move Resistance for 3 turns."
+  },
+  {
+   "n": "One at a Time!",
+   "t": 3,
+   "type": "Passive",
+   "req": "spear",
+   "desc": "Grants +5% Weapon Damage, +5% Immobilization Chance, and +3% Crit Chance if there is only one adjacent enemy.\n\nDoubles the bonuses if the adjacent tiles are empty."
+  },
+  {
+   "n": "Regroup",
+   "t": 3,
+   "type": "Maneuver",
+   "target": "Target Tile",
+   "range": 1,
+   "en": 18,
+   "cd": 18,
+   "mod": [
+    "vit"
+   ],
+   "req": "spear",
+   "desc": "Reposition; +20% Max Block Power refill; -1 turn tree cooldowns per visible enemy within 3 tiles. 'Regroup' 10 turns, per stack: +5% Block Chance, +5% Max Block Power, +15% BP Recovery, +5% Counter (stack per reduced cooldown, up to IV).",
+   "fx": {
+    "buff": true,
+    "per_stack": {
+     "bc": 5,
+     "bpr": 15,
+     "co": 5
+    },
+    "stacks": 4
+   },
+   "dyn": "Repositions to an adjacent tile, replenishes {2*VIT}% Max Block Power, and reduces the cooldown of the ability tree's other skills by 1 turn for each visible enemy within 3 tiles.\n\nActivates \"Regroup\" for 10 turns:\n+5% Block Chance\n+5% Max Block Power\n+15% Block Power Recovery\n+5% Counter Chance\n\nGrants an extra stack of the effect (up to IV) for each reduced cooldown."
+  },
+  {
+   "n": "Stay Back!",
+   "t": 3,
+   "type": "Passive",
+   "req": "spear",
+   "desc": "When enemies move to adjacent tiles, applies them with -10% Piercing Resistance and -10% Crit Avoidance for 4 turn.\n\nThe effect stacks up to 2 times.\n\nGrants spear strikes against adjacent targets +30% Knockback Chance."
+  }
+ ]
+}
