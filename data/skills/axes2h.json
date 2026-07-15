@@ -1,0 +1,142 @@
+{
+ "$meta": {
+  "tree": "Two-Handed Axes",
+  "cat": "weapon",
+  "page_patch": "0.9.1.19",
+  "focus": "High Damage, Area Damage, Injuries, Bleeding",
+  "crit_effect": "Cleave 3 tiles; +60% Bodypart Damage",
+  "source": "https://stoneshard.com/wiki/Two-Handed_Axes_(skill_tree)",
+  "desc_note": "VERBATIM game data (0.9.4.x). Fatal Strike/Finish `Em!/Tool of Execution/Make Space mapping is order-based."
+ },
+ "skills": [
+  {
+   "n": "Hooking Chop",
+   "t": 1,
+   "type": "Attack",
+   "target": "Target Object",
+   "range": 2,
+   "en": 12,
+   "cd": 12,
+   "mod": [
+    "str",
+    "agi",
+    "prc"
+   ],
+   "req": "two-handed axe",
+   "desc": "Strike -20% WD, +80% Bleed, +25% Armor Pen; 100% pull if 1 tile away; damages an extra body part.",
+   "dyn": "Delivers a strike with {-30+PRC}% Weapon Damage, +{60+STR+PRC}% Bleed Chance, and +{5+STR+AGL}% Armor Penetration.\n\nGrants the strike a {80+STR+AGL}% (+ Knockback Chance) chance to pull the target if it's 1 tile away.\n\nDeals damage to an additional body part besides the one hit by the strike."
+  },
+  {
+   "n": "Shieldbreaker",
+   "t": 1,
+   "type": "Passive",
+   "req": "two-handed axe",
+   "desc": "Two-handed axe hits apply their targets with -10% Block Chance, -10% Block Power Recovery, and -15% Max Block Power for 6 turns.\n\nIf the target's Block Chance is 0%, two-handed axe strikes against it grant -4% Fumble Chance for 6 turns.\n\nBoth effects stack up to 5 times."
+  },
+  {
+   "n": "Dismember",
+   "t": 1,
+   "type": "Attack",
+   "target": "Target Object",
+   "range": 1,
+   "en": 14,
+   "cd": 16,
+   "mod": [
+    "str",
+    "agi",
+    "prc"
+   ],
+   "req": "two-handed axe",
+   "desc": "Strike +50% Bodypart Damage, +10% Crit Chance to injured part (or limb). If Injury worsens/new: target -10% Max HP, 120% Bleed on part.",
+   "dyn": "Delivers a strike with +{20+3*PRC}% Bodypart Damage and +{0.5*AGL+0.5*STR}% Crit Chance to one of the target's body parts with a Minor or Moderate Injury.\n\nIf the target has no Injuries, delivers the strike to its most damaged limb.\n\nIf the strike worsens an Injury or causes a new one, the target loses {7.5+0.25*STR}% Max Health (but no more than {15+STR}), and the affected body part has {100+2*PRC}% chance to start Bleeding."
+  },
+  {
+   "n": "Rampage",
+   "t": 2,
+   "type": "Stance",
+   "target": "No Target",
+   "en": 14,
+   "cd": 12,
+   "req": "two-handed axe",
+   "desc": "'Rampage' 10 turns, per stack: -10% Skills Cost, +4% Crit Chance, +15% Bleed, -3% Fumble; every 3rd strike +15% target Max HP damage (max 25). Tree skills add stacks (up to IV).",
+   "fx": {
+    "buff": true,
+    "per_stack": {
+     "sec": -10,
+     "cc": 4,
+     "bl": 15,
+     "fum": -3
+    },
+    "stacks": 4
+   },
+   "dyn": "Activates \"Rampage\" for 10 turns:\n-10% Skills Energy Cost\n+4% Crit Chance\n+15% Bleed Chance\n-3% Fumble Chance\nEvery third strike deals additional damage equal to 15% of the target's Max Health (but no more than {20+0.5*STR}).\n\nUsing the ability tree's skills grants an extra stack of the effect (up to IV).\n\nBasic two-handed axe strikes prolong the effect's duration by 1 turn (up to 10) but reduce its number of stacks (no more than once per turn).\n\nOnly one Stance effect can be active at a time."
+  },
+  {
+   "n": "Fatal Strike",
+   "t": 2,
+   "type": "Passive",
+   "req": "two-handed axe",
+   "desc": "Critical two-handed axe strikes grant -15% Skills Energy Cost for 3 turns and apply their target with +10% Damage Taken for 3 turns.\n\nBoth effects stack up to 2 times."
+  },
+  {
+   "n": "Finish `Em!",
+   "t": 2,
+   "type": "Passive",
+   "req": "two-handed axe",
+   "desc": "Grants two-handed axe strikes +15% Bodypart Damage and +4% Accuracy if the target's Health is above 50%.\n\nGrants two-handed axe strikes +10% Weapon Damage and -4% Fumble Chance if the target's Health is below 50%."
+  },
+  {
+   "n": "Reign in Blood",
+   "t": 2,
+   "type": "Attack",
+   "target": "Target Object",
+   "range": 1,
+   "en": 14,
+   "cd": 14,
+   "mod": [
+    "str",
+    "agi",
+    "prc",
+    "wil"
+   ],
+   "req": "two-handed axe",
+   "desc": "Strike +60% Knockback, +40% Bodypart Damage per Bleeding and per missing 20% HP. 60% chance injured parts Bleed. +5% Max Energy per Bleeding/Injury degree.",
+   "dyn": "Delivers a strike with +{40+2*STR}% Knockback Chance and +{2*AGL+2*PRC}% Bodypart Damage for each Bleeding affecting the target and each missing 20% of its Health.\n\nWith {40+PRC+STR}% chance causes the target's Injured body parts to start Bleeding.\n\nThen replenishes {0.5*WIL}% Max Energy for each Bleeding and degree of Injury affecting the target."
+  },
+  {
+   "n": "Tool of Execution",
+   "t": 3,
+   "type": "Passive",
+   "req": "two-handed axe",
+   "desc": "Using \"Rampage\" grants +10% Bodypart Damage, +10% Crit Efficiency, and -5% to the ability tree's Cooldowns Duration for 8 turns for each enemy within 5 tiles.\n\nThe effect stacks up to 5 times."
+  },
+  {
+   "n": "Make Space",
+   "t": 3,
+   "type": "Attack",
+   "target": "Target Area",
+   "range": 2,
+   "en": 20,
+   "cd": 20,
+   "mod": [
+    "str",
+    "agi",
+    "prc"
+   ],
+   "req": "two-handed axe",
+   "desc": "3x2 area strike, +15% WD and +20% Armor Pen per Injury degree in area; no knockback. Hit: -5% Bleed Res 6 turns per enemy in area (x6). If kills: repeats once.",
+   "dyn": "Delivers a strike to a 3х2 tile area with -200% Knockback Chance as well as +{1.5*PRC}% Weapon Damage and +{STR+AGL}% Armor Penetration for each degree of Injury affecting the targets within the skill's area of effect.\n\nThis strike can't knock back its targets.\n\nHitting a target applies it with -5% Bleed Resistance for 6 turns for each enemy within the skill's area of effect.\n\nThe effect stacks up to 6 times.\n\nIf the strike kills at least one target, delivers it again to the same area (but no more than once)."
+  },
+  {
+   "n": "Maim and Kill",
+   "t": 3,
+   "type": "Passive",
+   "mod": [
+    "wil"
+   ],
+   "req": "two-handed axe",
+   "desc": "Causing Injuries/Bleedings: +5% WD, +4% Crit Chance 5 turns (x3). Hits vs 2+ Injuries: +5% Max Energy.",
+   "dyn": "Causing Injuries and Bleeding with two-handed axe strikes grants +5% Weapon Damage and +4% Crit Chance for 5 turns.\n\nThe effect stacks up to 3 times.\n\nTwo-handed axe hits against targets affected by two or more Injuries replenish {-5+WIL}% Max Energy."
+  }
+ ]
+}

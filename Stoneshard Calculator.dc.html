@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<title>Stoneshard Build Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&amp;family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&amp;display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#171310;}
+body{font-family:'Alegreya',serif;color:#2a2018;}
+a{color:#7a2e1d;} a:hover{color:#a94427;}
+select{font-family:'Alegreya',serif;font-size:13px;background:#f1e6c8;color:#2a2018;border:1px solid #9b8354;border-radius:2px;padding:3px 4px;max-width:100%;}
+input[type=range]{accent-color:#7a2e1d;}
+::-webkit-scrollbar{width:10px;height:10px;} ::-webkit-scrollbar-thumb{background:#4a3d2e;border-radius:5px;} ::-webkit-scrollbar-track{background:#241e18;}
+</style>
+</helmet>
+<div style="min-height:100vh;background:radial-gradient(ellipse at 50% -10%, #2b241d 0%, #171310 60%);padding:0 0 40px 0;">
+  <div style="max-width:1560px;margin:0 auto;padding:18px 20px 0 20px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:2px solid #4a3d2e;padding-bottom:12px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;">
+        <div style="font-family:'Cinzel',serif;font-weight:900;font-size:28px;letter-spacing:2px;color:#d8c391;text-shadow:0 2px 8px rgba(0,0,0,.6);">STONESHARD</div>
+        <div style="font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;color:#8a7350;">BUILD CALCULATOR</div>
+        <div style="font-size:12px;color:#6b5a41;font-style:italic;">Rags to Riches · {{ gameVersion }} · data from the <a href="https://stoneshard.com/wiki/Stoneshard_Wiki" target="_blank" style="color:#8a7350;">official wiki</a></div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button onClick="{{ exportBuild }}" style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:1px;background:#3a2f23;color:#d8c391;border:1px solid #6b5a41;border-radius:3px;padding:7px 14px;cursor:pointer;" style-hover="background:#4a3c2c;">EXPORT BUILD</button>
+        <button onClick="{{ importBuild }}" style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:1px;background:#3a2f23;color:#d8c391;border:1px solid #6b5a41;border-radius:3px;padding:7px 14px;cursor:pointer;" style-hover="background:#4a3c2c;">IMPORT</button>
+        <button onClick="{{ copyLink }}" style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:1px;background:#5a3a20;color:#e7d8b4;border:1px solid #8a7350;border-radius:3px;padding:7px 14px;cursor:pointer;" style-hover="background:#6b4626;">SHARE LINK</button>
+        <button onClick="{{ toggleLib }}" style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:1px;background:#3a2f23;color:#d8c391;border:1px solid #6b5a41;border-radius:3px;padding:7px 14px;cursor:pointer;" style-hover="background:#4a3c2c;">MY BUILDS</button>
+      </div>
+    </div>
+    <sc-if value="{{ libOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:10px;background:#241e18;border:1px solid #6b5a41;border-radius:4px;padding:10px;">
+        <div style="font-size:12px;color:#a98a4a;margin-bottom:8px;">SAVED BUILDS <span style="color:#6b5a41;font-size:10px;">· stored in this browser</span></div>
+        <div style="display:flex;gap:6px;margin-bottom:8px;">
+          <input value="{{ libName }}" onChange="{{ onLibName }}" placeholder="Build name…" style="flex:1;background:#171310;color:#c9b58a;border:1px solid #4a3d2e;border-radius:3px;font-family:'Alegreya',serif;font-size:12px;padding:5px 8px;">
+          <button onClick="{{ saveToLib }}" style="font-size:12px;background:#5a3a20;color:#e7d8b4;border:1px solid #8a7350;border-radius:3px;padding:5px 12px;cursor:pointer;">Save current</button>
+        </div>
+        <sc-if value="{{ hasLibBuilds }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:3px;">
+            <sc-for list="{{ libBuilds }}" as="lb" hint-placeholder-count="3">
+              <div style="display:flex;gap:8px;align-items:center;background:rgba(255,255,255,.03);border:1px solid #3a2f23;border-radius:3px;padding:4px 8px;">
+                <div style="width:22px;height:22px;flex-shrink:0;">{{ lb.icon }}</div>
+                <div style="min-width:0;flex:1;"><span style="font-size:12px;font-weight:700;color:#d8c391;">{{ lb.name }}</span> <span style="font-size:10px;color:#8a7350;">{{ lb.sub }}</span></div>
+                <button onClick="{{ lb.load }}" style="font-size:11px;background:#3a2f23;color:#d8c391;border:1px solid #6b5a41;border-radius:3px;padding:3px 10px;cursor:pointer;">Load</button>
+                <button onClick="{{ lb.del }}" style="font-size:11px;background:#2a1d18;color:#c98a75;border:1px solid #5a2e23;border-radius:3px;padding:3px 8px;cursor:pointer;">✕</button>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+    <sc-if value="{{ ioOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:10px;background:#241e18;border:1px solid #6b5a41;border-radius:4px;padding:10px;">
+        <div style="font-size:12px;color:#a98a4a;margin-bottom:6px;">{{ ioLabel }}</div>
+        <textarea value="{{ ioText }}" onChange="{{ onIoText }}" spellcheck="false" style="width:100%;box-sizing:border-box;height:90px;background:#171310;color:#c9b58a;border:1px solid #4a3d2e;border-radius:3px;font-family:monospace;font-size:11px;padding:8px;"></textarea>
+        <div style="display:flex;gap:8px;margin-top:6px;">
+          <button onClick="{{ applyImport }}" style="font-size:12px;background:#5a3a20;color:#e7d8b4;border:1px solid #8a7350;border-radius:3px;padding:5px 12px;cursor:pointer;">Apply import</button>
+          <button onClick="{{ closeIo }}" style="font-size:12px;background:#2a231c;color:#a98a4a;border:1px solid #4a3d2e;border-radius:3px;padding:5px 12px;cursor:pointer;">Close</button>
+          <div style="font-size:12px;color:#8a7350;align-self:center;">{{ ioStatus }}</div>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+  <sc-if value="{{ loaded }}" hint-placeholder-val="{{ false }}">
+  <div style="max-width:1560px;margin:14px auto 0 auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:14px;align-items:start;">
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="background:linear-gradient(#efe2bf,#e2d0a4);border:1px solid #9b8354;border-radius:5px;box-shadow:0 4px 16px rgba(0,0,0,.5), inset 0 0 40px rgba(122,86,40,.12);padding:12px;">
+        <div style="font-family:'Cinzel',serif;font-weight:700;font-size:13px;letter-spacing:2px;color:#5a4426;border-bottom:1px solid #b89d68;padding-bottom:6px;margin-bottom:8px;">CHARACTER</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
+          <sc-for list="{{ charCards }}" as="c" hint-placeholder-count="8">
+            <div onClick="{{ c.pick }}" title="{{ c.name }}" style="cursor:pointer;border:2px solid {{ c.border }};border-radius:4px;background:#d9c69a;padding:2px;display:flex;flex-direction:column;align-items:center;" style-hover="border-color:#7a2e1d;">
+              <div style="width:100%;aspect-ratio:1;">{{ c.portrait }}</div>
+              <div style="font-size:10px;font-weight:700;color:#5a4426;overflow:hidden;white-space:nowrap;max-width:100%;">{{ c.name }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:10px;align-items:center;">
+          <div style="width:84px;min-height:84px;border:1px solid #9b8354;border-radius:4px;background:#241e18;flex-shrink:0;">{{ charBigImg }}</div>
+          <div>
+            <div style="font-family:'Cinzel',serif;font-weight:700;font-size:16px;color:#3a2b16;">{{ charName }}</div>
+            <div style="font-size:12px;font-style:italic;color:#6b5a41;">{{ charTitle }} · {{ charRace }}</div>
+            <a href="{{ charUrl }}" target="_blank" style="font-size:11px;">wiki page ↗</a>
+          </div>
+        </div>
+        <div style="margin-top:8px;background:rgba(122,46,29,.08);border:1px solid #c4a468;border-radius:4px;padding:8px;">
+          <div style="font-size:12px;font-weight:700;color:#7a2e1d;">✦ {{ traitName }}</div>
+          <div style="font-size:11.5px;line-height:1.45;color:#4a3a26;margin-top:3px;">{{ traitSummary }}</div>
+          <sc-for list="{{ traitCounters }}" as="tc" hint-placeholder-count="0">
+            <div style="display:grid;grid-template-columns:1fr 22px 30px 22px;gap:4px;align-items:center;margin-top:6px;background:rgba(90,68,38,.1);border-radius:3px;padding:3px 6px;">
+              <div style="font-size:11px;color:#5a4426;" title="{{ tc.tip }}">{{ tc.label }}</div>
+              <button onClick="{{ tc.dec }}" style="background:#c9b283;border:1px solid #9b8354;border-radius:3px;cursor:pointer;font-weight:700;color:#5a4426;height:20px;line-height:1;">−</button>
+              <div style="text-align:center;font-weight:700;font-size:12px;color:#7a2e1d;">{{ tc.val }}</div>
+              <button onClick="{{ tc.inc }}" style="background:#c9b283;border:1px solid #9b8354;border-radius:3px;cursor:pointer;font-weight:700;color:#5a4426;height:20px;line-height:1;">+</button>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(#efe2bf,#e2d0a4);border:1px solid #9b8354;border-radius:5px;box-shadow:0 4px 16px rgba(0,0,0,.5), inset 0 0 40px rgba(122,86,40,.12);padding:12px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #b89d68;padding-bottom:6px;margin-bottom:8px;">
+          <div style="font-family:'Cinzel',serif;font-weight:700;font-size:13px;letter-spacing:2px;color:#5a4426;">LEVEL {{ level }}</div>
+          <div style="font-size:11px;color:#6b5a41;">{{ xpTotal }} XP total</div>
+        </div>
+        <input type="range" min="1" max="30" value="{{ level }}" onChange="{{ onLevel }}" style="width:100%;">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:#6b5a41;margin-top:2px;"><span>1</span><span>30</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:10px;">
+          <div style="font-family:'Cinzel',serif;font-weight:700;font-size:12px;letter-spacing:1px;color:#5a4426;">ATTRIBUTES</div>
+          <div style="font-size:12px;color:{{ statPoolColor }};font-weight:700;">{{ statPool }} points left</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:4px;margin-top:6px;">
+          <sc-for list="{{ statRows }}" as="s" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:1fr 24px 34px 24px;gap:4px;align-items:center;background:rgba(90,68,38,.08);border-radius:3px;padding:3px 6px;">
+              <div style="font-size:13px;font-weight:700;color:#4a3a26;" title="{{ s.tip }}">{{ s.label }}</div>
+              <button onClick="{{ s.dec }}" style="background:#c9b283;border:1px solid #9b8354;border-radius:3px;cursor:pointer;font-weight:700;color:#5a4426;height:22px;line-height:1;">−</button>
+              <div style="text-align:center;font-family:'Cinzel',serif;font-weight:900;font-size:15px;color:{{ s.color }};">{{ s.val }}</div>
+              <button onClick="{{ s.inc }}" style="background:#c9b283;border:1px solid #9b8354;border-radius:3px;cursor:pointer;font-weight:700;color:#5a4426;height:22px;line-height:1;">+</button>
+            </div>
+          </sc-for>
+        </div>
+        <div style="font-size:10.5px;color:#8a7350;margin-top:6px;font-style:italic;">Thresholds at 15 / 20 / 25 / 30 grant bonus effects.</div>
+      </div>
+
+      <div style="background:linear-gradient(#efe2bf,#e2d0a4);border:1px solid #9b8354;border-radius:5px;box-shadow:0 4px 16px rgba(0,0,0,.5), inset 0 0 40px rgba(122,86,40,.12);padding:12px;">
+        <div style="font-family:'Cinzel',serif;font-weight:700;font-size:13px;letter-spacing:2px;color:#5a4426;border-bottom:1px solid #b89d68;padding-bottom:6px;margin-bottom:8px;">BUFFS &amp; CONSUMABLES</div>
+        <div style="display:flex;flex-direction:column;gap:3px;max-height:260px;overflow-y:auto;">
+          <div style="font-size:10.5px;color:#8a7350;font-style:italic;margin-bottom:4px;">Effects are approximations of the in-game buffs (Satiety, Tipsy, drugs).</div>
+          <sc-for list="{{ buffRows }}" as="b" hint-placeholder-count="6">
+            <label style="display:flex;gap:7px;align-items:center;font-size:12px;color:#4a3a26;cursor:pointer;padding:2px 4px;border-radius:3px;background:{{ b.bg }};">
+              <input type="checkbox" checked="{{ b.on }}" onChange="{{ b.toggle }}">
+              <div style="width:20px;height:20px;flex-shrink:0;">{{ b.icon }}</div>
+              <span style="font-weight:600;">{{ b.name }}</span>
+              <span style="color:#8a7350;font-size:11px;">{{ b.desc }}</span>
+            </label>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="background:linear-gradient(#efe2bf,#e2d0a4);border:1px solid #9b8354;border-radius:5px;box-shadow:0 4px 16px rgba(0,0,0,.5), inset 0 0 40px rgba(122,86,40,.12);padding:12px;">
+        <div style="font-family:'Cinzel',serif;font-weight:700;font-size:13px;letter-spacing:2px;color:#5a4426;border-bottom:1px solid #b89d68;padding-bottom:6px;margin-bottom:10px;">EQUIPMENT</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <sc-for list="{{ slotRows }}" as="s" hint-placeholder-count="11">
+            <div style="display:grid;grid-template-columns:44px 90px minmax(0,1.4fr) minmax(0,1fr) 46px;gap:8px;align-items:center;background:rgba(90,68,38,.07);border:1px solid rgba(155,131,84,.4);border-radius:4px;padding:5px 8px;">
+              <div title="{{ s.tip }}" style="width:42px;height:42px;background:#241e18;border:1px solid #6b5a41;border-radius:3px;display:flex;align-items:center;justify-content:center;">{{ s.icon }}</div>
+              <div>
+                <div style="font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:1px;color:#5a4426;">{{ s.label }}</div>
+                <div style="font-size:10px;color:#8a7350;">{{ s.sub }}</div>
+              </div>
+              <button onClick="{{ s.open }}" onMouseEnter="{{ s.hover }}" onMouseLeave="{{ s.unhover }}" style="min-width:0;width:100%;text-align:left;font-family:'Alegreya',serif;font-size:13px;background:#f1e6c8;color:{{ s.btnColor }};border:1px solid #9b8354;border-radius:2px;padding:5px 8px;cursor:pointer;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;" style-hover="border-color:#7a2e1d;">{{ s.btnLabel }}</button>
+              <select value="{{ s.ench }}" onChange="{{ s.onEnch }}" title="Enchantment" style="min-width:0;width:100%;">
+                <sc-for list="{{ s.enchChoices }}" as="e" hint-placeholder-count="2"><option value="{{ e.v }}">{{ e.label }}</option></sc-for>
+              </select>
+              <input type="number" min="1" max="100" value="{{ s.cond }}" onChange="{{ s.onCond }}" title="Item condition % (durability wear scales damage, stats & enchants)" style="min-width:0;width:100%;font-size:11px;padding:4px 2px;text-align:center;background:#f1e6c8;border:1px solid #9b8354;border-radius:2px;color:#5a4426;">
+            </div>
+          </sc-for>
+        </div>
+        <div style="font-size:10.5px;color:#8a7350;margin-top:8px;font-style:italic;">Item art loads straight from the wiki — nothing is hosted here. Two-handed weapons occupy both hands.</div>
+      </div>
+
+      <div style="background:linear-gradient(#efe2bf,#e2d0a4);border:1px solid #9b8354;border-radius:5px;box-shadow:0 4px 16px rgba(0,0,0,.5), inset 0 0 40px rgba(122,86,40,.12);padding:12px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #b89d68;padding-bottom:6px;margin-bottom:8px;">
+          <div style="font-family:'Cinzel',serif;font-weight:700;font-size:13px;letter-spacing:2px;color:#5a4426;">ABILITIES</div>
+          <div style="font-size:12px;font-weight:700;color:{{ apPoolColor }};">{{ apPool }} ability points left</div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;">
+          <sc-for list="{{ treeTabs }}" as="t" hint-placeholder-count="8">
+            <button onClick="{{ t.pick }}" style="font-family:'Cinzel',serif;font-size:10.5px;letter-spacing:.5px;padding:4px 8px;border-radius:3px;cursor:pointer;border:1px solid #9b8354;background:{{ t.bg }};color:{{ t.color }};" style-hover="border-color:#7a2e1d;">{{ t.label }}</button>
+          </sc-for>
+        </div>
+        <div style="background:linear-gradient(#1e1a2b,#141020);border:2px solid #3d3452;border-radius:5px;padding:14px 12px 10px 12px;box-shadow:inset 0 0 30px rgba(0,0,0,.6);">
+          <sc-for list="{{ skillTiers }}" as="tr" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+              <div style="width:70px;flex-shrink:0;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:#8a7ba8;text-align:right;">{{ tr.label }}</div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <sc-for list="{{ tr.skills }}" as="k" hint-placeholder-count="4">
+                  <div onClick="{{ k.select }}" title="{{ k.n }}" style="width:48px;height:48px;background:#0f0c18;border:2px solid {{ k.frame }};border-radius:3px;cursor:pointer;box-shadow:{{ k.glow }};opacity:{{ k.opacity }};padding:2px;box-sizing:border-box;" style-hover="border-color:#e8c58d;opacity:1;">{{ k.icon }}</div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+          <sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+            <div style="border-top:1px solid #3d3452;margin-top:2px;padding-top:10px;">
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <div style="width:48px;height:48px;background:#0f0c18;border:2px solid #c9a959;border-radius:3px;flex-shrink:0;padding:2px;box-sizing:border-box;">{{ selSkill.icon }}</div>
+                <div style="min-width:0;flex:1;">
+                  <div style="font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:#e8d8b0;">{{ selSkill.n }}</div>
+                  <div style="font-size:10.5px;color:#8a7ba8;">{{ selSkill.meta }}</div>
+                  <div style="font-size:10.5px;color:#6d5f8f;font-style:italic;">{{ selSkill.modBy }}</div>
+                </div>
+              </div>
+              <div style="font-size:12px;line-height:1.55;color:#c4b898;margin-top:8px;white-space:pre-line;">{{ selSkill.desc }}</div>
+              <sc-if value="{{ selSkill.hasFormulas }}" hint-placeholder-val="{{ false }}">
+                <label style="display:flex;gap:6px;align-items:center;margin-top:6px;font-size:10.5px;color:#8a7ba8;cursor:pointer;">
+                  <input type="checkbox" checked="{{ showFormulas }}" onChange="{{ toggleFormulas }}">
+                  Show formulas (wiki style) instead of computed values
+                </label>
+              </sc-if>
+              <button onClick="{{ selSkill.toggle }}" style="margin-top:10px;width:100%;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1.5px;padding:8px;border-radius:3px;border:1px solid #6d5f8f;background:{{ selSkill.btnBg }};color:#e8d8b0;cursor:{{ selSkill.btnCursor }};" style-hover="border-color:#c9a959;">{{ selSkill.btnLabel }}</button>
+            </div>
+          </sc-if>
+        </div>
+        <label style="display:flex;gap:8px;align-items:center;margin-top:10px;font-size:12px;color:#4a3a26;cursor:pointer;">
+          <input type="checkbox" checked="{{ stancesOn }}" onChange="{{ toggleStances }}">
+          Assume learned stances/buffs active at max stacks (set individual stacks below)
+        </label>
+        <sc-if value="{{ stackRows.length }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:3px;margin-top:6px;">
+            <sc-for list="{{ stackRows }}" as="sb" hint-placeholder-count="2">
+              <div style="display:flex;gap:8px;align-items:center;background:rgba(90,68,38,.07);border:1px solid rgba(155,131,84,.4);border-radius:4px;padding:3px 8px;">
+                <div style="width:20px;height:20px;flex-shrink:0;">{{ sb.icon }}</div>
+                <div style="min-width:0;flex:1;font-size:12px;color:{{ sb.color }};font-weight:700;">{{ sb.n }}</div>
+                <button onClick="{{ sb.dec }}" style="width:22px;height:22px;font-size:13px;background:#e2d0a4;border:1px solid #9b8354;border-radius:2px;cursor:pointer;color:#5a4426;">−</button>
+                <span style="font-size:12px;color:#3a2b16;font-weight:700;min-width:34px;text-align:center;">{{ sb.cur }} / {{ sb.max }}</span>
+                <button onClick="{{ sb.inc }}" style="width:22px;height:22px;font-size:13px;background:#e2d0a4;border:1px solid #9b8354;border-radius:2px;cursor:pointer;color:#5a4426;">+</button>
+              </div>
+            </sc-for>
+          </div>
+          <div style="font-size:10px;color:#8a7350;margin-top:3px;font-style:italic;">Stacks of learned stances & stacking passives applied to the stat sheet.</div>
+        </sc-if>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="background:linear-gradient(#26201a,#1b1612);border:1px solid #6b5a41;border-radius:5px;box-shadow:0 4px 16px rgba(0,0,0,.6);padding:12px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #4a3d2e;padding-bottom:6px;margin-bottom:8px;">
+          <span style="font-family:'Cinzel',serif;font-weight:700;font-size:13px;letter-spacing:2px;color:#d8c391;">CHARACTER SHEET</span>
+          <button onClick="{{ togglePin }}" title="Pin the current stats, then tweak the build to see green/red deltas" style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;padding:3px 8px;border-radius:3px;border:1px solid #6b5a41;background:#241e18;color:#c9b58a;cursor:pointer;" style-hover="border-color:#c9a959;color:#e8d8b0;">{{ pinBtnLabel }}</button>
+        </div>
+        <sc-if value="{{ isPinned }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size:10px;color:#8a7350;margin-bottom:6px;font-style:italic;">Comparing against pinned build — deltas show change vs pin.</div>
+        </sc-if>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+          <div style="background:rgba(122,46,29,.25);border:1px solid #7a2e1d;border-radius:4px;padding:8px;text-align:center;">
+            <div style="font-size:11px;letter-spacing:1px;color:#c98a75;">HEALTH</div>
+            <div style="font-family:'Cinzel',serif;font-weight:900;font-size:24px;color:#e8a58d;">{{ hp }}</div>
+          </div>
+          <div style="background:rgba(42,74,94,.3);border:1px solid #2a4a5e;border-radius:4px;padding:8px;text-align:center;">
+            <div style="font-size:11px;letter-spacing:1px;color:#7fa8bd;">ENERGY</div>
+            <div style="font-family:'Cinzel',serif;font-weight:900;font-size:24px;color:#a5cfe3;">{{ en }}</div>
+          </div>
+        </div>
+        <sc-for list="{{ statGroups }}" as="g" hint-placeholder-count="4">
+          <div style="margin-bottom:8px;">
+            <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:#a98a4a;border-bottom:1px solid #3a2f23;padding-bottom:3px;margin-bottom:4px;">{{ g.name }}</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;">
+              <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="6">
+                <div style="display:flex;justify-content:space-between;gap:6px;font-size:12px;padding:1px 0;" title="{{ r.tip }}">
+                  <span style="color:#8a7a5e;">{{ r.label }}</span>
+                  <span style="white-space:nowrap;"><span style="font-size:10px;font-weight:700;color:{{ r.deltaColor }};margin-right:4px;">{{ r.delta }}</span><span style="color:{{ r.color }};font-weight:700;">{{ r.val }}</span></span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="background:linear-gradient(#26201a,#1b1612);border:1px solid #6b5a41;border-radius:5px;box-shadow:0 4px 16px rgba(0,0,0,.6);padding:12px;">
+        <div style="font-family:'Cinzel',serif;font-weight:700;font-size:13px;letter-spacing:2px;color:#d8c391;border-bottom:1px solid #4a3d2e;padding-bottom:6px;margin-bottom:8px;">DAMAGE VS ENEMY</div>
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;">
+          <div style="width:44px;height:44px;flex-shrink:0;background:#171310;border:1px solid #4a3d2e;border-radius:3px;display:flex;align-items:center;justify-content:center;">{{ enemyIcon }}</div>
+          <select value="{{ enemySel }}" onChange="{{ onEnemy }}" style="flex:1;background:#241e18;color:#c9b58a;border-color:#4a3d2e;">
+            <sc-for list="{{ enemyChoices }}" as="e" hint-placeholder-count="5"><option value="{{ e.v }}">{{ e.label }}</option></sc-for>
+          </select>
+        </div>
+        <div style="display:flex;gap:5px;margin-bottom:8px;">
+          <div style="flex:1;background:#241e18;border:1px solid #4a3d2e;border-radius:4px;padding:5px;text-align:center;">
+            <div style="font-size:9px;color:#8a7a5e;letter-spacing:1px;">HIT CHANCE</div>
+            <div style="font-family:'Cinzel',serif;font-weight:700;font-size:16px;color:#d8c391;">{{ dmgHit }}</div>
+          </div>
+          <div style="flex:1;background:#241e18;border:1px solid #4a3d2e;border-radius:4px;padding:5px;text-align:center;">
+            <div style="font-size:9px;color:#8a7a5e;letter-spacing:1px;">CRIT CHANCE</div>
+            <div style="font-family:'Cinzel',serif;font-weight:700;font-size:16px;color:#e8895d;">{{ dmgCrit }}</div>
+          </div>
+          <div style="flex:1;background:#241e18;border:1px solid #4a3d2e;border-radius:4px;padding:5px;text-align:center;">
+            <div style="font-size:9px;color:#8a7a5e;letter-spacing:1px;">ENEMY HP</div>
+            <div style="font-family:'Cinzel',serif;font-weight:700;font-size:16px;color:#d8c391;">{{ enemyHp }}</div>
+          </div>
+          <div style="flex:1;background:#241e18;border:1px solid #4a3d2e;border-radius:4px;padding:5px;text-align:center;" title="XP awarded for the kill, including your XP Gain bonus. ~ = estimated from tier (not yet on the wiki page)">
+            <div style="font-size:9px;color:#8a7a5e;letter-spacing:1px;">XP FOR KILL</div>
+            <div style="font-family:'Cinzel',serif;font-weight:700;font-size:16px;color:#a8c98d;">{{ enemyXp }}</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:7px;">
+          <span style="font-size:9.5px;color:#8a7a5e;letter-spacing:1px;flex-shrink:0;">TARGET ARMOR</span>
+          <div style="display:flex;gap:3px;flex:1;">
+            <sc-for list="{{ armorTabs }}" as="a" hint-placeholder-count="3">
+              <button onClick="{{ a.pick }}" style="flex:1;font-size:10.5px;padding:4px 2px;border-radius:3px;border:1px solid {{ a.border }};background:{{ a.bg }};color:{{ a.color }};cursor:pointer;" style-hover="border-color:#c9a959;">{{ a.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="font-size:10px;color:#6b5a41;margin-bottom:6px;">Effective protection <span style="color:#c9b58a;font-weight:700;">{{ enemyProtEff }}</span> · <span style="color:#e8d0a0;font-weight:700;">normal</span> <span style="color:#e8895d;font-weight:700;">(crit)</span> damage per strike</div>
+        <sc-if value="{{ hasAtk }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <sc-for list="{{ atkRows }}" as="a" hint-placeholder-count="4">
+              <div style="border:1px solid {{ a.frame }};border-radius:4px;padding:6px 8px;background:{{ a.bgc }};">
+                <div style="display:flex;gap:7px;align-items:center;">
+                  <div style="width:24px;height:24px;flex-shrink:0;background:#171310;border:1px solid #4a3d2e;border-radius:2px;">{{ a.icon }}</div>
+                  <div style="min-width:0;flex:1;">
+                    <div style="font-size:12px;font-weight:700;color:#d8c391;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">{{ a.name }}</div>
+                    <div style="font-size:9px;color:#6b5a41;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">{{ a.type }}</div>
+                  </div>
+                  <div style="text-align:right;white-space:nowrap;flex-shrink:0;">
+                    <span style="font-family:'Cinzel',serif;font-weight:700;font-size:18px;color:#e8d0a0;">{{ a.normal }}</span>
+                    <span style="font-family:'Cinzel',serif;font-weight:700;font-size:14px;color:#e8895d;"> ({{ a.crit }})</span>
+                  </div>
+                </div>
+                <sc-if value="{{ a.hasEffects }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:5px;">
+                    <sc-for list="{{ a.effects }}" as="ef" hint-placeholder-count="2">
+                      <span style="font-size:10px;padding:1px 6px;border-radius:8px;background:rgba(0,0,0,.28);border:1px solid #3a2f23;color:{{ ef.color }};">{{ ef.label }} {{ ef.val }}</span>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ critNote }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size:10px;color:#8a7350;margin-top:7px;line-height:1.4;"><span style="color:#e8895d;font-weight:700;">On crit:</span> {{ critNote }}</div>
+        </sc-if>
+
+        <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:#a98a4a;border-bottom:1px solid #3a2f23;padding-bottom:3px;margin:12px 0 6px 0;">SURVIVABILITY <span style="font-size:9px;color:#6b5a41;letter-spacing:0;">· vs {{ enemyAtk }} avg dmg</span></div>
+        <div style="display:flex;gap:5px;margin-bottom:7px;">
+          <sc-for list="{{ survStats }}" as="sv" hint-placeholder-count="4">
+            <div style="flex:1;background:#241e18;border:1px solid #4a3d2e;border-radius:4px;padding:4px 2px;text-align:center;">
+              <div style="font-size:8px;color:#8a7a5e;letter-spacing:.5px;">{{ sv.label }}</div>
+              <div style="font-family:'Cinzel',serif;font-weight:700;font-size:14px;color:#a8c98d;">{{ sv.val }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:2px;">
+          <sc-for list="{{ survRows }}" as="pp" hint-placeholder-count="4">
+            <div style="display:grid;grid-template-columns:1fr auto auto;gap:8px;font-size:11px;padding:2px 4px;background:rgba(255,255,255,.02);border-radius:2px;">
+              <span style="color:#c9b58a;">{{ pp.part }}</span>
+              <span style="color:#8a7a5e;">prot {{ pp.prot }}</span>
+              <span style="color:#e0a86b;font-weight:700;">takes {{ pp.take }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="font-size:9.5px;color:#5a4c38;margin-top:4px;font-style:italic;">Enemy hit → random bodypart (torso 40%, arms/legs 25%, head 10%); block absorbs Block Power on {{ dmgBlockPct }} of hits. Physical damage assumed.</div>
+        <div style="font-size:10px;color:#5a4c38;margin-top:4px;font-style:italic;line-height:1.4;">{{ dmgNote }}</div>
+      </div>
+
+      <div style="font-size:10.5px;color:#5a4c38;padding:0 4px;line-height:1.5;">Formulas per the official wiki (Combat Formulas, attribute pages). Base HP/Energy growth uses documented community calibration — see data/mechanics.json. Not affiliated with Ink Stains Games.</div>
+    </div>
+  </div>
+  <sc-if value="{{ pickerOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;background:rgba(10,8,6,.72);z-index:50;display:flex;align-items:center;justify-content:center;">
+      <div style="width:760px;max-width:94vw;max-height:84vh;display:flex;flex-direction:column;background:linear-gradient(#efe2bf,#e2d0a4);border:2px solid #9b8354;border-radius:6px;box-shadow:0 12px 48px rgba(0,0,0,.85);padding:14px;">
+        <div style="display:flex;gap:10px;align-items:center;border-bottom:1px solid #b89d68;padding-bottom:8px;">
+          <div style="font-family:'Cinzel',serif;font-weight:700;font-size:14px;letter-spacing:2px;color:#5a4426;flex:1;">{{ pickerTitle }}</div>
+          <select value="{{ pickerSortVal }}" onChange="{{ onPickerSort }}" title="Rank items by a stat" style="font-family:'Alegreya',serif;font-size:12px;background:#f1e6c8;color:#5a4426;border:1px solid #9b8354;border-radius:3px;padding:5px 6px;max-width:150px;">
+            <sc-for list="{{ pickerSortOpts }}" as="so" hint-placeholder-count="3">
+              <option value="{{ so.v }}">Sort: {{ so.l }}</option>
+            </sc-for>
+          </select>
+          <input value="{{ pickerSearch }}" onChange="{{ onPickerSearch }}" placeholder="Search items…" style="font-family:'Alegreya',serif;font-size:13px;background:#f1e6c8;color:#2a2018;border:1px solid #9b8354;border-radius:3px;padding:5px 8px;width:200px;">
+          <button onClick="{{ closePicker }}" style="font-family:'Cinzel',serif;font-size:12px;background:#3a2f23;color:#d8c391;border:1px solid #6b5a41;border-radius:3px;padding:6px 12px;cursor:pointer;">CLOSE ✕</button>
+        </div>
+        <sc-if value="{{ pickerHasCats }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-wrap:wrap;gap:4px;padding:8px 0;">
+            <sc-for list="{{ pickerCats }}" as="pc" hint-placeholder-count="6">
+              <button onClick="{{ pc.pick }}" style="font-family:'Cinzel',serif;font-size:10.5px;letter-spacing:.5px;padding:4px 9px;border-radius:3px;cursor:pointer;border:1px solid #9b8354;background:{{ pc.bg }};color:{{ pc.color }};" style-hover="border-color:#7a2e1d;">{{ pc.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <div style="overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;gap:5px;align-content:start;margin-top:6px;min-height:200px;">
+          <div onClick="{{ pickerClear }}" style="cursor:pointer;display:flex;gap:8px;align-items:center;border:1px dashed #9b8354;border-radius:4px;padding:6px 8px;color:#8a7350;font-size:13px;font-style:italic;" style-hover="border-color:#7a2e1d;">— empty slot —</div>
+          <sc-for list="{{ pickerItems }}" as="p" hint-placeholder-count="10">
+            <div onClick="{{ p.pick }}" onMouseEnter="{{ p.hover }}" onMouseLeave="{{ p.unhover }}" style="cursor:pointer;display:flex;gap:8px;align-items:center;border:1px solid {{ p.border }};border-radius:4px;background:{{ p.bg }};padding:5px 8px;" style-hover="border-color:#7a2e1d;">
+              <div style="width:34px;height:34px;flex-shrink:0;background:#241e18;border:1px solid #6b5a41;border-radius:3px;display:flex;align-items:center;justify-content:center;">{{ p.icon }}</div>
+              <div style="min-width:0;">
+                <div style="font-size:12.5px;font-weight:700;color:#3a2b16;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ p.star }}{{ p.n }}</div>
+                <div style="font-size:10.5px;color:#6b5a41;">{{ p.sub }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+  </sc-if>
+  <sc-if value="{{ loadError }}" hint-placeholder-val="{{ false }}">
+    <div style="max-width:600px;margin:60px auto;background:#2a1d18;border:1px solid #7a2e1d;border-radius:5px;padding:20px;color:#e8a58d;font-size:14px;">Failed to load data files: {{ loadError }}</div>
+  </sc-if>
+  <sc-if value="{{ loading }}" hint-placeholder-val="{{ true }}">
+    <div style="text-align:center;padding:80px 0;color:#8a7350;font-family:'Cinzel',serif;letter-spacing:3px;">CONSULTING THE ARCHIVES…</div>
+  </sc-if>
+<sc-if value="{{ hasHover }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;z-index:99;pointer-events:none;left:{{ tipLeft }}px;top:{{ tipTop }}px;">
+    <div style="width:250px;background:linear-gradient(#26201a,#1b1612);border:1px solid #8a7350;border-radius:5px;box-shadow:0 6px 20px rgba(0,0,0,.7);padding:10px;">
+      <div style="display:flex;gap:9px;align-items:flex-start;">
+        <div style="width:44px;height:44px;flex-shrink:0;background:#171310;border:1px solid #4a3d2e;border-radius:3px;">{{ hoverCard.icon }}</div>
+        <div style="min-width:0;">
+          <div style="font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:{{ hoverCard.nameColor }};line-height:1.2;">{{ hoverCard.n }}</div>
+          <div style="font-size:10px;color:#8a7a5e;">{{ hoverCard.tierLine }}</div>
+        </div>
+      </div>
+      <sc-if value="{{ hoverCard.hasDmg }}" hint-placeholder-val="{{ false }}">
+        <div style="font-size:12px;color:#e8a58d;font-weight:700;margin-top:6px;">{{ hoverCard.dmgStr }} <span style="color:#8a7a5e;font-weight:400;font-size:10px;">{{ hoverCard.rangeStr }}</span></div>
+      </sc-if>
+      <sc-if value="{{ hoverCard.hasProt }}" hint-placeholder-val="{{ false }}">
+        <div style="font-size:12px;color:#a8b8c9;font-weight:700;margin-top:6px;">Protection {{ hoverCard.prot }}</div>
+      </sc-if>
+      <sc-if value="{{ hoverCard.hasStats }}" hint-placeholder-val="{{ false }}">
+        <div style="border-top:1px solid #3a2f23;margin-top:6px;padding-top:5px;display:flex;flex-direction:column;gap:1px;">
+          <sc-for list="{{ hoverCard.stats }}" as="st" hint-placeholder-count="4">
+            <div style="display:flex;justify-content:space-between;font-size:11px;">
+              <span style="color:#8a7a5e;">{{ st.label }}</span>
+              <span style="color:{{ st.color }};font-weight:700;">{{ st.val }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <div style="display:flex;justify-content:space-between;border-top:1px solid #3a2f23;margin-top:6px;padding-top:5px;font-size:10px;color:#6b5a41;">
+        <span>Durability {{ hoverCard.du }}</span>
+        <span style="color:#c9a959;">{{ hoverCard.price }} crowns</span>
+      </div>
+    </div>
+  </div>
+</sc-if>
+</div></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = {
+    loaded: false, loadError: null,
+    charId: 'velmir', level: 1,
+    alloc: { str: 0, agi: 0, prc: 0, vit: 0, wil: 0 },
+    gear: {}, ench: {}, cond: {}, buffs: {}, skills: {}, activeTree: 'swords',
+    stancesOn: false, skillBuffs: {}, enemySel: 'Goon', armorMode: 'intact',
+    pickerSlot: null, pickerCat: 'all', pickerSearch: '', traitCounters: {}, selSkill: null, showFormulas: false, libOpen: false, libName: '', pinnedStats: null,
+    ioOpen: false, ioMode: 'export', ioText: '', ioStatus: ''
+  };
+  D = null;
+
+  async componentDidMount() {
+    document.addEventListener('error', e => { const t = e.target; if (t && t.tagName === 'IMG' && String(t.src).includes('stoneshard.com')) t.style.visibility = 'hidden'; }, true);
+    // if a local icon mirror exists (see mirror-icons.mjs), use it instead of hotlinking the wiki
+    try { const r = await fetch('images/.mirrored', { method: 'HEAD' }); if (r.ok) { this.localIcons = true; this.forceUpdate(); } } catch (e) {}
+    try {
+      const get = async p => (await fetch(p)).json();
+      const wf = ['swords','axes','maces','daggers','swords2h','axes2h','maces2h','spears','staves','bows','crossbows','slings'];
+      const af = ['headgear','chestpieces','gloves','boots','shields','belts','cloaks'];
+      const [mech, chars, ench, cons, enemies, skillIdx, ammo] = await Promise.all([
+        get('data/mechanics.json'), get('data/characters.json'), get('data/enchantments.json'),
+        get('data/consumables.json'), get('data/enemies.json'), get('data/skills/index.json'), get('data/ammo.json')
+      ]);
+      if (ench.jewelry === 'SAME_AS_ARMOR') ench.jewelry = ench.armor;
+      const weapons = {}, armor = {};
+      await Promise.all(wf.map(async f => { weapons[f] = await get('data/weapons/' + f + '.json'); }));
+      await Promise.all(af.map(async f => { armor[f] = await get('data/armor/' + f + '.json'); }));
+      const [rings, amulets] = await Promise.all([get('data/jewelry/rings.json'), get('data/jewelry/amulets.json')]);
+      const trees = {};
+      await Promise.all(skillIdx.trees.map(async t => {
+        try { const j = await get('data/skills/' + t.file); const nested = j.trees && Object.values(j.trees)[0]; trees[t.id] = { label: t.label, cat: (j.$meta && j.$meta.cat) || (nested && nested.cat) || 'utility', skills: j.skills || (nested && nested.skills) || [] }; }
+        catch (e) { trees[t.id] = { label: t.label, cat: 'utility', skills: [] }; }
+      }));
+      this.D = { mech, chars: chars.characters, ench, cons, enemies: enemies.enemies, weapons, armor, rings: rings.items, amulets: amulets.items, trees, treeOrder: skillIdx.trees.map(t => t.id), ammo };
+      const saved = localStorage.getItem('ss-calc-build-v1');
+      let st = { loaded: true };
+      if (saved) { try { st = Object.assign(st, this.sanitize(JSON.parse(saved))); } catch (e) {} }
+      const h = location.hash.match(/#b=([A-Za-z0-9+/=_-]+)/);
+      if (h) { try { st = Object.assign(st, this.sanitize(JSON.parse(atob(h[1].replace(/-/g,'+').replace(/_/g,'/'))))); } catch (e) {} }
+      st.skills = Object.assign({}, st.skills);
+      const seed = this.freeSeed(st.charId || 'velmir');
+      Object.keys(seed).forEach(tid => {
+        const arr = (st.skills[tid] || []).slice();
+        seed[tid].forEach(n => { if (!arr.includes(n)) arr.push(n); });
+        st.skills[tid] = arr;
+      });
+      if (!st.gear || !Object.keys(st.gear).length) st.gear = this.startGear(this.D.chars.find(c => c.id === (st.charId || 'velmir')) || this.D.chars[0]);
+      this.setState(st);
+    } catch (e) { this.setState({ loadError: String(e), loaded: false }); }
+  }
+
+  statKeyLabel(k) { return this.STATL[k]; }
+  get STATL() { return this._STATL || (this._STATL = { ap:'Armor Penetration', ad:'Armor Damage', bpd:'Bodypart Damage', wd:'Weapon Damage', bl:'Bleed Chance', dz:'Daze Chance', st:'Stun Chance', sg:'Stagger Chance', kb:'Knockback Chance', im:'Immobilization', bc:'Block Chance', bp:'Block Power', bpr:'Block Power Recovery', co:'Counter Chance', acc:'Accuracy', cc:'Crit Chance', ce:'Crit Efficiency', fum:'Fumble Chance', sec:'Skills Energy Cost', spec:'Spells Energy Cost', cd:'Cooldowns Duration', rng:'Bonus Range', vis:'Vision', mp:'Magic Power', mic:'Miracle Chance', mip:'Miracle Potency', bfc:'Backfire Chance', bfd:'Backfire Damage', pyr:'Pyromantic Power', geo:'Geomantic Power', ele:'Electromantic Power', arc:'Arcanistic Power', ven:'Venomantic Power', cry:'Cryomantic Power', ast:'Astromantic Power', psi:'Psionic Power', chr:'Chronomantic Power', hp:'Max Health', en:'Max Energy', hr:'Health Restoration', er:'Energy Restoration', he:'Healing Efficiency', dg:'Dodge Chance', ctr:'Control Resistance', mvr:'Move Resistance', fort:'Fortitude', refl:'Damage Reflection', dt:'Damage Taken', ed:'Energy Drain', ld:'Life Drain', xp:'Experience Gain', phr:'Physical Res', slr:'Slashing Res', pir:'Piercing Res', crr:'Crushing Res', rer:'Rending Res', ntr:'Nature Res', fir:'Fire Res', frr:'Frost Res', shr:'Shock Res', por:'Poison Res', car:'Caustic Res', mgr:'Magic Res', arr:'Arcane Res', unr:'Unholy Res', sar:'Sacred Res', psr:'Psionic Res', blr:'Bleed Res', pnr:'Pain Res', hgr:'Hunger Res', inr:'Intoxication Res', ftr:'Fatigue Res', stl:'Stealth', noi:'Noise Produced', lkp:'Lockpicking', mhe:'Main Hand Efficiency', ohe:'Off-Hand Efficiency', cav:'Crit Avoidance', ohd:'Off-Hand Damage', mhd:'Main Hand Damage' }); }
+  itemCard(item, slot) {
+    if (!item) return null;
+    const L = this.STATL;
+    const flat = { bp:1, rng:1, vis:1, hp:1, en:1, stl:1, lkp:1, mhd:1, ohd:1 };
+    const DT = { sl:'Slashing', pi:'Piercing', cr:'Crushing', re:'Rending', fi:'Fire', fr:'Frost', sh:'Shock', po:'Poison', ca:'Caustic', ar:'Arcane', un:'Unholy', sa:'Sacred', ps:'Psionic' };
+    const dmgStr = item.d ? Object.entries(item.d).map(([k, v]) => v + ' ' + (DT[k] || k)).join(' · ') : '';
+    const roman = { 1:'I', 2:'II', 3:'III', 4:'IV', 5:'V' };
+    const stats = Object.entries(item.s || {}).map(([k, v]) => ({
+      label: L[k] || k,
+      val: (v > 0 ? '+' : '') + v + (flat[k] ? '' : '%'),
+      color: (k === 'fum' || k === 'dt' || k === 'noi' || k === 'sec' || k === 'spec' || k === 'cd' || k === 'bfc' || k === 'bfd' ? v < 0 : v > 0) ? '#a8c98d' : '#d98a75'
+    }));
+    return {
+      n: item.n, icon: this.icon(item.n, 44),
+      tierLine: 'Tier ' + (roman[item.t] || item.t) + (item.r === 'U' ? ' · Unique' : '') + (item.cls ? ' · ' + item.cls : '') + (item._cls ? ' · ' + item._cls : ''),
+      nameColor: item.r === 'U' ? '#c9a3e0' : '#e8d8b0',
+      dmgStr, hasDmg: !!dmgStr, prot: item.prot || 0, hasProt: !!item.prot,
+      du: item.du || 0, price: item.p || 0, rangeStr: item.range ? 'Range ' + item.range : '', stats, hasStats: stats.length > 0
+    };
+  }
+  evalExpr(ex, at) {
+    const e = ex.toUpperCase().replace(/AGL|AGI/g, '(' + at.agi + ')').replace(/STR/g, '(' + at.str + ')').replace(/PRC/g, '(' + at.prc + ')').replace(/VIT/g, '(' + at.vit + ')').replace(/WIL/g, '(' + at.wil + ')')
+      .replace(/PYR/g, '(' + (at.pyr || 100) + ')').replace(/GEO/g, '(' + (at.geo || 100) + ')').replace(/ELE/g, '(' + (at.ele || 100) + ')').replace(/ARC/g, '(' + (at.arc || 100) + ')').replace(/MP/g, '(' + (at.mp || 100) + ')');
+    if (!/^[0-9+\-*/(). ]+$/.test(e)) return NaN;
+    try { return Function('"use strict";return (' + e + ')')(); } catch (err) { return NaN; }
+  }
+  dynDesc(sk, attrs) {
+    if (!sk.dyn) return sk.desc;
+    if (this.state.showFormulas) {
+      const green = { color: '#86c977', fontWeight: 700 };
+      const parts = []; let last = 0, key = 0, m;
+      const re = /\{([^}]+)\}/g;
+      while ((m = re.exec(sk.dyn))) {
+        if (m.index > last) parts.push(sk.dyn.slice(last, m.index));
+        parts.push(React.createElement('span', { key: key++, style: green }, '(' + m[1].replace(/\*/g, ' * ').replace(/\+/g, ' + ') + ')'));
+        last = m.index + m[0].length;
+      }
+      parts.push(sk.dyn.slice(last));
+      return React.createElement('span', null, ...parts);
+    }
+    const base10 = { str: 10, agi: 10, prc: 10, vit: 10, wil: 10 };
+    const r = v => Math.round(v * 10) / 10;
+    const green = { color: '#86c977', fontWeight: 700 };
+    const parts = []; let last = 0, key = 0, m;
+    const re = /\{([^}]+)\}/g;
+    while ((m = re.exec(sk.dyn))) {
+      if (m.index > last) parts.push(sk.dyn.slice(last, m.index));
+      const val = this.evalExpr(m[1], attrs), base = this.evalExpr(m[1], base10);
+      if (isNaN(val)) parts.push(m[0]);
+      else if (val === base) parts.push(React.createElement('span', { key: key++, style: green }, String(r(val))));
+      else {
+        parts.push(String(r(base)) + '→');
+        parts.push(React.createElement('span', { key: key++, style: green }, String(r(val))));
+      }
+      last = m.index + m[0].length;
+    }
+    parts.push(sk.dyn.slice(last));
+    return React.createElement('span', null, ...parts);
+  }
+  freeSeed(chId) {
+    const ch = this.D.chars.find(c => c.id === chId);
+    const names = (((this.D.trees.survival || {}).skills) || []).filter(x => x.free).map(x => x.n)
+      .concat((ch && ch.trait && ch.trait.free_skills) || []);
+    return names.length ? { survival: Array.from(new Set(names)) } : {};
+  }
+  sanitize(b) {
+    const out = {};
+    ['charId','level','alloc','gear','ench','cond','buffs','skills','activeTree','stancesOn','skillBuffs','enemySel','traitCounters'].forEach(k => { if (b[k] !== undefined) out[k] = b[k]; });
+    return out;
+  }
+  buildObj() { const s = this.state; return { skillBuffs: s.skillBuffs, charId: s.charId, level: s.level, alloc: s.alloc, gear: s.gear, ench: s.ench, cond: s.cond, buffs: s.buffs, skills: s.skills, activeTree: s.activeTree, stancesOn: s.stancesOn, enemySel: s.enemySel, traitCounters: s.traitCounters }; }
+  persist() { localStorage.setItem('ss-calc-build-v1', JSON.stringify(this.buildObj())); }
+  readLib() { try { return JSON.parse(localStorage.getItem('ss-calc-library-v1')) || {}; } catch (e) { return {}; } }
+  writeLib(lib) { localStorage.setItem('ss-calc-library-v1', JSON.stringify(lib)); this.forceUpdate(); }
+
+  traitCounterDefs(charId) {
+    const defs = {
+      velmir: [
+        { id: 'minibosses', label: 'Mini-Bosses first-killed', max: 20, tip: '+1.5% XP Gain each; +1.5% Damage Taken aura per stack (max 20)', fx: n => ({ xp: 1.5 * n }) },
+        { id: 'bosses', label: 'Bosses killed', max: 10, tip: '+2 Stat Points each', fx: n => ({ statPoints: 2 * n }) }
+      ],
+      jorgrim: [
+        { id: 'deliveries', label: 'Trophy deliveries (per 3)', max: 5, tip: '+2% Weapon Damage and +1 Stat Point each (max 5)', fx: n => ({ wd: 2 * n, statPoints: n }) },
+        { id: 'killstacks', label: 'Recent-kill stacks', max: 10, tip: '+5% XP Gain each for 30 turns (max 10)', fx: n => ({ xp: 5 * n }) }
+      ],
+      dirwin: [
+        { id: 'dens', label: 'Dens / Hunting Grounds visited', max: 20, tip: '+1% XP Gain each (max 20)', fx: n => ({ xp: n }) }
+      ],
+      jonna: [
+        { id: 'treatises', label: 'Unique treatises carried', max: 4, tip: '+5% School Power and +5% Miracle Potency each; full set: +2% Miracle Chance', fx: n => ({ school: 5 * n, mip: 5 * n, mic: n >= 4 ? 2 : 0 }) },
+        { id: 'read', label: 'Treatises read', max: 20, tip: '−1% Backfire Chance each', fx: n => ({ bfc: -n }) }
+      ],
+      mahir: [
+        { id: 'locations', label: 'Locations first-visited', max: 50, tip: '+0.4% XP Gain and +0.4% Fatigue Res each (caps at 20%)', fx: n => ({ xp: Math.min(20, 0.4 * n), ftr: Math.min(20, 0.4 * n) }) }
+      ]
+    };
+    return defs[charId] || [];
+  }
+  set(patch) { this.setState(patch, () => this.persist()); }
+
+  img(name) {
+    const alias = { 'Psyche: Optimism': 'Optimism', 'Psyche: Heroism': 'Heroism', 'Psyche: Second Wind': 'Second_Wind', 'Vigor (rested)': 'Vigorous', 'Goon': 'Bandit_Goon' };
+    const file = String(alias[name] || name).replace(/ /g, '_') + '.png';
+    if (this.localIcons) return 'images/' + encodeURIComponent(file);
+    return 'https://stoneshard.com/wiki/Special:FilePath/' + encodeURIComponent(file);
+  }
+  icon(name, size) { return React.createElement('img', { onError: e => { e.target.style.visibility = 'hidden'; }, src: this.img(name), alt: '', style: { maxWidth: size + 'px', maxHeight: size + 'px', objectFit: 'contain', imageRendering: 'pixelated', display: 'block', margin: 'auto' } }); }
+  find(list, n) { return list.find(i => i.n === n) || null; }
+
+  startGear(ch) {
+    const gear = {};
+    const slots = ['head','cloak','chest','gloves','belt','boots','amulet','ring1','ring2','main','off'];
+    (ch.starting_equipment || []).forEach(raw => {
+      const name = raw.replace(/\s*\(.*\)$/, '');
+      for (const slot of slots) {
+        if (gear[slot]) continue;
+        const item = this.find(this.allItems(slot), name);
+        if (item) { gear[slot] = name; break; }
+      }
+    });
+    const mi = gear.main && this.find(this.allItems('main'), gear.main);
+    if (mi && mi._hands === 2) delete gear.off;
+    return gear;
+  }
+
+  allItems(slot) {
+    const D = this.D;
+    if (slot === 'main') { let a = []; ['swords','axes','maces','daggers','spears','staves','swords2h','axes2h','maces2h','bows','crossbows','slings'].forEach(f => { D.weapons[f].items.forEach(i => a.push(Object.assign({ _cls: D.weapons[f].$meta.class, _hands: D.weapons[f].$meta.hands, _crit: D.weapons[f].$meta.crit_bonus }, i))); }); return a; }
+    if (slot === 'off') { let a = D.armor.shields.items.map(i => Object.assign({ _cls: 'shield' }, i)); ['swords','axes','maces','daggers'].forEach(f => { D.weapons[f].items.forEach(i => a.push(Object.assign({ _cls: D.weapons[f].$meta.class, _hands: 1 }, i))); }); return a; }
+    const map = { head: 'headgear', chest: 'chestpieces', gloves: 'gloves', belt: 'belts', boots: 'boots', cloak: 'cloaks' };
+    if (map[slot]) return this.D.armor[map[slot]].items;
+    if (slot === 'amulet') return this.D.amulets;
+    if (slot === 'ring1' || slot === 'ring2') return this.D.rings;
+    if (slot === 'ammo') {
+      const main = this.state.gear.main && this.find(this.allItems('main'), this.state.gear.main);
+      if (!main) return [];
+      const map = { bow: 'arrows', crossbow: 'bolts', sling: 'bullets' };
+      const key = map[main._cls];
+      return key ? this.D.ammo[key] : [];
+    }
+    return [];
+  }
+
+  computed() {
+    const D = this.D, s = this.state;
+    const ch = D.chars.find(c => c.id === s.charId) || D.chars[0];
+    const cal = D.mech.calibration, lvl = s.level;
+    const spent = Object.values(s.alloc).reduce((a, b) => a + b, 0);
+    let bonusStatPoints = 0;
+    const tcDefs = this.traitCounterDefs(ch.id);
+    const tcFx = {};
+    tcDefs.forEach(d => {
+      const n = Math.max(0, Math.min(d.max, (s.traitCounters && s.traitCounters[d.id]) || 0));
+      const fx = d.fx(n);
+      Object.keys(fx).forEach(k => { if (k === 'statPoints') bonusStatPoints += fx[k]; else tcFx[k] = (tcFx[k] || 0) + fx[k]; });
+    });
+    const statPool = (lvl - 1) + bonusStatPoints - spent;
+    const attrs = {};
+    ['str','agi','prc','vit','wil'].forEach(k => attrs[k] = Math.min(30, ch.stats[k] + (s.alloc[k] || 0)));
+    (s.buffs && Object.keys(s.buffs).forEach(bn => { if (!s.buffs[bn]) return; const b = this.buffByName(bn); if (!b) return; Object.keys(b.s || {}).forEach(k => { if (k.startsWith('attr_')) { const a = k.slice(5); attrs[a] = Math.min(30, attrs[a] + b.s[k]); } }); }));
+    const th = v => (v >= 15 ? 1 : 0) + (v >= 20 ? 1 : 0) + (v >= 25 ? 1 : 0) + (v >= 30 ? 1 : 0);
+
+    const mods = {}; const mmul = { sec: [], spec: [], cd: [] }; const add = (k, v) => { if (typeof v === 'number') { mods[k] = (mods[k] || 0) + v; if (mmul[k]) mmul[k].push(v); } };
+    Object.keys(tcFx).forEach(k => { if (k !== 'school') add(k, tcFx[k]); });
+    const dmg = {}; let mainItem = null, offItem = null, protTotal = 0, cfMain = 1, cfOff = 1;
+    const protBy = { head: 0, chest: 0, gloves: 0, boots: 0 }; // per-bodypart: helmet→head, chest→torso, gloves→arms, boots→legs
+    const bodySlots = ['head','cloak','chest','gloves','boots'];
+    const partRes = ['phr','slr','pir','crr','rer','ntr','fir','frr','shr','por','car','mgr','arr','unr','sar','psr','blr'];
+    const slots = ['head','cloak','chest','gloves','belt','boots','amulet','ring1','ring2','main','off','ammo'];
+    slots.forEach(slot => {
+      const n = s.gear[slot]; if (!n) return;
+      const item = this.find(this.allItems(slot), n); if (!item) return;
+      const cf = Math.max(1, Math.min(100, (s.cond && s.cond[slot]) || 100)) / 100;
+      // weapon stats & enchants also scale with hand efficiency (verified: full-condition halberd bpd 20→21, stun ench 5→5.3 at 105% MH eff)
+      const hf = ((slot === 'main' || slot === 'off') && item._cls !== 'shield') ? (100 + 2.5 * th(attrs.agi)) / 100 : 1;
+      // per-bodypart armor resistances average over 4 body parts (matches in-game sheet)
+      const addS = (k, v) => add(k, v * cf * hf * (bodySlots.includes(slot) && partRes.includes(k) ? 0.25 : 1));
+      if (slot === 'main') { mainItem = item; cfMain = cf; }
+      if (slot === 'off') { offItem = item; cfOff = cf; }
+      if (item.prot) { protTotal += item.prot * cf; if (protBy[slot] !== undefined) protBy[slot] += item.prot * cf; }
+      Object.keys(item.s || {}).forEach(k => addS(k, item.s[k]));
+      if ((slot === 'main' || slot === 'ammo') && item.d) Object.keys(item.d).forEach(t => { dmg[t] = (dmg[t] || 0) + item.d[t] * cf * hf; });
+      const en = s.ench[slot]; if (en) {
+        const pool = slot === 'main' || (slot === 'off' && item._cls !== 'shield') ? D.ench.weapon : (slot === 'amulet' || slot.startsWith('ring') ? D.ench.jewelry : D.ench.armor);
+        const e = this.find(pool, en);
+        if (e) { Object.keys(e.s || {}).forEach(k => { if (k === 'prot_add') protTotal += e.s[k] * cf; else addS(k, e.s[k]); }); if (slot === 'main' && e.d) Object.keys(e.d).forEach(t => { dmg[t] = (dmg[t] || 0) + e.d[t] * cf * hf; }); }
+      }
+    });
+    const twoHanded = mainItem && mainItem._hands === 2;
+
+    Object.keys(s.buffs || {}).forEach(bn => { if (!s.buffs[bn]) return; const b = this.buffByName(bn); if (!b) return; Object.keys(b.s || {}).forEach(k => { if (!k.startsWith('attr_')) add(k, b.s[k]); }); });
+
+    let apSpent = 0;
+    const catCount = { weapon: 0, magic: 0, utility: 0 }; let survivalCount = 0, treesWith6 = 0;
+    const free = ((ch.trait && ch.trait.free_skills) || []).concat((((D.trees.survival || {}).skills) || []).filter(x => x.free).map(x => x.n));
+    Object.keys(s.skills || {}).forEach(tid => {
+      const n = (s.skills[tid] || []).length;
+      const tcat = (D.trees[tid] && D.trees[tid].cat) || 'utility';
+      catCount[tcat] += n;
+      if (tid === 'survival') survivalCount = n;
+      if (n >= 6) treesWith6++;
+    });
+    Object.keys(s.skills || {}).forEach(tid => (s.skills[tid] || []).forEach(sn => {
+      if (!free.includes(sn)) apSpent++;
+      const tree = D.trees[tid]; if (!tree) return;
+      const sk = tree.skills.find(x => x.n === sn); if (!sk || !sk.fx) return;
+      const fx = sk.fx;
+      let stacks = fx.stacks || 1;
+      if (fx.buff) {
+        const ov = s.skillBuffs ? s.skillBuffs[sk.n] : undefined;
+        stacks = ov !== undefined ? ov : (s.stancesOn ? (fx.stacks || 1) : 0);
+        if (!stacks) return;
+      }
+      if (fx.per_stack) Object.keys(fx.per_stack).forEach(k => add(k, fx.per_stack[k] * stacks));
+      Object.keys(fx).forEach(k => { if (['buff','stacks','per_stack','cond','prot'].includes(k)) return; if (typeof fx[k] === 'number') add(k, fx[k]); });
+      if (fx.prot) protTotal += fx.prot * 4;
+    }));
+    let bonusAP = 0; const traitNotes = [];
+    if (ch.id === 'leosthenes') {
+      const w = catCount.weapon, m = catCount.magic, u = catCount.utility;
+      add('mp', 1.5 * w); add('wd', 1.5 * m); add('hp', 2 * u); add('en', 2 * u); add('xp', 2 * u);
+      if (w || m || u) traitNotes.push('Might and Magic: +' + 1.5 * w + '% MP, +' + 1.5 * m + '% WD, +' + 2 * u + ' HP/EN');
+    }
+    if (ch.id === 'dirwin') { bonusAP = Math.floor(survivalCount / 3); if (bonusAP) traitNotes.push("Ranger's Gift: +" + bonusAP + ' AP'); }
+    if (ch.id === 'mahir') { bonusAP = Math.min(5, treesWith6); if (bonusAP) traitNotes.push('Lifelong Journey: +' + bonusAP + ' AP'); }
+    const apPool = (lvl + 1) + bonusAP - apSpent; // 2 free ability points at level 1, +1 per level-up
+
+    const M = k => mods[k] || 0;
+    // game stacks energy-cost & cooldown modifiers multiplicatively (verified on real sheet: 92.3%, 89.7%)
+    const mulStack = (k, wilTerm) => {
+      let f = 1 + wilTerm / 100;
+      (mmul[k] || []).forEach(v => { f *= 1 + v / 100; });
+      return (f - 1) * 100;
+    };
+    const cap = D.mech.caps_player;
+    const clampCap = (v, c) => c !== undefined ? Math.min(v, c) : v;
+    const dstr = attrs.str - 10, dagi = attrs.agi - 10, dprc = attrs.prc - 10, dvit = attrs.vit - 10, dwil = attrs.wil - 10;
+
+    const hp = Math.round(cal.base_health_lvl1 + cal.health_per_vit_point * dvit + 15 * th(attrs.vit) + M('hp'));
+    const en = Math.round(cal.base_energy_lvl1 + cal.energy_per_vit_point * dvit + M('en'));
+    const wd = clampCap(100 + 1.5 * dstr + M('wd'), cap.weapon_damage_pct);
+    const acc = clampCap(cal.base_accuracy_pct + 1.5 * dprc + M('acc'), cap.accuracy_pct);
+    const cc = cal.base_crit_chance_pct + 5 * th(attrs.prc) + M('cc');
+    const ce = clampCap(cal.base_crit_efficiency_pct + 10 * th(attrs.str) + M('ce'), 100 + cap.crit_efficiency_pct);
+    const fum = Math.max(0, cal.base_fumble_pct - 1.5 * dagi + M('fum'));
+    const co = cal.base_counter_pct + 1.5 * dagi + M('co');
+    const dodge = cal.base_dodge_pct + 5 * th(attrs.agi) + M('dg');
+    const bc = 1.5 * dstr + M('bc');
+    const bp = cal.base_block_power + cal.block_power_per_str * attrs.str + M('bp');
+    const ap_ = 1.5 * dprc + M('ap');
+    const bpd = 7.5 * th(attrs.str) + M('bpd');
+    const ad = 15 * th(attrs.str) + M('ad');
+    const mp = clampCap(100 + 7.5 * th(attrs.wil) + M('mp'), cap.magic_power_pct);
+    const cdr = Math.max(cap.cooldowns_duration_pct - 100, mulStack('cd', -1.5 * dwil));
+    const secost = Math.max(cap.abilities_energy_cost_pct - 100, mulStack('sec', -1.5 * dwil));
+    const spcost = Math.max(cap.abilities_energy_cost_pct - 100, mulStack('spec', -1.5 * dwil));
+    const er = cal.base_energy_restoration_pct + 2 * dvit + M('er');
+    const hr = cal.base_health_restoration_pct + (cal.hr_per_vit_point || 0) * dvit + M('hr');
+    const fort = clampCap(7.5 * th(attrs.wil) + M('fort'), cap.fortitude_pct);
+    const pnr = 7.5 * th(attrs.wil) + M('pnr');
+    const ctr = clampCap(7.5 * th(attrs.vit) + M('ctr'), 80);
+    const mvr = clampCap(7.5 * th(attrs.agi) + M('mvr'), 80);
+    const bpr = cal.base_block_recovery_pct + 5 * th(attrs.vit) + M('bpr');
+    const vision = clampCap(cal.base_vision + th(attrs.prc) + M('vis'), 15);
+    const rng = th(attrs.prc) + (M('rng') ? Math.round(M('rng') / 5) : 0);
+    const mic = 5 + 5 * th(attrs.prc) + M('mic');
+    const bfc = Math.max(0, (cal.base_backfire_chance_pct || 19) - 1.5 * dagi + M('bfc'));
+    const bfd = Math.max(0, (cal.base_backfire_damage_pct || 5) + M('bfd'));
+    const mhe = 100 + 2.5 * th(attrs.agi) + M('mhe');
+    const ohe = 100 + 2.5 * th(attrs.agi) + M('ohe');
+    const sumd = d => d ? Object.values(d).reduce((a, b) => a + b, 0) : 0;
+    const mhDmg = mainItem ? Math.round(sumd(mainItem.d) * cfMain * (100 + 1.5 * dstr + M('wd')) / 100 * mhe / 100) : 0;
+    const ohDmg = (offItem && offItem._cls !== 'shield') ? Math.round(sumd(offItem.d) * cfOff * (100 + 1.5 * dstr + M('wd')) / 100 * ohe / 100) : (twoHanded ? mhDmg : 0);
+    const spellAcc = 90 + 1.5 * dprc;
+    const spellAp = 1.5 * dprc;
+    const cav = M('cav');
+    const dtaken = clampCap(100 + M('dt'), 200);
+    const heff = 100 + M('he');
+    const ldrain = M('ld'), edrain = M('ed');
+    const res = {};
+    ['phr','slr','pir','crr','rer','ntr','fir','frr','shr','por','car','mgr','arr','unr','sar','psr','blr'].forEach(k => res[k] = clampCap(M(k), 75));
+
+    const xpGain = M('xp');
+    const mip = clampCap(125 + M('mip'), 150);
+    const schoolPower = tcFx.school || 0;
+    let xp = 0; for (let l = 1; l < lvl; l++) xp += 250 * l;
+
+    return { ch, attrs, th, statPool, apPool, mods, dmg, mainItem, offItem, twoHanded, protTotal, free,
+      hp, en, wd, acc, cc, ce, fum, co, dodge, bc, bp, ap_, bpd, ad, mp, cdr, secost, spcost, er, hr, fort, pnr, ctr, mvr, bpr, vision, rng, mic, bfc, res, xp, xpGain, mip, schoolPower,
+      bfd, mhe, ohe, mhDmg, ohDmg, spellAcc, spellAp, cav, dtaken, heff, ldrain, edrain, protBy };
+  }
+
+  buffByName(n) { const c = this.D.cons; for (const g of ['potions','food','beverages','drugs','psyche']) { const f = (c[g] || []).find(x => x.n === n); if (f) return f; } return null; }
+
+  renderVals() {
+    const s = this.state;
+    if (s.loadError) return { loading: false, loaded: false, loadError: s.loadError, gameVersion: '0.9.4' };
+    if (!s.loaded || !this.D) return { loading: true, loaded: false, loadError: null, gameVersion: '0.9.4', ioOpen: false, exportBuild: () => {}, importBuild: () => {} };
+    const D = this.D;
+    const C = this.computed();
+    const pct = v => (v >= 0 ? '' : '') + (Math.round(v * 10) / 10) + '%';
+    const gold = '#d8c391', red = '#e8a58d', green = '#a5c98d';
+
+    const charCards = D.chars.filter(c => !c.prologue_only).map(c => ({
+      name: c.name, border: c.id === s.charId ? '#7a2e1d' : '#9b8354',
+      portrait: React.createElement('img', { src: c.img, alt: c.name, style: { width: '100%', aspectRatio: '1', objectFit: 'contain', imageRendering: 'pixelated' } }),
+      pick: () => this.set({ charId: c.id, alloc: { str: 0, agi: 0, prc: 0, vit: 0, wil: 0 }, skills: this.freeSeed(c.id), gear: this.startGear(c), ench: {} })
+    }));
+
+    const statLabels = { str: ['Strength', '+1.5% Weapon Dmg & Block Chance /pt; thresholds: +7.5% Bodypart Dmg, +10% Crit Eff, +15% Armor Dmg'], agi: ['Agility', '+1.5% Counter, −1.5% Fumble & Backfire /pt; thresholds: +5% Dodge, +2.5% Hands Eff, +7.5% Move Res'], prc: ['Perception', '+1.5% Accuracy & Armor Pen /pt; thresholds: +1 Vision/Range, +5% Crit & Miracle Chance'], vit: ['Vitality', '+4 Max Energy, +2% Energy Resto /pt; thresholds: +15 Max HP, +5% BP Recovery, +7.5% Control Res'], wil: ['Willpower', '−1.5% Cooldowns & Energy Cost /pt; thresholds: +7.5% Magic Power, Pain Res, Fortitude'] };
+    const statRows = ['str','agi','prc','vit','wil'].map(k => ({
+      label: statLabels[k][0], tip: statLabels[k][1], val: C.attrs[k],
+      color: C.attrs[k] >= 20 ? '#7a2e1d' : '#3a2b16',
+      inc: () => { if (C.statPool > 0 && C.attrs[k] < 30) this.set({ alloc: Object.assign({}, s.alloc, { [k]: (s.alloc[k] || 0) + 1 }) }); },
+      dec: () => { if ((s.alloc[k] || 0) > 0) this.set({ alloc: Object.assign({}, s.alloc, { [k]: s.alloc[k] - 1 }) }); }
+    }));
+
+    const mainIsRanged = C.mainItem && ['bow','crossbow','sling'].includes(C.mainItem._cls);
+    const slotDefs = [
+      ['head', 'HEAD', 'helmet / cowl'], ['cloak', 'CLOAK', 'back'], ['chest', 'TORSO', 'chestpiece'],
+      ['gloves', 'ARMS', 'gloves / bracers'], ['belt', 'BELT', 'waist'], ['boots', 'LEGS', 'boots'],
+      ['amulet', 'NECK', 'amulet'], ['ring1', 'RING I', 'jewelry'], ['ring2', 'RING II', 'jewelry'],
+      ['main', 'MAIN HAND', 'weapon'], ['off', 'OFF-HAND', 'shield / 1h weapon'], ['ammo', 'AMMO', 'projectiles']
+    ];
+    const slotRows = slotDefs.map(([slot, label, sub]) => {
+      const disabled = (slot === 'off' && C.twoHanded) || (slot === 'ammo' && !mainIsRanged);
+      const items = disabled ? [] : this.allItems(slot);
+      const cur = disabled ? null : (s.gear[slot] || '');
+      const isWeapon = slot === 'main' || (slot === 'off' && cur && (this.find(this.allItems('off'), cur) || {})._cls !== 'shield');
+      const pool = slot === 'ammo' ? [] : (slot === 'main' || isWeapon ? D.ench.weapon : (slot === 'amulet' || slot.startsWith('ring') ? D.ench.jewelry : D.ench.armor));
+      const enchChoices = [{ v: '', label: 'no enchant' }].concat(pool.map(e => ({ v: e.n, label: e.n + ' (' + e.desc + ')' })));
+      const item = cur ? this.find(items, cur) : null;
+      let tip = '';
+      if (item) { tip = item.n + (item.d ? ' · dmg ' + Object.entries(item.d).map(([k, v]) => v + ' ' + k).join(', ') : '') + (item.prot ? ' · prot ' + item.prot : ''); }
+      return {
+        label, sub: disabled ? (slot === 'ammo' ? 'needs ranged weapon' : 'occupied by 2H weapon') : sub, value: cur || '', tip,
+        icon: item ? this.icon(item.n, 38) : null,
+        btnLabel: disabled ? (slot === 'ammo' ? '— (needs ranged weapon) —' : '— (two-handed) —') : (item ? (item.r === 'U' ? '★ ' : '') + item.n : '— empty · choose… —'),
+        btnColor: item ? '#2a2018' : '#8a7350',
+        hover: e => { if (item) this.setState({ hoverCard: this.itemCard(item, slot), tipX: e.clientX, tipY: e.clientY }); },
+        unhover: () => this.setState({ hoverCard: null }),
+        open: () => { if (!disabled) this.setState({ pickerSlot: slot, pickerCat: 'all', pickerSearch: '' }); },
+        ench: s.ench[slot] || '', enchChoices,
+        onEnch: e => { const en = Object.assign({}, s.ench); const v = e.target.value; if (v) en[slot] = v; else delete en[slot]; this.set({ ench: en }); },
+        cond: (s.cond && s.cond[slot]) || 100,
+        onCond: e => { const c = Object.assign({}, s.cond); c[slot] = Math.max(1, Math.min(100, parseInt(e.target.value, 10) || 100)); this.set({ cond: c }); }
+      };
+    });
+
+    const clsLabels = { sword: 'Swords', axe: 'Axes', mace: 'Maces', dagger: 'Daggers', spear: 'Spears', staff: 'Staves', sword2h: '2H Swords', axe2h: '2H Axes', mace2h: '2H Maces', bow: 'Bows', crossbow: 'Crossbows', sling: 'Slings', shield: 'Shields' };
+    const pickerOpen = !!s.pickerSlot;
+    let pickerTitle = '', pickerCats = [], pickerItems = [], pickerHasCats = false, pickerSortOpts = [], pickerSortVal = 'tier';
+    if (pickerOpen) {
+      const slot = s.pickerSlot;
+      const def = slotDefs.find(d => d[0] === slot);
+      pickerTitle = 'CHOOSE — ' + (def ? def[1] : slot);
+      let items = this.allItems(slot);
+      const clsSet = []; items.forEach(i => { if (i._cls && !clsSet.includes(i._cls)) clsSet.push(i._cls); });
+      pickerHasCats = clsSet.length > 1;
+      if (pickerHasCats) pickerCats = [{ id: 'all', label: 'All' }].concat(clsSet.map(c => ({ id: c, label: clsLabels[c] || c }))).map(c => ({
+        label: c.label, bg: s.pickerCat === c.id ? '#5a3a20' : '#d9c69a', color: s.pickerCat === c.id ? '#e7d8b4' : '#5a4426',
+        pick: () => this.setState({ pickerCat: c.id })
+      }));
+      if (s.pickerCat !== 'all') items = items.filter(i => i._cls === s.pickerCat);
+      const q = s.pickerSearch.trim().toLowerCase();
+      if (q) items = items.filter(i => i.n.toLowerCase().includes(q));
+      const roman = { 1: 'I', 2: 'II', 3: 'III', 4: 'IV', 5: 'V' };
+      // optimizer: sort by any stat present on items in this slot
+      const sortKeys = {}; items.forEach(i => { if (i.d) sortKeys._dmg = 1; if (i.prot) sortKeys._prot = 1; Object.keys(i.s || {}).forEach(k => sortKeys[k] = 1); });
+      const keyLabel = k => k === '_dmg' ? 'Damage' : k === '_prot' ? 'Protection' : (this.statKeyLabel(k) || k);
+      pickerSortOpts = [{ v: 'tier', l: 'Tier' }].concat(Object.keys(sortKeys).sort((a, b) => keyLabel(a).localeCompare(keyLabel(b))).map(k => ({ v: k, l: keyLabel(k) })));
+      const sk = s.pickerSort && sortKeys[s.pickerSort] ? s.pickerSort : 'tier';
+      pickerSortVal = sk;
+      const keyVal = i => sk === '_dmg' ? Object.values(i.d || {}).reduce((a, b) => a + b, 0) : sk === '_prot' ? (i.prot || 0) : ((i.s || {})[sk] || 0);
+      const sorted = sk === 'tier' ? items.slice().sort((a, b) => (a.t - b.t) || a.n.localeCompare(b.n))
+        : items.slice().sort((a, b) => keyVal(b) - keyVal(a) || (a.t - b.t)).filter(i => keyVal(i) !== 0);
+      pickerItems = sorted.map(i => {
+        const dmgStr = i.d ? Object.entries(i.d).map(([k, v]) => v + ' ' + k).join(' + ') : '';
+        const sortBadge = (sk !== 'tier') ? keyLabel(sk) + ' ' + (keyVal(i) > 0 ? '+' : '') + keyVal(i) + ' · ' : '';
+        const sub = sortBadge + 'Tier ' + (roman[i.t] || i.t) + (i._cls ? ' · ' + (clsLabels[i._cls] || i._cls) : '') + (dmgStr ? ' · ' + dmgStr : '') + (i.prot ? ' · prot ' + i.prot : '');
+        const sel = s.gear[s.pickerSlot] === i.n;
+        return { n: i.n, star: i.r === 'U' ? '★ ' : '', icon: this.icon(i.n, 30), sub,
+          hover: e => this.setState({ hoverCard: this.itemCard(i, slot), tipX: e.clientX, tipY: e.clientY }),
+          unhover: () => this.setState({ hoverCard: null }),
+          border: sel ? '#7a2e1d' : 'rgba(155,131,84,.5)', bg: sel ? 'rgba(122,46,29,.12)' : 'rgba(90,68,38,.05)',
+          pick: () => { const g = Object.assign({}, s.gear); g[slot] = i.n; if (slot === 'main' && i._hands === 2) delete g.off; this.set({ gear: g }); this.setState({ pickerSlot: null }); }
+        };
+      });
+    }
+
+    const buffRows = [];
+    ['psyche','potions','beverages','drugs','food'].forEach(g => (D.cons[g] || []).forEach(b => {
+      const on = !!(s.buffs && s.buffs[b.n]);
+      buffRows.push({ name: b.n, desc: b.desc, icon: this.icon(b.n, 20), on, bg: on ? 'rgba(122,46,29,.12)' : 'transparent',
+        toggle: () => this.set({ buffs: Object.assign({}, s.buffs, { [b.n]: !on }) }) });
+    }));
+
+    const treeTabs = D.treeOrder.map(tid => {
+      const learned = (s.skills[tid] || []).length;
+      const active = s.activeTree === tid;
+      return { label: D.trees[tid].label + (learned ? ' ' + learned : ''), bg: active ? '#5a3a20' : '#d9c69a', color: active ? '#e7d8b4' : '#5a4426', pick: () => this.set({ activeTree: tid }) };
+    });
+    const tree = D.trees[s.activeTree] || { skills: [] };
+    const tierLabels = { 0: 'INNATE', 1: 'TREATISE I', 2: 'TREATISE II', 3: 'TREATISE III', 4: 'TREATISE IV' };
+    const tiersMap = {};
+    const selName = s.selSkill && tree.skills.some(x => x.n === s.selSkill) ? s.selSkill : (tree.skills[0] && tree.skills[0].n);
+    tree.skills.forEach(sk => {
+      const learned = (s.skills[s.activeTree] || []).includes(sk.n);
+      const t = sk.t || 0;
+      (tiersMap[t] = tiersMap[t] || []).push({
+        n: sk.n, icon: this.icon(sk.ico || sk.n, 40),
+        frame: sk.n === selName ? '#e8c58d' : (learned ? '#c9a959' : '#3d3452'),
+        glow: learned ? '0 0 10px rgba(201,169,89,.55)' : 'none',
+        opacity: learned || sk.n === selName ? 1 : 0.55,
+        select: () => this.setState({ selSkill: sk.n })
+      });
+    });
+    const skillTiers = Object.keys(tiersMap).sort((a, b) => a - b).map(t => ({ label: tierLabels[t] || 'T' + t, skills: tiersMap[t] }));
+    const selSk = tree.skills.find(x => x.n === selName);
+    let selSkill = null;
+    if (selSk) {
+      const learned = (s.skills[s.activeTree] || []).includes(selSk.n);
+      const isFree = C.free.includes(selSk.n);
+      selSkill = {
+        n: selSk.n, icon: this.icon(selSk.ico || selSk.n, 44),
+        meta: (selSk.type || '') + (selSk.target ? ' · ' + selSk.target : '') + (selSk.range ? ' · Range ' + selSk.range : '') + (selSk.en ? ' · ' + selSk.en + ' EN / ' + selSk.cd + ' CD' : ''),
+        modBy: selSk.mod ? 'Modified by: ' + selSk.mod.map(m => ({ str: 'Strength', agi: 'Agility', prc: 'Perception', vit: 'Vitality', wil: 'Willpower' }[m] || m)).join(', ') : '',
+        desc: this.dynDesc(selSk, C.attrs),
+        hasFormulas: !!selSk.dyn,
+        btnLabel: isFree ? 'INNATE — ALWAYS LEARNED' : (learned ? '✓ LEARNED — CLICK TO UNLEARN' : (C.apPool > 0 ? 'LEARN (1 AP)' : 'NO ABILITY POINTS LEFT')),
+        btnBg: isFree ? '#3a3050' : (learned ? '#7a2e1d' : (C.apPool > 0 ? '#5a3a20' : '#2a2435')),
+        btnCursor: isFree ? 'default' : 'pointer',
+        toggle: () => {
+          if (isFree) return;
+          const cur = (s.skills[s.activeTree] || []).slice();
+          const i = cur.indexOf(selSk.n);
+          if (i >= 0) cur.splice(i, 1); else { if (C.apPool <= 0) return; cur.push(selSk.n); }
+          this.set({ skills: Object.assign({}, s.skills, { [s.activeTree]: cur }) });
+        }
+      };
+    }
+
+    const numOf = v => { const n = parseFloat(String(v).replace(/[+%]/g, '').replace('\u2212', '-')); return isNaN(n) ? null : n; };
+    const pinned = s.pinnedStats || null;
+    const rows = (arr) => arr.map(([label, val, color, tip]) => {
+      const row = { label, val, color: color || gold, tip: tip || '', delta: '', deltaColor: '#6b5a41' };
+      if (pinned && pinned[label] !== undefined) {
+        const cur = numOf(val), pin = pinned[label];
+        if (cur !== null && pin !== null && Math.abs(cur - pin) >= 0.05) {
+          const d = Math.round((cur - pin) * 10) / 10;
+          row.delta = (d > 0 ? '+' : '') + d;
+          row.deltaColor = d > 0 ? '#4a7a2e' : '#a8352a';
+        }
+      }
+      return row;
+    });
+    const statGroups = [
+      { name: 'OFFENSE', rows: rows([
+        ['Main Hand Damage', String(C.mhDmg)], ['Off-Hand Damage', C.ohDmg ? String(C.ohDmg) : '—'],
+        ['Main Hand Efficiency', pct(C.mhe), C.mhe > 100 ? green : gold], ['Off-Hand Efficiency', pct(C.ohe), C.ohe > 100 ? green : gold],
+        ['Weapon Damage', pct(C.wd), C.wd > 100 ? green : gold], ['Accuracy', pct(C.acc)],
+        ['Crit Chance', pct(C.cc)], ['Crit Efficiency', pct(C.ce)],
+        ['Armor Penetration', pct(C.ap_)], ['Fumble Chance', pct(C.fum), C.fum > 5 ? red : gold],
+        ['Counter Chance', pct(C.co)], ['Bodypart Damage', pct(C.bpd)],
+        ['Armor Damage', pct(C.ad)], ['Bonus Range', '+' + C.rng]
+      ]) },
+      { name: 'DEFENSE', rows: rows([
+        ['Protection (body avg)', String(Math.round(C.protTotal / 4 * 10) / 10), gold, 'Average across the 4 body parts, as the in-game sheet shows'], ['Dodge Chance', pct(C.dodge)],
+        ['Crit Avoidance', pct(C.cav)], ['Damage Taken', pct(C.dtaken), C.dtaken < 100 ? green : gold],
+        ['Healing Efficiency', pct(C.heff)],
+        ['Block Chance', pct(C.bc)], ['Block Power', String(Math.round(C.bp))],
+        ['Block Recovery', pct(C.bpr)], ['Control Res', pct(C.ctr)],
+        ['Move Res', pct(C.mvr)], ['Fortitude', pct(C.fort)],
+        ['Pain Res', pct(C.pnr)], ['Vision', String(C.vision)]
+      ]) },
+      { name: 'MAGIC', rows: rows([
+        ['Magic Power', pct(C.mp), C.mp > 100 ? green : gold], ['School Power', '+' + pct(C.schoolPower), C.schoolPower > 0 ? green : gold],
+        ['Miracle Potency', pct(C.mip)], ['Miracle Chance', pct(C.mic)],
+        ['Spell Accuracy', pct(C.spellAcc)], ['Spell Armor Piercing', pct(C.spellAp)],
+        ['Backfire Damage', pct(C.bfd)], ['Life Drain', pct(C.ldrain)], ['Energy Drain', pct(C.edrain)],
+        ['XP Gain', '+' + pct(C.xpGain), C.xpGain > 0 ? green : gold],
+        ['Backfire Chance', pct(C.bfc), C.bfc > 10 ? red : gold], ['Cooldowns', pct(C.cdr), C.cdr < 0 ? green : gold],
+        ['Skills Cost', pct(C.secost), C.secost < 0 ? green : gold], ['Spells Cost', pct(C.spcost), C.spcost < 0 ? green : gold],
+        ['Energy Resto', pct(C.er)], ['Health Resto', pct(C.hr)]
+      ]) },
+      { name: 'RESISTANCES', rows: rows([
+        ['Physical', pct(C.res.phr)], ['Slashing', pct(C.res.slr)], ['Piercing', pct(C.res.pir)],
+        ['Crushing', pct(C.res.crr)], ['Rending', pct(C.res.rer)], ['Bleed', pct(C.res.blr)],
+        ['Nature', pct(C.res.ntr)], ['Fire', pct(C.res.fir)], ['Frost', pct(C.res.frr)],
+        ['Shock', pct(C.res.shr)], ['Poison', pct(C.res.por)], ['Magic', pct(C.res.mgr)],
+        ['Arcane', pct(C.res.arr)], ['Unholy', pct(C.res.unr)], ['Sacred', pct(C.res.sar)], ['Caustic', pct(C.res.car)]
+      ]) }
+    ];
+
+    const enemy = D.enemies.find(e => e.n === s.enemySel) || D.enemies[0];
+    const enemyChoices = D.enemies.map(e => ({ v: e.n, label: (e.boss === true ? '☠ BOSS · ' : e.boss === 'mini' ? '☠ ' : '') + e.n + ' (T' + e.tier + ')' }));
+    const typeNames = { sl: ['Slashing','#c9b58a','slr'], pi: ['Piercing','#c9b58a','pir'], cr: ['Crushing','#c9b58a','crr'], re: ['Rending','#c9b58a','rer'], fi: ['Fire','#e8956d','fir'], fr: ['Frost','#8dc4e8','frr'], sh: ['Shock','#e8dc6d','shr'], po: ['Poison','#9dc98d','por'], ca: ['Caustic','#b8c96d','car'], ar: ['Arcane','#c48de8','arr'], un: ['Unholy','#a86d8d','unr'], sa: ['Sacred','#e8d89d','sar'], ps: ['Psionic','#8d9de8','psr'] };
+    const physTypes = ['sl','pi','cr','re'];
+    const armorScale = { intact: 1, half: 0.5, broken: 0 };
+    const armorMode = armorScale[s.armorMode] !== undefined ? s.armorMode : 'intact';
+    const enemyProt = enemy.prot || 0;
+    const effLabels = { bl: ['Bleed', '#e0736b'], dz: ['Daze', '#e8dc6d'], st: ['Stun', '#e8b06d'], sg: ['Stagger', '#cbb06d'], kb: ['Knockback', '#8dc4e8'], im: ['Immobilize', '#9dc98d'] };
+    const critBonusByCls = (D.mech.combat && D.mech.combat.crit_weapon_bonus) || {};
+
+    const dynText = sk => (sk.dyn || sk.desc || '').replace(/\{([^}]+)\}/g, (m, ex) => { const v = this.evalExpr(ex, C.attrs); return isNaN(v) ? m : (Math.round(v * 10) / 10); });
+    const effPats = { bl: /\+\s*([\d.]+)%\s*Bleed/i, dz: /\+\s*([\d.]+)%\s*Daze/i, st: /\+\s*([\d.]+)%\s*Stun/i, sg: /\+\s*([\d.]+)%\s*Stagger/i, kb: /\+\s*([\d.]+)%\s*Knockback/i, im: /\+\s*([\d.]+)%\s*Immobil/i };
+    const parseEff = txt => { const o = {}; Object.keys(effPats).forEach(k => { const m = txt.match(effPats[k]); if (m) o[k] = parseFloat(m[1]); }); return o; };
+    const parseWd = txt => { const m = txt.match(/([+\u2212-]\s*[\d.]+)\s*%\s*(?:WD|Weapon Damage)/i); return m ? parseFloat(m[1].replace('\u2212', '-').replace(/\s/g, '')) : 0; };
+
+    const dmgFor = (wdMul, srcItem, ohEffMul, protOverride) => {
+      const src = srcItem || C.dmg; const dd = srcItem ? srcItem.d : C.dmg; let n = 0;
+      Object.keys(dd).forEach(t => {
+        if (!typeNames[t]) return;
+        const base = dd[t] * C.wd / 100 * wdMul * (ohEffMul || 1);
+        const rawProt = protOverride !== undefined ? protOverride : enemyProt * armorScale[armorMode];
+        const ep = rawProt * Math.max(0, 1 - C.ap_ / 100);
+        const red = physTypes.includes(t) ? ep : ep / 2;
+        const resPct = (enemy.res && enemy.res[typeNames[t][2]]) || 0;
+        n += Math.max(0, base - red) * (1 - Math.min(resPct, 100) / 100);
+      });
+      return n;
+    };
+
+    const hitP = Math.max(0.05, Math.min(1, C.acc / 100)) * (1 - Math.min(95, enemy.dodge || 0) / 100);
+    const ccP = Math.max(0, Math.min(100, C.cc)) / 100;
+    const critMultDisp = C.ce / 100;
+    const fumP = Math.max(0, Math.min(C.fum, 100)) / 100;
+    const wcls = C.mainItem ? C.mainItem._cls : null;
+    const critNote = (wcls && critBonusByCls[wcls]) ? critBonusByCls[wcls] : '';
+
+    const baseEff = {}; Object.keys(effLabels).forEach(k => { if (C.mods[k]) baseEff[k] = C.mods[k]; });
+    const mkEffects = extra => {
+      const merged = Object.assign({}, baseEff);
+      Object.keys(extra || {}).forEach(k => { merged[k] = (merged[k] || 0) + extra[k]; });
+      return Object.keys(merged).filter(k => merged[k] > 0).map(k => ({ label: effLabels[k][0], color: effLabels[k][1], val: Math.round(Math.min(100, merged[k])) + '%' }));
+    };
+    const mkRow = (key, icon, name, type, wdMul, srcItem, ohEffMul, extraEff, frame, bgc) => {
+      const nrm = dmgFor(wdMul, srcItem, ohEffMul);
+      const eff = mkEffects(extraEff);
+      return { key, icon, name, type, normal: Math.round(nrm), crit: Math.round(nrm * critMultDisp), _n: nrm, effects: eff, hasEffects: eff.length > 0, frame: frame || '#3a2f23', bgc: bgc || 'rgba(255,255,255,.02)' };
+    };
+
+    const atkRows = [];
+    if (C.mainItem) {
+      atkRows.push(mkRow('basic', this.icon(C.mainItem.n, 24), 'Basic Attack', C.mainItem.n, 1, null, 1, null, '#5a4a2e', 'rgba(90,74,46,.12)'));
+      if (C.offItem && C.offItem._cls !== 'shield' && C.offItem.d) {
+        atkRows.push(mkRow('offhand', this.icon(C.offItem.n, 24), 'Off-Hand Attack', C.offItem.n + ' · ' + Math.round(C.ohe) + '% eff', 1, C.offItem, Math.max(0, C.ohe / 100), null));
+      }
+      Object.keys(s.skills || {}).forEach(tid => (s.skills[tid] || []).forEach(sn => {
+        const sk = D.trees[tid] && D.trees[tid].skills.find(x => x.n === sn);
+        if (!sk || !/Attack/.test(sk.type || '')) return;
+        const txt = dynText(sk);
+        const wdb = parseWd(txt);
+        const type = (sk.en ? sk.en + ' EN · ' + sk.cd + ' CD' : '') + (wdb ? ' · ' + (wdb > 0 ? '+' : '') + wdb + '% WD' : '');
+        atkRows.push(mkRow(sk.n, this.icon(sk.ico || sk.n, 24), sk.n, type, 1 + wdb / 100, null, 1, parseEff(txt)));
+      }));
+    }
+    const basicRow = atkRows.find(r => r.key === 'basic');
+    const orderedAtk = basicRow
+      ? [basicRow].concat(atkRows.filter(r => r.key !== 'basic').sort((a, b) => b._n - a._n))
+      : [];
+
+    // ---- survivability vs this enemy ----
+    const partW = { head: 0.1, chest: 0.4, gloves: 0.25, boots: 0.25 }; // approx bodypart hit weights (torso most likely)
+    const partNames = { head: 'Head', chest: 'Torso', gloves: 'Arms', boots: 'Legs' };
+    const eAtk = enemy.atk || 0, eAcc = (enemy.acc || 90) / 100;
+    const pDodge = Math.max(0, Math.min(95, C.dodge)) / 100;
+    const pBlock = Math.max(0, Math.min(90, C.bc)) / 100;
+    const phrF = 1 - Math.max(-100, Math.min(75, C.res.phr)) / 100;
+    const dtF = Math.max(0.25, C.dtaken / 100);
+    let perAttack = 0;
+    const protParts = Object.keys(partW).map(k => {
+      const afterProt = Math.max(0, eAtk - C.protBy[k]);
+      const afterRes = afterProt * phrF * dtF;
+      const withBlock = (1 - pBlock) * afterRes + pBlock * Math.max(0, afterRes - C.bp);
+      perAttack += partW[k] * withBlock;
+      return { part: partNames[k], prot: Math.round(C.protBy[k]), take: Math.round(afterRes * 10) / 10 };
+    });
+    const survRows = protParts;
+    const survStats = [
+      { label: 'ENEMY HIT CHANCE', val: Math.round(eAcc * (1 - pDodge) * 100) + '%' },
+      { label: 'AVG TAKEN / HIT', val: Math.round(perAttack * 10) / 10 }
+    ];
+    const armorTabs = [['intact', 'Intact'], ['half', '50%'], ['broken', 'Broken']].map(([k, label]) => ({
+      label, pick: () => this.setState({ armorMode: k }),
+      border: armorMode === k ? '#c9a959' : '#4a3d2e', bg: armorMode === k ? 'rgba(201,169,89,.18)' : '#241e18', color: armorMode === k ? '#e8d8b0' : '#8a7a5e'
+    }));
+
+    return {
+      gameVersion: D.mech.$meta.game_version,
+      loading: false, loaded: true, loadError: null,
+      charCards, charBigImg: React.createElement('img', { src: (C.ch.img_big || C.ch.img), alt: 'portrait', style: { width: '100%', display: 'block', borderRadius: '3px' } }), charName: C.ch.name, charTitle: C.ch.title, charRace: C.ch.race, charUrl: C.ch.url,
+      traitName: C.ch.trait.name, traitSummary: C.ch.trait.summary,
+      traitCounters: this.traitCounterDefs(C.ch.id).map(d => {
+        const val = Math.max(0, Math.min(d.max, (s.traitCounters && s.traitCounters[d.id]) || 0));
+        const setV = v => this.set({ traitCounters: Object.assign({}, s.traitCounters, { [d.id]: Math.max(0, Math.min(d.max, v)) }) });
+        return { label: d.label, tip: d.tip, val, inc: () => setV(val + 1), dec: () => setV(val - 1) };
+      }),
+      level: s.level, onLevel: e => this.set({ level: +e.target.value }), xpTotal: C.xp.toLocaleString(),
+      statPool: C.statPool, statPoolColor: C.statPool > 0 ? '#7a2e1d' : '#6b5a41', statRows,
+
+      slotRows, buffRows,
+      pickerOpen, pickerTitle, pickerCats, pickerItems, pickerHasCats,
+      hoverCard: s.hoverCard, hasHover: !!s.hoverCard,
+      tipLeft: Math.min((s.tipX || 0) + 18, (typeof window !== 'undefined' ? window.innerWidth : 1200) - 270),
+      tipTop: Math.max(8, Math.min((s.tipY || 0) - 40, (typeof window !== 'undefined' ? window.innerHeight : 800) - 330)),
+      pickerSearch: s.pickerSearch,
+      onPickerSearch: e => this.setState({ pickerSearch: e.target.value }),
+      pickerSortOpts, pickerSortVal, onPickerSort: e => this.setState({ pickerSort: e.target.value }),
+      closePicker: () => this.setState({ pickerSlot: null }),
+      pickerClear: () => { const g = Object.assign({}, s.gear); delete g[s.pickerSlot]; this.set({ gear: g }); this.setState({ pickerSlot: null }); },
+      apPool: C.apPool, apPoolColor: C.apPool > 0 ? '#7a2e1d' : '#6b5a41', treeTabs, skillTiers, selSkill, hasSel: !!selSkill,
+      stancesOn: s.stancesOn, toggleStances: () => this.set({ stancesOn: !s.stancesOn, skillBuffs: {} }),
+      stackRows: (() => {
+        const rows = [];
+        Object.keys(s.skills || {}).forEach(tid => (s.skills[tid] || []).forEach(sn => {
+          const tree = D.trees[tid]; const sk = tree && tree.skills.find(x => x.n === sn);
+          if (!sk || !sk.fx || !sk.fx.buff) return;
+          const max = sk.fx.stacks || 1;
+          const ov = (s.skillBuffs || {})[sk.n];
+          const cur = ov !== undefined ? ov : (s.stancesOn ? max : 0);
+          rows.push({
+            n: sk.n, icon: this.icon(sk.n, 20), cur, max,
+            color: cur > 0 ? '#7a2e1d' : '#8a7350',
+            dec: () => this.set({ skillBuffs: Object.assign({}, s.skillBuffs, { [sk.n]: Math.max(0, cur - 1) }) }),
+            inc: () => this.set({ skillBuffs: Object.assign({}, s.skillBuffs, { [sk.n]: Math.min(max, cur + 1) }) })
+          });
+        }));
+        return rows;
+      })(),
+
+      showFormulas: s.showFormulas, toggleFormulas: () => this.setState({ showFormulas: !s.showFormulas }),
+      hp: C.hp, en: C.en, statGroups,
+      libOpen: s.libOpen, toggleLib: () => this.setState({ libOpen: !s.libOpen }),
+      libName: s.libName || '', onLibName: e => this.setState({ libName: e.target.value }),
+      saveToLib: () => {
+        const name = (s.libName || '').trim() || (D.chars.find(c => c.id === s.charId).name + ' lv' + s.level);
+        const lib = this.readLib(); lib[name] = this.buildObj(); this.writeLib(lib); this.setState({ libName: '' });
+      },
+      libBuilds: Object.keys(this.readLib()).sort().map(name => {
+        const lib = this.readLib();
+        const b = lib[name], bc = D.chars.find(c => c.id === b.charId) || {};
+        return { name, sub: (bc.name || '?') + ' · lv' + (b.level || 1),
+          icon: this.icon(bc.name || '', 22),
+          load: () => this.set(Object.assign(this.sanitize(b), { libOpen: false })),
+          del: () => { const l = this.readLib(); delete l[name]; this.writeLib(l); } };
+      }),
+      hasLibBuilds: Object.keys(this.readLib()).length > 0,
+      isPinned: !!pinned,
+      pinBtnLabel: pinned ? '✕ CLEAR PIN' : '⚑ PIN BUILD',
+      togglePin: () => {
+        if (s.pinnedStats) { this.setState({ pinnedStats: null }); return; }
+        const snap = {};
+        statGroups.forEach(g => g.rows.forEach(r => { const n = numOf(r.val); if (n !== null) snap[r.label] = n; }));
+        this.setState({ pinnedStats: snap });
+      },
+      enemySel: s.enemySel, onEnemy: e => this.set({ enemySel: e.target.value }), enemyChoices, enemyIcon: this.icon(enemy.n, 40), enemyHp: enemy.hp,
+      dmgHit: Math.round(hitP * 100) + '%', dmgCrit: Math.round(Math.max(0, Math.min(100, C.cc))) + '%',
+      enemyXp: (enemy._xp_estimated ? '~' : '') + Math.round((enemy.xp || 0) * (100 + (C.xpGain || 0)) / 100),
+      armorTabs, enemyProtEff: Math.round(enemyProt * armorScale[armorMode]),
+      atkRows: orderedAtk, hasAtk: orderedAtk.length > 0, critNote, survRows, survStats, enemyAtk: eAtk, dmgBlockPct: Math.round(pBlock * 100) + '%',
+      dmgNote: C.mainItem ? 'Single-strike estimate vs ' + enemy.n + '; multi-hit skills show one strike. Crit = normal × ' + Math.round(critMultDisp * 100) + '% Crit Efficiency.' : 'Equip a main-hand weapon to compute damage.',
+      copyLink: () => {
+        const b64 = btoa(JSON.stringify(this.sanitize(this.state))).replace(/\+/g,'-').replace(/\//g,'_');
+        const url = location.origin + location.pathname + location.search + '#b=' + b64;
+        try { navigator.clipboard.writeText(url); } catch (e) {}
+        this.setState({ ioOpen: true, ioMode: 'export', ioStatus: '✓ link copied to clipboard', ioText: url });
+      },
+      ioOpen: s.ioOpen, ioLabel: s.ioMode === 'export' ? 'Copy this build JSON:' : 'Paste a build JSON and press Apply:',
+      ioText: s.ioText, ioStatus: s.ioStatus,
+      onIoText: e => this.setState({ ioText: e.target.value }),
+      exportBuild: () => this.setState({ ioOpen: true, ioMode: 'export', ioStatus: '', ioText: JSON.stringify(this.sanitize(this.state)) }),
+      importBuild: () => this.setState({ ioOpen: true, ioMode: 'import', ioStatus: '', ioText: '' }),
+      applyImport: () => { try { const b = this.sanitize(JSON.parse(this.state.ioText)); this.set(b); this.setState({ ioStatus: '✓ build applied' }); } catch (e) { this.setState({ ioStatus: 'Invalid JSON: ' + e.message }); } },
+      closeIo: () => this.setState({ ioOpen: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,587 @@
+{
+ "$meta": {
+  "game_version": "0.9.4.23",
+  "source": "https://stoneshard.com/wiki/Enemies + individual pages",
+  "schema": "data/schema.md",
+  "note": "Entries with per-bodypart 'prot' object are VERBATIM wiki data pages (0.9.4.14): Goon (Club), Wolf, Thug (Spear), Bear. Other entries are representative estimates; their 'xp' is interpolated from real tier anchors (T1=25, T2=40, T5=150; bosses x4) and flagged _xp_estimated. Note: 'Draugr', 'Skeleton Warrior', 'Archer' are archetype stand-ins - the wiki names its undead Restless/Risen/Wraith.",
+  "img_url": "https://stoneshard.com/wiki/Special:FilePath/{name}.png"
+ },
+ "enemies": [
+  {
+   "n": "Goon (Club)",
+   "tier": 1,
+   "hp": 70,
+   "energy": 60,
+   "dodge": -3,
+   "prot": {
+    "head": 0,
+    "body": 1,
+    "arms": 0,
+    "legs": 1
+   },
+   "res": {
+    "phr": 3,
+    "slr": 3,
+    "pir": 3,
+    "crr": 3,
+    "rer": 3
+   },
+   "atk": 14,
+   "atype": "cr",
+   "acc": 66,
+   "fum": 33,
+   "cav": 0,
+   "xp": 25,
+   "faction": "Brigand",
+   "note": "basic brigand fodder"
+  },
+  {
+   "n": "Wolf",
+   "tier": 2,
+   "hp": 90,
+   "energy": 100,
+   "dodge": 30,
+   "prot": {
+    "head": 0,
+    "body": 0,
+    "arms": 0,
+    "legs": 0
+   },
+   "res": {
+    "phr": 5,
+    "slr": 5,
+    "pir": 5,
+    "crr": 5,
+    "rer": 5
+   },
+   "atk": 22,
+   "atype": "re",
+   "acc": 82,
+   "fum": 26,
+   "cav": 10,
+   "cc": 5,
+   "bl": 35,
+   "ap": 25,
+   "bpd": 25,
+   "xp": 40,
+   "faction": "carnivore",
+   "note": "pack hunter; Howl, Dash, Pack Sense"
+  },
+  {
+   "n": "Thug (Spear)",
+   "tier": 2,
+   "hp": 90,
+   "energy": 70,
+   "dodge": 0,
+   "prot": {
+    "head": 1,
+    "body": 4,
+    "arms": 2,
+    "legs": 2
+   },
+   "res": {
+    "phr": 10,
+    "slr": 10,
+    "pir": 10,
+    "crr": 10,
+    "rer": 10,
+    "shr": -5,
+    "blr": 10,
+    "ctr": 5,
+    "mvr": 10
+   },
+   "atk": 18,
+   "atype": "pi",
+   "acc": 74,
+   "fum": 22,
+   "cc": 5,
+   "co": 4,
+   "im": 15,
+   "bc": 5,
+   "bp": 10,
+   "ap": 10,
+   "bpd": 5,
+   "xp": 40,
+   "faction": "Brigand",
+   "note": "Impaling Lunge, Nail Down, No Retreat"
+  },
+  {
+   "n": "Bear",
+   "tier": 5,
+   "hp": 500,
+   "energy": 200,
+   "dodge": 0,
+   "prot": {
+    "head": 0,
+    "body": 0,
+    "arms": 0,
+    "legs": 0
+   },
+   "res": {
+    "phr": 25,
+    "slr": 25,
+    "pir": 35,
+    "crr": 25,
+    "rer": 25,
+    "ntr": 25,
+    "fir": 25,
+    "frr": 25,
+    "shr": 25,
+    "por": 25,
+    "car": 25,
+    "blr": 30,
+    "pnr": 50,
+    "ctr": 60,
+    "mvr": 80
+   },
+   "fort": 50,
+   "cav": 35,
+   "atk": 43,
+   "atype": "re",
+   "acc": 85,
+   "fum": 15,
+   "cc": 35,
+   "ce": 150,
+   "bl": 100,
+   "dz": 50,
+   "st": 50,
+   "sg": 100,
+   "ap": 60,
+   "bpd": 35,
+   "xp": 150,
+   "faction": "omnivore",
+   "note": "Rend Flesh (+100% bodypart dmg); Dying Rage below 40% HP"
+  },
+  {
+   "n": "Bison",
+   "tier": 2,
+   "hp": 180,
+   "dodge": 2,
+   "prot": 6,
+   "res": {
+    "crr": 15,
+    "kb_immune": 1
+   },
+   "atk": 18,
+   "acc": 85,
+   "xp": 40,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Boar",
+   "tier": 2,
+   "hp": 150,
+   "dodge": 6,
+   "prot": 5,
+   "res": {
+    "crr": 10,
+    "pnr": 15
+   },
+   "atk": 16,
+   "acc": 85,
+   "xp": 40,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Deer",
+   "tier": 1,
+   "hp": 80,
+   "dodge": 18,
+   "prot": 1,
+   "res": {},
+   "atk": 5,
+   "acc": 80,
+   "xp": 25,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Archer",
+   "tier": 2,
+   "hp": 95,
+   "dodge": 10,
+   "prot": 4,
+   "res": {},
+   "note": "ranged",
+   "atk": 12,
+   "acc": 95,
+   "xp": 40,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Bandit Boss",
+   "tier": 3,
+   "hp": 200,
+   "dodge": 10,
+   "prot": 12,
+   "res": {
+    "slr": 10,
+    "crr": 10,
+    "pnr": 15
+   },
+   "boss": "mini",
+   "atk": 22,
+   "acc": 95,
+   "xp": 260,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Brigand Cutthroat",
+   "tier": 3,
+   "hp": 150,
+   "dodge": 14,
+   "prot": 8,
+   "res": {
+    "slr": 10
+   },
+   "atk": 16,
+   "acc": 95,
+   "xp": 65,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Deserter Soldier",
+   "tier": 3,
+   "hp": 170,
+   "dodge": 6,
+   "prot": 14,
+   "res": {
+    "slr": 15,
+    "pir": 10
+   },
+   "atk": 18,
+   "acc": 95,
+   "xp": 65,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Deserter Crossbowman",
+   "tier": 3,
+   "hp": 130,
+   "dodge": 8,
+   "prot": 10,
+   "res": {
+    "slr": 10
+   },
+   "note": "ranged",
+   "atk": 16,
+   "acc": 100,
+   "xp": 65,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Deserter Sergeant",
+   "tier": 4,
+   "hp": 260,
+   "dodge": 8,
+   "prot": 18,
+   "res": {
+    "slr": 18,
+    "pir": 12,
+    "crr": 10
+   },
+   "boss": "mini",
+   "atk": 24,
+   "acc": 100,
+   "xp": 400,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Skeleton Warrior",
+   "tier": 2,
+   "hp": 110,
+   "dodge": 4,
+   "prot": 8,
+   "res": {
+    "pir": 40,
+    "por": 100,
+    "blr_immune": 1,
+    "unr": 50,
+    "sar": -30
+   },
+   "note": "undead",
+   "atk": 12,
+   "acc": 85,
+   "xp": 40,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Skeleton Archer",
+   "tier": 2,
+   "hp": 90,
+   "dodge": 6,
+   "prot": 5,
+   "res": {
+    "pir": 40,
+    "por": 100,
+    "unr": 50,
+    "sar": -30
+   },
+   "note": "undead, ranged",
+   "atk": 10,
+   "acc": 90,
+   "xp": 40,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Draugr",
+   "tier": 3,
+   "hp": 220,
+   "dodge": 3,
+   "prot": 12,
+   "res": {
+    "pir": 30,
+    "por": 100,
+    "frr": 40,
+    "unr": 50,
+    "sar": -30
+   },
+   "note": "undead",
+   "atk": 20,
+   "acc": 85,
+   "xp": 65,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Ghoul",
+   "tier": 3,
+   "hp": 190,
+   "dodge": 8,
+   "prot": 6,
+   "res": {
+    "por": 80,
+    "unr": 40,
+    "sar": -25
+   },
+   "note": "undead, fast",
+   "atk": 16,
+   "acc": 90,
+   "xp": 65,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Wraith",
+   "tier": 4,
+   "hp": 160,
+   "dodge": 20,
+   "prot": 0,
+   "res": {
+    "phr": 50,
+    "por": 100,
+    "unr": 75,
+    "sar": -50,
+    "arr": 25
+   },
+   "note": "ethereal",
+   "atk": 18,
+   "acc": 95,
+   "xp": 100,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Necromancer",
+   "tier": 4,
+   "hp": 180,
+   "dodge": 10,
+   "prot": 6,
+   "res": {
+    "unr": 60,
+    "arr": 20,
+    "sar": -25
+   },
+   "note": "caster, summons",
+   "atk": 14,
+   "acc": 95,
+   "xp": 100,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Restless Mage",
+   "tier": 3,
+   "hp": 140,
+   "dodge": 8,
+   "prot": 4,
+   "res": {
+    "arr": 40,
+    "fir": 20,
+    "frr": 20
+   },
+   "note": "caster",
+   "atk": 15,
+   "acc": 95,
+   "xp": 65,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Proselyte",
+   "tier": 3,
+   "hp": 175,
+   "dodge": 6,
+   "prot": 12,
+   "res": {
+    "sar": 30,
+    "unr": -10
+   },
+   "atk": 17,
+   "acc": 90,
+   "xp": 65,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Vampire Fledgling",
+   "tier": 4,
+   "hp": 240,
+   "dodge": 16,
+   "prot": 8,
+   "res": {
+    "por": 100,
+    "unr": 50,
+    "sar": -40,
+    "frr": 25
+   },
+   "note": "life drain",
+   "atk": 20,
+   "acc": 95,
+   "xp": 100,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Vampire Mistress",
+   "tier": 5,
+   "hp": 420,
+   "dodge": 20,
+   "prot": 12,
+   "res": {
+    "por": 100,
+    "unr": 60,
+    "sar": -40,
+    "frr": 30
+   },
+   "boss": "mini",
+   "atk": 30,
+   "acc": 100,
+   "xp": 600,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Crawler",
+   "tier": 2,
+   "hp": 70,
+   "dodge": 12,
+   "prot": 2,
+   "res": {
+    "por": 50,
+    "car": 30
+   },
+   "note": "vermin",
+   "atk": 7,
+   "acc": 85,
+   "xp": 40,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Giant Rat",
+   "tier": 1,
+   "hp": 50,
+   "dodge": 14,
+   "prot": 1,
+   "res": {
+    "por": 30
+   },
+   "atk": 5,
+   "acc": 80,
+   "xp": 25,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Harpy",
+   "tier": 3,
+   "hp": 140,
+   "dodge": 22,
+   "prot": 3,
+   "res": {
+    "shr": -15
+   },
+   "note": "flying",
+   "atk": 12,
+   "acc": 90,
+   "xp": 65,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Troll",
+   "tier": 4,
+   "hp": 550,
+   "dodge": 2,
+   "prot": 14,
+   "res": {
+    "crr": 25,
+    "pnr": 50,
+    "fir": -25
+   },
+   "boss": "mini",
+   "note": "regenerates",
+   "atk": 34,
+   "acc": 85,
+   "xp": 400,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Manticore",
+   "tier": 5,
+   "hp": 700,
+   "dodge": 12,
+   "prot": 16,
+   "res": {
+    "pir": 20,
+    "por": 60,
+    "pnr": 40
+   },
+   "boss": true,
+   "note": "Rotten Willow boss",
+   "atk": 38,
+   "acc": 100,
+   "xp": 600,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Archon",
+   "tier": 5,
+   "hp": 900,
+   "dodge": 8,
+   "prot": 20,
+   "res": {
+    "arr": 50,
+    "fir": 30,
+    "frr": 30,
+    "shr": 30,
+    "unr": 40,
+    "pnr": 60
+   },
+   "boss": true,
+   "note": "Prologue-line boss",
+   "atk": 45,
+   "acc": 100,
+   "xp": 600,
+   "_xp_estimated": true
+  },
+  {
+   "n": "Flesh Golem",
+   "tier": 5,
+   "hp": 650,
+   "dodge": 3,
+   "prot": 18,
+   "res": {
+    "por": 80,
+    "car": 40,
+    "pnr": 60,
+    "blr_immune": 1
+   },
+   "boss": "mini",
+   "note": "undead construct",
+   "atk": 32,
+   "acc": 85,
+   "xp": 600,
+   "_xp_estimated": true
+  }
+ ]
+}

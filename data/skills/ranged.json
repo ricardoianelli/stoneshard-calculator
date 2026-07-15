@@ -1,0 +1,174 @@
+{
+ "$meta": {
+  "tree": "Ranged Weapons",
+  "cat": "weapon",
+  "page_patch": "0.9.4.14",
+  "focus": "High Damage, Bleeding, Injuries",
+  "crit_effect": "Bows +50% Knockback; Crossbows +100% Immobilization; Slings +50% Stagger",
+  "source": "https://stoneshard.com/wiki/Ranged_Weapons_(skill_tree)",
+  "desc_note": "VERBATIM game data (0.9.4.x)"
+ },
+ "skills": [
+  {
+   "n": "Taking Aim",
+   "t": 1,
+   "type": "Maneuver",
+   "target": "No Target",
+   "en": 4,
+   "cd": 1,
+   "mod": [
+    "str",
+    "agi",
+    "prc"
+   ],
+   "req": "ranged weapon + ammo",
+   "desc": "'Taking Aim' 1 turn: +Accuracy (scales with learned Ranged abilities, up to ~59%), +10% WD, +1 Range. Each enemy within 4 tiles: +30% Knockback/Immobilization/Stagger.",
+   "dyn": "Activates \"Taking Aim\" for 1 turn:\n+60% Accuracy (+1% per learned Ranged Weapons ability)\n+{PRC}% Weapon Damage\n+10% Range\n\nEach enemy within 4 tiles additionally grants to the effect:\n+{3*STR}% Knockback Chance\n+{3*AGL}% Immobilization Chance\n+{3*PRC}% Stagger Chance\n\nThe effect is removed if not equipped with a ranged weapon."
+  },
+  {
+   "n": "Constant Practice",
+   "t": 1,
+   "type": "Passive",
+   "req": "ranged weapon + ammo",
+   "desc": "Reduces the distance penalties to Accuracy and Fumble Chance (from -2% and +2% per tile to -1% and +1% respectively).\n\nReduces the penalties to Accuracy when shooting over small (from -15% to -10%) and medium-sized obstacles (from -30% to -20%).\n\nReduces the Accuracy penalty to bows when shooting at adjacent targets (from -50% to -35%) and targets that are 1 tile away (from -25% to -15%).\n\nGrants sling shots +30% Accuracy. Each tile of distance to the target reduces the bonus by 5%."
+  },
+  {
+   "n": "Dexterity",
+   "t": 1,
+   "type": "Passive",
+   "req": "ranged weapon + ammo",
+   "desc": "Killing enemies with melee strikes activates \"Taking Aim\" for 1 turn the next time the character switches to the loadout with an equipped ranged weapon (if the weapon is a crossbow, also instantly reloads it).\n\nIf equipped with a ranged weapon, switching to the loadout with a melee weapon doesn't take a turn.\n\nHalves the chance of ammo to break upon hitting its target (this affects fumbled and blocked shots as well)."
+  },
+  {
+   "n": "Distracting Shot",
+   "t": 1,
+   "type": "Attack / Charge",
+   "target": "Target Tile",
+   "range": 2,
+   "en": 16,
+   "cd": 14,
+   "mod": [
+    "vit",
+    "prc"
+   ],
+   "req": "ranged weapon + ammo",
+   "desc": "100% Dodge until next turn + charge 2 tiles; shot at closest target -50% WD, +50% Immobilization. On hit: +10% Energy Restoration, +10% Dodge 5 turns, all cooldowns -1.",
+   "dyn": "Performs a charge towards the targeted tile.\n\nBefore charging, takes a shot at the closest enemy within Attack Range with {-60+AGL}% Weapon Damage and +{40+STR}% Immobilization Chance.\n\nHitting the target grants +{VIT}% Energy Restoration and +{PRC}% Dodge Chance for 5 turns and reduces cooldowns of all skills by 1 turn.\n\nThe effect stacks up to 2 times.\n\nIf equipped with a sling, grants the skill +1 Range, and hitting the target reduces its cooldown by 2 turns."
+  },
+  {
+   "n": "Spot Weakness",
+   "t": 2,
+   "type": "Passive",
+   "req": "ranged weapon + ammo",
+   "desc": "Grants +5% Armor Penetration and +5% Bodypart Damage to \"Taking Aim\".\n\nUsing \"Taking Aim\" applies all targets within Vision with -5% Physical Resistance for 4 turns.\n\nIf equipped with a sling, also applies the targets with -5% Control Resistance and -5% Move Resistance for 4 turns.\n\nBoth effects stack up to 2 times."
+  },
+  {
+   "n": "Startling Volley",
+   "t": 2,
+   "type": "Attack",
+   "target": "Target Tile",
+   "en": 20,
+   "cd": 24,
+   "mod": [
+    "str",
+    "agi",
+    "prc"
+   ],
+   "req": "ranged weapon + ammo",
+   "desc": "Marks 2 tiles (or same twice with bow); shots -30% WD, +40% Daze. Damaged targets: -10% Block Chance, +10% Fumble 5 turns (doubled duration if not double-marked; crossbow reloads + doubles penalties).",
+   "dyn": "Marks a tile (2 different tiles or the same tile twice if equipped with a bow or sling).\n\nThen takes a shot at them with {-40+AGL}% Weapon Damage and +{20+STR+PRC}% Daze Chance.\n\nApplies damaged targets with -{STR}% Block Chance and +{0.5*PRC+0.5*AGL}% Fumble Chance for 5 turns.\n\nIf the same target wasn't marked twice, doubles the applied penalties' duration.\n\nIf equipped with a crossbow, instantly reloads it and doubles the applied penalties."
+  },
+  {
+   "n": "Suppression",
+   "t": 2,
+   "type": "Stance",
+   "target": "No Target",
+   "en": 14,
+   "cd": 10,
+   "req": "ranged weapon + ammo",
+   "desc": "Activates \"Suppression\" for 12 turns (15 turns if equipped with a crossbow):\n+5% Immobilization Chance\n+10% Knockback Chance\n+10% Bleed Chance\n-5% Cooldowns Duration\n-5% Skills Energy Cost\n\nUsing the ability tree's skills (except \"Taking Aim\") grants an extra stack of the effect (up to IV).\n\nIf equipped with a sling, using the ability tree's skills increases the number of stacks by 2.\n\nBasic shots prolong the effect's duration by 1 turn (up to 15) but reduce its number of stacks (no more than once per turn).\n\nOnly one Stance effect can be active at a time.",
+   "fx": {
+    "buff": true,
+    "per_stack": {
+     "im": 5,
+     "kb": 10,
+     "bl": 10,
+     "cd": -5,
+     "sec": -5
+    },
+    "stacks": 4
+   }
+  },
+  {
+   "n": "Anticipation",
+   "t": 2,
+   "type": "Passive",
+   "req": "ranged weapon + ammo",
+   "desc": "Damaging shots apply all targets within Vision with -2% Dodge Chance, +2% Fumble Chance, -2% Accuracy, and -2% Crit Chance for 10 turns.\n\nEach missed shot grants +2% Accuracy for 6 turns.\n\nBoth effects stack up to 5 times.\n\nIf equipped with a crossbow or a sling, both effects trigger twice per shot."
+  },
+  {
+   "n": "Long Shot",
+   "t": 3,
+   "type": "Attack",
+   "target": "Target Tile",
+   "en": 12,
+   "cd": 10,
+   "mod": [
+    "str",
+    "agi",
+    "prc"
+   ],
+   "req": "ranged weapon + ammo",
+   "desc": "Shot +1 Range; per tile of distance +2% WD, +2% Armor Pen, +3% Bodypart Damage. Vs non-hostile: doubled bonuses, 80% Confusion 10 turns.",
+   "dyn": "Takes a shot with +2 Range.\n\nEach tile of distance to the target grants the shot +{0.1*PRC+0.1*AGL}% Weapon Damage, +{0.1*STR+0.1*AGL}% Armor Penetration, and +{0.15*PRC+0.15*AGL}% Bodypart Damage.\n\nIf equipped with a sling, each tile of distance to the target also grants the shot +{0.15*PRC}% Accuracy.\n\nIf the target isn't hostile, doubles all distance-related bonuses and, upon hitting the target, with {60+2*PRC}% chance Confuses it for 10 turns."
+  },
+  {
+   "n": "Precision",
+   "t": 3,
+   "type": "Passive",
+   "req": "ranged weapon + ammo",
+   "desc": "Grants +5% Accuracy to the ability tree's Attack skills.\n\nWhile affected by \"Taking Aim\", hitting targets with shots reduces the ability tree's cooldowns by 1 turn and grants +5% Weapon Damage for 8 turns.\n\nThe effect stacks up to 4 times.\n\nIf equipped with a crossbow or a sling, both effects trigger twice per shot."
+  },
+  {
+   "n": "Hunter's Mark",
+   "t": 3,
+   "type": "Attack / Maneuver",
+   "target": "Target Object",
+   "en": 18,
+   "cd": 16,
+   "req": "ranged weapon + ammo",
+   "desc": "Activates \"Thrill of the Hunt\" for 15 turns:\n+7% Bodypart Damage\n+3% Crit Chance\n+5% Crit Efficiency\n\nApplies the target with \"Hunter's Mark\" for 15 turns:\n-7% Bleed Resistance\n-7% Move Resistance\n-7% Control Resistance\n\nThen takes a shot at the target. While affected by \"Thrill of the Hunt\", damaging shots apply their target with \"Hunter's Mark\" or with an extra stack of the effect (up to IV).\n\nKilling targets affected by \"Hunter's Mark\" or applying it to new targets grants an extra stack of \"Thrill of the Hunt\" (up to IV).\n\nSwitching to another loadout doesn't remove the effects."
+  },
+  {
+   "n": "Shoot to Kill",
+   "t": 4,
+   "type": "Passive",
+   "req": "ranged weapon + ammo",
+   "desc": "Grants all shots +10% Crit Efficiency, +12% Bodypart Damage, and +5% Armor Penetration for each missing 20% of the target's Health.\n\nGrants all shots +3% Crit Chance for each degree of Injury and each \"Net\", \"Web\", Daze, Stun, Stagger, and Immobilization affecting the target."
+  },
+  {
+   "n": "Headshot",
+   "t": 4,
+   "type": "Attack",
+   "target": "Target Object",
+   "en": 26,
+   "cd": 30,
+   "mod": [
+    "str",
+    "agi",
+    "prc",
+    "wil"
+   ],
+   "req": "ranged weapon + ammo",
+   "desc": "Head shot +40% Bodypart Damage, +10% Crit Chance, +20% Crit Eff. Kill: +20% Max Energy, crossbow reloads, 'Taking Aim' 1 turn.",
+   "dyn": "Takes a shot at the target's head with +{20+PRC+AGL}% Bodypart Damage, +{0.5*AGL+0.5*STR}% Crit Chance, and +{2*PRC}% Crit Efficiency.\n\nIf the shot kills its target, replenishes {2*WIL}% Max Energy, instantly reloads the equipped crossbow, and activates \"Taking Aim\" for 1 turn."
+  },
+  {
+   "n": "Upper Hand",
+   "t": 4,
+   "type": "Passive",
+   "req": "ranged weapon + ammo",
+   "desc": "While affected by \"Suppression\", grants an extra stack of \"Thrill of the Hunt\" when using \"Hunter's Mark\".\n\nAt the end of the turn, grants an extra stack of \"Suppression\" for each target affected by \"Hunter's Mark\" within Vision.\n\nGrants melee strikes against targets affected by \"Hunter's Mark\" +20% Weapon Damage and +5% Crit Chance."
+  }
+ ]
+}
