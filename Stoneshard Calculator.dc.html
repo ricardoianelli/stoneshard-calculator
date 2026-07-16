@@ -446,6 +446,9 @@ class Component extends DCLogic {
 
   async componentDidMount() {
     document.addEventListener('error', e => { const t = e.target; if (t && t.tagName === 'IMG' && String(t.src).includes('stoneshard.com')) t.style.visibility = 'hidden'; }, true);
+    // dismiss the item hover-tooltip on any tap/click (needed on touch devices where mouseleave never fires; fires before the synthetic mouseenter so tapping a new item re-shows it)
+    this._dismissHover = () => { if (this.state.hoverCard) this.setState({ hoverCard: null }); };
+    document.addEventListener('pointerdown', this._dismissHover, true);
     // if a local icon mirror exists (see mirror-icons.mjs), use it instead of hotlinking the wiki
     try { const r = await fetch('images/.mirrored', { method: 'HEAD' }); if (r.ok) { this.localIcons = true; this.forceUpdate(); } } catch (e) {}
     try {
@@ -986,7 +989,7 @@ class Component extends DCLogic {
     const physTypes = ['sl','pi','cr','re'];
     const armorScale = { intact: 1, half: 0.5, broken: 0 };
     const armorMode = armorScale[s.armorMode] !== undefined ? s.armorMode : 'intact';
-    const enemyProt = enemy.prot || 0;
+    const enemyProt = (() => { const p = enemy.prot; if (p == null) return 0; if (typeof p === 'number') return p; const v = Object.keys(p).map(k => p[k]); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : 0; })();
     const effLabels = { bl: ['Bleed', '#e0736b'], dz: ['Daze', '#e8dc6d'], st: ['Stun', '#e8b06d'], sg: ['Stagger', '#cbb06d'], kb: ['Knockback', '#8dc4e8'], im: ['Immobilize', '#9dc98d'] };
     const critBonusByCls = (D.mech.combat && D.mech.combat.crit_weapon_bonus) || {};
 

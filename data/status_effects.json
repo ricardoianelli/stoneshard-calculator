@@ -1,0 +1,378 @@
+{
+ "$meta": {
+  "source": "https://stoneshard.com/wiki/Status_Effects",
+  "game_version": "0.9.4.23",
+  "note": "Full roster of Status Effects (buffs, debuffs, conditions) captured from the wiki index. Per-effect stat modifiers are extracted individually in later batches; entries without `mods` are roster-only pending detail extraction.",
+  "types": [
+   "Physical",
+   "Wound",
+   "Lingering",
+   "Magical",
+   "Mental",
+   "State",
+   "Condition"
+  ]
+ },
+ "effects": [
+  {
+   "n": "Battle Rage",
+   "type": "Mental",
+   "buff": true,
+   "mods": {
+    "wd": 10,
+    "cc": 7.5,
+    "ce": 20
+   },
+   "note": "+10% Weapon Dmg, +7.5% Crit Chance, +20% Crit Efficiency"
+  },
+  {
+   "n": "Blood Oath",
+   "type": "Magical",
+   "buff": true,
+   "mods": {
+    "ld": 33,
+    "heff": 33,
+    "aec": -33
+   },
+   "dur": 9,
+   "note": "granted to Proselytes on Immolated/Martyr death; +33% Life Drain, +33% Healing Eff, -33% Ability Energy Cost"
+  },
+  {
+   "n": "Vampiric Blood",
+   "type": "Magical",
+   "buff": true,
+   "mods": {
+    "ld": 9
+   },
+   "dur": 3,
+   "note": "from Bloodthirst; +9% Life Drain, restores 3% Max HP & Energy/turn"
+  },
+  {
+   "n": "Mark of the Feast",
+   "type": "Magical",
+   "debuff": true,
+   "mods": {
+    "blr": -26,
+    "dodge": -13
+   },
+   "dur": 3,
+   "note": "Sanguimage; -26% Bleed Res, -13% Dodge, attackers gain +9% Life Drain"
+  },
+  {
+   "n": "Seized Initiative",
+   "type": "Mental",
+   "buff": true,
+   "mods": {
+    "acc": 5,
+    "fum": -5,
+    "cdd": -10,
+    "aec": -10
+   },
+   "dur": 2,
+   "note": "from Seize the Initiative"
+  },
+  {
+   "n": "Initiative Loss",
+   "type": "Mental",
+   "debuff": true,
+   "mods": {
+    "acc": -5,
+    "fum": 5,
+    "cdd": 10,
+    "aec": 10
+   },
+   "dur": 2,
+   "note": "paired debuff from Seize the Initiative"
+  },
+  {
+   "n": "Mighty Swing",
+   "type": "Physical",
+   "buff": true,
+   "mods": {
+    "wd": 40,
+    "sg": 40,
+    "sn": 20,
+    "bpd": 40,
+    "ad": 40,
+    "co": -200
+   },
+   "dur": 1,
+   "note": "Husk"
+  },
+  {
+   "n": "Bleeding",
+   "type": "Physical",
+   "debuff": true,
+   "mods": {
+    "er": -5,
+    "heff": -30
+   },
+   "dot": "3 + 1% of Max HP per turn (Physical)",
+   "note": "one per body part, stacks; -5% Energy Restoration, -30% Healing Eff; -1% body-part condition/turn; no duration (permanent until healed via Rag/Bandage)"
+  },
+  {
+   "n": "Poisoning",
+   "type": "Physical",
+   "debuff": true,
+   "mods": {
+    "intox": 4
+   },
+   "dot": "3% of Max HP per turn (Poison)",
+   "note": "+4% Intoxication/turn; duration stacks with itself; can spread & prolong; cured by Antidote / Potion of Purification"
+  },
+  {
+   "n": "Burning",
+   "type": "Physical",
+   "debuff": true,
+   "mods": {
+    "aec": 100,
+    "fum": 35,
+    "cdd": 100,
+    "sec": 100
+   },
+   "dot": "5 + 1% of Max HP per turn (Fire)",
+   "note": "+100% Skills/Spells Energy Cost, +35% Fumble, +100% Cooldowns Duration; duration stacks & can self-prolong; removed by stepping into Rain"
+  },
+  {
+   "n": "Immobilization",
+   "type": "Physical",
+   "debuff": true,
+   "mods": {
+    "dodge": -200
+   },
+   "note": "can't move; -200% Dodge; from Immobilization Chance (bow crits, Nail Down, Bear Trap)"
+  },
+  {
+   "n": "Stun",
+   "type": "Mental",
+   "debuff": true,
+   "maxDur": 2,
+   "note": "can't act; from Stun Chance, dazing an already-dazed target, or knockback into a wall/obstacle; max 2 turns"
+  },
+  {
+   "n": "Daze",
+   "type": "Mental",
+   "debuff": true,
+   "maxDur": 3,
+   "mods": {
+    "ctr": -25,
+    "mvr": -25,
+    "acc": -10,
+    "fum": 10
+   },
+   "note": "can't use abilities; -25% Control/Move Res, -10% Acc, +10% Fumble, +1 Swimming Cost; re-applying Daze to a dazed target applies Stun; max 3 turns"
+  },
+  {
+   "n": "Stagger",
+   "type": "Physical",
+   "debuff": true,
+   "mods": {
+    "cc": -50,
+    "co": -50,
+    "fum": 50,
+    "dodge": -50,
+    "bc": -50,
+    "bpr": -2.5,
+    "bfc": 50
+   },
+   "note": "-50% Crit/Counter/Dodge/Block Chance, +50% Fumble & Backfire, -2.5% Block Power Recovery (formerly Clumsy/Clumsiness)"
+  },
+  {
+   "n": "Confusion",
+   "type": "Mental",
+   "debuff": true,
+   "mods": {
+    "co": -15,
+    "fum": 15,
+    "dodge": -15,
+    "bc": -15,
+    "bfc": 15
+   },
+   "note": "-15% Counter/Dodge/Block, +15% Fumble & Backfire; Stumbling (chance to step randomly when walking); War Cry can apply for 10 turns"
+  },
+  {
+   "n": "Satiety",
+   "type": "Condition",
+   "buff": true,
+   "mods": {
+    "dodge": -5,
+    "heff": 25,
+    "ftr": 10,
+    "xpg": 5,
+    "hgr": 100
+   },
+   "note": "from eating past current hunger; +25% Healing Eff, +10% Fatigue Res, +5% XP Gain, +100% Hunger Res, -5% Dodge; lasts longer the bigger the overfeed (cap 100); eating while sated causes Vomiting/Nausea"
+  },
+  {
+   "n": "Vigor",
+   "type": "Mental",
+   "buff": true,
+   "mods": {
+    "energy": 5,
+    "er": 5,
+    "ftr": 10
+   },
+   "note": "after sleeping; +5 Max Energy, +5% Energy Restoration, +10% Fatigue Res; 150 stacks/hr slept (30/hr if already vigorous), cap 1500, -1 stack/turn; Survival tree adds more effects"
+  },
+  {
+   "n": "Weakness",
+   "type": "Physical",
+   "debuff": true,
+   "mods": {
+    "wd": -10,
+    "cc": -10,
+    "fum": 10,
+    "bc": -10
+   },
+   "note": "-10% Weapon Dmg, -10% Crit Chance, +10% Fumble, -10% Block Chance"
+  },
+  {
+   "n": "Pain",
+   "type": "Condition",
+   "debuff": true,
+   "mods": {
+    "fum": 7.5,
+    "heff": -15,
+    "dt": 10
+   },
+   "note": "accumulates from injuries; +7.5% Fumble, -15% Healing Eff, +10% Damage Taken (scales with Pain level)"
+  }
+ ],
+ "roster": [
+  "Abasa",
+  "Acid Bath",
+  "Adrenaline Rush",
+  "Against the Odds",
+  "Al'qud Aftermath",
+  "Al'qud",
+  "Bad Trip Aftermath",
+  "Bad Trip",
+  "Battle Rage",
+  "Bestial Rage",
+  "Binding Sigil",
+  "Blessing",
+  "Blindness",
+  "Blood Craze",
+  "Blood Oath",
+  "Body Aches",
+  "Brace for Impact!",
+  "Clear Vision",
+  "Coma",
+  "Concentration",
+  "Coughing",
+  "Covered in Alcohol",
+  "Covered in Oil",
+  "Crimson Gift",
+  "Curse of Agony",
+  "Curse of Decay",
+  "Dead or Alive",
+  "Deadly Intoxication",
+  "Deadly Premonition",
+  "Defensive Tactic",
+  "Drunkenness",
+  "Elusiveness",
+  "Energy Drain",
+  "Enough for Everyone",
+  "Exceptional Precision",
+  "Exhaustion",
+  "Feast of Steel",
+  "Fencer's Stance",
+  "Freezing Stiff",
+  "Gaping Wound",
+  "Hammer and Anvil",
+  "Hangover",
+  "Hold the Line!",
+  "Hornet Honey Aftermath",
+  "Hornet Honey",
+  "Hunger",
+  "Hunter's Mark",
+  "Impulse",
+  "Initiative Loss",
+  "Intoxication",
+  "Leech Therapy",
+  "Life Drain",
+  "Mark of the Feast",
+  "Massacre",
+  "Mighty Swing",
+  "Mountain of Flesh",
+  "Murk",
+  "Net",
+  "Nikkaf Aftermath",
+  "Nikkaf",
+  "Offensive Tactic",
+  "Pain Shock",
+  "Painful Stabs",
+  "Paregoric Aftermath",
+  "Paregoric",
+  "Parry",
+  "Petrification",
+  "Pikeman Stance",
+  "Place of Power",
+  "Rampage",
+  "Rapid Restoration",
+  "Receptiveness",
+  "Regroup",
+  "Resonance",
+  "Runic Empowerment",
+  "Sacrificial Blood",
+  "Seal of Electromancy",
+  "Seal of Finesse",
+  "Seal of Geomancy",
+  "Seal of Power",
+  "Seal of Pyromancy",
+  "Seal of Reflection",
+  "Seal of Shackles",
+  "Seized Initiative",
+  "Shield Raised",
+  "Sic!",
+  "Sleep",
+  "Soul Sacrifice",
+  "Spectral Haunting",
+  "Stardust",
+  "Starvation",
+  "Static Field",
+  "Stolen Essence",
+  "Stone Armor",
+  "Stone Skin",
+  "Striker Stance",
+  "Strong Pain",
+  "Sturdiness",
+  "Suppression",
+  "Taking Aim",
+  "Terrible Hunger",
+  "Terrible Thirst",
+  "Thirst for Battle",
+  "Thirst",
+  "Thrill of the Hunt",
+  "Tiredness",
+  "Troll Regeneration",
+  "Unholy Blessing",
+  "Unwavering Stance",
+  "Unyielding Defense",
+  "Vampiric Blood",
+  "Vomiting",
+  "Wanted: Attacked on Sight",
+  "Wanted: Fine or Jail",
+  "Weariness",
+  "Web",
+  "Wetness",
+  "Willing Sacrifice"
+ ],
+ "injuries": [
+  "Minor Head Injury",
+  "Medium Head Injury",
+  "Severe Head Injury",
+  "Minor Torso Injury",
+  "Medium Torso Injury",
+  "Severe Torso Injury",
+  "Minor Hand Injury",
+  "Medium Hand Injury",
+  "Severe Hand Injury",
+  "Minor Leg Injury",
+  "Medium Leg Injury",
+  "Severe Leg Injury",
+  "Minor Paw Injury",
+  "Medium Paw Injury",
+  "Severe Paw Injury"
+ ]
+}
