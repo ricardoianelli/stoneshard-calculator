@@ -18,6 +18,7 @@ Re-extract the data from the wiki pages listed below, diffing against `$meta.gam
 | `data/enchantments.json` | Enchantments |
 | `data/consumables.json` | Potions, Food, Beverages, Drugs (stat-affecting only) |
 | `data/enemies.json` | Enemies + individual enemy pages (curated set) |
+| `data/status_effects.json` | Status_Effects + individual condition/buff pages |
 
 ## Offline icons (optional, recommended for a public site)
 By default images hotlink from stoneshard.com. To self-host them instead:
@@ -43,9 +44,11 @@ The calculator detects `images/.mirrored` on load and switches to local icons au
 ## Extraction ledger (full-coverage roadmap)
 Goal: every enemy, consumable, and item on the wiki, verbatim.
 
-**Enemies — done (20, verbatim 0.9.4.14):** Goon (Club), Restless, Wraith, Wolf, Thug (Spear), Zealot (Spear), Necromancer (Staff), Matriarch, Boar, Harpy, Ghoul, Cutthroat, Deserter (Sword), Marksman, Crawler, Bear, Bison, Young Troll, Manticore, Ascended Archon.
+**Enemies — done (54, verbatim 0.9.4.14):** Goon (Club), Goon (Cleaver), Goon (Flail), Rebel, Brute, Madman, Henchman (Axe), Henchman (Mace), Henchman (Flail), War Dog, Thug (Two-Handed Axe), Thug (Two-Handed Sword), Restless Peasant (Dagger), Restless Peasant (Axe), Restless Peasant (Pitchfork), Restless Guard (Sword), Restless Brigand, Risen Watchman, Risen Recruit (Sword), Wraith Squire, Risen Guardsman (Sword), Ghoul (upgraded full-res), Ghast, Husk, Mortician, Wraith Warrior, Occultist, Undertaker, Flagellant, Cultist, Martyr, Sanguimage, Chosen, Juggernaut, Immolated, Abomination, Restless, Wraith, Wolf, Thug (Spear), Zealot (Spear), Necromancer (Staff), Matriarch, Boar, Harpy, Ghoul, Cutthroat, Deserter (Sword), Marksman, Crawler, Bear, Bison, Young Troll, Manticore, Ascended Archon.
 
-**Enemies — remaining (~130):** every other entry in the https://stoneshard.com/wiki/Enemies navbox (all Goon/Thug/Henchman/Marauder/Deserter/Renegade/Ringleader/Robber Baron weapon variants, all Restless/Risen/Wraith/Ghast undead, all Proselytes, Hive, mini-bosses, Ancient Troll, quest uniques). Each enemy's stats live only on its own page — extract per page into data/enemies.json using the existing schema (per-bodypart prot object + xp).
+**Enemies — remaining (~96):** every other entry in the https://stoneshard.com/wiki/Enemies navbox (all Goon/Thug/Henchman/Marauder/Deserter/Renegade/Ringleader/Robber Baron weapon variants, all Restless/Risen/Wraith/Ghast undead, all Proselytes, Hive, mini-bosses, Ancient Troll, quest uniques). Each enemy's stats live only on its own page — extract per page into data/enemies.json using the existing schema (per-bodypart prot object + xp).
+
+**Status Effects / buffs & conditions:** data/status_effects.json holds the full 130-effect roster + 15 injuries (verbatim names from the Status_Effects index). 7 combat buffs/debuffs have exact `mods` extracted (Battle Rage, Blood Oath, Vampiric Blood, Mark of the Feast, Seized Initiative, Initiative Loss, Mighty Swing). Remaining: per-page modifier values for the rest (Bleeding, Poisoning, Burning, Stun/Daze/Stagger/Immobilization, Satiety/Hunger/Thirst tiers, Psyche states, drug conditions, stances, seals) — one page each.
 
 **Consumables:** data/consumables.json currently holds stat-affecting potions/food/beverages/drugs + psyche states. Remaining: full Food, Beverages, Potions, Drugs, Medicine, Scrolls list pages (including non-stat items) if full coverage is desired.
 
