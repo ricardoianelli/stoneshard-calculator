@@ -13,7 +13,14 @@
    "n": "Keep Them Coming",
    "t": 1,
    "type": "Passive",
-   "desc": "Killing enemies with the ability tree's skills or critical two-handed mace strikes activates \"Mighty Swing\" for 1 turn and grants +15% Energy Restoration for 4 turns.\n\nThe effect stacks up to 2 times."
+   "desc": "Killing enemies with the ability tree's skills or critical two-handed mace strikes activates \"Mighty Swing\" for 1 turn and grants +15% Energy Restoration for 4 turns.\n\nThe effect stacks up to 2 times.",
+   "fx": {
+    "buff": true,
+    "stacks": 2,
+    "per_stack": {
+     "er": 15
+    }
+   }
   },
   {
    "n": "Mighty Swing",

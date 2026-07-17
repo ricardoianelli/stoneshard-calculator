@@ -95,7 +95,13 @@
      "type": "Passive",
      "req": "one-handed sword",
      "desc": "Using the ability tree's skills grants +15% Energy Restoration for 5 turns and reduces the cooldown of the ability tree's random Attack skill by 1 turn.\n\nThe effect stacks up to 4 times.",
-     "fx": null
+     "fx": {
+      "buff": true,
+      "stacks": 4,
+      "per_stack": {
+       "er": 15
+      }
+     }
     },
     {
      "n": "Honed Edge",
@@ -103,7 +109,14 @@
      "type": "Passive",
      "req": "one-handed sword",
      "desc": "Sword hits grants +6% Bleed Chance and +4% Armor Penetration for 5 turns.\n\nThe effect stacks up to 5 times.",
-     "fx": null
+     "fx": {
+      "buff": true,
+      "stacks": 5,
+      "per_stack": {
+       "bl": 6,
+       "ap": 4
+      }
+     }
     },
     {
      "n": "Onrush",

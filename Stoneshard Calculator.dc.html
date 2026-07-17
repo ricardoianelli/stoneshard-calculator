@@ -33,6 +33,15 @@ input[type=range]{accent-color:#7a2e1d;}
         <button onClick="{{ exportBuild }}" style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:1px;background:#3a2f23;color:#d8c391;border:1px solid #6b5a41;border-radius:3px;padding:7px 14px;cursor:pointer;" style-hover="background:#4a3c2c;">EXPORT BUILD</button>
         <button onClick="{{ importBuild }}" style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:1px;background:#3a2f23;color:#d8c391;border:1px solid #6b5a41;border-radius:3px;padding:7px 14px;cursor:pointer;" style-hover="background:#4a3c2c;">IMPORT</button>
         <button onClick="{{ copyLink }}" style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:1px;background:#5a3a20;color:#e7d8b4;border:1px solid #8a7350;border-radius:3px;padding:7px 14px;cursor:pointer;" style-hover="background:#6b4626;">SHARE LINK</button>
+        <div style="position:relative;">
+          <button onClick="{{ toggleExp }}" style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:1px;background:#432a3a;color:#e0c3d8;border:1px solid #8a5a78;border-radius:3px;padding:7px 14px;cursor:pointer;" style-hover="background:#54344a;">EXPERIMENTAL ▾</button>
+          <sc-if value="{{ expOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;top:calc(100% + 4px);left:0;z-index:50;background:#241e18;border:1px solid #8a5a78;border-radius:4px;display:flex;flex-direction:column;min-width:180px;box-shadow:0 6px 18px rgba(0,0,0,.5);">
+              <button onClick="{{ openFinder }}" style="font-family:'Cinzel',serif;font-size:11.5px;letter-spacing:1px;text-align:left;background:none;color:#e0c3d8;border:none;padding:9px 14px;cursor:pointer;" style-hover="background:#3a2a34;">⚔ BUILD FINDER</button>
+              <button onClick="{{ openSaveEd }}" style="font-family:'Cinzel',serif;font-size:11.5px;letter-spacing:1px;text-align:left;background:none;color:#e0c3d8;border:none;border-top:1px solid #3a2f28;padding:9px 14px;cursor:pointer;" style-hover="background:#3a2a34;">✎ EDIT SAVE FILE</button>
+            </div>
+          </sc-if>
+        </div>
         <button onClick="{{ toggleLib }}" style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:1px;background:#3a2f23;color:#d8c391;border:1px solid #6b5a41;border-radius:3px;padding:7px 14px;cursor:pointer;" style-hover="background:#4a3c2c;">MY BUILDS</button>
       </div>
     </div>
@@ -68,8 +77,171 @@ input[type=range]{accent-color:#7a2e1d;}
         </div>
       </div>
     </sc-if>
+    <sc-if value="{{ seOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:10px;background:#241e18;border:1px solid #8a5a78;border-radius:4px;padding:12px;">
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+          <div style="font-family:'Cinzel',serif;font-size:13px;letter-spacing:2px;color:#e0c3d8;">SAVE FILE EDITOR</div>
+          <div style="font-size:11px;color:#8a7a5e;font-style:italic;">edits your data.sav in the browser — nothing is uploaded. Always keep a backup copy of your save folder.</div>
+        </div>
+        <sc-if value="{{ seNotLoaded }}" hint-placeholder-val="{{ true }}">
+          <div style="margin-top:10px;display:flex;flex-direction:column;gap:6px;">
+            <input type="file" accept=".sav" onChange="{{ seFile }}" style="color:#c9b58a;font-size:12px;"></input>
+            <div style="font-size:11px;color:#6b5a41;">Find it at %LOCALAPPDATA%\StoneShard\characters_v1\character_N\exitsave_N\data.sav (use the exit save, then load it in-game).</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ seLoaded }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:10px;display:flex;flex-direction:column;gap:12px;">
+            <div style="font-size:12.5px;color:#e8d8b0;">{{ seSummary }}</div>
+            <div style="font-size:11px;color:{{ seSaltColor }};">{{ seSaltMsg }}</div>
+            <div style="border:1px solid #3a2f28;border-radius:4px;padding:10px;">
+              <div style="font-size:10px;letter-spacing:1px;color:#a98a4a;margin-bottom:6px;">ATTRIBUTES — reset to base, refund into stat points</div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;">
+                <sc-for list="{{ seAttrs }}" as="a" hint-placeholder-count="0">
+                  <div style="display:flex;flex-direction:column;gap:2px;">
+                    <div style="font-size:10px;color:#8a7a5e;">{{ a.k }} (now {{ a.cur }})</div>
+                    <input type="number" value="{{ a.base }}" onChange="{{ a.set }}" style="width:56px;background:#171310;color:#c9b58a;border:1px solid #4a3d2e;padding:3px;"></input>
+                  </div>
+                </sc-for>
+                <button onClick="{{ seRefundAttrs }}" style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;background:#5a3a20;color:#e7d8b4;border:1px solid #8a7350;border-radius:3px;padding:6px 12px;cursor:pointer;" style-hover="background:#6b4626;">RESET → +{{ seAttrRefund }} SP</button>
+              </div>
+              <div style="font-size:10px;color:#6b5a41;margin-top:5px;font-style:italic;">Base values prefilled from the character's level-1 stats where known — points above base are refunded; nothing is lost.</div>
+            </div>
+            <div style="border:1px solid #3a2f28;border-radius:4px;padding:10px;">
+              <div style="font-size:10px;letter-spacing:1px;color:#a98a4a;margin-bottom:6px;">LEARNED SKILLS — select the ones to unlearn (1 AP refunded each). Innate skills (Butchering, character trait skills) aren't listed — they can't be unlearned.</div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:4px;">
+                <sc-for list="{{ seSkills }}" as="sk" hint-placeholder-count="0">
+                  <div onClick="{{ sk.toggle }}" style="display:flex;gap:8px;align-items:center;cursor:pointer;border:2px solid {{ sk.border }};border-radius:4px;background:{{ sk.bg }};padding:4px 8px;box-shadow:{{ sk.glow }};" style-hover="border-color:#e8c58d;">
+                    <span style="width:28px;height:28px;flex-shrink:0;background:#171310;border-radius:3px;display:flex;align-items:center;justify-content:center;">{{ sk.icon }}</span>
+                    <span style="font-size:11.5px;color:{{ sk.color }};flex:1;">{{ sk.name }}</span>
+                    <span style="font-size:10px;color:{{ sk.mark }};">{{ sk.markTxt }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <button onClick="{{ seRespec }}" style="margin-top:8px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;background:#5a3a20;color:#e7d8b4;border:1px solid #8a7350;border-radius:3px;padding:6px 12px;cursor:pointer;" style-hover="background:#6b4626;">UNLEARN {{ seSkillCount }} → +{{ seSkillCount }} AP</button>
+            </div>
+            <div style="border:1px solid #3a2f28;border-radius:4px;padding:10px;">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+                <div style="font-size:10px;letter-spacing:1px;color:#a98a4a;flex:1;">EQUIPMENT &amp; INVENTORY — repair item durability</div>
+                <button onClick="{{ seRepairAll }}" style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:1px;background:#5a3a20;color:#e7d8b4;border:1px solid #8a7350;border-radius:3px;padding:4px 10px;cursor:pointer;" style-hover="background:#6b4626;">🔧 REPAIR ALL ({{ seDamagedCount }})</button>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:3px;max-height:260px;overflow-y:auto;">
+                <sc-for list="{{ seItems }}" as="it" hint-placeholder-count="0">
+                  <div style="display:flex;gap:8px;align-items:center;font-size:11.5px;">
+                    <span style="color:{{ it.color }};flex:1;">{{ it.name }}</span>
+                    <span style="font-size:10.5px;color:{{ it.durColor }};min-width:64px;text-align:right;">{{ it.durTxt }}</span>
+                    <sc-if value="{{ it.damaged }}" hint-placeholder-val="{{ false }}">
+                      <button onClick="{{ it.repair }}" title="repair to full" style="background:#2a2420;color:#8a9a6e;border:1px solid #4a3d2e;border-radius:3px;padding:2px 8px;cursor:pointer;font-size:11px;" style-hover="background:#3a3428;">🔧</button>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+              <button onClick="{{ seDownload }}" style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:1px;background:#2e4a2e;color:#cfe7c4;border:1px solid #5a8a50;border-radius:3px;padding:8px 18px;cursor:pointer;" style-hover="background:#3a5a38;">DOWNLOAD EDITED data.sav</button>
+              <button onClick="{{ seReset }}" style="font-size:11px;background:none;color:#8a7a5e;border:1px solid #4a3d2e;border-radius:3px;padding:6px 10px;cursor:pointer;">load different file</button>
+              <div style="font-size:11px;color:#8a9a6e;">{{ seLog }}</div>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ seStatus }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size:12px;color:#c98a75;margin-top:8px;">{{ seStatus }}</div>
+        </sc-if>
+      </div>
+    </sc-if>
+    <sc-if value="{{ finderOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:10px;background:#241e18;border:1px solid #8a5a78;border-radius:4px;padding:12px;">
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+          <div style="font-family:'Cinzel',serif;font-size:13px;letter-spacing:2px;color:#e0c3d8;">BUILD FINDER</div>
+          <div style="font-size:11px;color:#8a7a5e;font-style:italic;">deterministic search over verbatim wiki data — weapon-tree skills require the matching weapon; utility &amp; spell passives are global</div>
+        </div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end;margin-top:10px;">
+          <div>
+            <div style="font-size:10px;letter-spacing:1px;color:#8a7a5e;margin-bottom:3px;">WEAPON</div>
+            <select value="{{ finderWeapon }}" onChange="{{ onFinderWeapon }}" style="background:#171310;color:#c9b58a;border:1px solid #4a3d2e;">
+              <sc-for list="{{ finderWeaponOpts }}" as="o" hint-placeholder-count="0"><option value="{{ o.v }}">{{ o.label }}</option></sc-for>
+            </select>
+          </div>
+          <div>
+            <div style="font-size:10px;letter-spacing:1px;color:#8a7a5e;margin-bottom:3px;">OFF-HAND</div>
+            <sc-if value="{{ finderIs2H }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:12px;color:#6b5a41;font-style:italic;padding:3px 0;">— two-handed</div>
+            </sc-if>
+            <sc-if value="{{ finderNot2H }}" hint-placeholder-val="{{ true }}">
+              <select value="{{ finderOff }}" onChange="{{ onFinderOff }}" style="background:#171310;color:#c9b58a;border:1px solid #4a3d2e;">
+                <sc-for list="{{ finderOffOpts }}" as="o" hint-placeholder-count="0"><option value="{{ o.v }}">{{ o.label }}</option></sc-for>
+              </select>
+            </sc-if>
+          </div>
+          <div>
+            <div style="font-size:10px;letter-spacing:1px;color:#8a7a5e;margin-bottom:3px;">LEVEL</div>
+            <select value="{{ finderLvl }}" onChange="{{ onFinderLvl }}" style="background:#171310;color:#c9b58a;border:1px solid #4a3d2e;">
+              <sc-for list="{{ finderLvlOpts }}" as="o" hint-placeholder-count="0"><option value="{{ o.v }}">{{ o.label }}</option></sc-for>
+            </select>
+          </div>
+          <div style="flex:1;min-width:280px;">
+            <div style="font-size:10px;letter-spacing:1px;color:#8a7a5e;margin-bottom:3px;">FOCUS — pick 1 to 5</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;">
+              <sc-for list="{{ finderGoalChips }}" as="g" hint-placeholder-count="6">
+                <button onClick="{{ g.toggle }}" style="font-size:11px;padding:3px 9px;border-radius:10px;cursor:pointer;border:1px solid {{ g.border }};background:{{ g.bg }};color:{{ g.color }};">{{ g.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+          <button onClick="{{ runFinder }}" style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:1px;background:#5a3a20;color:#e7d8b4;border:1px solid #8a7350;border-radius:3px;padding:8px 18px;cursor:pointer;" style-hover="background:#6b4626;">FIND BUILDS</button>
+        </div>
+        <sc-if value="{{ finderStatus }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size:12px;color:#c98a75;margin-top:8px;">{{ finderStatus }}</div>
+        </sc-if>
+        <sc-if value="{{ hasFinderResults }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:10px;margin-top:12px;">
+            <sc-for list="{{ finderResults }}" as="fb" hint-placeholder-count="0">
+              <div style="background:rgba(255,255,255,.02);border:1px solid {{ fb.frame }};border-radius:4px;padding:10px;display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;">
+                  <div style="font-family:'Cinzel',serif;font-size:13px;letter-spacing:1px;color:#e8d8b0;">{{ fb.name }}</div>
+                  <sc-if value="{{ fb.offMeta }}" hint-placeholder-val="{{ false }}"><div style="font-size:9.5px;letter-spacing:1px;background:#432a3a;color:#e0a3c8;border:1px solid #8a5a78;border-radius:8px;padding:1px 7px;">OFF-META</div></sc-if>
+                  <div style="font-size:10.5px;color:#8a7a5e;margin-left:auto;">score {{ fb.score }}</div>
+                </div>
+                <div style="font-size:10.5px;color:#a98a4a;">{{ fb.treesLine }}</div>
+                <div>
+                  <div style="font-size:10px;letter-spacing:1px;color:#8a7a5e;margin-bottom:3px;">SKILLS — learn in this order (tier = treatise needed)</div>
+                  <div style="display:flex;flex-direction:column;gap:2px;max-height:190px;overflow-y:auto;">
+                    <sc-for list="{{ fb.skills }}" as="sk" hint-placeholder-count="0">
+                      <div style="display:flex;gap:6px;align-items:center;font-size:11.5px;">
+                        <span style="color:#6b5a41;width:16px;text-align:right;flex-shrink:0;">{{ sk.ord }}.</span>
+                        <span style="width:22px;height:22px;flex-shrink:0;">{{ sk.icon }}</span>
+                        <span style="color:#d8c391;font-weight:700;">{{ sk.n }}</span>
+                        <span style="color:#6b5a41;font-size:10px;">T{{ sk.tier }} · {{ sk.tree }}</span>
+                        <span style="color:#8a9a6e;font-size:10px;margin-left:auto;text-align:right;">{{ sk.why }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="font-size:11px;color:#c9b58a;"><span style="font-size:10px;letter-spacing:1px;color:#8a7a5e;">ATTRIBUTES </span> {{ fb.attrLine }}</div>
+                <div>
+                  <div style="font-size:10px;letter-spacing:1px;color:#8a7a5e;margin-bottom:3px;">GEAR PROGRESSION</div>
+                  <div style="display:flex;flex-direction:column;gap:4px;">
+                    <sc-for list="{{ fb.stages }}" as="st" hint-placeholder-count="0">
+                      <div style="font-size:10.5px;">
+                        <span style="color:#a98a4a;letter-spacing:.5px;">{{ st.label }}</span>
+                        <span style="color:#9a8a6e;"> {{ st.line }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+                <sc-if value="{{ fb.hasNotes }}" hint-placeholder-val="{{ false }}">
+                  <div style="font-size:10.5px;color:#8a9a6e;border-left:2px solid #4a5a3e;padding-left:8px;">
+                    <sc-for list="{{ fb.notes }}" as="nt" hint-placeholder-count="0"><div>⚭ {{ nt.txt }}</div></sc-for>
+                  </div>
+                </sc-if>
+                <button onClick="{{ fb.apply }}" style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;background:#5a3a20;color:#e7d8b4;border:1px solid #8a7350;border-radius:3px;padding:6px 12px;cursor:pointer;margin-top:auto;" style-hover="background:#6b4626;">APPLY TO CALCULATOR ({{ fb.applyStage }})</button>
+              </div>
+            </sc-for>
+          </div>
+          <div style="font-size:10.5px;color:#6b5a41;margin-top:8px;font-style:italic;">Scores are relative, computed only from published wiki numbers at your level ({{ finderLevel }}) and recommended attributes. Applying replaces current gear, skills, and attribute allocation.</div>
+        </sc-if>
+      </div>
+    </sc-if>
   </div>
-  <sc-if value="{{ loaded }}" hint-placeholder-val="{{ false }}">
+  <sc-if value="{{ mainVisible }}" hint-placeholder-val="{{ false }}">
   <div style="max-width:1560px;margin:14px auto 0 auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:14px;align-items:start;">
 
     <div style="display:flex;flex-direction:column;gap:12px;">
@@ -440,7 +612,9 @@ class Component extends DCLogic {
     gear: {}, ench: {}, cond: {}, buffs: {}, skills: {}, activeTree: 'swords',
     stancesOn: false, skillBuffs: {}, enemySel: 'Goon', armorMode: 'intact',
     pickerSlot: null, pickerCat: 'all', pickerSearch: '', traitCounters: {}, selSkill: null, showFormulas: false, libOpen: false, libName: '', pinnedStats: null,
-    ioOpen: false, ioMode: 'export', ioText: '', ioStatus: ''
+    ioOpen: false, ioMode: 'export', ioText: '', ioStatus: '',
+    finderOpen: false, finderWeapon: 'sword', finderOff: 'none', finderGoals: ['damage'], finderResults: null, finderStatus: '', finderLvl: 30,
+    expOpen: false, seOpen: false, seLoaded: false, seStatus: '', seTick: 0, seLog: ''
   };
   D = null;
 
@@ -487,6 +661,84 @@ class Component extends DCLogic {
     } catch (e) { this.setState({ loadError: String(e), loaded: false }); }
   }
 
+  is2H(w) { return ['sword2h','axe2h','mace2h','spear','staff','bow','crossbow'].includes(w); }
+  seWikiName(pretty) {
+    // map "Pikemans Stance" → the exact wiki skill name (for icons) via our skill data
+    if (!this._seNameMap) {
+      const m = {};
+      Object.values(this.D.trees || {}).forEach(tr => (tr.skills || []).forEach(sk => { m[sk.n.toLowerCase().replace(/[^a-z0-9]/g, '')] = sk.n; }));
+      this._seNameMap = m;
+    }
+    return this._seNameMap[pretty.toLowerCase().replace(/[^a-z0-9]/g, '')] || pretty;
+  }
+  async seLoadFile(file) {
+    this.setState({ seStatus: 'Reading ' + file.name + '…' });
+    try {
+      if (!this._seMod) this._seMod = await import('./save-editor.js');
+      const res = await this._seMod.parseSav(await file.arrayBuffer());
+      const c = res.obj.characterDataMap;
+      // innate/free skills (trait free skills + always-free survival skills like Butchering) are hidden — they can't be unlearned
+      const ch = (this.D.chars || []).find(x => x.name === c.nameKey) || null;
+      const freeNames = new Set(((ch && ch.trait && ch.trait.free_skills) || [])
+        .concat((((this.D.trees.survival || {}).skills) || []).filter(x => x.free).map(x => x.n))
+        .concat(['Butchering', 'Craft', 'Torch Strike', 'Trap Search']) // universal defaults every character has
+        .map(s => s.toLowerCase().replace(/[^a-z0-9]/g, '')));
+      const checked = {};
+      const hidden = new Set();
+      this._seMod.learnedSkills(res.obj).forEach(sk => {
+        if (freeNames.has(sk.name.toLowerCase().replace(/[^a-z0-9]/g, ''))) hidden.add(sk.id);
+        else checked[sk.id] = false;
+      });
+      this._sav = null;
+      // attribute base: level-1 stats where we know the character
+      const base = ch ? { STR: ch.stats.str, AGL: ch.stats.agi, PRC: ch.stats.prc, Vitality: ch.stats.vit, WIL: ch.stats.wil } : { STR: 10, AGL: 10, PRC: 10, Vitality: 10, WIL: 10 };
+      this._sav = { obj: res.obj, salt: res.salt, dirs: res.dirs, fileName: file.name, checked, hidden, base };
+      this.setState({ seLoaded: true, seStatus: '', seLog: '' });
+    } catch (e) { this.setState({ seStatus: 'Could not read save: ' + e.message }); }
+  }
+  async seDownload() {
+    const sv = this._sav;
+    if (!sv.salt) { this.setState({ seStatus: 'No verified checksum salt — cannot write a save the game will accept.' }); return; }
+    this.setState({ seLog: 'building…' });
+    try {
+      const bytes = await this._seMod.buildSav(sv.obj, sv.salt);
+      const url = URL.createObjectURL(new Blob([bytes], { type: 'application/octet-stream' }));
+      const a = document.createElement('a');
+      a.href = url; a.download = 'data.sav'; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
+      this.setState({ seLog: 'downloaded — place it back in …\\' + sv.dirs.join('\\') + '\\ (keep a backup!)' });
+    } catch (e) { this.setState({ seStatus: 'Build failed: ' + e.message }); }
+  }
+  async runFinder() {
+    const s = this.state;
+    if (this.is2H(s.finderWeapon) && s.finderOff !== 'none') this.setState({ finderOff: 'none' });
+    if (!s.finderGoals.length) { this.setState({ finderStatus: 'Pick at least one focus.' }); return; }
+    this.setState({ finderStatus: 'Searching…' });
+    try {
+      if (!this._engine) this._engine = await import('./build-engine.js');
+      const res = this._engine.findBuilds({
+        D: this.D, evalExpr: (ex, at) => this.evalExpr(ex, at),
+        weaponCls: s.finderWeapon, offMode: this.is2H(s.finderWeapon) ? 'none' : s.finderOff, goalIds: s.finderGoals,
+        level: s.finderLvl, charId: s.charId
+      });
+      if (res.error) { this.setState({ finderStatus: res.error, finderResults: null }); return; }
+      this.setState({ finderResults: res.variants, finderStatus: res.variants.length ? '' : 'No scoring skills found for that combination.' });
+    } catch (e) { this.setState({ finderStatus: 'Engine error: ' + e.message, finderResults: null }); }
+  }
+  applyFinderBuild(fb) {
+    const lvl = this.state.finderLvl;
+    const stage = fb.stages[lvl < 8 ? 0 : lvl < 16 ? 1 : 2];
+    const gear = Object.assign({}, stage.gear);
+    if (gear.ammo === undefined) delete gear.ammo;
+    const skills = {};
+    Object.keys(fb.skillsByTree).forEach(tid => { skills[tid] = fb.skillsByTree[tid].slice(); });
+    const seed = this.freeSeed(this.state.charId);
+    Object.keys(seed).forEach(tid => { const arr = skills[tid] || []; seed[tid].forEach(n => { if (!arr.includes(n)) arr.push(n); }); skills[tid] = arr; });
+    const wTree = { sword: 'swords', axe: 'axes', mace: 'maces', dagger: 'daggers', spear: 'spears', staff: 'staves', sword2h: 'swords2h', axe2h: 'axes2h', mace2h: 'maces2h', bow: 'ranged', crossbow: 'ranged', sling: 'ranged' }[this.state.finderWeapon] || 'swords';
+    const ench = stage.ench ? { main: stage.ench } : {};
+    // stancesOn so stances + stacking passives count in the damage preview, like a real fight
+    this.set({ gear, skills, alloc: fb.alloc, ench, cond: {}, activeTree: wTree, level: lvl, stancesOn: true });
+  }
   statKeyLabel(k) { return this.STATL[k]; }
   get STATL() { return this._STATL || (this._STATL = { ap:'Armor Penetration', ad:'Armor Damage', bpd:'Bodypart Damage', wd:'Weapon Damage', bl:'Bleed Chance', dz:'Daze Chance', st:'Stun Chance', sg:'Stagger Chance', kb:'Knockback Chance', im:'Immobilization', bc:'Block Chance', bp:'Block Power', bpr:'Block Power Recovery', co:'Counter Chance', acc:'Accuracy', cc:'Crit Chance', ce:'Crit Efficiency', fum:'Fumble Chance', sec:'Skills Energy Cost', spec:'Spells Energy Cost', cd:'Cooldowns Duration', rng:'Bonus Range', vis:'Vision', mp:'Magic Power', mic:'Miracle Chance', mip:'Miracle Potency', bfc:'Backfire Chance', bfd:'Backfire Damage', pyr:'Pyromantic Power', geo:'Geomantic Power', ele:'Electromantic Power', arc:'Arcanistic Power', ven:'Venomantic Power', cry:'Cryomantic Power', ast:'Astromantic Power', psi:'Psionic Power', chr:'Chronomantic Power', hp:'Max Health', en:'Max Energy', hr:'Health Restoration', er:'Energy Restoration', he:'Healing Efficiency', dg:'Dodge Chance', ctr:'Control Resistance', mvr:'Move Resistance', fort:'Fortitude', refl:'Damage Reflection', dt:'Damage Taken', ed:'Energy Drain', ld:'Life Drain', xp:'Experience Gain', phr:'Physical Res', slr:'Slashing Res', pir:'Piercing Res', crr:'Crushing Res', rer:'Rending Res', ntr:'Nature Res', fir:'Fire Res', frr:'Frost Res', shr:'Shock Res', por:'Poison Res', car:'Caustic Res', mgr:'Magic Res', arr:'Arcane Res', unr:'Unholy Res', sar:'Sacred Res', psr:'Psionic Res', blr:'Bleed Res', pnr:'Pain Res', hgr:'Hunger Res', inr:'Intoxication Res', ftr:'Fatigue Res', stl:'Stealth', noi:'Noise Produced', lkp:'Lockpicking', mhe:'Main Hand Efficiency', ohe:'Off-Hand Efficiency', cav:'Crit Avoidance', ohd:'Off-Hand Damage', mhd:'Main Hand Damage' }); }
   itemCard(item, slot) {
@@ -703,8 +955,10 @@ class Component extends DCLogic {
         if (!stacks) return;
       }
       if (fx.per_stack) Object.keys(fx.per_stack).forEach(k => add(k, fx.per_stack[k] * stacks));
-      Object.keys(fx).forEach(k => { if (['buff','stacks','per_stack','cond','prot'].includes(k)) return; if (typeof fx[k] === 'number') add(k, fx[k]); });
+      Object.keys(fx).forEach(k => { if (['buff','stacks','per_stack','cond','prot','xdmg'].includes(k)) return; if (typeof fx[k] === 'number') add(k, fx[k]); });
       if (fx.prot) protTotal += fx.prot * 4;
+      // flat elemental damage granted to strikes/shots (e.g. Seal of Power) — formula strings eval against attributes
+      if (fx.xdmg) Object.keys(fx.xdmg).forEach(t => { const v = fx.xdmg[t]; const val = typeof v === 'string' ? this.evalExpr(v, attrs) : v; if (!isNaN(val)) add('xdmg_' + t, val); });
     }));
     let bonusAP = 0; const traitNotes = [];
     if (ch.id === 'leosthenes') {
@@ -912,20 +1166,33 @@ class Component extends DCLogic {
     if (selSk) {
       const learned = (s.skills[s.activeTree] || []).includes(selSk.n);
       const isFree = C.free.includes(selSk.n);
+      // tier-chain prerequisite: learning tier T needs a learned/innate same-tree skill at every tier below
+      const curList = s.skills[s.activeTree] || [];
+      const tiersHave = new Set(tree.skills.filter(x => curList.includes(x.n) || C.free.includes(x.n)).map(x => x.t || 1));
+      let missingTier = 0;
+      for (let q = 1; q < (selSk.t || 1); q++) { if (!tiersHave.has(q)) { missingTier = q; break; } }
+      const tierBlocked = !learned && !isFree && missingTier > 0;
+      // unlearning must not orphan a learned higher-tier skill
+      const wouldOrphan = learned && !isFree && (() => {
+        const after = tree.skills.filter(x => (curList.includes(x.n) && x.n !== selSk.n) || C.free.includes(x.n));
+        const have = new Set(after.map(x => x.t || 1));
+        return after.some(x => { for (let q = 1; q < (x.t || 1); q++) { if (!have.has(q)) return true; } return false; });
+      })();
       selSkill = {
         n: selSk.n, icon: this.icon(selSk.ico || selSk.n, 44),
         meta: (selSk.type || '') + (selSk.target ? ' · ' + selSk.target : '') + (selSk.range ? ' · Range ' + selSk.range : '') + (selSk.en ? ' · ' + selSk.en + ' EN / ' + selSk.cd + ' CD' : ''),
         modBy: selSk.mod ? 'Modified by: ' + selSk.mod.map(m => ({ str: 'Strength', agi: 'Agility', prc: 'Perception', vit: 'Vitality', wil: 'Willpower' }[m] || m)).join(', ') : '',
         desc: this.dynDesc(selSk, C.attrs),
         hasFormulas: !!selSk.dyn,
-        btnLabel: isFree ? 'INNATE — ALWAYS LEARNED' : (learned ? '✓ LEARNED — CLICK TO UNLEARN' : (C.apPool > 0 ? 'LEARN (1 AP)' : 'NO ABILITY POINTS LEFT')),
-        btnBg: isFree ? '#3a3050' : (learned ? '#7a2e1d' : (C.apPool > 0 ? '#5a3a20' : '#2a2435')),
+        btnLabel: isFree ? 'INNATE — ALWAYS LEARNED' : (learned ? (wouldOrphan ? '✓ LEARNED — HIGHER TIERS DEPEND ON IT' : '✓ LEARNED — CLICK TO UNLEARN') : (tierBlocked ? 'REQUIRES A TIER ' + missingTier + ' SKILL IN THIS TREE' : (C.apPool > 0 ? 'LEARN (1 AP)' : 'NO ABILITY POINTS LEFT'))),
+        btnBg: isFree ? '#3a3050' : (learned ? '#7a2e1d' : (tierBlocked ? '#2a2435' : (C.apPool > 0 ? '#5a3a20' : '#2a2435'))),
         btnCursor: isFree ? 'default' : 'pointer',
         toggle: () => {
           if (isFree) return;
           const cur = (s.skills[s.activeTree] || []).slice();
           const i = cur.indexOf(selSk.n);
-          if (i >= 0) cur.splice(i, 1); else { if (C.apPool <= 0) return; cur.push(selSk.n); }
+          if (i >= 0) { if (wouldOrphan) return; cur.splice(i, 1); }
+          else { if (C.apPool <= 0 || tierBlocked) return; cur.push(selSk.n); }
           this.set({ skills: Object.assign({}, s.skills, { [s.activeTree]: cur }) });
         }
       };
@@ -998,11 +1265,23 @@ class Component extends DCLogic {
     const parseEff = txt => { const o = {}; Object.keys(effPats).forEach(k => { const m = txt.match(effPats[k]); if (m) o[k] = parseFloat(m[1]); }); return o; };
     const parseWd = txt => { const m = txt.match(/([+\u2212-]\s*[\d.]+)\s*%\s*(?:WD|Weapon Damage)/i); return m ? parseFloat(m[1].replace('\u2212', '-').replace(/\s/g, '')) : 0; };
 
-    const dmgFor = (wdMul, srcItem, ohEffMul, protOverride) => {
+    const dmgFor = (wdMul, srcItem, ohEffMul, protOverride, xMul) => {
       const src = srcItem || C.dmg; const dd = srcItem ? srcItem.d : C.dmg; let n = 0;
       Object.keys(dd).forEach(t => {
         if (!typeNames[t]) return;
         const base = dd[t] * C.wd / 100 * wdMul * (ohEffMul || 1);
+        const rawProt = protOverride !== undefined ? protOverride : enemyProt * armorScale[armorMode];
+        const ep = rawProt * Math.max(0, 1 - C.ap_ / 100);
+        const red = physTypes.includes(t) ? ep : ep / 2;
+        const resPct = (enemy.res && enemy.res[typeNames[t][2]]) || 0;
+        n += Math.max(0, base - red) * (1 - Math.min(resPct, 100) / 100);
+      });
+      // flat elemental damage added to strikes/shots (Seal of Power etc.) — not scaled by Weapon Damage %,
+      // but multiplied on crits (xMul) like the rest of the attack
+      Object.keys(C.mods).forEach(k => {
+        if (k.indexOf('xdmg_') !== 0) return;
+        const t = k.slice(5); if (!typeNames[t]) return;
+        const base = C.mods[k] * (xMul || 1);
         const rawProt = protOverride !== undefined ? protOverride : enemyProt * armorScale[armorMode];
         const ep = rawProt * Math.max(0, 1 - C.ap_ / 100);
         const red = physTypes.includes(t) ? ep : ep / 2;
@@ -1027,8 +1306,10 @@ class Component extends DCLogic {
     };
     const mkRow = (key, icon, name, type, wdMul, srcItem, ohEffMul, extraEff, frame, bgc) => {
       const nrm = dmgFor(wdMul, srcItem, ohEffMul);
+      // crit multiplies the attack's damage BEFORE enemy protection is subtracted
+      const crt = dmgFor(wdMul * critMultDisp, srcItem, ohEffMul, undefined, critMultDisp);
       const eff = mkEffects(extraEff);
-      return { key, icon, name, type, normal: Math.round(nrm), crit: Math.round(nrm * critMultDisp), _n: nrm, effects: eff, hasEffects: eff.length > 0, frame: frame || '#3a2f23', bgc: bgc || 'rgba(255,255,255,.02)' };
+      return { key, icon, name, type, normal: Math.round(nrm), crit: Math.round(crt), _n: nrm, effects: eff, hasEffects: eff.length > 0, frame: frame || '#3a2f23', bgc: bgc || 'rgba(255,255,255,.02)' };
     };
 
     const atkRows = [];
@@ -1150,7 +1431,7 @@ class Component extends DCLogic {
       enemyXp: (enemy._xp_estimated ? '~' : '') + Math.round((enemy.xp || 0) * (100 + (C.xpGain || 0)) / 100),
       armorTabs, enemyProtEff: Math.round(enemyProt * armorScale[armorMode]),
       atkRows: orderedAtk, hasAtk: orderedAtk.length > 0, critNote, survRows, survStats, enemyAtk: eAtk, dmgBlockPct: Math.round(pBlock * 100) + '%',
-      dmgNote: C.mainItem ? 'Single-strike estimate vs ' + enemy.n + '; multi-hit skills show one strike. Crit = normal × ' + Math.round(critMultDisp * 100) + '% Crit Efficiency.' : 'Equip a main-hand weapon to compute damage.',
+      dmgNote: C.mainItem ? 'Single-strike estimate vs ' + enemy.n + '; multi-hit skills show one strike. Crit = raw damage × ' + Math.round(critMultDisp * 100) + '% Crit Efficiency, applied before enemy Protection.' : 'Equip a main-hand weapon to compute damage.',
       copyLink: () => {
         const b64 = btoa(JSON.stringify(this.sanitize(this.state))).replace(/\+/g,'-').replace(/\//g,'_');
         const url = location.origin + location.pathname + location.search + '#b=' + b64;
@@ -1163,7 +1444,85 @@ class Component extends DCLogic {
       exportBuild: () => this.setState({ ioOpen: true, ioMode: 'export', ioStatus: '', ioText: JSON.stringify(this.sanitize(this.state)) }),
       importBuild: () => this.setState({ ioOpen: true, ioMode: 'import', ioStatus: '', ioText: '' }),
       applyImport: () => { try { const b = this.sanitize(JSON.parse(this.state.ioText)); this.set(b); this.setState({ ioStatus: '✓ build applied' }); } catch (e) { this.setState({ ioStatus: 'Invalid JSON: ' + e.message }); } },
-      closeIo: () => this.setState({ ioOpen: false })
+      closeIo: () => this.setState({ ioOpen: false }),
+
+      expOpen: s.expOpen, toggleExp: () => this.setState({ expOpen: !s.expOpen }),
+      openFinder: () => this.setState({ expOpen: false, finderOpen: !s.finderOpen, seOpen: false }),
+      openSaveEd: () => this.setState({ expOpen: false, seOpen: !s.seOpen, finderOpen: false }),
+      mainVisible: !s.seOpen,
+      seOpen: s.seOpen, seLoaded: s.seLoaded, seNotLoaded: !s.seLoaded, seStatus: s.seStatus, seLog: s.seLog,
+      seFile: e => { const f = e.target.files && e.target.files[0]; if (f) this.seLoadFile(f); },
+      seReset: () => { this._sav = null; this.setState({ seLoaded: false, seStatus: '', seLog: '' }); },
+      seDownload: () => this.seDownload(),
+      ...(() => {
+        const sv = this._sav;
+        if (!s.seLoaded || !sv) return { seSummary: '', seSaltMsg: '', seSaltColor: '#8a9a6e', seAttrs: [], seSkills: [], seItems: [], seSkillCount: 0, seAttrRefund: 0, seRefundAttrs: () => {}, seRespec: () => {} };
+        const M = this._seMod, c = sv.obj.characterDataMap;
+        const tick = () => this.setState({ seTick: s.seTick + 1 });
+        const AK = ['STR', 'AGL', 'PRC', 'Vitality', 'WIL'];
+        const refund = AK.reduce((a, k) => a + Math.max(0, (c[k] || 0) - sv.base[k]), 0);
+        const learned = M.learnedSkills(sv.obj).filter(sk => !sv.hidden || !sv.hidden.has(sk.id));
+        const nChecked = learned.filter(sk => sv.checked[sk.id]).length;
+        return {
+          seSummary: c.nameKey + ' — ' + c.classKey + ', level ' + c.LVL + ' (' + c.XP + ' XP) · HP ' + c.HP + ' · ' + AK.map(k => k.slice(0, 3).toUpperCase() + ' ' + c[k]).join(' · ') + ' · ' + c.SP + ' SP, ' + c.AP + ' AP unspent',
+          seSaltMsg: sv.salt ? '✓ checksum verified — save folder detected as ' + sv.dirs.join(' / ') + '. The edited file must go back into that same folder.' : '✗ could not verify this file\'s checksum — editing disabled to avoid corrupting your save.',
+          seSaltColor: sv.salt ? '#8a9a6e' : '#c98a75',
+          seAttrs: AK.map(k => ({ k: k.slice(0, 3).toUpperCase(), cur: c[k], base: sv.base[k], set: e => { sv.base[k] = Math.max(1, Math.min(30, +e.target.value || 10)); tick(); } })),
+          seAttrRefund: refund,
+          seRefundAttrs: () => { const n = M.resetAttributes(sv.obj, sv.base); this.setState({ seLog: 'refunded ' + n + ' stat points (SP now ' + sv.obj.characterDataMap.SP + ')' }); },
+          seSkills: learned.map(sk => {
+            const on = !!sv.checked[sk.id];
+            return { name: sk.name, icon: this.icon(this.seWikiName(sk.name), 26),
+              border: on ? '#7a2e1d' : '#3d3452', glow: on ? '0 0 8px rgba(122,46,29,.5)' : 'none',
+              bg: on ? 'rgba(122,46,29,.16)' : '#241e18', color: on ? '#e8d8b0' : '#8a7a5e',
+              mark: on ? '#c98a75' : '#5a6a4e', markTxt: on ? 'UNLEARN' : 'keep',
+              toggle: () => { sv.checked[sk.id] = !on; tick(); } };
+          }),
+          seSkillCount: nChecked,
+          seRespec: () => { const ids = learned.filter(sk => sv.checked[sk.id]).map(sk => sk.id); const n = M.unlearnSkills(sv.obj, ids); this.setState({ seLog: 'unlearned ' + n + ' skills (AP now ' + sv.obj.characterDataMap.AP + ')' }); },
+          seDamagedCount: M.listItems(sv.obj).filter(it => it.maxDur > 0 && it.dur < it.maxDur).length,
+          seRepairAll: () => { const n = M.repairAll(sv.obj); this.setState({ seLog: 'repaired ' + n + ' items to full durability' }); },
+          seItems: M.listItems(sv.obj).filter(it => it.maxDur > 0).map(it => {
+            const damaged = it.dur < it.maxDur;
+            const pct = it.dur / it.maxDur;
+            return {
+              name: it.name, color: it.cursed ? '#a97ac0' : '#c9b58a',
+              durTxt: Math.floor(it.dur) + ' / ' + it.maxDur,
+              durColor: pct >= 1 ? '#8a9a6e' : pct > 0.5 ? '#c9a959' : '#c98a75',
+              damaged,
+              repair: () => { M.repairItem(sv.obj, it.i); tick(); }
+            };
+          })
+        };
+      })(),
+      finderOpen: s.finderOpen, toggleFinder: () => this.setState({ finderOpen: !s.finderOpen }),
+      finderWeapon: s.finderWeapon, finderOff: s.finderOff, finderLevel: s.finderLvl,
+      finderLvl: s.finderLvl, onFinderLvl: e => this.setState({ finderLvl: +e.target.value }),
+      finderLvlOpts: [{ v: 10, label: '10 — early' }, { v: 16, label: '16 — mid' }, { v: 22, label: '22 — late' }, { v: 30, label: '30 — endgame' }],
+      finderWeaponOpts: [['sword','Swords'],['axe','Axes'],['mace','Maces'],['dagger','Daggers'],['spear','Spears'],['staff','Staves'],['sword2h','2H Swords'],['axe2h','2H Axes'],['mace2h','2H Maces'],['bow','Bows'],['crossbow','Crossbows'],['sling','Slings']].map(([v, label]) => ({ v, label })),
+      finderIs2H: this.is2H(s.finderWeapon), finderNot2H: !this.is2H(s.finderWeapon),
+      finderOffOpts: [{ v: 'none', label: 'Free hand' }, { v: 'shield', label: 'Shield' }, { v: 'dual', label: 'Dual wield (same class)' }],
+      onFinderWeapon: e => { const v = e.target.value; this.setState({ finderWeapon: v, finderOff: this.is2H(v) ? 'none' : s.finderOff }); },
+      onFinderOff: e => this.setState({ finderOff: e.target.value }),
+      finderGoalChips: [
+        ['damage','Damage'],['crit','Crit'],['onhit','On-Hit Bonus Damage'],['evasion','Dodge & Evasion'],['block','Block'],['counter','Counter'],['tank','Tankiness'],['bleed','Bleed'],['stun','Stun'],['daze','Daze'],['stagger','Stagger'],['knockback','Knockback'],['immobilize','Immobilize'],['control','Control (all CC)'],['energy','Energy Sustain'],['lifedrain','Life Drain'],['magic','Magic Power'],['cooldowns','Cooldowns']
+      ].map(([id, label]) => {
+        const on = s.finderGoals.includes(id);
+        return { label, border: on ? '#c9a959' : '#4a3d2e', bg: on ? 'rgba(201,169,89,.18)' : '#241e18', color: on ? '#e8d8b0' : '#8a7a5e',
+          toggle: () => { const g = s.finderGoals.slice(); const i = g.indexOf(id); if (i >= 0) g.splice(i, 1); else { if (g.length >= 5) g.shift(); g.push(id); } this.setState({ finderGoals: g }); } };
+      }),
+      runFinder: () => this.runFinder(),
+      finderStatus: s.finderStatus,
+      hasFinderResults: !!(s.finderResults && s.finderResults.length),
+      finderResults: (s.finderResults || []).map(fb => ({
+        name: fb.name, offMeta: fb.offMeta, score: fb.score, treesLine: fb.treesLine, attrLine: fb.attrLine || '— (base attributes)',
+        frame: fb.offMeta ? '#8a5a78' : '#4a3d2e',
+        skills: fb.skills.map(sk => ({ ord: sk.ord, n: sk.n, tier: sk.tier, tree: sk.tree, why: sk.why, icon: this.icon(sk.n, 22) })),
+        stages: fb.stages.map(st => ({ label: st.label, line: st.picks.map(p => (p.uniq ? '★' : '') + p.n).join(' · ') })),
+        notes: (fb.notes || []).map(txt => ({ txt })), hasNotes: !!(fb.notes && fb.notes.length),
+        applyStage: s.finderLvl < 8 ? 'early gear' : s.finderLvl < 16 ? 'mid gear' : 'late gear',
+        apply: () => this.applyFinderBuild(fb)
+      }))
     };
   }
 }

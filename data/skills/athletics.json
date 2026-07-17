@@ -40,7 +40,15 @@
    "n": "Not This Time",
    "t": 1,
    "type": "Passive",
-   "desc": "Full blocks and dodges grant +5% Control Resistance and +5% Move Resistance for 5 turns.\n\nThe effect stacks up to 2 times.\n\nOnce per 90 turns, removes Stun, Daze, Stagger, or Immobilization upon receiving them."
+   "desc": "Full blocks and dodges grant +5% Control Resistance and +5% Move Resistance for 5 turns.\n\nThe effect stacks up to 2 times.\n\nOnce per 90 turns, removes Stun, Daze, Stagger, or Immobilization upon receiving them.",
+   "fx": {
+    "buff": true,
+    "stacks": 2,
+    "per_stack": {
+     "ctr": 5,
+     "mvr": 5
+    }
+   }
   },
   {
    "n": "Mighty Kick",

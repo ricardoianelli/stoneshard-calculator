@@ -73,7 +73,15 @@
    "n": "Triumph",
    "t": 2,
    "type": "Passive",
-   "desc": "Killing enemies with staves grants +12% Crit Chance and +12% Miracle Chance for 10 turns.\n\nThe effect stacks up to 3 times.\n\nGrants additional +50% Energy Drain to critical staff strikes and allows them to reduce all cooldowns by 1 turn."
+   "desc": "Killing enemies with staves grants +12% Crit Chance and +12% Miracle Chance for 10 turns.\n\nThe effect stacks up to 3 times.\n\nGrants additional +50% Energy Drain to critical staff strikes and allows them to reduce all cooldowns by 1 turn.",
+   "fx": {
+    "buff": true,
+    "stacks": 3,
+    "per_stack": {
+     "cc": 12,
+     "mic": 12
+    }
+   }
   },
   {
    "n": "Peacemaker",

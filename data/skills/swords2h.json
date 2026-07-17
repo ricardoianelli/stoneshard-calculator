@@ -143,7 +143,15 @@
    "t": 3,
    "type": "Passive",
    "req": "two-handed sword",
-   "desc": "Two-handed sword hits against Staggered targets grant +10% Bodypart Damage and +10% Bleed Chance for 5 turns.\n\nThe effect stacks up to 3 times."
+   "desc": "Two-handed sword hits against Staggered targets grant +10% Bodypart Damage and +10% Bleed Chance for 5 turns.\n\nThe effect stacks up to 3 times.",
+   "fx": {
+    "buff": true,
+    "stacks": 3,
+    "per_stack": {
+     "bpd": 10,
+     "bl": 10
+    }
+   }
   }
  ]
 }

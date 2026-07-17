@@ -59,12 +59,12 @@
    "desc": "Remaining on the same tile grants -3% Cooldowns Duration, +3% Weapon Damage and +3% Counter Chance for 4 turns.\n\nThe effect stacks up to 3 times.\n\nMoving to other tiles removes the effect (except when moving with Maneuvers).",
    "fx": {
     "buff": true,
+    "stacks": 3,
     "per_stack": {
      "cd": -3,
      "wd": 3,
      "co": 3
-    },
-    "stacks": 3
+    }
    }
   },
   {

@@ -46,7 +46,18 @@
    "n": "Arcane Might",
    "t": 1,
    "type": "Passive",
-   "desc": "Dealing Arcane Damage with strikes, shots, and spells grants +2% Accuracy, -2% Fumble Chance, -2% Backfire Chance, +2% Crit Chance, and +2% Miracle Chance for 4 turns.\n\nThe effect stacks up to 3 times.\n\nTeleporting grants +1 Range to Arcanistics spells and -5% Backfire Damage Change for 4 turns."
+   "desc": "Dealing Arcane Damage with strikes, shots, and spells grants +2% Accuracy, -2% Fumble Chance, -2% Backfire Chance, +2% Crit Chance, and +2% Miracle Chance for 4 turns.\n\nThe effect stacks up to 3 times.\n\nTeleporting grants +1 Range to Arcanistics spells and -5% Backfire Damage Change for 4 turns.",
+   "fx": {
+    "buff": true,
+    "stacks": 3,
+    "per_stack": {
+     "acc": 2,
+     "fum": -2,
+     "bfc": -2,
+     "cc": 2,
+     "mic": 2
+    }
+   }
   },
   {
    "n": "Time Echo",

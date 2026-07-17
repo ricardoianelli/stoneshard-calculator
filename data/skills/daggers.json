@@ -106,14 +106,29 @@
    "t": 3,
    "type": "Passive",
    "req": "dagger",
-   "desc": "Dagger strikes grant +5% Counter Chance for 6 turns.\n\nThe effect stacks up to 4 times.\n\nGrants dagger counters +33% Weapon Damage."
+   "desc": "Dagger strikes grant +5% Counter Chance for 6 turns.\n\nThe effect stacks up to 4 times.\n\nGrants dagger counters +33% Weapon Damage.",
+   "fx": {
+    "buff": true,
+    "stacks": 4,
+    "per_stack": {
+     "co": 5
+    }
+   }
   },
   {
    "n": "Danse Macabre",
    "t": 3,
    "type": "Passive",
    "req": "dagger",
-   "desc": "Critical dagger strikes grant +4% Dodge Chance for 8 turns and apply their target with +5% Damage Taken and -5% Bleed Resistance for 8 turns.\n\nThe effect stacks up to 4 times."
+   "desc": "Critical dagger strikes grant +4% Dodge Chance for 8 turns and apply their target with +5% Damage Taken and -5% Bleed Resistance for 8 turns.\n\nThe effect stacks up to 4 times.",
+   "fx": {
+    "buff": true,
+    "stacks": 4,
+    "per_stack": {
+     "dg": 4,
+     "dt": 5
+    }
+   }
   },
   {
    "n": "Coup de Grace",

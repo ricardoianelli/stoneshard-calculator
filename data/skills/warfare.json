@@ -38,7 +38,15 @@
    "n": "Setup",
    "t": 1,
    "type": "Passive",
-   "desc": "Skipping a turn, switching to another loadout, or using Stances and Maneuvers grants +5% Accuracy, -5% Damage Taken, and -5% Abilities Energy Cost for 3 turns.\n\nThe effect stacks up to 2 times."
+   "desc": "Skipping a turn, switching to another loadout, or using Stances and Maneuvers grants +5% Accuracy, -5% Damage Taken, and -5% Abilities Energy Cost for 3 turns.\n\nThe effect stacks up to 2 times.",
+   "fx": {
+    "buff": true,
+    "stacks": 2,
+    "per_stack": {
+     "acc": 5,
+     "dt": -5
+    }
+   }
   },
   {
    "n": "War Cry",
