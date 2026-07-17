@@ -112,7 +112,87 @@ export async function buildSav(obj, salt) {
   return compressed;
 }
 
-// ---- domain helpers ----
+// ---- character cloning ----
+// Every signed file's salt is 'stOne!' + its directory path segments (from characters_v1) joined by '!' + '!shArd'.
+// Cloning = copy folder tree, re-sign each .sav/.map with the destination folder name. preview.png etc. copy verbatim.
+const CRC_T = (() => { const t = new Int32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ c >>> 1 : c >>> 1; t[n] = c; } return t; })();
+export function crc32(u8) { let c = -1; for (let i = 0; i < u8.length; i++) c = CRC_T[(c ^ u8[i]) & 0xff] ^ c >>> 8; return (c ^ -1) >>> 0; }
+
+export async function resignFile(bytes, dirs) {
+  const out = new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate'))).arrayBuffer());
+  const txt = new TextDecoder().decode(out);
+  const endJson = txt.lastIndexOf('}') + 1;
+  const json = txt.slice(0, endJson);
+  const enc = new TextEncoder();
+  const hash = md5Salted(enc.encode(json), 'stOne!' + dirs.join('!') + '!shArd');
+  const jsonBytes = enc.encode(json);
+  const payload = new Uint8Array(jsonBytes.length + 33);
+  payload.set(jsonBytes); payload.set(enc.encode(hash), jsonBytes.length); payload[payload.length - 1] = 0;
+  return new Uint8Array(await new Response(new Blob([payload]).stream().pipeThrough(new CompressionStream('deflate'))).arrayBuffer());
+}
+
+export function verifyMapFile(out, dirs) { // out = decompressed bytes
+  const txt = new TextDecoder().decode(out);
+  const endJson = txt.lastIndexOf('}') + 1;
+  const json = txt.slice(0, endJson), hash = txt.slice(endJson, endJson + 32);
+  return { obj: JSON.parse(json), ok: md5Salted(new TextEncoder().encode(json), 'stOne!' + dirs.join('!') + '!shArd') === hash };
+}
+
+export function makeZip(entries) { // entries: [{path, data:Uint8Array}] — stored, no compression
+  const enc = new TextEncoder();
+  const locals = [], centrals = [];
+  let offset = 0;
+  for (const e of entries) {
+    const nameB = enc.encode(e.path);
+    const crc = crc32(e.data);
+    const lh = new Uint8Array(30 + nameB.length);
+    const dv = new DataView(lh.buffer);
+    dv.setUint32(0, 0x04034b50, true); dv.setUint16(4, 20, true); dv.setUint16(8, 0, true);
+    dv.setUint32(14, crc, true); dv.setUint32(18, e.data.length, true); dv.setUint32(22, e.data.length, true);
+    dv.setUint16(26, nameB.length, true);
+    lh.set(nameB, 30);
+    locals.push(lh, e.data);
+    const ch = new Uint8Array(46 + nameB.length);
+    const cv = new DataView(ch.buffer);
+    cv.setUint32(0, 0x02014b50, true); cv.setUint16(4, 20, true); cv.setUint16(6, 20, true);
+    cv.setUint32(16, crc, true); cv.setUint32(20, e.data.length, true); cv.setUint32(24, e.data.length, true);
+    cv.setUint16(28, nameB.length, true); cv.setUint32(42, offset, true);
+    ch.set(nameB, 46);
+    centrals.push(ch);
+    offset += lh.length + e.data.length;
+  }
+  const cdStart = offset;
+  let cdLen = 0; centrals.forEach(c => cdLen += c.length);
+  const eocd = new Uint8Array(22);
+  const ev = new DataView(eocd.buffer);
+  ev.setUint32(0, 0x06054b50, true); ev.setUint16(8, entries.length, true); ev.setUint16(10, entries.length, true);
+  ev.setUint32(12, cdLen, true); ev.setUint32(16, cdStart, true);
+  const total = offset + cdLen + 22;
+  const zip = new Uint8Array(total);
+  let p = 0;
+  for (const b of locals) { zip.set(b, p); p += b.length; }
+  for (const b of centrals) { zip.set(b, p); p += b.length; }
+  zip.set(eocd, p);
+  return zip;
+}
+
+export async function cloneCharacter(files, srcChar, dstChar) {
+  // files: [{path (segments after characters_v1, e.g. 'character_4/exitsave_1/data.sav'), bytes:Uint8Array}]
+  const entries = [];
+  for (const f of files) {
+    const segs = f.path.split('/');
+    if (segs[0] !== srcChar) continue;
+    const newSegs = [dstChar, ...segs.slice(1)];
+    const fname = segs[segs.length - 1];
+    if (/\.(sav|map)$/i.test(fname) && !/backup/i.test(f.path)) {
+      const dirs = ['characters_v1', ...newSegs.slice(0, -1)];
+      entries.push({ path: newSegs.join('/'), data: await resignFile(f.bytes, dirs) });
+    } else {
+      entries.push({ path: newSegs.join('/'), data: f.bytes });
+    }
+  }
+  return makeZip(entries);
+}
 export function prettySkill(id) {
   return id.replace(/^o_pass_skill_/, '').replace(/^o_skill_/, '').replace(/_ico$/, '')
     .split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
@@ -128,7 +208,7 @@ export function unlearnSkills(obj, ids) {
   const set = new Set(ids);
   let n = 0;
   for (let i = 0; i < sl.length; i += 5) { if (set.has(sl[i]) && (sl[i + 1] === 1 || sl[i + 1] === true)) { sl[i + 1] = sl[i + 1] === true ? false : 0; n++; } }
-  obj.characterDataMap.AP = (obj.characterDataMap.AP || 0) + n;
+  obj.characterDataMap.SP = (obj.characterDataMap.SP || 0) + n; // in the save, "SP" = ability/skill points (the game UI shows it as AP)
   // also clear them from the quickbar panels so the game doesn't reference unlearned skills
   const panels = obj.skillsDataMap.skillsPanelDataList;
   const bare = new Set(ids.map(x => x.replace(/_ico$/, '')));
@@ -143,7 +223,7 @@ export function resetAttributes(obj, base) {
     const cur = c[k] || 0, b = base[k];
     if (cur > b) { refund += cur - b; c[k] = b; }
   }
-  c.SP = (c.SP || 0) + refund;
+  c.AP = (c.AP || 0) + refund; // in the save, "AP" = attribute/stat points (the game UI shows it as SP)
   return refund;
 }
 export function listItems(obj) {
