@@ -69,6 +69,12 @@ UNVERIFIED / documented but no published values (18): Satiety, Hunger, Terrible 
 
 Finding: the ~82 remaining roster effects are overwhelmingly wiki STUBS with no published modifier values (psyche states, magical conditions like Stone Skin/Stone Armor, drug Aftermaths, injury tiers). All combat-relevant effects with published values are now extracted verbatim. Further verbatim gains require in-game datamining, not wiki fetches.
 
+**Skills — second-pass audit (2026-07, vs current wiki tooltips):** Re-verified all 21 tree files against the live `*_(skill_tree)` pages by extracting each skill's Values tooltip (en/cd/range/type/modified-by/tier) and comparing to the JSON. Findings & fixes:
+- **Electromancy fully re-extracted** — the tree was reworked since the 0.9.4.14 capture; the file had only 12 skills (2 unnamed placeholders). Restored the full current 14-skill roster verbatim (added Residual Charge, Short Circuit, Potential Difference, Unlimited Power; dropped obsolete Cellular Excitation/Superconductivity), with correct tiers/headers. `dyn` omitted (wiki no longer publishes per-skill formulas — no scaling invented; desc holds exact values).
+- **Magic spell `dyn` base damage re-synced** (pyromancy, geomancy, arcanistics): the `dyn` formulas were stale while `desc` already matched current wiki. Corrected coefficients (e.g. Fire Barrage 7→6, Ring of Fire 14→12, Runic Boulder 6→4, Boulder Toss 14/7→12/6, Wormhole 10→8, Schism 9→11, Phantasm 26→22).
+- **Weapon/utility value fixes:** maces Concussion (trigger + −6/−8/−10, 6t, ×3), ranged Hunter's Mark (+10/+3/+10, −10s), dual_wielding Berserk Tradition (−0.3/+4/+1/+3/+10 & fx), swords2h Parry (+20% BP Recovery)/Feast of Steel (+2.5% Crit)/Heroic Charge (trimmed removed clauses), shields Retaliation (−10% WD), armored_combat Brace for Impact! (−25% CD; dropped removed Control/Move Res).
+- Header (en/cd/range), `dyn` base-damage, and `fx` applied-mod audits all pass clean afterward. Only residual: ranged Taking Aim shows +59% vs +60% Accuracy — a mechanic that scales with learned abilities (left as-is; both desc and dyn note the scaling).
+
 **Consumables:** data/consumables.json currently holds stat-affecting potions/food/beverages/drugs + psyche states. Remaining: full Food, Beverages, Potions, Drugs, Medicine, Scrolls list pages (including non-stat items) if full coverage is desired.
 
 **Items:** weapons (12 classes), armor (7 slots incl. cloaks), rings, amulets are complete from list pages. Remaining: Ammunition, Tools & Traps, Artifacts.

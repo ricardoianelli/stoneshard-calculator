@@ -12156,6 +12156,7 @@
   },
   {
    "n": "Phantasm",
+   "tier": 1,
    "hp": 45,
    "energy": 1000,
    "dodge": 40,
@@ -12206,6 +12207,7 @@
   },
   {
    "n": "Straw Dummy (Medium)",
+   "tier": 1,
    "hp": 1000,
    "energy": 1000,
    "dodge": 0,
@@ -12243,6 +12245,7 @@
   },
   {
    "n": "Straw Dummy (Armored)",
+   "tier": 1,
    "hp": 1000,
    "energy": 1000,
    "dodge": 0,
