@@ -24,7 +24,7 @@
     "rng"
    ],
    "desc": "Summons runic boulder: 4 Arcane to adjacent enemies, 75% knockback. Each boulder: 1 stack 'Runic Empowerment' (+5% Magic Power, +10% Geomantic Power, -10% Abilities Cost, -3 Energy/turn upkeep). Max 3 boulders; durability scales with Max Energy. Enemy-destroyed boulder: Confuses caster 4-6 turns, 4 Arcane to caster.",
-   "dyn": "Summons a runic boulder on the targeted tile, dealing {6*(1+(GEO-100)/100)*MP/100} Arcane Damage to every enemy adjacent to it and with {75*(MP+GEO)/200}% chance knocking them back.\n\nEach boulder grants the caster 1 stack of \"Runic Empowerment\":\n+5% Magic Power\n+10% Geomantic Power\n-10% Abilities Energy Cost\n-3 Energy Replenishment\n\nOnly 3 boulders can be summoned simultaneously, and their Durability depends on the caster's Max Energy.\n\nBoulders fall apart when they leave the caster's Vision or if the caster runs out of Energy.\n\nWhen a boulder is destroyed by enemies, Confuses the caster for 4-6 turns and deals {6*(1+(GEO-100)/100)*MP/100} Arcane Damage to them."
+   "dyn": "Summons a runic boulder on the targeted tile, dealing {4*(1+(GEO-100)/100)*MP/100} Arcane Damage to every enemy adjacent to it and with {75*(MP+GEO)/200}% chance knocking them back.\n\nEach boulder grants the caster 1 stack of \"Runic Empowerment\":\n+5% Magic Power\n+10% Geomantic Power\n-10% Abilities Energy Cost\n-3 Energy Replenishment\n\nOnly 3 boulders can be summoned simultaneously, and their Durability depends on the caster's Max Energy.\n\nBoulders fall apart when they leave the caster's Vision or if the caster runs out of Energy.\n\nWhen a boulder is destroyed by enemies, Confuses the caster for 4-6 turns and deals {4*(1+(GEO-100)/100)*MP/100} Arcane Damage to them."
   },
   {
    "n": "Stone Armor",
@@ -48,7 +48,7 @@
     "mvr": 20,
     "ctr": 20
    },
-   "dyn": "Activates \"Stone Armor\" for 4 turns (+4 turns for each stack of \"Runic Empowerment\"):\n+15% Physical Resistance\n+20% Nature Resistance\n+15% Magic Resistance\n+20% Bleed Resistance\n+20% Move Resistance\n+20% Control Resistance\n\nSummoning runic boulders prolongs the effect's duration by 2 turns.\n\nWhen the effect expires or is activated again, the armor explodes, dealing {6*(MP+GEO)/200} Arcane and {6*(MP+GEO)/200} Crushing Damage to all adjacent targets, and with {50*(MP+GEO)/200}% chance Knocking them back.\n\nThe Crushing Damage increases by 100% for each strike or shot received over the course of the effect (but no more than {3*WIL})."
+   "dyn": "Activates \"Stone Armor\" for 4 turns (+4 turns for each stack of \"Runic Empowerment\"):\n+15% Physical Resistance\n+20% Nature Resistance\n+15% Magic Resistance\n+20% Bleed Resistance\n+20% Move Resistance\n+20% Control Resistance\n\nSummoning runic boulders prolongs the effect's duration by 2 turns.\n\nWhen the effect expires or is activated again, the armor explodes, dealing {6*(MP+GEO)/200} Arcane and {4*(MP+GEO)/200} Crushing Damage to all adjacent targets, and with {50*(MP+GEO)/200}% chance Knocking them back.\n\nThe Crushing Damage increases by 100% for each strike or shot received over the course of the effect (but no more than {3*WIL})."
   },
   {
    "n": "Rune of Fortifying",
@@ -107,7 +107,7 @@
     "rng"
    ],
    "desc": "Destroys chosen boulder: 5x5 earthquake 8 turns. Inside: 3 Crushing/turn, burns 3% Max Energy (max 10), 5% Daze 3 turns, -5% Control Res and -10% Move Res (stacks, persists).",
-   "dyn": "Destroys the chosen runic boulder, creating an earthquake in a 5x5 tile area, which persists for 8 turns.\n\nRemaining in the earthquake:\nDeals {4*(MP+GEO)/200} Crushing Damage\nBurns {3*(MP+GEO)/200}% Max Energy (but no more than {WIL})\nHas {5*(MP+GEO)/200}% chance to cause Daze for 3 turns\nApplies with -5% Control Resistance and -10% Move Resistance (the effect stacks and persists until the spell expires)."
+   "dyn": "Destroys the chosen runic boulder, creating an earthquake in a 5x5 tile area, which persists for 8 turns.\n\nRemaining in the earthquake:\nDeals {3*(MP+GEO)/200} Crushing Damage\nBurns {3*(MP+GEO)/200}% Max Energy (but no more than {WIL})\nHas {5*(MP+GEO)/200}% chance to cause Daze for 3 turns\nApplies with -5% Control Resistance and -10% Move Resistance (the effect stacks and persists until the spell expires)."
   },
   {
    "n": "Rune of Binding",
@@ -156,7 +156,7 @@
     "rng"
    ],
    "desc": "Destroys chosen boulder: 8 Arcane + 8 Crushing to 5x5, 40% knockback, 25% Stun. +5% Max Energy per enemy in area.",
-   "dyn": "Destroys the chosen runic boulder, dealing {8*(1+(GEO-100)/100)*MP/100} Arcane and {10*(MP+GEO)/200} Crushing Damage to all targets in a 5x5 tile area.\n\nWith {40*(MP+GEO)/200}% chance knocks the affected targets back and with {25*(MP+GEO)/200}% chance Stuns them.\n\nReplenishes 5% Max Energy for each enemy within the spell's area of effect."
+   "dyn": "Destroys the chosen runic boulder, dealing {8*(1+(GEO-100)/100)*MP/100} Arcane and {8*(MP+GEO)/200} Crushing Damage to all targets in a 5x5 tile area.\n\nWith {40*(MP+GEO)/200}% chance knocks the affected targets back and with {25*(MP+GEO)/200}% chance Stuns them.\n\nReplenishes 5% Max Energy for each enemy within the spell's area of effect."
   },
   {
    "n": "Boulder Toss",
@@ -172,7 +172,7 @@
     "rng"
    ],
    "desc": "Throws chosen boulder: 12 Crushing + 6 Arcane; 70% knockback, 15% Stun or Daze.",
-   "dyn": "Throws the chosen runic boulder at a targeted tile, dealing {14*(MP+GEO)/200} Crushing and {7*(1+(GEO-100)/100)*MP/100} Arcane Damage.\n\nHitting the target with {70*(MP+GEO)/200}% chance knocks it back and with {15*(MP+GEO)/200}% chance Stuns or Dazes it.\n\nEach tile of distance to the target increases the throw's damage by 12% and also increases the duration of the applied Stun or Daze."
+   "dyn": "Throws the chosen runic boulder at a targeted tile, dealing {12*(MP+GEO)/200} Crushing and {6*(1+(GEO-100)/100)*MP/100} Arcane Damage.\n\nHitting the target with {70*(MP+GEO)/200}% chance knocks it back and with {15*(MP+GEO)/200}% chance Stuns or Dazes it.\n\nEach tile of distance to the target increases the throw's damage by 12% and also increases the duration of the applied Stun or Daze."
   },
   {
    "n": "Rune of Absorption",

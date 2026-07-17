@@ -145,7 +145,7 @@
    "en": 18,
    "cd": 16,
    "req": "ranged weapon + ammo",
-   "desc": "Activates \"Thrill of the Hunt\" for 15 turns:\n+7% Bodypart Damage\n+3% Crit Chance\n+5% Crit Efficiency\n\nApplies the target with \"Hunter's Mark\" for 15 turns:\n-7% Bleed Resistance\n-7% Move Resistance\n-7% Control Resistance\n\nThen takes a shot at the target. While affected by \"Thrill of the Hunt\", damaging shots apply their target with \"Hunter's Mark\" or with an extra stack of the effect (up to IV).\n\nKilling targets affected by \"Hunter's Mark\" or applying it to new targets grants an extra stack of \"Thrill of the Hunt\" (up to IV).\n\nSwitching to another loadout doesn't remove the effects."
+   "desc": "Activates \"Thrill of the Hunt\" for 15 turns:\n+10% Bodypart Damage\n+3% Crit Chance\n+10% Crit Efficiency\n\nApplies the target with \"Hunter's Mark\" for 15 turns:\n-10% Bleed Resistance\n-10% Move Resistance\n-10% Control Resistance\n\nThen takes a shot at the target. While affected by \"Thrill of the Hunt\", damaging shots apply their target with \"Hunter's Mark\" or with an extra stack of the effect (up to IV).\n\nKilling targets affected by \"Hunter's Mark\" or applying it to new targets grants an extra stack of \"Thrill of the Hunt\" (up to IV).\n\nSwitching to another loadout doesn't remove the effects."
   },
   {
    "n": "Shoot to Kill",

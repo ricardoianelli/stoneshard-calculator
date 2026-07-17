@@ -51,7 +51,7 @@
    ],
    "req": "two-handed sword",
    "desc": "'Parry' 3 turns: +20% Block Chance, +10% Max Block Power, +20% Counter; full Block Power refill. Blocked strikes: -2 turns CD, +20% BP Recovery 3 turns; counters +2% Crit Chance 5 turns (x4).",
-   "dyn": "Activates \"Parry\" for 3 turns:\n+{AGL+PRC}% Block Chance\n+{STR}% Max Block Power\n+{10+PRC}% Counter Chance\n\nFully replenishes Block Power.\n\nWhile affected by \"Parry\", each blocked strike reduces the skill's cooldown by 2 turns and grants +10% Block Power Recovery for 3 turns, and each counter grants +2% Crit Chance for 5 turns.\n\nThe effect stacks up to 4 times."
+   "dyn": "Activates \"Parry\" for 3 turns:\n+{AGL+PRC}% Block Chance\n+{STR}% Max Block Power\n+{10+PRC}% Counter Chance\n\nFully replenishes Block Power.\n\nWhile affected by \"Parry\", each blocked strike reduces the skill's cooldown by 2 turns and grants +20% Block Power Recovery for 3 turns, and each counter grants +2% Crit Chance for 5 turns.\n\nThe effect stacks up to 4 times."
   },
   {
    "n": "Recklessness",
@@ -77,7 +77,7 @@
    "en": 14,
    "cd": 12,
    "req": "two-handed sword",
-   "desc": "Activates \"Feast of Steel\" for 10 turns:\n+5% Counter Chance\n-4% Fumble Chance\n+5% Accuracy\n+3% Crit Chance\nGrants +100% Stagger Chance to every third strike.\n\nUsing the ability tree's skills grants an extra stack of the effect (up to IV).\n\nBasic two-handed sword strikes prolong the effect's duration by 1 turn (up to 10) but reduce its number of stacks (no more than once per turn).\n\nOnly one Stance effect can be active at a time.",
+   "desc": "Activates \"Feast of Steel\" for 10 turns:\n+5% Counter Chance\n-4% Fumble Chance\n+5% Accuracy\n+2.5% Crit Chance\nGrants +100% Stagger Chance to every third strike.\n\nUsing the ability tree's skills grants an extra stack of the effect (up to IV).\n\nBasic two-handed sword strikes prolong the effect's duration by 1 turn (up to 10) but reduce its number of stacks (no more than once per turn).\n\nOnly one Stance effect can be active at a time.",
    "fx": {
     "buff": true,
     "per_stack": {
@@ -136,7 +136,7 @@
    ],
    "req": "two-handed sword",
    "desc": "Charge + strike +90% Stagger. Each tile traveled: +10% WD, +5% Crit Chance.",
-   "dyn": "Performs a charge towards the target and delivers a strike with +{70+AGL+STR}% Stagger Chance.\n\nEach traveled tile grants the strike +{PRC}% Weapon Damage and +{0.25*STR+0.25*AGL}% Crit Chance.\n\nIf the ability tree's skill kills its target, instantly refreshes its cooldown.\n\nIf the target survives, grants +5% Weapon Damage for 4 turns for each adjacent enemy.\n\nThe effect stacks up to 3 times."
+   "dyn": "Performs a charge towards the target and delivers a strike with +{70+AGL+STR}% Stagger Chance.\n\nEach traveled tile grants the strike +{PRC}% Weapon Damage and +{0.25*STR+0.25*AGL}% Crit Chance."
   },
   {
    "n": "Courage",

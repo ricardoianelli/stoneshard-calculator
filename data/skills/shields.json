@@ -124,7 +124,7 @@
    "t": 3,
    "type": "Passive",
    "req": "shield",
-   "desc": "Grants \"Shield Bash\" and \"Breakthrough\" +50% Damage and increases their Crit Chance by half.\n\nUsing these skills applies the target with -10% Accuracy, -10% Counter Chance, and -15% Weapon Damage for 5 turns.\n\nThe effect stacks up to 2 times.",
+   "desc": "Grants \"Shield Bash\" and \"Breakthrough\" +50% Damage and increases their Crit Chance by half.\n\nUsing these skills applies the target with -10% Accuracy, -10% Counter Chance, and -10% Weapon Damage for 5 turns.\n\nThe effect stacks up to 2 times.",
    "fx": {
     "buff": true,
     "stacks": 2,
