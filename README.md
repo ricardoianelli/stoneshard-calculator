@@ -2,7 +2,7 @@
 
 An unofficial, fan-made character build calculator for [Stoneshard](https://stoneshard.com/) (v0.9.4 "Rags to Riches").
 
-**[Try it here]([https://ricardoianelli.github.io/stoneshard-calculator/](https://github.com/ricardoianelli/stoneshard-calculator))**
+**[Try it here](https://stoneshard-calculator.com/)** 
 
 ![Stoneshard Build Calculator](https://stoneshard.com/wiki/images/thumb/d/d2/Stoneshard.png/150px-Stoneshard.png)
 
