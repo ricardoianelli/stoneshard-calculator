@@ -2,7 +2,7 @@
 
 An unofficial, fan-made character build calculator for [Stoneshard](https://stoneshard.com/) (v0.9.4 "Rags to Riches").
 
-**[Try it here](https://ricardoianelli.github.io/stoneshard-calculator/)** *(update this link after deploying)*
+**[Try it here](https://YOURNAME.github.io/stoneshard-calculator/)** *(update this link after deploying)*
 
 ![Stoneshard Build Calculator](https://stoneshard.com/wiki/images/thumb/d/d2/Stoneshard.png/150px-Stoneshard.png)
 
@@ -15,6 +15,7 @@ An unofficial, fan-made character build calculator for [Stoneshard](https://ston
 - Full character-sheet stat panel mirroring the in-game screen (offense, defense, magic, resistances)
 - Damage preview vs. a roster of enemies: per-attack normal/crit damage, effect chances (bleed, daze, stun…), hit chance, and XP for the kill
 - Toggleable buffs (potions, food, drugs, psyche states), character trait counters, build pinning with stat deltas, a saved-build library, and shareable build links
+- **Build Finder**: pick a weapon class, off-hand mode, level, and 1–3 focus goals (damage, crit, evasion, CC types, sustain…) — a deterministic beam search over the verbatim wiki data proposes complete builds (skills in learn order with tier-chain enablers, landmark-aware attribute allocation, early/mid/late gear per slot, synergy notes) and applies them to the calculator in one click
 
 ## Data & accuracy
 

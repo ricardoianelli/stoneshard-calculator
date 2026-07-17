@@ -127,7 +127,15 @@
    "t": 3,
    "type": "Passive",
    "req": "ranged weapon + ammo",
-   "desc": "Grants +5% Accuracy to the ability tree's Attack skills.\n\nWhile affected by \"Taking Aim\", hitting targets with shots reduces the ability tree's cooldowns by 1 turn and grants +5% Weapon Damage for 8 turns.\n\nThe effect stacks up to 4 times.\n\nIf equipped with a crossbow or a sling, both effects trigger twice per shot."
+   "desc": "Grants +5% Accuracy to the ability tree's Attack skills.\n\nWhile affected by \"Taking Aim\", hitting targets with shots reduces the ability tree's cooldowns by 1 turn and grants +5% Weapon Damage for 8 turns.\n\nThe effect stacks up to 4 times.\n\nIf equipped with a crossbow or a sling, both effects trigger twice per shot.",
+   "fx": {
+    "buff": true,
+    "stacks": 4,
+    "per_stack": {
+     "acc": 5,
+     "wd": 5
+    }
+   }
   },
   {
    "n": "Hunter's Mark",

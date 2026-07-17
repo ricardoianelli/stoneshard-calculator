@@ -48,7 +48,10 @@
    "fx": {
     "buff": true,
     "mp": 15,
-    "rng": 1
+    "rng": 1,
+    "xdmg": {
+     "ar": "WIL*0.1"
+    }
    },
    "dyn": "Activates \"Seal of Power\" for 5 turns:\n+15% Magic Power\n+{WIL*0.1} Arcane Damage to strikes and shots\n+10% Bonus Range\n\nUsing spells transforms the effect into a \"Seal\" of the corresponding School and prolongs its duration by 3 turns (up to 9):\n\nPyromancy: +15% Pyromantic Power, +{WIL*0.2} Fire Damage to strikes and shots, +3% Miracle Chance, and +3% Crit Chance.\nElectromancy: +15% Electromantic Power, +{WIL*0.2} Shock Damage to strikes and shots, -4% Backfire Chance, and -4% Fumble Chance.\nGeomancy: +15% Geomantic Power, -10% Damage Taken, +10% Damage Reflection, and -5% Backfire Damage Change.\nArcanistics: +15% Arcanistic Power, +{WIL*0.2} Arcane Damage to strikes and shots, and -7% Abilities Energy Cost.\n\nUsing the ability tree's spells transforms the effect back into \"Seal of Power\"."
   },

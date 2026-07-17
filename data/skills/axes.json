@@ -66,7 +66,14 @@
    "t": 2,
    "type": "Passive",
    "req": "one-handed axe",
-   "desc": "If the target isn't Injured, axe strikes against it grant +8% Bodypart Damage for 5 turns.\n\nThe effect stacks up to 3 times.\n\nGrants axe strikes +4% Accuracy and -4% Fumble Chance for each degree of Injury affecting the target."
+   "desc": "If the target isn't Injured, axe strikes against it grant +8% Bodypart Damage for 5 turns.\n\nThe effect stacks up to 3 times.\n\nGrants axe strikes +4% Accuracy and -4% Fumble Chance for each degree of Injury affecting the target.",
+   "fx": {
+    "buff": true,
+    "stacks": 3,
+    "per_stack": {
+     "bpd": 8
+    }
+   }
   },
   {
    "n": "Massacre",

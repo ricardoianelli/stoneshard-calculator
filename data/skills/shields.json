@@ -66,11 +66,11 @@
    "desc": "Using the ability tree's skills grants +5% Weapon Damage and +4% Counter Chance for 5 turns.\n\nThe effect stacks up to 3 times.\n\nDamaging counters replenish 5% Max Block Power.",
    "fx": {
     "buff": true,
+    "stacks": 3,
     "per_stack": {
      "wd": 5,
      "co": 4
-    },
-    "stacks": 3
+    }
    }
   },
   {
@@ -124,7 +124,14 @@
    "t": 3,
    "type": "Passive",
    "req": "shield",
-   "desc": "Grants \"Shield Bash\" and \"Breakthrough\" +50% Damage and increases their Crit Chance by half.\n\nUsing these skills applies the target with -10% Accuracy, -10% Counter Chance, and -15% Weapon Damage for 5 turns.\n\nThe effect stacks up to 2 times."
+   "desc": "Grants \"Shield Bash\" and \"Breakthrough\" +50% Damage and increases their Crit Chance by half.\n\nUsing these skills applies the target with -10% Accuracy, -10% Counter Chance, and -15% Weapon Damage for 5 turns.\n\nThe effect stacks up to 2 times.",
+   "fx": {
+    "buff": true,
+    "stacks": 2,
+    "per_stack": {
+     "cc": 50
+    }
+   }
   }
  ]
 }

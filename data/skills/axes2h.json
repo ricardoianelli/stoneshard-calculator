@@ -108,7 +108,16 @@
    "t": 3,
    "type": "Passive",
    "req": "two-handed axe",
-   "desc": "Using \"Rampage\" grants +10% Bodypart Damage, +10% Crit Efficiency, and -5% to the ability tree's Cooldowns Duration for 8 turns for each enemy within 5 tiles.\n\nThe effect stacks up to 5 times."
+   "desc": "Using \"Rampage\" grants +10% Bodypart Damage, +10% Crit Efficiency, and -5% to the ability tree's Cooldowns Duration for 8 turns for each enemy within 5 tiles.\n\nThe effect stacks up to 5 times.",
+   "fx": {
+    "buff": true,
+    "stacks": 5,
+    "per_stack": {
+     "bpd": 10,
+     "ce": 10,
+     "cd": -5
+    }
+   }
   },
   {
    "n": "Make Space",
@@ -136,7 +145,15 @@
    ],
    "req": "two-handed axe",
    "desc": "Causing Injuries/Bleedings: +5% WD, +4% Crit Chance 5 turns (x3). Hits vs 2+ Injuries: +5% Max Energy.",
-   "dyn": "Causing Injuries and Bleeding with two-handed axe strikes grants +5% Weapon Damage and +4% Crit Chance for 5 turns.\n\nThe effect stacks up to 3 times.\n\nTwo-handed axe hits against targets affected by two or more Injuries replenish {-5+WIL}% Max Energy."
+   "dyn": "Causing Injuries and Bleeding with two-handed axe strikes grants +5% Weapon Damage and +4% Crit Chance for 5 turns.\n\nThe effect stacks up to 3 times.\n\nTwo-handed axe hits against targets affected by two or more Injuries replenish {-5+WIL}% Max Energy.",
+   "fx": {
+    "buff": true,
+    "stacks": 3,
+    "per_stack": {
+     "wd": 5,
+     "cc": 4
+    }
+   }
   }
  ]
 }

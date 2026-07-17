@@ -82,7 +82,15 @@
    "n": "Rune of Sustention",
    "t": 2,
    "type": "Passive",
-   "desc": "While affected by \"Stone Armor\", remaining on the same tile grants -5% Cooldowns Duration, +8% Crit Avoidance, and +10% Energy Restoration for 5 turns.\n\nThe effect stacks up to 3 times."
+   "desc": "While affected by \"Stone Armor\", remaining on the same tile grants -5% Cooldowns Duration, +8% Crit Avoidance, and +10% Energy Restoration for 5 turns.\n\nThe effect stacks up to 3 times.",
+   "fx": {
+    "buff": true,
+    "stacks": 3,
+    "per_stack": {
+     "cd": -5,
+     "er": 10
+    }
+   }
   },
   {
    "n": "Earthquake",

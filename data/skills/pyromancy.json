@@ -142,7 +142,14 @@
    "n": "Excess Heat",
    "t": 4,
    "type": "Passive",
-   "desc": "Killing enemies with the ability tree's spells grants +20% Pyromantic Power to the next spell.\n\nThe effect stacks up to 3 times.\n\nIncreases the duration of every Burning caused by dealing Fire Damage and the ability tree's spells by 33%."
+   "desc": "Killing enemies with the ability tree's spells grants +20% Pyromantic Power to the next spell.\n\nThe effect stacks up to 3 times.\n\nIncreases the duration of every Burning caused by dealing Fire Damage and the ability tree's spells by 33%.",
+   "fx": {
+    "buff": true,
+    "stacks": 3,
+    "per_stack": {
+     "pyr": 20
+    }
+   }
   },
   {
    "n": "Inferno",

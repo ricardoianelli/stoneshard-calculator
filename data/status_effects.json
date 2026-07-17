@@ -11,19 +11,20 @@
    "Mental",
    "State",
    "Condition"
-  ]
+  ],
+  "verification": "Effects with a `mods` object and no `unverified` flag are transcribed verbatim from the effect's wiki page / Tooltip (0.9.4.x). `unverified:true` entries are kept for completeness but the wiki does not publish their exact modifier values (mostly Hunger/Thirst/Fatigue tier conditions, whose Tooltip pages are stubs) — treat their notes as descriptive only."
  },
  "effects": [
   {
    "n": "Battle Rage",
-   "type": "Mental",
+   "type": "Physical",
    "buff": true,
    "mods": {
-    "wd": 10,
-    "cc": 7.5,
-    "ce": 20
+    "ce": 20,
+    "cc": 5,
+    "wd": 10
    },
-   "note": "+10% Weapon Dmg, +7.5% Crit Chance, +20% Crit Efficiency"
+   "note": "verbatim: +20% Crit Efficiency, +5% Crit Chance, +10% Weapon Damage; from Potion of Rage, Henbane, War Cry, Cannibalistic Craze"
   },
   {
    "n": "Blood Oath",
@@ -194,14 +195,8 @@
    "n": "Satiety",
    "type": "Condition",
    "buff": true,
-   "mods": {
-    "dodge": -5,
-    "heff": 25,
-    "ftr": 10,
-    "xpg": 5,
-    "hgr": 100
-   },
-   "note": "from eating past current hunger; +25% Healing Eff, +10% Fatigue Res, +5% XP Gain, +100% Hunger Res, -5% Dodge; lasts longer the bigger the overfeed (cap 100); eating while sated causes Vomiting/Nausea"
+   "unverified": true,
+   "note": "well-fed state (from eating above the Fullness threshold); prevents Hunger accumulation while active; lasts ~3.6 turns per % difference, capped at 91. Exact stat bonuses not verified verbatim."
   },
   {
    "n": "Vigor",
@@ -236,24 +231,337 @@
     "dt": 10
    },
    "note": "accumulates from injuries; +7.5% Fumble, -15% Healing Eff, +10% Damage Taken (scales with Pain level)"
+  },
+  {
+   "n": "Hunger",
+   "type": "State",
+   "debuff": true,
+   "unverified": true,
+   "note": "applied at Hunger 25% (until 50%). Stat penalties apply but exact values not verified verbatim."
+  },
+  {
+   "n": "Terrible Hunger",
+   "type": "State",
+   "debuff": true,
+   "unverified": true,
+   "note": "applied at Hunger 50% (until 75%). Stat penalties apply but exact values not verified verbatim."
+  },
+  {
+   "n": "Starvation",
+   "type": "State",
+   "debuff": true,
+   "unverified": true,
+   "note": "applied at Hunger 75%; Near Death — Max HP reduced 1% every 4 turns (verbatim); removing the condition restores lost Max HP instantly. Other stat penalties not published on the wiki tooltip."
+  },
+  {
+   "n": "Thirst",
+   "type": "State",
+   "debuff": true,
+   "unverified": true,
+   "note": "applied at Thirst 25%. Thirst rises ~1 per 33 turns moving. Exact stat penalties not verified verbatim."
+  },
+  {
+   "n": "Terrible Thirst",
+   "type": "State",
+   "debuff": true,
+   "unverified": true,
+   "note": "applied at Thirst 50%. Exact stat penalties not verified verbatim."
+  },
+  {
+   "n": "Tiredness",
+   "type": "State",
+   "debuff": true,
+   "unverified": true,
+   "note": "low Fatigue tier. Exact stat penalties not verified verbatim."
+  },
+  {
+   "n": "Exhaustion",
+   "type": "State",
+   "debuff": true,
+   "unverified": true,
+   "note": "high Fatigue tier; relieved by sleeping. Exact stat penalties not verified verbatim."
+  },
+  {
+   "n": "Weariness",
+   "type": "State",
+   "debuff": true,
+   "unverified": true,
+   "note": "fatigue-related. Exact stat penalties not verified verbatim."
+  },
+  {
+   "n": "Drunkenness",
+   "type": "Condition",
+   "debuff": true,
+   "unverified": true,
+   "note": "from alcohol; reduces Stress, raises Intoxication; overconsumption causes Nausea. Exact stat modifiers not verified verbatim."
+  },
+  {
+   "n": "Hangover",
+   "type": "Condition",
+   "debuff": true,
+   "unverified": true,
+   "note": "after Drunkenness wears off. Exact stat penalties not verified verbatim."
+  },
+  {
+   "n": "Vomiting",
+   "type": "Condition",
+   "debuff": true,
+   "unverified": true,
+   "note": "purges Satiety/Fullness & hydration; from overeating, excess alcohol, or toxins. Exact stat modifiers not verified verbatim."
+  },
+  {
+   "n": "Fencer's Stance",
+   "type": "Physical",
+   "buff": true,
+   "maxStacks": 4,
+   "mods": {
+    "ctr": 5,
+    "bc": 5,
+    "dodge": 5,
+    "wd": 3.5
+   },
+   "note": "per stack (up to 4): +5% Counter Chance, +5% Block Chance, +5% Dodge Chance, +3.5% Weapon Damage; basic sword attacks reduce stacks but +1 turn duration; only one stance active at a time"
+  },
+  {
+   "n": "Seal of Pyromancy",
+   "type": "Magical",
+   "buff": true,
+   "mods": {
+    "pyrp": 15,
+    "mch": 3,
+    "cc": 3
+   },
+   "wilScale": "+0.2*WIL Fire Damage to strikes and shots",
+   "note": "transformed Seal of Power (Pyromancy): +15% Pyromantic Power, +(0.2*WIL) Fire Dmg to strikes/shots, +3% Miracle Chance, +3% Crit Chance"
+  },
+  {
+   "n": "Seal of Geomancy",
+   "type": "Magical",
+   "buff": true,
+   "mods": {
+    "geop": 15,
+    "dt": -10,
+    "dref": 10,
+    "bfd": -5
+   },
+   "note": "transformed Seal of Power (Geomancy): +15% Geomantic Power, -10% Damage Taken, +10% Damage Reflection, -5% Backfire Damage Change"
+  },
+  {
+   "n": "Seal of Electromancy",
+   "type": "Magical",
+   "buff": true,
+   "mods": {
+    "elep": 15,
+    "bfc": -4,
+    "fum": -4
+   },
+   "wilScale": "+0.2*WIL Shock Damage to strikes and shots",
+   "note": "transformed Seal of Power (Electromancy): +15% Electromantic Power, +(0.2*WIL) Shock Dmg to strikes/shots, -4% Backfire Chance, -4% Fumble Chance"
+  },
+  {
+   "n": "Seal of Power",
+   "type": "Magical",
+   "buff": true,
+   "mods": {
+    "mgp": 15,
+    "rng": 1
+   },
+   "wilScale": "+0.1*WIL Arcane Damage to strikes and shots",
+   "note": "base Magic Mastery seal, 5 turns: +15% Magic Power, +(0.1*WIL) Arcane Dmg to strikes/shots, +1 Bonus Range; casting a school's spell transforms it into that school's Seal (+3 turns, up to 9)"
+  },
+  {
+   "n": "Thirst for Battle",
+   "type": "Physical",
+   "buff": true,
+   "scaling": {
+    "cc": "0.15 * missingHP%",
+    "ld": "0.2 * missingHP%",
+    "wd": "0.3 * missingHP%",
+    "ed": "0.3 * missingHP%"
+   },
+   "note": "verbatim: +[0.15×missing HP%] Crit Chance, +[0.2×missing HP%] Life Drain, +[0.3×missing HP%] Weapon Damage, +[0.3×missing HP%] Energy Drain; strength scales with missing Health"
+  },
+  {
+   "n": "Adrenaline Rush",
+   "type": "Physical",
+   "buff": true,
+   "maxStacks": 6,
+   "mods": {
+    "dt": -3,
+    "aec": -5,
+    "enr": 10,
+    "cc": 3,
+    "par": 10
+   },
+   "note": "verbatim (per stack, up to VI): -3% Damage Taken, -5% Abilities Energy Cost, +10% Energy Restoration, +3% Crit Chance, +10% Pain Resistance; III stacks: -1 turn all cooldowns; VI stacks: +4% Max HP if HP<40%"
+  },
+  {
+   "n": "Taking Aim",
+   "type": "Physical",
+   "buff": true,
+   "mods": {
+    "acc": 59,
+    "wd": 10,
+    "rng": 1
+   },
+   "scaling": {
+    "acc": "+AP",
+    "wd": "=PRC%"
+   },
+   "note": "verbatim, 1 turn: +(59+AP)% Accuracy, +(PRC)% Weapon Damage, +1 Range; each enemy within 4 tiles adds +(3×STR)% Knockback, +(3×AGL)% Immobilization, +(3×PRC)% Stagger Chance; removed if not wielding a ranged weapon"
+  },
+  {
+   "n": "Blessing",
+   "type": "Mental",
+   "buff": true,
+   "dur": 1440,
+   "mods": {
+    "heff": 10
+   },
+   "note": "verbatim: +10% Healing Efficiency for 1440 turns; from praying at a Shrine (also an immediate Sanity & Morale boost on use); cannot stack with an existing Blessing"
+  },
+  {
+   "n": "Blood Craze",
+   "type": "Magical",
+   "buff": true,
+   "maxStacks": 6,
+   "dur": 3,
+   "mods": {
+    "wd": 6,
+    "cc": 3
+   },
+   "note": "verbatim (per stack, up to VI): +6% Weapon Damage, +3% Crit Chance; each hit adds a stack & refreshes the 3-turn duration"
+  },
+  {
+   "n": "Offensive Tactic",
+   "type": "Physical",
+   "buff": true,
+   "mods": {
+    "cc": 4
+   },
+   "note": "per stack: +4% Crit Chance (wiki notes this is a known bug — intended to grant +10% Crit Efficiency). Full per-stack stat list not published verbatim. Only one Tactic active at a time; lasts while enemies are in vision"
+  },
+  {
+   "n": "Rampage",
+   "type": "Physical",
+   "buff": true,
+   "maxStacks": 5,
+   "dur": 8,
+   "mods": {
+    "bpd": 10,
+    "ce": 10,
+    "cdd": -5
+   },
+   "note": "verbatim (per stack, up to 5, 8 turns): +10% Bodypart Damage, +10% Crit Efficiency, -5% Two-handed Axes Cooldowns Duration; one stack per enemy within 5 tiles on activation"
+  },
+  {
+   "n": "Elusiveness",
+   "type": "Physical",
+   "buff": true,
+   "maxStacks": 5,
+   "unverified": true,
+   "note": "skill grants +100% Dodge Chance for 1 turn, then only the stacked Dodge bonus; +2 turns per dodged attack (cap 15 turns); +1 stack each turn you don't Block/Dodge or on taking damage. Potion of Elusiveness = same effect for up to 15 turns. Exact per-stack Dodge value not published on the wiki."
+  },
+  {
+   "n": "Hammer and Anvil",
+   "type": "Physical",
+   "buff": true,
+   "maxStacks": 4,
+   "dur": 8,
+   "mods": {
+    "fum": -3,
+    "ad": 25,
+    "dz": 10,
+    "sg": 10
+   },
+   "note": "verbatim (per stack, up to IV, 8 turns): -3% Fumble Chance, +25% Armor Damage, +10% Daze Chance, +10% Stagger Chance; mace stance — basic mace strikes +1 turn duration (up to 12) but -1 stack; one stance at a time"
+  },
+  {
+   "n": "Suppression",
+   "type": "Physical",
+   "buff": true,
+   "maxStacks": 4,
+   "dur": 12,
+   "mods": {
+    "im": 5,
+    "kb": 10,
+    "bl": 10,
+    "cdd": -5,
+    "sec": -5
+   },
+   "note": "verbatim (per stack, up to IV, 12 turns / 15 with crossbow): +5% Immobilization Chance, +10% Knockback Chance, +10% Bleed Chance, -5% Cooldowns Duration, -5% Skills Energy Cost; ranged stance — one stance at a time"
+  },
+  {
+   "n": "Painful Stabs",
+   "type": "Physical",
+   "buff": true,
+   "maxStacks": 4,
+   "dur": 10,
+   "mods": {
+    "cc": 4,
+    "ce": 10,
+    "wd": 5,
+    "bl": 12
+   },
+   "note": "verbatim (live page, per stack up to IV, 10 turns): +4% Crit Chance, +10% Crit Efficiency, +5% Weapon Damage, +12% Bleed Chance; dagger stance — one stance at a time"
+  },
+  {
+   "n": "Massacre",
+   "type": "Physical",
+   "buff": true,
+   "maxStacks": 4,
+   "unverified": true,
+   "mods": {
+    "bpd": 30,
+    "cc": 3
+   },
+   "note": "axe stance. Per-stack values from a 2020 patch note (+30% Bodypart Damage, +3% Crit Chance) — NOT confirmed against the current live page; verify before relying on numbers"
+  },
+  {
+   "n": "Unwavering Stance",
+   "type": "Physical",
+   "buff": true,
+   "maxStacks": 4,
+   "unverified": true,
+   "mods": {
+    "bc": 12.5,
+    "bp": 15
+   },
+   "note": "staff stance. Per-stack values from a 2020 patch note (+12.5% Block Chance, +15% Block Power) — NOT confirmed against the current live page; verify before relying on numbers"
+  },
+  {
+   "n": "Apathy",
+   "type": "State",
+   "debuff": true,
+   "unverified": true,
+   "note": "low-Morale/high-Sanity psyche state; triggered by idling — skipping turns, Rest Mode overuse, no enemies in sight. Documented penalty: -25% Bonus Experience (2018 devlog, likely stale). Cured by continuous fighting. Full stat list not published."
+  },
+  {
+   "n": "Anxiety",
+   "type": "State",
+   "debuff": true,
+   "unverified": true,
+   "note": "psyche state; requires Apathy first. Activation chance rises with lower Health & Morale. Exact stat modifiers not published on the wiki."
+  },
+  {
+   "n": "Despair",
+   "type": "State",
+   "debuff": true,
+   "unverified": true,
+   "note": "psyche state; requires Anxiety first. Activation chance scales with Health, Morale, Hunger, Pain, Thirst & Intoxication — the worse the character feels, the faster it triggers. Exact stat modifiers not published."
   }
  ],
  "roster": [
   "Abasa",
   "Acid Bath",
-  "Adrenaline Rush",
   "Against the Odds",
   "Al'qud Aftermath",
   "Al'qud",
   "Bad Trip Aftermath",
   "Bad Trip",
-  "Battle Rage",
   "Bestial Rage",
   "Binding Sigil",
-  "Blessing",
   "Blindness",
-  "Blood Craze",
-  "Blood Oath",
   "Body Aches",
   "Brace for Impact!",
   "Clear Vision",
@@ -269,94 +577,63 @@
   "Deadly Intoxication",
   "Deadly Premonition",
   "Defensive Tactic",
-  "Drunkenness",
-  "Elusiveness",
   "Energy Drain",
   "Enough for Everyone",
   "Exceptional Precision",
-  "Exhaustion",
   "Feast of Steel",
-  "Fencer's Stance",
   "Freezing Stiff",
   "Gaping Wound",
-  "Hammer and Anvil",
-  "Hangover",
   "Hold the Line!",
   "Hornet Honey Aftermath",
   "Hornet Honey",
-  "Hunger",
   "Hunter's Mark",
   "Impulse",
-  "Initiative Loss",
   "Intoxication",
   "Leech Therapy",
   "Life Drain",
-  "Mark of the Feast",
-  "Massacre",
-  "Mighty Swing",
   "Mountain of Flesh",
   "Murk",
   "Net",
   "Nikkaf Aftermath",
   "Nikkaf",
-  "Offensive Tactic",
   "Pain Shock",
-  "Painful Stabs",
   "Paregoric Aftermath",
   "Paregoric",
   "Parry",
   "Petrification",
-  "Pikeman Stance",
   "Place of Power",
-  "Rampage",
   "Rapid Restoration",
   "Receptiveness",
   "Regroup",
   "Resonance",
   "Runic Empowerment",
   "Sacrificial Blood",
-  "Seal of Electromancy",
   "Seal of Finesse",
-  "Seal of Geomancy",
-  "Seal of Power",
-  "Seal of Pyromancy",
   "Seal of Reflection",
   "Seal of Shackles",
-  "Seized Initiative",
   "Shield Raised",
   "Sic!",
   "Sleep",
   "Soul Sacrifice",
   "Spectral Haunting",
   "Stardust",
-  "Starvation",
   "Static Field",
   "Stolen Essence",
   "Stone Armor",
   "Stone Skin",
-  "Striker Stance",
   "Strong Pain",
   "Sturdiness",
-  "Suppression",
-  "Taking Aim",
-  "Terrible Hunger",
-  "Terrible Thirst",
-  "Thirst for Battle",
-  "Thirst",
   "Thrill of the Hunt",
-  "Tiredness",
   "Troll Regeneration",
   "Unholy Blessing",
-  "Unwavering Stance",
   "Unyielding Defense",
-  "Vampiric Blood",
-  "Vomiting",
   "Wanted: Attacked on Sight",
   "Wanted: Fine or Jail",
-  "Weariness",
   "Web",
   "Wetness",
-  "Willing Sacrifice"
+  "Willing Sacrifice",
+  "Striker Stance",
+  "Pikeman Stance"
  ],
  "injuries": [
   "Minor Head Injury",
