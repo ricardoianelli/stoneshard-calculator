@@ -39,6 +39,7 @@ input[type=range]{accent-color:#7a2e1d;}
             <div style="position:absolute;top:calc(100% + 4px);left:0;z-index:50;background:#241e18;border:1px solid #8a5a78;border-radius:4px;display:flex;flex-direction:column;min-width:180px;box-shadow:0 6px 18px rgba(0,0,0,.5);">
               <button onClick="{{ openFinder }}" style="font-family:'Cinzel',serif;font-size:11.5px;letter-spacing:1px;text-align:left;background:none;color:#e0c3d8;border:none;padding:9px 14px;cursor:pointer;" style-hover="background:#3a2a34;">⚔ BUILD FINDER</button>
               <button onClick="{{ openSaveEd }}" style="font-family:'Cinzel',serif;font-size:11.5px;letter-spacing:1px;text-align:left;background:none;color:#e0c3d8;border:none;border-top:1px solid #3a2f28;padding:9px 14px;cursor:pointer;" style-hover="background:#3a2a34;">✎ EDIT SAVE FILE</button>
+              <button onClick="{{ openCloner }}" style="font-family:'Cinzel',serif;font-size:11.5px;letter-spacing:1px;text-align:left;background:none;color:#e0c3d8;border:none;border-top:1px solid #3a2f28;padding:9px 14px;cursor:pointer;" style-hover="background:#3a2a34;">⧉ CLONE CHARACTER</button>
             </div>
           </sc-if>
         </div>
@@ -102,12 +103,15 @@ input[type=range]{accent-color:#7a2e1d;}
                     <input type="number" value="{{ a.base }}" onChange="{{ a.set }}" style="width:56px;background:#171310;color:#c9b58a;border:1px solid #4a3d2e;padding:3px;"></input>
                   </div>
                 </sc-for>
-                <button onClick="{{ seRefundAttrs }}" style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;background:#5a3a20;color:#e7d8b4;border:1px solid #8a7350;border-radius:3px;padding:6px 12px;cursor:pointer;" style-hover="background:#6b4626;">RESET → +{{ seAttrRefund }} SP</button>
+                <button onClick="{{ seRefundAttrs }}" style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;background:#5a3a20;color:#e7d8b4;border:1px solid #8a7350;border-radius:3px;padding:6px 12px;cursor:pointer;" style-hover="background:#6b4626;">RESET → +{{ seAttrRefund }} ATTRIBUTE PTS</button>
               </div>
               <div style="font-size:10px;color:#6b5a41;margin-top:5px;font-style:italic;">Base values prefilled from the character's level-1 stats where known — points above base are refunded; nothing is lost.</div>
             </div>
             <div style="border:1px solid #3a2f28;border-radius:4px;padding:10px;">
-              <div style="font-size:10px;letter-spacing:1px;color:#a98a4a;margin-bottom:6px;">LEARNED SKILLS — select the ones to unlearn (1 AP refunded each). Innate skills (Butchering, character trait skills) aren't listed — they can't be unlearned.</div>
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+                <div style="font-size:10px;letter-spacing:1px;color:#a98a4a;flex:1;">LEARNED SKILLS — select the ones to unlearn (1 skill point refunded each). Innate skills (Butchering, character trait skills) aren't listed — they can't be unlearned.</div>
+                <button onClick="{{ seSelectAll }}" style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:1px;background:#2a2420;color:#c9b58a;border:1px solid #4a3d2e;border-radius:3px;padding:4px 10px;cursor:pointer;white-space:nowrap;" style-hover="background:#3a3428;">{{ seSelectAllLabel }}</button>
+              </div>
               <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:4px;">
                 <sc-for list="{{ seSkills }}" as="sk" hint-placeholder-count="0">
                   <div onClick="{{ sk.toggle }}" style="display:flex;gap:8px;align-items:center;cursor:pointer;border:2px solid {{ sk.border }};border-radius:4px;background:{{ sk.bg }};padding:4px 8px;box-shadow:{{ sk.glow }};" style-hover="border-color:#e8c58d;">
@@ -117,7 +121,7 @@ input[type=range]{accent-color:#7a2e1d;}
                   </div>
                 </sc-for>
               </div>
-              <button onClick="{{ seRespec }}" style="margin-top:8px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;background:#5a3a20;color:#e7d8b4;border:1px solid #8a7350;border-radius:3px;padding:6px 12px;cursor:pointer;" style-hover="background:#6b4626;">UNLEARN {{ seSkillCount }} → +{{ seSkillCount }} AP</button>
+              <button onClick="{{ seRespec }}" style="margin-top:8px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;background:#5a3a20;color:#e7d8b4;border:1px solid #8a7350;border-radius:3px;padding:6px 12px;cursor:pointer;" style-hover="background:#6b4626;">UNLEARN {{ seSkillCount }} → +{{ seSkillCount }} SKILL PTS</button>
             </div>
             <div style="border:1px solid #3a2f28;border-radius:4px;padding:10px;">
               <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
@@ -143,6 +147,48 @@ input[type=range]{accent-color:#7a2e1d;}
             </div>
           </div>
         </sc-if>
+        <sc-if value="{{ seStatus }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size:12px;color:#c98a75;margin-top:8px;">{{ seStatus }}</div>
+        </sc-if>
+      </div>
+    </sc-if>
+    <sc-if value="{{ clOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:10px;background:#241e18;border:1px solid #8a5a78;border-radius:4px;padding:12px;">
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+          <div style="font-family:'Cinzel',serif;font-size:13px;letter-spacing:2px;color:#e0c3d8;">CHARACTER CLONER</div>
+          <div style="font-size:11px;color:#8a7a5e;font-style:italic;">duplicates a whole character into a free slot — everything stays in your browser.</div>
+        </div>
+        <div style="margin-top:10px;">
+          <sc-if value="{{ clNotScanned }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;flex-direction:column;gap:5px;">
+              <input type="file" webkitdirectory="" multiple="" onChange="{{ clScan }}" style="color:#c9b58a;font-size:12px;"></input>
+              <div style="font-size:11px;color:#6b5a41;">Select your whole characters_v1 folder (%LOCALAPPDATA%\StoneShard\characters_v1). Everything stays in your browser.</div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ clScanned }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;">
+              <div style="display:flex;flex-direction:column;gap:3px;">
+                <div style="font-size:10px;color:#8a7a5e;">SOURCE</div>
+                <div style="display:flex;gap:4px;flex-wrap:wrap;">
+                  <sc-for list="{{ clChars }}" as="cc" hint-placeholder-count="0">
+                    <button onClick="{{ cc.pick }}" style="font-size:11.5px;padding:4px 10px;border-radius:3px;cursor:pointer;border:1px solid {{ cc.border }};background:{{ cc.bg }};color:{{ cc.color }};">{{ cc.label }}</button>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:3px;">
+                <div style="font-size:10px;color:#8a7a5e;">CLONE INTO</div>
+                <input type="number" value="{{ clTarget }}" onChange="{{ clSetTarget }}" style="width:64px;background:#171310;color:#c9b58a;border:1px solid #4a3d2e;padding:4px;"></input>
+              </div>
+              <button onClick="{{ clDo }}" style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;background:#2e4a2e;color:#cfe7c4;border:1px solid #5a8a50;border-radius:3px;padding:7px 14px;cursor:pointer;" style-hover="background:#3a5a38;">CLONE → DOWNLOAD ZIP</button>
+              <button onClick="{{ clReset }}" style="font-size:11px;background:none;color:#8a7a5e;border:1px solid #4a3d2e;border-radius:3px;padding:5px 9px;cursor:pointer;">rescan</button>
+            </div>
+            <div style="font-size:11px;color:#8a9a6e;margin-top:6px;">{{ clMsg }}</div>
+          </sc-if>
+        </div>
+        <sc-if value="{{ seStatus }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size:12px;color:#c98a75;margin-top:8px;">{{ seStatus }}</div>
+        </sc-if>
+        
         <sc-if value="{{ seStatus }}" hint-placeholder-val="{{ false }}">
           <div style="font-size:12px;color:#c98a75;margin-top:8px;">{{ seStatus }}</div>
         </sc-if>
@@ -614,7 +660,8 @@ class Component extends DCLogic {
     pickerSlot: null, pickerCat: 'all', pickerSearch: '', traitCounters: {}, selSkill: null, showFormulas: false, libOpen: false, libName: '', pinnedStats: null,
     ioOpen: false, ioMode: 'export', ioText: '', ioStatus: '',
     finderOpen: false, finderWeapon: 'sword', finderOff: 'none', finderGoals: ['damage'], finderResults: null, finderStatus: '', finderLvl: 30,
-    expOpen: false, seOpen: false, seLoaded: false, seStatus: '', seTick: 0, seLog: ''
+    expOpen: false, seOpen: false, seLoaded: false, seStatus: '', seTick: 0, seLog: '',
+    clScanned: false, clTarget: 1, clSource: '', clMsg: '', clOpen: false
   };
   D = null;
 
@@ -695,6 +742,47 @@ class Component extends DCLogic {
       this._sav = { obj: res.obj, salt: res.salt, dirs: res.dirs, fileName: file.name, checked, hidden, base };
       this.setState({ seLoaded: true, seStatus: '', seLog: '' });
     } catch (e) { this.setState({ seStatus: 'Could not read save: ' + e.message }); }
+  }
+  async clScanDir(fileList) {
+    try {
+      if (!this._seMod) this._seMod = await import('./save-editor.js');
+      const files = [];
+      for (const f of fileList) {
+        const rel = (f.webkitRelativePath || f.name).split('/');
+        const ci = rel.findIndex(s => /^character_\d+$/.test(s));
+        if (ci < 0) continue;
+        files.push({ path: rel.slice(ci).join('/'), file: f });
+      }
+      if (!files.length) { this.setState({ seStatus: 'No character_N folders found — select the characters_v1 folder itself.' }); return; }
+      const chars = {};
+      for (const f of files) { const c = f.path.split('/')[0]; (chars[c] = chars[c] || []).push(f); }
+      // read each character.map for the name
+      const names = {};
+      for (const c of Object.keys(chars)) {
+        const cm = chars[c].find(f => f.path === c + '/character.map');
+        if (cm) { try { const out = new Uint8Array(await new Response(new Blob([new Uint8Array(await cm.file.arrayBuffer())]).stream().pipeThrough(new DecompressionStream('deflate'))).arrayBuffer()); const txt = new TextDecoder().decode(out); names[c] = JSON.parse(txt.slice(0, txt.lastIndexOf('}') + 1)).nameKey; } catch (e) {} }
+      }
+      const used = new Set(Object.keys(chars).map(c => +c.split('_')[1]));
+      let free = 1; while (used.has(free)) free++;
+      this._clone = { chars, names };
+      const first = Object.keys(chars).sort()[0];
+      this.setState({ clScanned: true, clSource: first, clTarget: free, clMsg: Object.keys(chars).length + ' characters found · smallest free slot: character_' + free, seStatus: '' });
+    } catch (e) { this.setState({ seStatus: 'Scan failed: ' + e.message }); }
+  }
+  async clDoClone() {
+    const cl = this._clone, src = this.state.clSource, dst = 'character_' + this.state.clTarget;
+    if (cl.chars[dst]) { this.setState({ clMsg: '✗ ' + dst + ' already exists — pick a free slot number.' }); return; }
+    this.setState({ clMsg: 'cloning…' });
+    try {
+      const files = [];
+      for (const f of cl.chars[src]) files.push({ path: f.path, bytes: new Uint8Array(await f.file.arrayBuffer()) });
+      const zip = await this._seMod.cloneCharacter(files, src, dst);
+      const url = URL.createObjectURL(new Blob([zip], { type: 'application/zip' }));
+      const a = document.createElement('a');
+      a.href = url; a.download = dst + '.zip'; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
+      this.setState({ clMsg: '✓ downloaded ' + dst + '.zip — extract it into characters_v1 so you get a ' + dst + ' folder, then restart the game.' });
+    } catch (e) { this.setState({ clMsg: '✗ clone failed: ' + e.message }); }
   }
   async seDownload() {
     const sv = this._sav;
@@ -1447,11 +1535,22 @@ class Component extends DCLogic {
       closeIo: () => this.setState({ ioOpen: false }),
 
       expOpen: s.expOpen, toggleExp: () => this.setState({ expOpen: !s.expOpen }),
-      openFinder: () => this.setState({ expOpen: false, finderOpen: !s.finderOpen, seOpen: false }),
-      openSaveEd: () => this.setState({ expOpen: false, seOpen: !s.seOpen, finderOpen: false }),
-      mainVisible: !s.seOpen,
+      openFinder: () => this.setState({ expOpen: false, finderOpen: !s.finderOpen, seOpen: false, clOpen: false }),
+      openSaveEd: () => this.setState({ expOpen: false, seOpen: !s.seOpen, finderOpen: false, clOpen: false }),
+      openCloner: () => this.setState({ expOpen: false, clOpen: !s.clOpen, seOpen: false, finderOpen: false }),
+      clOpen: s.clOpen,
+      mainVisible: !s.seOpen && !s.clOpen,
       seOpen: s.seOpen, seLoaded: s.seLoaded, seNotLoaded: !s.seLoaded, seStatus: s.seStatus, seLog: s.seLog,
       seFile: e => { const f = e.target.files && e.target.files[0]; if (f) this.seLoadFile(f); },
+      clNotScanned: !s.clScanned, clScanned: s.clScanned, clMsg: s.clMsg, clTarget: s.clTarget,
+      clScan: e => { if (e.target.files && e.target.files.length) this.clScanDir([...e.target.files]); },
+      clSetTarget: e => this.setState({ clTarget: Math.max(1, Math.floor(+e.target.value || 1)) }),
+      clReset: () => { this._clone = null; this.setState({ clScanned: false, clMsg: '' }); },
+      clDo: () => this.clDoClone(),
+      clChars: s.clScanned && this._clone ? Object.keys(this._clone.chars).sort((a, b) => +a.split('_')[1] - +b.split('_')[1]).map(c => {
+        const on = c === s.clSource;
+        return { label: (this._clone.names[c] || '?') + ' (' + c + ')', border: on ? '#c9a959' : '#4a3d2e', bg: on ? 'rgba(201,169,89,.18)' : '#241e18', color: on ? '#e8d8b0' : '#8a7a5e', pick: () => this.setState({ clSource: c }) };
+      }) : [],
       seReset: () => { this._sav = null; this.setState({ seLoaded: false, seStatus: '', seLog: '' }); },
       seDownload: () => this.seDownload(),
       ...(() => {
@@ -1464,12 +1563,12 @@ class Component extends DCLogic {
         const learned = M.learnedSkills(sv.obj).filter(sk => !sv.hidden || !sv.hidden.has(sk.id));
         const nChecked = learned.filter(sk => sv.checked[sk.id]).length;
         return {
-          seSummary: c.nameKey + ' — ' + c.classKey + ', level ' + c.LVL + ' (' + c.XP + ' XP) · HP ' + c.HP + ' · ' + AK.map(k => k.slice(0, 3).toUpperCase() + ' ' + c[k]).join(' · ') + ' · ' + c.SP + ' SP, ' + c.AP + ' AP unspent',
+          seSummary: c.nameKey + ' — ' + c.classKey + ', level ' + c.LVL + ' (' + c.XP + ' XP) · HP ' + c.HP + ' · ' + AK.map(k => k.slice(0, 3).toUpperCase() + ' ' + c[k]).join(' · ') + ' · ' + c.AP + ' attribute pts, ' + c.SP + ' skill pts unspent',
           seSaltMsg: sv.salt ? '✓ checksum verified — save folder detected as ' + sv.dirs.join(' / ') + '. The edited file must go back into that same folder.' : '✗ could not verify this file\'s checksum — editing disabled to avoid corrupting your save.',
           seSaltColor: sv.salt ? '#8a9a6e' : '#c98a75',
           seAttrs: AK.map(k => ({ k: k.slice(0, 3).toUpperCase(), cur: c[k], base: sv.base[k], set: e => { sv.base[k] = Math.max(1, Math.min(30, +e.target.value || 10)); tick(); } })),
           seAttrRefund: refund,
-          seRefundAttrs: () => { const n = M.resetAttributes(sv.obj, sv.base); this.setState({ seLog: 'refunded ' + n + ' stat points (SP now ' + sv.obj.characterDataMap.SP + ')' }); },
+          seRefundAttrs: () => { const n = M.resetAttributes(sv.obj, sv.base); this.setState({ seLog: 'refunded ' + n + ' attribute points (now ' + sv.obj.characterDataMap.AP + ' unspent)' }); },
           seSkills: learned.map(sk => {
             const on = !!sv.checked[sk.id];
             return { name: sk.name, icon: this.icon(this.seWikiName(sk.name), 26),
@@ -1479,7 +1578,9 @@ class Component extends DCLogic {
               toggle: () => { sv.checked[sk.id] = !on; tick(); } };
           }),
           seSkillCount: nChecked,
-          seRespec: () => { const ids = learned.filter(sk => sv.checked[sk.id]).map(sk => sk.id); const n = M.unlearnSkills(sv.obj, ids); this.setState({ seLog: 'unlearned ' + n + ' skills (AP now ' + sv.obj.characterDataMap.AP + ')' }); },
+          seSelectAll: () => { const all = nChecked < learned.length; learned.forEach(sk => { sv.checked[sk.id] = all; }); tick(); },
+          seSelectAllLabel: nChecked < learned.length ? 'SELECT ALL' : 'DESELECT ALL',
+          seRespec: () => { const ids = learned.filter(sk => sv.checked[sk.id]).map(sk => sk.id); const n = M.unlearnSkills(sv.obj, ids); this.setState({ seLog: 'unlearned ' + n + ' skills (' + sv.obj.characterDataMap.SP + ' skill pts unspent)' }); },
           seDamagedCount: M.listItems(sv.obj).filter(it => it.maxDur > 0 && it.dur < it.maxDur).length,
           seRepairAll: () => { const n = M.repairAll(sv.obj); this.setState({ seLog: 'repaired ' + n + ' items to full durability' }); },
           seItems: M.listItems(sv.obj).filter(it => it.maxDur > 0).map(it => {
