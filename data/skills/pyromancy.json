@@ -25,7 +25,7 @@
     "rng"
    ],
    "desc": "Three firebolts, each 6 Fire Damage at 85% Accuracy. +30% damage vs Burning targets.",
-   "dyn": "Shoots three fire bolts, each dealing {7*(1+(PYR-100)/100)*MP/100} Fire Damage (Spell Accuracy -10%).\n\nFire bolts deal 30% more damage to Burning targets."
+   "dyn": "Shoots three fire bolts, each dealing {6*(1+(PYR-100)/100)*MP/100} Fire Damage (Spell Accuracy -10%).\n\nFire bolts deal 30% more damage to Burning targets."
   },
   {
    "n": "Flame Saturation",
@@ -55,7 +55,7 @@
     "pyr"
    ],
    "desc": "12 Fire Damage to all adjacent tiles, Ignites empty ones. 40% Ignite 2-3 turns, -5% Fire Res 10 turns. +15% Pyromantic Power 4 turns per affected enemy.",
-   "dyn": "Deals {14*(1+(PYR-100)/100)*MP/100} Fire Damage to all adjacent tiles, Igniting the empty ones.\n\nWith {40*(MP+PYR)/200}% chance Ignites all affected targets for 2-3 turns and applies them with -{5*(MP+PYR)/200}% Fire Resistance for 10 turns.\n\nGrants +15% Pyromantic Power for 4 turns for each affected enemy."
+   "dyn": "Deals {12*(1+(PYR-100)/100)*MP/100} Fire Damage to all adjacent tiles, Igniting the empty ones.\n\nWith {40*(MP+PYR)/200}% chance Ignites all affected targets for 2-3 turns and applies them with -{5*(MP+PYR)/200}% Fire Resistance for 10 turns.\n\nGrants +15% Pyromantic Power for 4 turns for each affected enemy."
   },
   {
    "n": "Feed the Flames",
@@ -76,7 +76,7 @@
     "pyr"
    ],
    "desc": "13 Fire Damage to large area within 3 tiles, Ignites some tiles. Burns targets' Energy for 200% of damage. Tree cooldowns -1 per affected enemy.",
-   "dyn": "Deals {15*(1+(PYR-100)/100)*MP/100} Fire Damage to a large area within 3 tiles, Igniting some of the tiles in it.\n\nBurns the affected targets' Energy for 200% of the damage dealt.\n\nReduces the ability tree's cooldowns by 1 turn for each affected enemy."
+   "dyn": "Deals {13*(1+(PYR-100)/100)*MP/100} Fire Damage to a large area within 3 tiles, Igniting some of the tiles in it.\n\nBurns the affected targets' Energy for 200% of the damage dealt.\n\nReduces the ability tree's cooldowns by 1 turn for each affected enemy."
   },
   {
    "n": "Magma Rain",
@@ -92,7 +92,7 @@
     "rng"
    ],
    "desc": "6 Fire Damage to 3x3, creates magma puddles 3 turns: 3 Fire per turn, -5% Fire Res 7 turns (stacks), 5% Ignite (+5% per turn in magma).",
-   "dyn": "Deals {7*(1+(PYR-100)/100)*MP/100} Fire Damage to a 3x3 tile area, creating magma puddles within it and Igniting some of the tiles.\n\nMagma persists for {3*(MP+PYR)/200} turns. Remaining in magma deals {4*(1+(PYR-100)/100)*MP/100} Fire Damage, applies with -5% Fire Resistance for 7 turns (the effect stacks), and has 5% chance to Ignite for 3-4 turns.\n\nEach turn of remaining in the magma increases the Ignition chance by 5%."
+   "dyn": "Deals {6*(1+(PYR-100)/100)*MP/100} Fire Damage to a 3x3 tile area, creating magma puddles within it and Igniting some of the tiles.\n\nMagma persists for {3*(MP+PYR)/200} turns. Remaining in magma deals {3*(1+(PYR-100)/100)*MP/100} Fire Damage, applies with -5% Fire Resistance for 7 turns (the effect stacks), and has 5% chance to Ignite for 3-4 turns.\n\nEach turn of remaining in the magma increases the Ignition chance by 5%."
   },
   {
    "n": "Scorch",
@@ -114,7 +114,7 @@
     "rng"
    ],
    "desc": "Removes Burning from target: 9 Fire Damage to 3x3, 20% Ignite 3-4 turns. Each removed Burning turn: +30% damage, +100% Ignite chance.",
-   "dyn": "Removes Burning from the target, dealing {10*(1+(PYR-100)/100)*MP/100} Fire Damage to a 3x3 tile area and with {20*(MP+PYR)/200}% chance Igniting all affected targets for 3-4 turns.\n\nEach turn of removed Burning increases the damage by 30% and the chance to Ignite by 100%."
+   "dyn": "Removes Burning from the target, dealing {9*(1+(PYR-100)/100)*MP/100} Fire Damage to a 3x3 tile area and with {20*(MP+PYR)/200}% chance Igniting all affected targets for 3-4 turns.\n\nEach turn of removed Burning increases the damage by 30% and the chance to Ignite by 100%."
   },
   {
    "n": "From Blaze to Furnace",
@@ -136,7 +136,7 @@
     "rng"
    ],
    "desc": "Ray: 5 Fire Damage to all in path, 14% Ignite 3-4 turns; explodes at target: 8 Fire Damage to 3x3, +20% per enemy passed through.",
-   "dyn": "Shoots a fiery ray towards the targeted tile, dealing {6*(1+(PYR-100)/100)*MP/100} Fire Damage to all targets in its path and with {14*(MP+PYR)/200}% chance Igniting them for 3-4 turns.\n\nThe ray explodes in the targeted tile, Igniting it and dealing {10*(1+(PYR-100)/100)*MP/100} Fire Damage to a 3x3 tile area.\n\nThe explosion's damage increases by 20% for each enemy the ray passes through."
+   "dyn": "Shoots a fiery ray towards the targeted tile, dealing {5*(1+(PYR-100)/100)*MP/100} Fire Damage to all targets in its path and with {14*(MP+PYR)/200}% chance Igniting them for 3-4 turns.\n\nThe ray explodes in the targeted tile, Igniting it and dealing {8*(1+(PYR-100)/100)*MP/100} Fire Damage to a 3x3 tile area.\n\nThe explosion's damage increases by 20% for each enemy the ray passes through."
   },
   {
    "n": "Excess Heat",
@@ -165,7 +165,7 @@
     "rng"
    ],
    "desc": "Firestorm 5x5 for 3 turns: 9 Fire Damage per turn inside, +15% per target in area.",
-   "dyn": "Creates a firestorm in a 5x5 tile area, which persists for 3 turns.\n\nRemaining in the firestorm deals {10*(1+(PYR-100)/100)*MP/100} Fire Damage.\n\nThe firestorm's damage increases by 15% for each target within the spell's area of effect."
+   "dyn": "Creates a firestorm in a 5x5 tile area, which persists for 3 turns.\n\nRemaining in the firestorm deals {9*(1+(PYR-100)/100)*MP/100} Fire Damage.\n\nThe firestorm's damage increases by 15% for each target within the spell's area of effect."
   },
   {
    "n": "Pyromania",

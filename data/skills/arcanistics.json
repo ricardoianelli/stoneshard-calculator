@@ -23,7 +23,7 @@
     "arc"
    ],
    "desc": "Applies 'Wormhole' 3 turns, marks tile. On expiry/removal teleports target to mark: 8 Arcane Damage (12 + 60% Stun if tile occupied). While active, can recast free to trigger. Not usable on giant/stationary targets.",
-   "dyn": "Applies the target with \"Wormhole\" for 3 turns and marks its tile.\n\nWhen the effect expires or is removed, teleports the target to the marked tile, dealing {10*(1+(ARC-100)/100)*MP/100} Arcane Damage.\n\nIf the marked tile is occupied, teleports the target to the closest empty tile, dealing additional {12*(1+(ARC-100)/100)*MP/100} Arcane Damage and with {60*(MP+ARC)/200}% chance Stunning it.\n\nWhile \"Wormhole\" is active, the spell doesn't go on cooldown and can be used again without spending Energy to remove the effect from the target.\n\nThe spell can't be used on giant or stationary targets and doesn't harm the caster."
+   "dyn": "Applies the target with \"Wormhole\" for 3 turns and marks its tile.\n\nWhen the effect expires or is removed, teleports the target to the marked tile, dealing {8*(1+(ARC-100)/100)*MP/100} Arcane Damage.\n\nIf the marked tile is occupied, teleports the target to the closest empty tile, dealing additional {12*(1+(ARC-100)/100)*MP/100} Arcane Damage and with {60*(MP+ARC)/200}% chance Stunning it.\n\nWhile \"Wormhole\" is active, the spell doesn't go on cooldown and can be used again without spending Energy to remove the effect from the target.\n\nThe spell can't be used on giant or stationary targets and doesn't harm the caster."
   },
   {
    "n": "Dimensional Shift",
@@ -40,7 +40,7 @@
     "rng"
    ],
    "desc": "Swaps two targets: 5 Arcane + 1 per tile between them; 80% Confuse 3 turns or Daze 2. Both: -5% WD, -5% Accuracy, +5% Fumble 3 turns (x2).",
-   "dyn": "Marks two targets, then teleports them, swapping their positions and dealing {6*(1+(ARC-100)/100)*MP/100} Arcane Damage.\n\nAlso deals {1*(1+(ARC-100)/100)*MP/100} Arcane Damage to both targets for each tile of distance between them, and with {80*(MP+ARC)/200}% chance Confuses them for 3 turns or Dazes for 2 turns.\n\nApplies both targets with -{0.5*WIL}% Weapon Damage, -{0.5*WIL}% Accuracy, and +{0.5*WIL}% Fumble Chance for 3 turns.\n\nThe effect stacks up to 2 times.\n\nThe spell can't be used on giant or stationary targets, doesn't harm the caster, and doesn't apply penalties to entities summoned with Arcanistics."
+   "dyn": "Marks two targets, then teleports them, swapping their positions and dealing {5*(1+(ARC-100)/100)*MP/100} Arcane Damage.\n\nAlso deals {1*(1+(ARC-100)/100)*MP/100} Arcane Damage to both targets for each tile of distance between them, and with {80*(MP+ARC)/200}% chance Confuses them for 3 turns or Dazes for 2 turns.\n\nApplies both targets with -{0.5*WIL}% Weapon Damage, -{0.5*WIL}% Accuracy, and +{0.5*WIL}% Fumble Chance for 3 turns.\n\nThe effect stacks up to 2 times.\n\nThe spell can't be used on giant or stationary targets, doesn't harm the caster, and doesn't apply penalties to entities summoned with Arcanistics."
   },
   {
    "n": "Arcane Might",
@@ -79,7 +79,7 @@
     "rng"
    ],
    "desc": "11 Arcane to 5x5 (minus center); 40% Stagger or Immobilize. 100% knockback adjacent to center, pulls targets 1 tile away.",
-   "dyn": "Deals {9*(1+(ARC-100)/100)*MP/100} Arcane Damage to a 5x5 tile area (except the central tile) and with {40*(MP+ARC)/200}% chance Staggers or Immobilizes all affected targets.\n\nWith {90*(MP+ARC)/200}% chance knocks back the targets adjacent to the area's center and pulls the targets that are 1 tile away from it.\n\nThe spell doesn't harm the caster, aside from Arcane Damage."
+   "dyn": "Deals {11*(1+(ARC-100)/100)*MP/100} Arcane Damage to a 5x5 tile area (except the central tile) and with {40*(MP+ARC)/200}% chance Staggers or Immobilizes all affected targets.\n\nWith {90*(MP+ARC)/200}% chance knocks back the targets adjacent to the area's center and pulls the targets that are 1 tile away from it.\n\nThe spell doesn't harm the caster, aside from Arcane Damage."
   },
   {
    "n": "Transcendental Anchoring",
@@ -114,7 +114,7 @@
    "t": 3,
    "type": "Passive",
    "desc": "'Schism'/Phantasm pull-knockback success: target -10% Magic Res, -10% Arcane Res 3 turns (x2). On fail: 4 Arcane Damage instead.",
-   "dyn": "While affected by \"Aether Shield\", teleporting also grants all strikes and shots {0.1*WIL*(1+(ARC-100)/100)*MP/100} Arcane Damage for 4 turns.\n\nThe effect stacks up to 2 times.\n\nIf \"Schism\" (or \"Arcane Tether\" of the summoned Phantasm) successfully knocks back or pulls the target, applies it with -10% Magic Resistance and -10% Arcane Resistance for 3 turns.\n\nThe effect stacks up to 2 times.\n\nIf these spells fail to knock back or pull the target, deals {5*(1+(ARC-100)/100)} Arcane Damage to it instead."
+   "dyn": "If \"Schism\" (or \"Arcane Tether\" of the summoned Phantasm) successfully knocks back or pulls the target, applies it with -10% Magic Resistance and -10% Arcane Resistance for 3 turns.\n\nThe effect stacks up to 2 times.\n\nIf these spells fail to knock back or pull the target, deals {4*(1+(ARC-100)/100)} Arcane Damage to it instead."
   },
   {
    "n": "Mana Crystal",
@@ -163,7 +163,7 @@
     "wil"
    ],
    "desc": "Summons Phantasm 8 turns: 22 Arcane to random adjacent enemy/turn, 57.5% Accuracy, 7.5% Crit. Has Arcane Tether (pull), Mana Siphon (energy steal), Consonance (prolong). Teleporting it refreshes its cooldowns.",
-   "dyn": "Summons a Phantasm on the targeted tile, which persists for 8 turns.\n\nEach turn, the Phantasm deals {(1+(ARC-100)/100)*26} Arcane Damage to a random adjacent enemy.\n\nThe offensive capabilities and Max Health of the Phantasm change dynamically depending on the caster's stats, decreasing with distance from the caster.\nThe Phantasm can move within 2 tiles of its summoning or teleportation spot, is immune to all effects (except \"Stasis\" and \"Wormhole\"), and replenishes Health upon taking Arcane Damage.\n\nThe Phantasm has access to the following abilities: \"Arcane Tether\", which pulls enemies in, \"Mana Siphon\", which steals Energy, and \"Consonance\", which prolongs its summoning duration.\n\nTeleporting the Phantasm instantly refreshes all its cooldowns."
+   "dyn": "Summons a Phantasm on the targeted tile, which persists for 8 turns.\n\nEach turn, the Phantasm deals {(1+(ARC-100)/100)*22} Arcane Damage to a random adjacent enemy.\n\nThe offensive capabilities and Max Health of the Phantasm change dynamically depending on the caster's stats, decreasing with distance from the caster.\nThe Phantasm can move within 2 tiles of its summoning or teleportation spot, is immune to all effects (except \"Stasis\" and \"Wormhole\"), and replenishes Health upon taking Arcane Damage.\n\nThe Phantasm has access to the following abilities: \"Arcane Tether\", which pulls enemies in, \"Mana Siphon\", which steals Energy, and \"Consonance\", which prolongs its summoning duration.\n\nTeleporting the Phantasm instantly refreshes all its cooldowns."
   },
   {
    "n": "Entropy Flare",

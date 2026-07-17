@@ -110,7 +110,7 @@
    "t": 3,
    "type": "Passive",
    "req": "one-handed mace",
-   "desc": "Using the ability tree's Attack skills applies the target with -5% Control Resistance, -5% Move Resistance, and -7% Crit Avoidance for 3 turns.\n\nThe effect stacks up to 2 times."
+   "desc": "If using the ability tree's Attack skill fails to Daze, Stun, or Stagger the target, applies it with -6% Control Resistance, -8% Move Resistance, and -10% Crit Avoidance for 6 turns.\n\nThis effect stacks up to 3 times."
   }
  ]
 }

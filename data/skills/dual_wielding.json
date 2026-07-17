@@ -72,13 +72,13 @@
    "n": "Berserk Tradition",
    "t": 2,
    "type": "Passive",
-   "desc": "Grants:\n-0.25% Damage Taken for each missing percent of Health\n+3% Crit Chance for 10 turns for each missed or fumbled strike (the effect stacks up to 5 times)\n+0.5% Weapon Damage for each percent of Pain\n+10% Dodge Chance for each degree of Injury\n+2% Counter Chance for 10 turns for each received strike (the effect stacks up to 5 times)\n+8% Crit Efficiency for each adjacent enemy",
+   "desc": "Grants:\n-0.3% Damage Taken for each missing percent of Health\n+4% Crit Chance for 10 turns for each missed or fumbled strike (the effect stacks up to 5 times)\n+1% Weapon Damage for each percent of Pain\n+10% Dodge Chance for each degree of Injury\n+3% Counter Chance for 10 turns for each received strike (the effect stacks up to 5 times)\n+10% Crit Efficiency for each adjacent enemy",
    "fx": {
     "buff": true,
     "stacks": 5,
     "per_stack": {
-     "dt": -0.25,
-     "cc": 3
+     "dt": -0.3,
+     "cc": 4
     }
    }
   },

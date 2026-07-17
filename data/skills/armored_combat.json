@@ -32,7 +32,7 @@
     "vit"
    ],
    "desc": "2 turns: +12% Dodge, +12% Block; received attacks +15% Fumble, -10% Accuracy, -25% Armor Pen. Light chest: +50% Crit Avoidance. Medium: received -33% Bodypart Damage. Heavy: skill -25% CD.",
-   "dyn": "Activates \"Brace for Impact!\" for 2 turns:\n+12% Dodge Chance\n+12% Block Chance\n+12% Control Resistance\n+12% Move Resistance\n\nGrants all received strikes and shots +{1.5*AGL}% Fumble Chance, -{5+0.5*PRC}% Accuracy, and -{5+2*VIT}% Armor Penetration.\n\nIf equipped with a light chestpiece, grants the effect +50% Crit Avoidance.\n\nIf equipped with a medium chestpiece, also grants received strikes and shots -33% Bodypart Damage.\n\nIf equipped with a heavy chestpiece, grants the skill -33% Cooldown Duration."
+   "dyn": "Activates \"Brace for Impact!\" for 2 turns:\n+12% Dodge Chance\n+12% Block Chance\n\nGrants all received strikes and shots +{1.5*AGL}% Fumble Chance, -{5+0.5*PRC}% Accuracy, and -{5+2*VIT}% Armor Penetration.\n\nIf equipped with a light chestpiece, grants the effect +50% Crit Avoidance.\n\nIf equipped with a medium chestpiece, also grants received strikes and shots -33% Bodypart Damage.\n\nIf equipped with a heavy chestpiece, grants the skill -25% Cooldown Duration."
   },
   {
    "n": "Hard Target",
