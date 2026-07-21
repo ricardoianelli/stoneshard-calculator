@@ -391,6 +391,10 @@ input[type=range]{accent-color:#7a2e1d;}
           <div style="font-family:'Cinzel',serif;font-weight:700;font-size:13px;letter-spacing:2px;color:#5a4426;">ABILITIES</div>
           <div style="font-size:12px;font-weight:700;color:{{ apPoolColor }};">{{ apPool }} ability points left</div>
         </div>
+        <label style="display:flex;gap:6px;align-items:center;margin-bottom:8px;font-size:10.5px;color:#6b5a41;cursor:pointer;" title="Off: skills unlock only via their level or attribute-point requirement. On: assume you've read the treatises, so any tier is learnable once its prerequisites are met.">
+          <input type="checkbox" checked="{{ treatisesRead }}" onChange="{{ toggleTreatises }}">
+          Assume treatises read (unlock all tiers)
+        </label>
         <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;">
           <sc-for list="{{ treeTabs }}" as="t" hint-placeholder-count="8">
             <button onClick="{{ t.pick }}" style="font-family:'Cinzel',serif;font-size:10.5px;letter-spacing:.5px;padding:4px 8px;border-radius:3px;cursor:pointer;border:1px solid #9b8354;background:{{ t.bg }};color:{{ t.color }};" style-hover="border-color:#7a2e1d;">{{ t.label }}</button>
@@ -672,7 +676,7 @@ input[type=range]{accent-color:#7a2e1d;}
 class Component extends DCLogic {
   state = {
     loaded: false, loadError: null,
-    charId: 'velmir', level: 1,
+    charId: 'velmir', level: 1, treatisesRead: false,
     alloc: { str: 0, agi: 0, prc: 0, vit: 0, wil: 0 },
     gear: {}, ench: {}, cond: {}, buffs: {}, skills: {}, activeTree: 'swords',
     stancesOn: false, skillBuffs: {}, enemySel: 'Goon', armorMode: 'intact',
@@ -956,10 +960,10 @@ class Component extends DCLogic {
   }
   sanitize(b) {
     const out = {};
-    ['charId','level','alloc','gear','ench','cond','buffs','skills','activeTree','stancesOn','skillBuffs','enemySel','traitCounters'].forEach(k => { if (b[k] !== undefined) out[k] = b[k]; });
+    ['charId','level','treatisesRead','alloc','gear','ench','cond','buffs','skills','activeTree','stancesOn','skillBuffs','enemySel','traitCounters'].forEach(k => { if (b[k] !== undefined) out[k] = b[k]; });
     return out;
   }
-  buildObj() { const s = this.state; return { skillBuffs: s.skillBuffs, charId: s.charId, level: s.level, alloc: s.alloc, gear: s.gear, ench: s.ench, cond: s.cond, buffs: s.buffs, skills: s.skills, activeTree: s.activeTree, stancesOn: s.stancesOn, enemySel: s.enemySel, traitCounters: s.traitCounters }; }
+  buildObj() { const s = this.state; return { skillBuffs: s.skillBuffs, charId: s.charId, level: s.level, treatisesRead: s.treatisesRead, alloc: s.alloc, gear: s.gear, ench: s.ench, cond: s.cond, buffs: s.buffs, skills: s.skills, activeTree: s.activeTree, stancesOn: s.stancesOn, enemySel: s.enemySel, traitCounters: s.traitCounters }; }
   persist() { localStorage.setItem('ss-calc-build-v1', JSON.stringify(this.buildObj())); }
   readLib() { try { return JSON.parse(localStorage.getItem('ss-calc-library-v1')) || {}; } catch (e) { return {}; } }
   writeLib(lib) { localStorage.setItem('ss-calc-library-v1', JSON.stringify(lib)); this.forceUpdate(); }
@@ -1344,7 +1348,7 @@ class Component extends DCLogic {
         nodes: layout.nodes.map(nd => {
           const sk = byName[nd.n] || { n: nd.n };
           const learned = haveT.has(nd.n), sel = nd.n === selName;
-          const met = this.prereqMet(sk, tree, haveT).ok, uok = this.unlockOf(sk).ok;
+          const met = this.prereqMet(sk, tree, haveT).ok, uok = this.unlockOf(sk).ok || s.treatisesRead;
           let frame, bg, glow;
           if (learned) { frame = '#e8c58d'; bg = 'transparent'; glow = '0 0 9px rgba(232,197,141,.6)'; }
           else if (!met) { frame = '#2c2540'; bg = 'rgba(6,4,12,.72)'; glow = 'none'; }
@@ -1392,6 +1396,15 @@ class Component extends DCLogic {
           unlockLine = '🔒 ' + req + '  —  needs Treatise (' + gaps.join(', ') + ')';
         }
       }
+      // learn gate: without the tree's Treatise (toggle off by default), a skill must have its
+      // Level or attribute-point requirement met — you can't learn it just by having the prereq
+      const treat = !!s.treatisesRead;
+      const unlockBlocked = !learned && !isFree && !treat && uinfo.kind === 'gated' && !uinfo.ok;
+      let unlockReqLabel = 'LOCKED';
+      if (uinfo.kind === 'gated') {
+        const u = uinfo.u, ua = (u.attrs || []).map(a => ATTRU[a] || a.toUpperCase()).join('/');
+        unlockReqLabel = 'NEEDS ' + ['Treatise', u.level != null ? 'Lv ' + u.level : null, u.pts != null ? u.pts + ' pts ' + ua : null].filter(Boolean).join(' / ');
+      }
       selSkill = {
         n: selSk.n, icon: this.icon(selSk.ico || selSk.n, 44),
         meta: (selSk.type || '') + (selSk.target ? ' · ' + selSk.target : '') + (selSk.range ? ' · Range ' + selSk.range : '') + (selSk.en ? ' · ' + selSk.en + ' EN / ' + selSk.cd + ' CD' : ''),
@@ -1399,15 +1412,15 @@ class Component extends DCLogic {
         unlockLine, unlockColor, hasUnlock,
         desc: this.dynDesc(selSk, C.attrs),
         hasFormulas: !!selSk.dyn,
-        btnLabel: isFree ? 'INNATE — ALWAYS LEARNED' : (learned ? (wouldOrphan ? '✓ LEARNED — OTHER SKILLS DEPEND ON IT' : '✓ LEARNED — CLICK TO UNLEARN') : (tierBlocked ? 'REQUIRES ' + missingPre.toUpperCase() : (C.apPool > 0 ? 'LEARN (1 AP)' : 'NO ABILITY POINTS LEFT'))),
-        btnBg: isFree ? '#3a3050' : (learned ? '#7a2e1d' : (tierBlocked ? '#2a2435' : (C.apPool > 0 ? '#5a3a20' : '#2a2435'))),
+        btnLabel: isFree ? 'INNATE — ALWAYS LEARNED' : (learned ? (wouldOrphan ? '✓ LEARNED — OTHER SKILLS DEPEND ON IT' : '✓ LEARNED — CLICK TO UNLEARN') : (tierBlocked ? 'REQUIRES ' + missingPre.toUpperCase() : (unlockBlocked ? unlockReqLabel : (C.apPool > 0 ? 'LEARN (1 AP)' : 'NO ABILITY POINTS LEFT')))),
+        btnBg: isFree ? '#3a3050' : (learned ? '#7a2e1d' : ((tierBlocked || unlockBlocked) ? '#2a2435' : (C.apPool > 0 ? '#5a3a20' : '#2a2435'))),
         btnCursor: isFree ? 'default' : 'pointer',
         toggle: () => {
           if (isFree) return;
           const cur = (s.skills[s.activeTree] || []).slice();
           const i = cur.indexOf(selSk.n);
           if (i >= 0) { if (wouldOrphan) return; cur.splice(i, 1); }
-          else { if (C.apPool <= 0 || tierBlocked) return; cur.push(selSk.n); }
+          else { if (C.apPool <= 0 || tierBlocked || unlockBlocked) return; cur.push(selSk.n); }
           this.set({ skills: Object.assign({}, s.skills, { [s.activeTree]: cur }) });
         }
       };
@@ -1598,6 +1611,7 @@ class Component extends DCLogic {
       closePicker: () => this.setState({ pickerSlot: null }),
       pickerClear: () => { const g = Object.assign({}, s.gear); delete g[s.pickerSlot]; this.set({ gear: g }); this.setState({ pickerSlot: null }); },
       apPool: C.apPool, apPoolColor: C.apPool > 0 ? '#7a2e1d' : '#6b5a41', treeTabs, skillTiers, treeView, hasLayout: !!treeView, noLayout: !treeView, selSkill, hasSel: !!selSkill,
+      treatisesRead: !!s.treatisesRead, toggleTreatises: e => this.set({ treatisesRead: !!(e && e.target ? e.target.checked : !s.treatisesRead) }),
       stancesOn: s.stancesOn, toggleStances: () => this.set({ stancesOn: !s.stancesOn, skillBuffs: {} }),
       stackRows: (() => {
         const rows = [];
