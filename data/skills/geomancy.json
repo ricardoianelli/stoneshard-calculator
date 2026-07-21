@@ -63,7 +63,12 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Runic Boulder"
+    ]
+   ]
   },
   {
    "n": "Stone Spikes",
@@ -89,7 +94,12 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Runic Boulder"
+    ]
+   ]
   },
   {
    "n": "Rune of Enfeeblement",
@@ -104,7 +114,12 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Runic Boulder"
+    ]
+   ]
   },
   {
    "n": "Rune of Sustention",
@@ -126,7 +141,12 @@
     "attrs": [
      "vit"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Stone Armor"
+    ]
+   ]
   },
   {
    "n": "Earthquake",
@@ -153,7 +173,15 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Rune of Fortifying"
+    ],
+    [
+     "Stone Spikes"
+    ]
+   ]
   },
   {
    "n": "Rune of Binding",
@@ -168,7 +196,15 @@
      "agi",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Stone Spikes"
+    ],
+    [
+     "Rune of Fortifying"
+    ]
+   ]
   },
   {
    "n": "Rune of Unity",
@@ -182,7 +218,12 @@
     "attrs": [
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Rune of Enfeeblement"
+    ]
+   ]
   },
   {
    "n": "Petrification",
@@ -207,7 +248,12 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Rune of Enfeeblement"
+    ]
+   ]
   },
   {
    "n": "Rune of Cycle",
@@ -221,7 +267,12 @@
     "attrs": [
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Earthquake"
+    ]
+   ]
   },
   {
    "n": "Runic Explosion",
@@ -246,7 +297,12 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Rune of Binding"
+    ]
+   ]
   },
   {
    "n": "Boulder Toss",
@@ -271,7 +327,12 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Rune of Unity"
+    ]
+   ]
   },
   {
    "n": "Rune of Absorption",
@@ -287,7 +348,12 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Petrification"
+    ]
+   ]
   }
  ]
 }

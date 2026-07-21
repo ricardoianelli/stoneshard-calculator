@@ -71,7 +71,15 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Seal of Finesse"
+    ],
+    [
+     "Precise Movements"
+    ]
+   ]
   },
   {
    "n": "Lingering Incantations",
@@ -86,7 +94,15 @@
      "agi",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Precise Movements"
+    ],
+    [
+     "Seal of Finesse"
+    ]
+   ]
   },
   {
    "n": "Seal of Cleansing",
@@ -111,7 +127,12 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Dissipation"
+    ]
+   ]
   },
   {
    "n": "Body and Spirit",
@@ -126,7 +147,12 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Seal of Power"
+    ]
+   ]
   },
   {
    "n": "Thaumaturgy",
@@ -148,7 +174,13 @@
     "attrs": [
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Seal of Insight",
+     "Lingering Incantations"
+    ]
+   ]
   },
   {
    "n": "Seal of Reflection",
@@ -170,7 +202,13 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Seal of Cleansing",
+     "Body and Spirit"
+    ]
+   ]
   },
   {
    "n": "Seal of Shackles",
@@ -195,7 +233,15 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Thaumaturgy"
+    ],
+    [
+     "Seal of Reflection"
+    ]
+   ]
   },
   {
    "n": "Forgotten Lore",
@@ -219,7 +265,15 @@
     "attrs": [
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Seal of Reflection"
+    ],
+    [
+     "Thaumaturgy"
+    ]
+   ]
   }
  ]
 }

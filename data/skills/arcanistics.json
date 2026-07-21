@@ -72,7 +72,12 @@
      "wil",
      "agi"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Wormhole"
+    ]
+   ]
   },
   {
    "n": "Schism",
@@ -98,7 +103,14 @@
      "str",
      "agi"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Wormhole",
+     "Dimensional Shift",
+     "Arcane Might"
+    ]
+   ]
   },
   {
    "n": "Transcendental Anchoring",
@@ -113,7 +125,15 @@
      "wil",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Dimensional Shift"
+    ],
+    [
+     "Arcane Might"
+    ]
+   ]
   },
   {
    "n": "Aether Shield",
@@ -144,7 +164,15 @@
      "wil",
      "str"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Dimensional Shift"
+    ],
+    [
+     "Arcane Might"
+    ]
+   ]
   },
   {
    "n": "Astral Tides",
@@ -161,7 +189,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Schism"
+    ]
+   ]
   },
   {
    "n": "Mana Crystal",
@@ -188,7 +221,13 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Schism",
+     "Transcendental Anchoring"
+    ]
+   ]
   },
   {
    "n": "Stasis",
@@ -212,7 +251,13 @@
      "wil",
      "agi"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Transcendental Anchoring",
+     "Aether Shield"
+    ]
+   ]
   },
   {
    "n": "Phantasm",
@@ -237,7 +282,12 @@
     "attrs": [
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Astral Tides"
+    ]
+   ]
   },
   {
    "n": "Entropy Flare",
@@ -252,7 +302,13 @@
      "wil",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Astral Tides",
+     "Mana Crystal"
+    ]
+   ]
   },
   {
    "n": "Aether Harmony",
@@ -266,7 +322,12 @@
     "attrs": [
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Mana Crystal"
+    ]
+   ]
   },
   {
    "n": "Beyond the Veil",
@@ -278,7 +339,12 @@
     "level": null,
     "pts": null,
     "attrs": []
-   }
+   },
+   "pre": [
+    [
+     "Stasis"
+    ]
+   ]
   }
  ]
 }

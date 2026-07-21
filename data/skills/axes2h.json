@@ -79,7 +79,18 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Hooking Chop"
+    ],
+    [
+     "Shieldbreaker"
+    ],
+    [
+     "Dismember"
+    ]
+   ]
   },
   {
    "n": "Fatal Strike",
@@ -95,7 +106,18 @@
      "str",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Hooking Chop"
+    ],
+    [
+     "Shieldbreaker"
+    ],
+    [
+     "Dismember"
+    ]
+   ]
   },
   {
    "n": "Finish `Em!",
@@ -112,7 +134,18 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Shieldbreaker"
+    ],
+    [
+     "Dismember"
+    ],
+    [
+     "Hooking Chop"
+    ]
+   ]
   },
   {
    "n": "Reign in Blood",
@@ -140,7 +173,18 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Hooking Chop"
+    ],
+    [
+     "Shieldbreaker"
+    ],
+    [
+     "Dismember"
+    ]
+   ]
   },
   {
    "n": "Tool of Execution",
@@ -166,7 +210,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Rampage"
+    ]
+   ]
   },
   {
    "n": "Make Space",
@@ -194,7 +243,13 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Fatal Strike",
+     "Finish `Em!"
+    ]
+   ]
   },
   {
    "n": "Maim and Kill",
@@ -223,7 +278,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Reign in Blood"
+    ]
+   ]
   }
  ]
 }

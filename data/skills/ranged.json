@@ -69,7 +69,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Taking Aim"
+    ]
+   ]
   },
   {
    "n": "Startling Volley",
@@ -95,7 +100,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Constant Practice"
+    ]
+   ]
   },
   {
    "n": "Suppression",
@@ -125,7 +135,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Dexterity"
+    ]
+   ]
   },
   {
    "n": "Anticipation",
@@ -140,7 +155,12 @@
     "attrs": [
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Distracting Shot"
+    ]
+   ]
   },
   {
    "n": "Long Shot",
@@ -166,7 +186,13 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Spot Weakness",
+     "Startling Volley"
+    ]
+   ]
   },
   {
    "n": "Precision",
@@ -190,7 +216,13 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Startling Volley",
+     "Suppression"
+    ]
+   ]
   },
   {
    "n": "Hunter's Mark",
@@ -209,7 +241,13 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Suppression",
+     "Anticipation"
+    ]
+   ]
   },
   {
    "n": "Shoot to Kill",
@@ -224,7 +262,12 @@
     "attrs": [
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Long Shot"
+    ]
+   ]
   },
   {
    "n": "Headshot",
@@ -251,7 +294,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Precision"
+    ]
+   ]
   },
   {
    "n": "Upper Hand",
@@ -268,7 +316,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Hunter's Mark"
+    ]
+   ]
   }
  ]
 }

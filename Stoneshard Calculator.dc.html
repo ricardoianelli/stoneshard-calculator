@@ -918,6 +918,25 @@ class Component extends DCLogic {
     const byLevel = u.level != null && this.state.level >= u.level;
     return { ok: byAttr || byLevel, byAttr, byLevel, invested, u, kind: 'gated' };
   }
+  // Prerequisite chain (from tree images): sk.pre = array of OR-groups; the skill is learnable
+  // when the learned/innate skills include >=1 from EVERY group (junctions are AND, so a
+  // junction becomes several single-item groups). Falls back to the tier-chain (any lower-tier
+  // same-tree skill) when a skill carries no `pre` data.
+  prereqMet(sk, tree, have) {
+    if (sk.pre && sk.pre.length) {
+      const need = sk.pre.filter(g => !g.some(n => have.has(n)));
+      return { ok: need.length === 0, need };
+    }
+    const t = sk.t || 1;
+    if (t <= 1) return { ok: true, need: [] };
+    const tiers = new Set(tree.skills.filter(x => have.has(x.n)).map(x => x.t || 1));
+    for (let q = 1; q < t; q++) if (!tiers.has(q)) return { ok: false, need: [], tierMissing: q };
+    return { ok: true, need: [] };
+  }
+  prereqOrphan(tree, removeName, have) {
+    const after = new Set(have); after.delete(removeName);
+    return tree.skills.some(x => after.has(x.n) && !this.prereqMet(x, tree, after).ok);
+  }
   sanitize(b) {
     const out = {};
     ['charId','level','alloc','gear','ench','cond','buffs','skills','activeTree','stancesOn','skillBuffs','enemySel','traitCounters'].forEach(k => { if (b[k] !== undefined) out[k] = b[k]; });
@@ -1301,18 +1320,14 @@ class Component extends DCLogic {
     if (selSk) {
       const learned = (s.skills[s.activeTree] || []).includes(selSk.n);
       const isFree = C.free.includes(selSk.n);
-      // tier-chain prerequisite: learning tier T needs a learned/innate same-tree skill at every tier below
+      // prerequisite: exact skill-connection graph (sk.pre) when present, else tier-chain fallback
       const curList = s.skills[s.activeTree] || [];
-      const tiersHave = new Set(tree.skills.filter(x => curList.includes(x.n) || C.free.includes(x.n)).map(x => x.t || 1));
-      let missingTier = 0;
-      for (let q = 1; q < (selSk.t || 1); q++) { if (!tiersHave.has(q)) { missingTier = q; break; } }
-      const tierBlocked = !learned && !isFree && missingTier > 0;
-      // unlearning must not orphan a learned higher-tier skill
-      const wouldOrphan = learned && !isFree && (() => {
-        const after = tree.skills.filter(x => (curList.includes(x.n) && x.n !== selSk.n) || C.free.includes(x.n));
-        const have = new Set(after.map(x => x.t || 1));
-        return after.some(x => { for (let q = 1; q < (x.t || 1); q++) { if (!have.has(q)) return true; } return false; });
-      })();
+      const haveNames = new Set(curList.concat(tree.skills.filter(x => C.free.includes(x.n)).map(x => x.n)));
+      const pm = this.prereqMet(selSk, tree, haveNames);
+      const missingPre = pm.need && pm.need.length ? pm.need.map(g => g.join(' or ')).join(' + ') : (pm.tierMissing ? 'a Tier ' + pm.tierMissing + ' skill in this tree' : '');
+      const tierBlocked = !learned && !isFree && !pm.ok;
+      // unlearning must not orphan a learned skill that depends on it
+      const wouldOrphan = learned && !isFree && this.prereqOrphan(tree, selSk.n, haveNames);
       // unlock requirement (per-skill wiki data): read Treatise, reach a level, or invest points
       const uinfo = this.unlockOf(selSk);
       const ATTRU = { str: 'STR', agi: 'AGI', prc: 'PRC', vit: 'VIT', wil: 'WIL' };
@@ -1341,7 +1356,7 @@ class Component extends DCLogic {
         unlockLine, unlockColor, hasUnlock,
         desc: this.dynDesc(selSk, C.attrs),
         hasFormulas: !!selSk.dyn,
-        btnLabel: isFree ? 'INNATE — ALWAYS LEARNED' : (learned ? (wouldOrphan ? '✓ LEARNED — HIGHER TIERS DEPEND ON IT' : '✓ LEARNED — CLICK TO UNLEARN') : (tierBlocked ? 'REQUIRES A TIER ' + missingTier + ' SKILL IN THIS TREE' : (C.apPool > 0 ? 'LEARN (1 AP)' : 'NO ABILITY POINTS LEFT'))),
+        btnLabel: isFree ? 'INNATE — ALWAYS LEARNED' : (learned ? (wouldOrphan ? '✓ LEARNED — OTHER SKILLS DEPEND ON IT' : '✓ LEARNED — CLICK TO UNLEARN') : (tierBlocked ? 'REQUIRES ' + missingPre.toUpperCase() : (C.apPool > 0 ? 'LEARN (1 AP)' : 'NO ABILITY POINTS LEFT'))),
         btnBg: isFree ? '#3a3050' : (learned ? '#7a2e1d' : (tierBlocked ? '#2a2435' : (C.apPool > 0 ? '#5a3a20' : '#2a2435'))),
         btnCursor: isFree ? 'default' : 'pointer',
         toggle: () => {

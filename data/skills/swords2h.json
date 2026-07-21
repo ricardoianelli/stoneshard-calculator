@@ -88,7 +88,12 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Hewing Strike"
+    ]
+   ]
   },
   {
    "n": "Feast of Steel",
@@ -118,7 +123,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Revanche"
+    ]
+   ]
   },
   {
    "n": "Arc Cleave",
@@ -146,7 +156,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Revanche"
+    ]
+   ]
   },
   {
    "n": "Fight to the Death",
@@ -163,7 +178,12 @@
      "prc",
      "vit"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Parry"
+    ]
+   ]
   },
   {
    "n": "Taste of Victory",
@@ -180,7 +200,13 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Recklessness",
+     "Feast of Steel"
+    ]
+   ]
   },
   {
    "n": "Heroic Charge",
@@ -207,7 +233,15 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Recklessness",
+     "Feast of Steel",
+     "Arc Cleave",
+     "Fight to the Death"
+    ]
+   ]
   },
   {
    "n": "Courage",
@@ -232,7 +266,13 @@
      "agi",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Arc Cleave",
+     "Fight to the Death"
+    ]
+   ]
   }
  ]
 }

@@ -87,7 +87,13 @@
      "str",
      "vit"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Raise Shield",
+     "Embodiment of Resilience"
+    ]
+   ]
   },
   {
    "n": "Shield Bash",
@@ -114,7 +120,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Breakthrough"
+    ]
+   ]
   },
   {
    "n": "Hold the Line!",
@@ -146,7 +157,12 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Last Bastion"
+    ]
+   ]
   },
   {
    "n": "Retaliation",
@@ -169,7 +185,12 @@
      "str",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Shield Bash"
+    ]
+   ]
   }
  ]
 }

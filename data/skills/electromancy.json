@@ -55,7 +55,12 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Jolt"
+    ]
+   ]
   },
   {
    "n": "Short Circuit",
@@ -78,7 +83,12 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Jolt"
+    ]
+   ]
   },
   {
    "n": "Static Field",
@@ -101,7 +111,12 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Impulse"
+    ]
+   ]
   },
   {
    "n": "Potential Difference",
@@ -115,7 +130,12 @@
     "attrs": [
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Impulse"
+    ]
+   ]
   },
   {
    "n": "Chain Lightning",
@@ -139,7 +159,15 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Residual Charge"
+    ],
+    [
+     "Short Circuit"
+    ]
+   ]
   },
   {
    "n": "Unlimited Power",
@@ -154,7 +182,15 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Residual Charge"
+    ],
+    [
+     "Short Circuit"
+    ]
+   ]
   },
   {
    "n": "Conductivity",
@@ -169,7 +205,15 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Static Field"
+    ],
+    [
+     "Potential Difference"
+    ]
+   ]
   },
   {
    "n": "Ball Lightning",
@@ -192,7 +236,15 @@
      "agi",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Static Field"
+    ],
+    [
+     "Potential Difference"
+    ]
+   ]
   },
   {
    "n": "Chain Reaction",
@@ -208,7 +260,21 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Chain Lightning"
+    ],
+    [
+     "Unlimited Power"
+    ],
+    [
+     "Conductivity"
+    ],
+    [
+     "Ball Lightning"
+    ]
+   ]
   },
   {
    "n": "Resonance Cascade",
@@ -223,7 +289,21 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Chain Lightning"
+    ],
+    [
+     "Unlimited Power"
+    ],
+    [
+     "Conductivity"
+    ],
+    [
+     "Ball Lightning"
+    ]
+   ]
   },
   {
    "n": "Tempest",
@@ -247,7 +327,21 @@
      "agi",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Conductivity"
+    ],
+    [
+     "Ball Lightning"
+    ],
+    [
+     "Chain Lightning"
+    ],
+    [
+     "Unlimited Power"
+    ]
+   ]
   },
   {
    "n": "Recharge",
@@ -262,7 +356,21 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Conductivity"
+    ],
+    [
+     "Ball Lightning"
+    ],
+    [
+     "Chain Lightning"
+    ],
+    [
+     "Unlimited Power"
+    ]
+   ]
   }
  ]
 }

@@ -68,7 +68,12 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Destabilizing Hits"
+    ]
+   ]
   },
   {
    "n": "Unwavering Stance",
@@ -88,7 +93,13 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Hail of Blows",
+     "Step Aside!"
+    ]
+   ]
   },
   {
    "n": "Triumph",
@@ -112,7 +123,12 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Battle Trance"
+    ]
+   ]
   },
   {
    "n": "Peacemaker",
@@ -138,7 +154,12 @@
      "agi",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Unwavering Stance"
+    ]
+   ]
   }
  ]
 }

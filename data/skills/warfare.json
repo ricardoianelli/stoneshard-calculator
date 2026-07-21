@@ -92,7 +92,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Seize the Initiative"
+    ]
+   ]
   },
   {
    "n": "Offensive Tactic",
@@ -123,7 +128,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Opportune Moment"
+    ]
+   ]
   },
   {
    "n": "Defensive Tactic",
@@ -154,7 +164,12 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Setup"
+    ]
+   ]
   },
   {
    "n": "Intimidation",
@@ -169,7 +184,12 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "War Cry"
+    ]
+   ]
   },
   {
    "n": "Finisher",
@@ -197,7 +217,13 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Right on Target",
+     "Offensive Tactic"
+    ]
+   ]
   },
   {
    "n": "Tactical Advantage",
@@ -219,7 +245,13 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Offensive Tactic",
+     "Defensive Tactic"
+    ]
+   ]
   },
   {
    "n": "Against the Odds",
@@ -242,7 +274,13 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Defensive Tactic",
+     "Intimidation"
+    ]
+   ]
   },
   {
    "n": "Armor Crusher",
@@ -258,7 +296,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Finisher"
+    ]
+   ]
   },
   {
    "n": "Thirst for Battle",
@@ -278,7 +321,12 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Tactical Advantage"
+    ]
+   ]
   },
   {
    "n": "Final Push",
@@ -294,7 +342,12 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Against the Odds"
+    ]
+   ]
   }
  ]
 }

@@ -49,7 +49,12 @@
     "attrs": [
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Butchering"
+    ]
+   ]
   },
   {
    "n": "Pathfinder",
@@ -66,7 +71,13 @@
     "attrs": [
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Butchering",
+     "Make a Halt"
+    ]
+   ]
   },
   {
    "n": "Austerity",
@@ -84,7 +95,13 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Make a Halt",
+     "Cauterize Wounds"
+    ]
+   ]
   },
   {
    "n": "First Aid",
@@ -110,7 +127,12 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Cauterize Wounds"
+    ]
+   ]
   },
   {
    "n": "Huntmaster",
@@ -128,7 +150,15 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Pathfinder"
+    ],
+    [
+     "Resourcefulness"
+    ]
+   ]
   },
   {
    "n": "Ever Vigilant",
@@ -146,7 +176,15 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Pathfinder"
+    ],
+    [
+     "Resourcefulness"
+    ]
+   ]
   },
   {
    "n": "Adaptability",
@@ -164,7 +202,15 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Austerity"
+    ],
+    [
+     "First Aid"
+    ]
+   ]
   },
   {
    "n": "Will to Survive",
@@ -186,7 +232,15 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Austerity"
+    ],
+    [
+     "First Aid"
+    ]
+   ]
   }
  ]
 }
