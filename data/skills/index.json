@@ -1,5 +1,5 @@
 {
-  "$meta": {"note":"Index of all skill tree files + which passives the calculator applies as permanent stat mods.","game_version":"0.9.4.23"},
+  "$meta": {"note":"Index of all skill tree files + which passives the calculator applies as permanent stat mods.","game_version":"0.9.4.23","unlock_schema":"Each non-innate skill may carry an `unlock` object (verbatim from its wiki page): {treatise:'<Tree> <Roman>', level:int|null, pts:int|null, attrs:[str|agi|prc|vit|wil]}. A skill unlocks by reading the Treatise OR (if present) reaching `level` OR investing `pts` allocation points summed across `attrs`. Some skills are treatise-only (level+pts null); some have a pts path but no level. Tier-1 weapon skills have no unlock sentence on the wiki (no `unlock` field). `free:true` = innately learned; `unlocked:true` = available to all without a Treatise but still costs 1 AP."},
   "trees": [
     {"id":"swords","file":"swords.json","label":"Swords"},
     {"id":"axes","file":"axes.json","label":"Axes"},

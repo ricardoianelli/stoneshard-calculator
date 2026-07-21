@@ -54,7 +54,16 @@
    "n": "Rune of Fortifying",
    "t": 2,
    "type": "Passive",
-   "desc": "Grants -5% Damage Taken and -5% Backfire Damage Change for each adjacent runic boulder.\n\nGrants boulders -25% Damage Taken.\n\nReduces the sustain cost of adjacent boulders to 1 Energy per turn."
+   "desc": "Grants -5% Damage Taken and -5% Backfire Damage Change for each adjacent runic boulder.\n\nGrants boulders -25% Damage Taken.\n\nReduces the sustain cost of adjacent boulders to 1 Energy per turn.",
+   "unlock": {
+    "treatise": "Geomancy II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "vit",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Stone Spikes",
@@ -70,13 +79,32 @@
     "rng"
    ],
    "desc": "Destroys chosen boulder: 12 Piercing + 3 Crushing to tiles adjacent to it, 40% knockback; summons stone spikes on empty adjacent tiles 8 turns.",
-   "dyn": "Destroys the chosen runic boulder, dealing {14*(MP+GEO)/200} Piercing and {3*(MP+GEO)/200} Crushing Damage to all tiles adjacent to it, and with {40*(MP+GEO)/200}% chance knocks the affected targets back.\n\nThen, if the adjacent tiles are empty, summons stone spikes on them, which persist for 8 turns.\n\nThe spikes' Durability depends on the caster's Max Energy."
+   "dyn": "Destroys the chosen runic boulder, dealing {14*(MP+GEO)/200} Piercing and {3*(MP+GEO)/200} Crushing Damage to all tiles adjacent to it, and with {40*(MP+GEO)/200}% chance knocks the affected targets back.\n\nThen, if the adjacent tiles are empty, summons stone spikes on them, which persist for 8 turns.\n\nThe spikes' Durability depends on the caster's Max Energy.",
+   "unlock": {
+    "treatise": "Geomancy II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "agi",
+     "vit",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Rune of Enfeeblement",
    "t": 2,
    "type": "Passive",
-   "desc": "Applies enemies with -5% Physical Resistance, -5% Move Resistance, and -5% Control Resistance for each runic boulder adjacent to them."
+   "desc": "Applies enemies with -5% Physical Resistance, -5% Move Resistance, and -5% Control Resistance for each runic boulder adjacent to them.",
+   "unlock": {
+    "treatise": "Geomancy II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "vit",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Rune of Sustention",
@@ -90,6 +118,14 @@
      "cd": -5,
      "er": 10
     }
+   },
+   "unlock": {
+    "treatise": "Geomancy II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "vit"
+    ]
    }
   },
   {
@@ -107,19 +143,46 @@
     "rng"
    ],
    "desc": "Destroys chosen boulder: 5x5 earthquake 8 turns. Inside: 3 Crushing/turn, burns 3% Max Energy (max 10), 5% Daze 3 turns, -5% Control Res and -10% Move Res (stacks, persists).",
-   "dyn": "Destroys the chosen runic boulder, creating an earthquake in a 5x5 tile area, which persists for 8 turns.\n\nRemaining in the earthquake:\nDeals {3*(MP+GEO)/200} Crushing Damage\nBurns {3*(MP+GEO)/200}% Max Energy (but no more than {WIL})\nHas {5*(MP+GEO)/200}% chance to cause Daze for 3 turns\nApplies with -5% Control Resistance and -10% Move Resistance (the effect stacks and persists until the spell expires)."
+   "dyn": "Destroys the chosen runic boulder, creating an earthquake in a 5x5 tile area, which persists for 8 turns.\n\nRemaining in the earthquake:\nDeals {3*(MP+GEO)/200} Crushing Damage\nBurns {3*(MP+GEO)/200}% Max Energy (but no more than {WIL})\nHas {5*(MP+GEO)/200}% chance to cause Daze for 3 turns\nApplies with -5% Control Resistance and -10% Move Resistance (the effect stacks and persists until the spell expires).",
+   "unlock": {
+    "treatise": "Geomancy III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "agi",
+     "vit",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Rune of Binding",
    "t": 3,
    "type": "Passive",
-   "desc": "Summoning a runic boulder grants +7.5% Energy Restoration for 5 turns and reduces the ability tree's cooldowns by 1 turn for each stack of \"Runic Empowerment\"."
+   "desc": "Summoning a runic boulder grants +7.5% Energy Restoration for 5 turns and reduces the ability tree's cooldowns by 1 turn for each stack of \"Runic Empowerment\".",
+   "unlock": {
+    "treatise": "Geomancy III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "agi",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Rune of Unity",
    "t": 3,
    "type": "Passive",
-   "desc": "Allows the character to simultaneously summon 4 runic boulders.\n\nIf a boulder is within 2 tiles of the character, its destruction by enemies no longer Confuses or deals Arcane Damage."
+   "desc": "Allows the character to simultaneously summon 4 runic boulders.\n\nIf a boulder is within 2 tiles of the character, its destruction by enemies no longer Confuses or deals Arcane Damage.",
+   "unlock": {
+    "treatise": "Geomancy III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "wil"
+    ]
+   }
   },
   {
    "n": "Petrification",
@@ -134,13 +197,31 @@
     "geo"
    ],
    "desc": "Destroys chosen boulder: 66% Petrify adjacent targets 2 turns (+2 per Empowerment stack over I). Petrified taking damage: +6 Pure Damage, body parts -3% condition (1/turn). +20% Geomantic Power per Petrified enemy in Vision.",
-   "dyn": "Destroys the chosen runic boulder and with {66*(MP+GEO)/200}% chance applies all targets adjacent to it with Petrification for 2 turns (+2 turns for each stack of \"Runic Empowerment\" over I).\n\nWhen a Petrified target receives damage, additionally deals {6*(1+(GEO-100)/100)} Pure Damage to it and worsens the Condition of its body parts by 3% (no more than once per turn).\n\nEach Petrified enemy within Vision grants +20% Geomantic Power."
+   "dyn": "Destroys the chosen runic boulder and with {66*(MP+GEO)/200}% chance applies all targets adjacent to it with Petrification for 2 turns (+2 turns for each stack of \"Runic Empowerment\" over I).\n\nWhen a Petrified target receives damage, additionally deals {6*(1+(GEO-100)/100)} Pure Damage to it and worsens the Condition of its body parts by 3% (no more than once per turn).\n\nEach Petrified enemy within Vision grants +20% Geomantic Power.",
+   "unlock": {
+    "treatise": "Geomancy III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "prc",
+     "vit",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Rune of Cycle",
    "t": 4,
    "type": "Passive",
-   "desc": "Destroying a runic boulder to use the ability tree's spells deals Arcane Damage to all targets adjacent to it.\nThe damage dealt is equal to 3% of the current Energy, increasing by 100% for each stack of \"Runic Empowerment\" above I."
+   "desc": "Destroying a runic boulder to use the ability tree's spells deals Arcane Damage to all targets adjacent to it.\nThe damage dealt is equal to 3% of the current Energy, increasing by 100% for each stack of \"Runic Empowerment\" above I.",
+   "unlock": {
+    "treatise": "Geomancy IV",
+    "level": 22,
+    "pts": 20,
+    "attrs": [
+     "wil"
+    ]
+   }
   },
   {
    "n": "Runic Explosion",
@@ -156,7 +237,16 @@
     "rng"
    ],
    "desc": "Destroys chosen boulder: 8 Arcane + 8 Crushing to 5x5, 40% knockback, 25% Stun. +5% Max Energy per enemy in area.",
-   "dyn": "Destroys the chosen runic boulder, dealing {8*(1+(GEO-100)/100)*MP/100} Arcane and {8*(MP+GEO)/200} Crushing Damage to all targets in a 5x5 tile area.\n\nWith {40*(MP+GEO)/200}% chance knocks the affected targets back and with {25*(MP+GEO)/200}% chance Stuns them.\n\nReplenishes 5% Max Energy for each enemy within the spell's area of effect."
+   "dyn": "Destroys the chosen runic boulder, dealing {8*(1+(GEO-100)/100)*MP/100} Arcane and {8*(MP+GEO)/200} Crushing Damage to all targets in a 5x5 tile area.\n\nWith {40*(MP+GEO)/200}% chance knocks the affected targets back and with {25*(MP+GEO)/200}% chance Stuns them.\n\nReplenishes 5% Max Energy for each enemy within the spell's area of effect.",
+   "unlock": {
+    "treatise": "Geomancy IV",
+    "level": 22,
+    "pts": 20,
+    "attrs": [
+     "vit",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Boulder Toss",
@@ -172,13 +262,32 @@
     "rng"
    ],
    "desc": "Throws chosen boulder: 12 Crushing + 6 Arcane; 70% knockback, 15% Stun or Daze.",
-   "dyn": "Throws the chosen runic boulder at a targeted tile, dealing {12*(MP+GEO)/200} Crushing and {6*(1+(GEO-100)/100)*MP/100} Arcane Damage.\n\nHitting the target with {70*(MP+GEO)/200}% chance knocks it back and with {15*(MP+GEO)/200}% chance Stuns or Dazes it.\n\nEach tile of distance to the target increases the throw's damage by 12% and also increases the duration of the applied Stun or Daze."
+   "dyn": "Throws the chosen runic boulder at a targeted tile, dealing {12*(MP+GEO)/200} Crushing and {6*(1+(GEO-100)/100)*MP/100} Arcane Damage.\n\nHitting the target with {70*(MP+GEO)/200}% chance knocks it back and with {15*(MP+GEO)/200}% chance Stuns or Dazes it.\n\nEach tile of distance to the target increases the throw's damage by 12% and also increases the duration of the applied Stun or Daze.",
+   "unlock": {
+    "treatise": "Geomancy IV",
+    "level": 22,
+    "pts": 20,
+    "attrs": [
+     "prc",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Rune of Absorption",
    "t": 4,
    "type": "Passive",
-   "desc": "Each turn, runic boulders burn 2% Max Energy of all enemies adjacent to them for each stack of \"Runic Empowerment\", replenishing the same amount of Energy to the character, and prolong all their active cooldowns by 1 turn.\n\nThe effect doesn't stack."
+   "desc": "Each turn, runic boulders burn 2% Max Energy of all enemies adjacent to them for each stack of \"Runic Empowerment\", replenishing the same amount of Energy to the character, and prolong all their active cooldowns by 1 turn.\n\nThe effect doesn't stack.",
+   "unlock": {
+    "treatise": "Geomancy IV",
+    "level": 22,
+    "pts": 20,
+    "attrs": [
+     "agi",
+     "vit",
+     "wil"
+    ]
+   }
   }
  ]
 }

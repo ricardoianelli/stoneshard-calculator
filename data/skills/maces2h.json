@@ -59,14 +59,33 @@
    "target": "No Target",
    "en": 14,
    "cd": 12,
-   "desc": "Activates \"Striker Stance\" for 10 turns:\n+3% Crit Chance\n+10% Knockback Chance\n+10% Armor Penetration\n+15% Stagger Chance\nGrants +100% Daze Chance to every third strike.\n\nUsing the ability tree's skills grants an extra stack of the effect (up to IV).\n\nBasic two-handed mace strikes prolong the effect's duration by 1 turn (up to 10) but reduce its number of stacks (no more than once per turn).\n\nOnly one Stance effect can be active at a time.\n\nIf affected by \"Mighty Swing\", using the skill delivers a strike to a random adjacent enemy."
+   "desc": "Activates \"Striker Stance\" for 10 turns:\n+3% Crit Chance\n+10% Knockback Chance\n+10% Armor Penetration\n+15% Stagger Chance\nGrants +100% Daze Chance to every third strike.\n\nUsing the ability tree's skills grants an extra stack of the effect (up to IV).\n\nBasic two-handed mace strikes prolong the effect's duration by 1 turn (up to 10) but reduce its number of stacks (no more than once per turn).\n\nOnly one Stance effect can be active at a time.\n\nIf affected by \"Mighty Swing\", using the skill delivers a strike to a random adjacent enemy.",
+   "unlock": {
+    "treatise": "Two-Handed Maces II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Bonebreaker",
    "ico": "Bonebreaker (Two-Handed Mace skill)",
    "t": 2,
    "type": "Passive",
-   "desc": "Grants two-handed mace strikes +35% Armor Damage if the target's Armor Durability is above 50%.\n\nGrants two-handed mace strikes +20% Bodypart Damage if the target has no Armor or its Armor Durability is below 50%."
+   "desc": "Grants two-handed mace strikes +35% Armor Damage if the target's Armor Durability is above 50%.\n\nGrants two-handed mace strikes +20% Bodypart Damage if the target has no Armor or its Armor Durability is below 50%.",
+   "unlock": {
+    "treatise": "Two-Handed Maces II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Forceful Slam",
@@ -82,7 +101,17 @@
     "prc"
    ],
    "dyn": "Delivers a strike with -50% Weapon Damage and +75% Immobilization Chance and also prolongs the target's Daze, Stun, and Stagger by 1 turn.\n\nThis strike can't knock back its targets.\n\nIf the next turn the target is adjacent, delivers a free strike to it with +{0.5*AGL+0.5*STR}% Crit Chance.\n\nIf the target is Immobilized, Stunned, Dazed, or Staggered, grants this strike +{25+PRC}% Weapon Damage.\n\nIf the target is Stunned, also doubles the bonus to Crit Chance.\n\nIf affected by \"Mighty Swing\", prolongs its duration by 1 turn, and the first strike applies the target with -10% Crushing Resistance for 3 turns (the effect doesn't stack).",
-   "desc": ""
+   "desc": "",
+   "unlock": {
+    "treatise": "Two-Handed Maces II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Revel in Battle",
@@ -92,7 +121,18 @@
     "wil"
    ],
    "dyn": "While affected by \"Striker Stance\", killing enemies with two-handed maces replenishes {10+WIL}% Max Energy.\n\nIf affected by both \"Striker Stance\" and \"Mighty Swing\" at the same time, killing enemies with two-handed maces reduces the ability tree's cooldowns by 4 turns and grants +20% Stun Chance for 3 turns.\n\nThe effect stacks up to 2 times.",
-   "desc": ""
+   "desc": "",
+   "unlock": {
+    "treatise": "Two-Handed Maces III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "prc",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Skull Crusher",
@@ -108,13 +148,33 @@
     "prc"
    ],
    "dyn": "Performs a charge towards the target and delivers a strike to its head with +{10+2*STR+2*PRC}% Stun Chance and +{5+PRC+AGL}% Bodypart Damage.\n\nIf affected by \"Mighty Swing\", grants the skill +1 Range, +50% Stagger Chance, and +50% Immobilization Chance.",
-   "desc": ""
+   "desc": "",
+   "unlock": {
+    "treatise": "Two-Handed Maces III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Severe Concussion",
    "t": 3,
    "type": "Passive",
-   "desc": "Dazing, Stunning, or Staggering targets with two-handed mace strikes applies them with -15% Move Resistance, -10% Accuracy, and +10% Fumble Chance for 4 turns.\n\nThe effect stacks up to 2 times."
+   "desc": "Dazing, Stunning, or Staggering targets with two-handed mace strikes applies them with -15% Move Resistance, -10% Accuracy, and +10% Fumble Chance for 4 turns.\n\nThe effect stacks up to 2 times.",
+   "unlock": {
+    "treatise": "Two-Handed Maces III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   }
  ]
 }

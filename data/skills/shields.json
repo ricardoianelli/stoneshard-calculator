@@ -78,7 +78,16 @@
    "t": 2,
    "type": "Passive",
    "req": "shield",
-   "desc": "Grants +3% Block Power Recovery for 6 turns for each adjacent enemy.\n\nEach received hit grants +3% Energy Restoration for 6 turns.\n\nBoth effects stack up to 5 times.\n\nIf equipped with a light shield, both effects trigger twice per turn."
+   "desc": "Grants +3% Block Power Recovery for 6 turns for each adjacent enemy.\n\nEach received hit grants +3% Energy Restoration for 6 turns.\n\nBoth effects stack up to 5 times.\n\nIf equipped with a light shield, both effects trigger twice per turn.",
+   "unlock": {
+    "treatise": "Shields II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "vit"
+    ]
+   }
   },
   {
    "n": "Shield Bash",
@@ -95,7 +104,17 @@
    ],
    "req": "shield",
    "desc": "8 Crushing, 100% Accuracy, 40% Daze, 80% Knockback. Replenishes 15% Max Block Power. Light shield: -25% CD. Heavy: BP refill = 30% of damage.",
-   "dyn": "Deals Crushing Damage ((8 + 30% of Max Block Power) × shield condition) with {80+2*PRC}% Accuracy, Crit Chance equal to 20% of Block Chance, {2*AGL+2*PRC}% Daze Chance, and {60+2*STR}% Knockback Chance.\n\nReplenishes {-5+2*VIT}% Max Block Power.\n\nIf equipped with a light shield, grants the skill -25% Cooldown Duration.\n\nIf equipped with a heavy shield, replenishes Block Power for 30% of the damage dealt."
+   "dyn": "Deals Crushing Damage ((8 + 30% of Max Block Power) × shield condition) with {80+2*PRC}% Accuracy, Crit Chance equal to 20% of Block Chance, {2*AGL+2*PRC}% Daze Chance, and {60+2*STR}% Knockback Chance.\n\nReplenishes {-5+2*VIT}% Max Block Power.\n\nIf equipped with a light shield, grants the skill -25% Cooldown Duration.\n\nIf equipped with a heavy shield, replenishes Block Power for 30% of the damage dealt.",
+   "unlock": {
+    "treatise": "Shields II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Hold the Line!",
@@ -117,6 +136,16 @@
      "ctr": 10
     },
     "stacks": 4
+   },
+   "unlock": {
+    "treatise": "Shields III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "vit",
+     "wil"
+    ]
    }
   },
   {
@@ -131,6 +160,15 @@
     "per_stack": {
      "cc": 50
     }
+   },
+   "unlock": {
+    "treatise": "Shields III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "prc"
+    ]
    }
   }
  ]

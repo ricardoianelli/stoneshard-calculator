@@ -73,6 +73,16 @@
     "per_stack": {
      "bpd": 8
     }
+   },
+   "unlock": {
+    "treatise": "Axes Treatise II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
    }
   },
   {
@@ -93,6 +103,16 @@
      "cc": 3
     },
     "stacks": 4
+   },
+   "unlock": {
+    "treatise": "Axes Treatise II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
    }
   },
   {
@@ -111,14 +131,35 @@
    ],
    "req": "one-handed axe",
    "desc": "Head strike: +2% WD per missing 1% target HP. +5% Crit Chance per Injury degree, +20% Crit Eff per Bleeding. Kill: +25% Max Energy.",
-   "dyn": "Delivers a strike to the target's head with +{1+(0.05*STR)+(0.025*AGL)+(0.025*PRC)}% Weapon Damage for each missing percent of the target's Health.\n\nGrants the strike +5% Crit Chance for each degree of Injury affecting the target and +20% Crit Efficiency for each Bleeding.\n\nIf this strike kills its target, replenishes {2.5*WIL}% Max Energy."
+   "dyn": "Delivers a strike to the target's head with +{1+(0.05*STR)+(0.025*AGL)+(0.025*PRC)}% Weapon Damage for each missing percent of the target's Health.\n\nGrants the strike +5% Crit Chance for each degree of Injury affecting the target and +20% Crit Efficiency for each Bleeding.\n\nIf this strike kills its target, replenishes {2.5*WIL}% Max Energy.",
+   "unlock": {
+    "treatise": "Axes Treatise III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "prc",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Tormenting Swings",
    "t": 3,
    "type": "Passive",
    "req": "one-handed axe",
-   "desc": "Damaging axe strikes apply their target with -7% Bleed Resistance and -5% Max Health for 5 turns.\n\nThe effect stacks up to 5 times."
+   "desc": "Damaging axe strikes apply their target with -7% Bleed Resistance and -5% Max Health for 5 turns.\n\nThe effect stacks up to 5 times.",
+   "unlock": {
+    "treatise": "Axes Treatise III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   }
  ]
 }

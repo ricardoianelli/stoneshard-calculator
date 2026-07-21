@@ -54,13 +54,34 @@
     "wil"
    ],
    "desc": "Strike 3 tiles -50% WD, +100% Stagger. Hit: target -20% WD, +20% Fumble, -5% Acc 2 turns. Light chest: +1 turn. Medium: also -15% Control/Move Res, -15% Crit Avoid. Heavy: +5% Max Energy and +6% Energy Restoration 5 turns per enemy hit.",
-   "dyn": "Delivers a strike to three adjacent tiles with {-60+AGL}% Weapon Damage and +{80+2*PRC}% Stagger Chance.\n\nHitting a target applies it with -20% Weapon Damage, +20% Fumble Chance, and -5% Accuracy for 2 turns (the effect doesn't stack).\n\nIf equipped with a light chestpiece, grants additional +1 turn to the applied penalties' duration.\n\nIf equipped with a medium chestpiece, hitting a target applies it with -15% Control Resistance, -15% Move Resistance, and -15% Crit Avoidance for 2 turns (the effect doesn't stack).\n\nIf equipped with a heavy chestpiece, replenishes {-5+WIL}% Max Energy and grants +6% Energy Restoration for 5 turns for each enemy hit by the strike."
+   "dyn": "Delivers a strike to three adjacent tiles with {-60+AGL}% Weapon Damage and +{80+2*PRC}% Stagger Chance.\n\nHitting a target applies it with -20% Weapon Damage, +20% Fumble Chance, and -5% Accuracy for 2 turns (the effect doesn't stack).\n\nIf equipped with a light chestpiece, grants additional +1 turn to the applied penalties' duration.\n\nIf equipped with a medium chestpiece, hitting a target applies it with -15% Control Resistance, -15% Move Resistance, and -15% Crit Avoidance for 2 turns (the effect doesn't stack).\n\nIf equipped with a heavy chestpiece, replenishes {-5+WIL}% Max Energy and grants +6% Energy Restoration for 5 turns for each enemy hit by the strike.",
+   "unlock": {
+    "treatise": "Armored Combat II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "agi",
+     "prc",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Battle-Forged",
    "t": 2,
    "type": "Passive",
-   "desc": "Using Stances and Maneuvers grants -10% Damage Taken until the next turn.\n\nIf equipped with a light chestpiece, moving to other tiles (Charges and Maneuvers count as well) grants +2% Dodge Chance and +2% Counter Chance for 4 turns for each traveled tile.\n\nIf equipped with a medium chestpiece, using Stances and Maneuvers also reduces this ability tree's cooldowns by 1 turn.\n\nIf equipped with a heavy chestpiece, remaining on the same tile grants -3% Abilities Energy Cost and +3% Crit Avoidance for 6 turns.\n\nAll effects stack up to 5 times."
+   "desc": "Using Stances and Maneuvers grants -10% Damage Taken until the next turn.\n\nIf equipped with a light chestpiece, moving to other tiles (Charges and Maneuvers count as well) grants +2% Dodge Chance and +2% Counter Chance for 4 turns for each traveled tile.\n\nIf equipped with a medium chestpiece, using Stances and Maneuvers also reduces this ability tree's cooldowns by 1 turn.\n\nIf equipped with a heavy chestpiece, remaining on the same tile grants -3% Abilities Energy Cost and +3% Crit Avoidance for 6 turns.\n\nAll effects stack up to 5 times.",
+   "unlock": {
+    "treatise": "Armored Combat II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi",
+     "vit",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Unyielding Defense",
@@ -70,7 +91,17 @@
    "range": 1,
    "en": 20,
    "cd": 14,
-   "desc": "Repositions to an adjacent tile, lowers the equipped helmet's visor, and activates \"Unyielding Defense\" for 8 turns:\n+6% to all body parts' Protection (no less than +1)\n+4% Fortitude\n+4% Block Power Recovery\n+4% Block Chance or +4% Dodge Chance (the priority is given to the highest Stat)\n\nEach received strike or shot grants an extra stack of the effect (up to V)."
+   "desc": "Repositions to an adjacent tile, lowers the equipped helmet's visor, and activates \"Unyielding Defense\" for 8 turns:\n+6% to all body parts' Protection (no less than +1)\n+4% Fortitude\n+4% Block Power Recovery\n+4% Block Chance or +4% Dodge Chance (the priority is given to the highest Stat)\n\nEach received strike or shot grants an extra stack of the effect (up to V).",
+   "unlock": {
+    "treatise": "Armored Combat II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi",
+     "vit"
+    ]
+   }
   },
   {
    "n": "Battering Ram",
@@ -88,7 +119,18 @@
     "dodge"
    ],
    "desc": "Charge, 5 Crushing, 100% Acc, 100% Stagger; damage scales with chestpiece Protection. Light: +1 Range, +2.5% WD 2 turns. Medium: on Stagger -25% CD 2 turns. Heavy: -1 Range, Stagger→100% Stun.",
-   "dyn": "Performs a charge towards the target and applies it with -100% Counter Chance until the next turn, then deals Crushing Damage (50% of chestpiece's Protection + {0.5*STR}) with {50+2.5*PRC+2.5*AGL}% Accuracy, {15-0.5*PRC}% Fumble Chance (min 0), {50+STR}% Armor Penetration, and {70+STR+VIT}% Stagger Chance.\n\nThe damage depends on the equipped chestpiece's Protection.\n\nIf equipped with a light chestpiece, grants the skill +1 Range and +33% of Dodge Chance as Weapon Damage for 2 turns.\n\nIf equipped with a medium chestpiece and the skill Staggers its target, grants -25% Cooldowns Duration for 2 turns.\n\nIf equipped with a heavy chestpiece, grants the skill -1 Range and {60+2*STR+2*VIT}% Stun Chance."
+   "dyn": "Performs a charge towards the target and applies it with -100% Counter Chance until the next turn, then deals Crushing Damage (50% of chestpiece's Protection + {0.5*STR}) with {50+2.5*PRC+2.5*AGL}% Accuracy, {15-0.5*PRC}% Fumble Chance (min 0), {50+STR}% Armor Penetration, and {70+STR+VIT}% Stagger Chance.\n\nThe damage depends on the equipped chestpiece's Protection.\n\nIf equipped with a light chestpiece, grants the skill +1 Range and +33% of Dodge Chance as Weapon Damage for 2 turns.\n\nIf equipped with a medium chestpiece and the skill Staggers its target, grants -25% Cooldowns Duration for 2 turns.\n\nIf equipped with a heavy chestpiece, grants the skill -1 Range and {60+2*STR+2*VIT}% Stun Chance.",
+   "unlock": {
+    "treatise": "Armored Combat III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "prc",
+     "vit"
+    ]
+   }
   },
   {
    "n": "Custom Adjustments",
@@ -109,6 +151,16 @@
      }
     },
     "double_if_uniform": true
+   },
+   "unlock": {
+    "treatise": "Armored Combat III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "vit"
+    ]
    }
   }
  ]

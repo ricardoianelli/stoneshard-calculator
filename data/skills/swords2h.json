@@ -35,7 +35,17 @@
    ],
    "req": "two-handed sword",
    "desc": "2H sword counters replenish 4% Max Energy, grant -10% Skills Energy Cost 2 turns (x2).",
-   "dyn": "Successful two-handed sword counters reduce the skill's cooldown by 1 turn.\n\nTwo-handed sword counters replenish {-6+WIL}% Max Energy and grant -10% Skills Energy Cost for 2 turns.\n\nThe effect stacks up to 2 times."
+   "dyn": "Successful two-handed sword counters reduce the skill's cooldown by 1 turn.\n\nTwo-handed sword counters replenish {-6+WIL}% Max Energy and grant -10% Skills Energy Cost for 2 turns.\n\nThe effect stacks up to 2 times.",
+   "unlock": {
+    "treatise": "Two-Handed Swords II",
+    "level": null,
+    "pts": 6,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Parry",
@@ -67,6 +77,17 @@
      "dt": -5
     },
     "stacks": 3
+   },
+   "unlock": {
+    "treatise": "Two-Handed Swords II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "agi",
+     "prc",
+     "vit",
+     "wil"
+    ]
    }
   },
   {
@@ -87,6 +108,16 @@
      "cc": 2.5
     },
     "stacks": 4
+   },
+   "unlock": {
+    "treatise": "Two-Handed Swords II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
    }
   },
   {
@@ -105,21 +136,51 @@
    ],
    "req": "two-handed sword",
    "desc": "Strike 5 adjacent tiles +20% WD, +60% Stagger, +40% Bleed. Tree CD -1 per enemy hit; +5% Max Energy per enemy Staggered.",
-   "dyn": "Delivers a strike to five adjacent tiles with +{10+PRC}% Weapon Damage, +{50+STR}% Stagger Chance, and +{20+2*AGL}% Bleed Chance.\n\nReduces the ability tree's cooldowns by 1 turn for each enemy hit by the strike and replenishes {-5+WIL}% Max Energy for each enemy Staggered by the strike."
+   "dyn": "Delivers a strike to five adjacent tiles with +{10+PRC}% Weapon Damage, +{50+STR}% Stagger Chance, and +{20+2*AGL}% Bleed Chance.\n\nReduces the ability tree's cooldowns by 1 turn for each enemy hit by the strike and replenishes {-5+WIL}% Max Energy for each enemy Staggered by the strike.",
+   "unlock": {
+    "treatise": "Two-Handed Swords II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Fight to the Death",
    "t": 2,
    "type": "Passive",
    "req": "two-handed sword",
-   "desc": "Consecutive two-handed sword hits against the same target grant +7% Stagger Chance and +3% Counter Chance for 5 turns.\n\nEach received strike grants +3% Block Chance and +5% Block Power Recovery for 5 turns.\n\nBoth effects stack up to 3 times."
+   "desc": "Consecutive two-handed sword hits against the same target grant +7% Stagger Chance and +3% Counter Chance for 5 turns.\n\nEach received strike grants +3% Block Chance and +5% Block Power Recovery for 5 turns.\n\nBoth effects stack up to 3 times.",
+   "unlock": {
+    "treatise": "Two-Handed Swords II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "prc",
+     "vit"
+    ]
+   }
   },
   {
    "n": "Taste of Victory",
    "t": 3,
    "type": "Passive",
    "req": "two-handed sword",
-   "desc": "Killing enemies with two-handed swords prolongs the duration of \"Feast of Steel\" and \"Parry\" by 1 turn."
+   "desc": "Killing enemies with two-handed swords prolongs the duration of \"Feast of Steel\" and \"Parry\" by 1 turn.",
+   "unlock": {
+    "treatise": "Two-Handed Swords III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Heroic Charge",
@@ -136,7 +197,17 @@
    ],
    "req": "two-handed sword",
    "desc": "Charge + strike +90% Stagger. Each tile traveled: +10% WD, +5% Crit Chance.",
-   "dyn": "Performs a charge towards the target and delivers a strike with +{70+AGL+STR}% Stagger Chance.\n\nEach traveled tile grants the strike +{PRC}% Weapon Damage and +{0.25*STR+0.25*AGL}% Crit Chance."
+   "dyn": "Performs a charge towards the target and delivers a strike with +{70+AGL+STR}% Stagger Chance.\n\nEach traveled tile grants the strike +{PRC}% Weapon Damage and +{0.25*STR+0.25*AGL}% Crit Chance.",
+   "unlock": {
+    "treatise": "Two-Handed Swords III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Courage",
@@ -151,6 +222,16 @@
      "bpd": 10,
      "bl": 10
     }
+   },
+   "unlock": {
+    "treatise": "Two-Handed Swords III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "wil"
+    ]
    }
   }
  ]
