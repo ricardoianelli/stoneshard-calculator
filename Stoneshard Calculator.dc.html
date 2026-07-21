@@ -397,16 +397,32 @@ input[type=range]{accent-color:#7a2e1d;}
           </sc-for>
         </div>
         <div style="background:linear-gradient(#1e1a2b,#141020);border:2px solid #3d3452;border-radius:5px;padding:14px 12px 10px 12px;box-shadow:inset 0 0 30px rgba(0,0,0,.6);">
-          <sc-for list="{{ skillTiers }}" as="tr" hint-placeholder-count="3">
-            <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-              <div style="width:70px;flex-shrink:0;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:#8a7ba8;text-align:right;">{{ tr.label }}</div>
-              <div style="display:flex;gap:10px;flex-wrap:wrap;">
-                <sc-for list="{{ tr.skills }}" as="k" hint-placeholder-count="4">
-                  <div onClick="{{ k.select }}" title="{{ k.n }}" style="width:48px;height:48px;background:#0f0c18;border:2px solid {{ k.frame }};border-radius:3px;cursor:pointer;box-shadow:{{ k.glow }};opacity:{{ k.opacity }};padding:2px;box-sizing:border-box;" style-hover="border-color:#e8c58d;opacity:1;">{{ k.icon }}</div>
-                </sc-for>
-              </div>
+          <sc-if value="{{ hasLayout }}" hint-placeholder-val="{{ true }}">
+            <div style="position:relative;width:100%;max-width:410px;margin:0 auto 10px;">
+              <img src="{{ treeView.bg }}" width="{{ treeView.bgw }}" height="{{ treeView.bgh }}" alt="skill tree" style="display:block;width:100%;height:auto;image-rendering:pixelated;border-radius:4px;user-select:none;-webkit-user-drag:none;" />
+              <sc-for list="{{ treeView.nodes }}" as="n" hint-placeholder-count="8">
+                <div onClick="{{ n.select }}" title="{{ n.n }}" style="position:absolute;left:{{ n.leftPct }}%;top:{{ n.topPct }}%;width:{{ n.wPct }}%;height:{{ n.hPct }}%;border:2px solid {{ n.frame }};border-radius:8px;background:{{ n.bg }};box-shadow:{{ n.glow }};cursor:pointer;box-sizing:border-box;" style-hover="border-color:#e8c58d;"></div>
+              </sc-for>
             </div>
-          </sc-for>
+            <div style="display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:center;font-size:9.5px;color:#8a7ba8;margin-bottom:8px;">
+              <span><span style="display:inline-block;width:9px;height:9px;border:2px solid #e8c58d;border-radius:3px;box-shadow:0 0 6px rgba(232,197,141,.6);vertical-align:middle;"></span> learned</span>
+              <span><span style="display:inline-block;width:9px;height:9px;border:2px solid #8574b0;border-radius:3px;vertical-align:middle;"></span> ready to learn</span>
+              <span><span style="display:inline-block;width:9px;height:9px;border:2px solid #5a4d78;border-radius:3px;vertical-align:middle;"></span> needs treatise / stats</span>
+              <span><span style="display:inline-block;width:9px;height:9px;border:2px solid #2c2540;border-radius:3px;vertical-align:middle;"></span> locked (prereq)</span>
+            </div>
+          </sc-if>
+          <sc-if value="{{ noLayout }}" hint-placeholder-val="{{ false }}">
+            <sc-for list="{{ skillTiers }}" as="tr" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+                <div style="width:70px;flex-shrink:0;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:#8a7ba8;text-align:right;">{{ tr.label }}</div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                  <sc-for list="{{ tr.skills }}" as="k" hint-placeholder-count="4">
+                    <div onClick="{{ k.select }}" title="{{ k.n }}" style="width:48px;height:48px;background:#0f0c18;border:2px solid {{ k.frame }};border-radius:3px;cursor:pointer;box-shadow:{{ k.glow }};opacity:{{ k.opacity }};padding:2px;box-sizing:border-box;" style-hover="border-color:#e8c58d;opacity:1;">{{ k.icon }}</div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </sc-if>
           <sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
             <div style="border-top:1px solid #3d3452;margin-top:2px;padding-top:10px;">
               <div style="display:flex;gap:10px;align-items:flex-start;">
@@ -688,12 +704,13 @@ class Component extends DCLogic {
       await Promise.all(wf.map(async f => { weapons[f] = await get('data/weapons/' + f + '.json'); }));
       await Promise.all(af.map(async f => { armor[f] = await get('data/armor/' + f + '.json'); }));
       const [rings, amulets] = await Promise.all([get('data/jewelry/rings.json'), get('data/jewelry/amulets.json')]);
+      let layouts = {}; try { layouts = await get('data/skills/tree-layouts.json'); } catch (e) {}
       const trees = {};
       await Promise.all(skillIdx.trees.map(async t => {
         try { const j = await get('data/skills/' + t.file); const nested = j.trees && Object.values(j.trees)[0]; trees[t.id] = { label: t.label, cat: (j.$meta && j.$meta.cat) || (nested && nested.cat) || 'utility', skills: j.skills || (nested && nested.skills) || [] }; }
         catch (e) { trees[t.id] = { label: t.label, cat: 'utility', skills: [] }; }
       }));
-      this.D = { mech, chars: chars.characters, ench, cons, enemies: enemies.enemies, weapons, armor, rings: rings.items, amulets: amulets.items, trees, treeOrder: skillIdx.trees.map(t => t.id), ammo };
+      this.D = { mech, chars: chars.characters, ench, cons, enemies: enemies.enemies, weapons, armor, rings: rings.items, amulets: amulets.items, trees, treeOrder: skillIdx.trees.map(t => t.id), ammo, layouts };
       const saved = localStorage.getItem('ss-calc-build-v1');
       let st = { loaded: true };
       if (saved) { try { st = Object.assign(st, this.sanitize(JSON.parse(saved))); } catch (e) {} }
@@ -1315,6 +1332,32 @@ class Component extends DCLogic {
       });
     });
     const skillTiers = Object.keys(tiersMap).sort((a, b) => a - b).map(t => ({ label: tierLabels[t] || 'T' + t, skills: tiersMap[t] }));
+    // visual skill tree — exact wiki/game layout: the tree screenshot as background + stateful hotspots
+    const layout = (D.layouts || {})[s.activeTree];
+    let treeView = null;
+    if (layout && layout.bg && layout.nodes && layout.nodes.length) {
+      const cw = layout.cw || layout.bg.w, bh = layout.bg.h;
+      const haveT = new Set((s.skills[s.activeTree] || []).concat(tree.skills.filter(x => C.free.includes(x.n)).map(x => x.n)));
+      const byName = {}; tree.skills.forEach(x => byName[x.n] = x);
+      treeView = {
+        bg: layout.bg.src, bgw: layout.bg.w, bgh: bh,
+        nodes: layout.nodes.map(nd => {
+          const sk = byName[nd.n] || { n: nd.n };
+          const learned = haveT.has(nd.n), sel = nd.n === selName;
+          const met = this.prereqMet(sk, tree, haveT).ok, uok = this.unlockOf(sk).ok;
+          let frame, bg, glow;
+          if (learned) { frame = '#e8c58d'; bg = 'transparent'; glow = '0 0 9px rgba(232,197,141,.6)'; }
+          else if (!met) { frame = '#2c2540'; bg = 'rgba(6,4,12,.72)'; glow = 'none'; }
+          else if (!uok) { frame = '#5a4d78'; bg = 'rgba(8,6,16,.5)'; glow = 'none'; }
+          else { frame = '#8574b0'; bg = 'rgba(10,8,20,.26)'; glow = 'none'; }
+          if (sel) frame = '#ffffff';
+          return { n: nd.n,
+            leftPct: +(nd.left / cw * 100).toFixed(3), topPct: +(nd.top / bh * 100).toFixed(3),
+            wPct: +(nd.w / cw * 100).toFixed(3), hPct: +(nd.h / bh * 100).toFixed(3),
+            frame, bg, glow, select: () => this.setState({ selSkill: nd.n }) };
+        })
+      };
+    }
     const selSk = tree.skills.find(x => x.n === selName);
     let selSkill = null;
     if (selSk) {
@@ -1554,7 +1597,7 @@ class Component extends DCLogic {
       pickerSortOpts, pickerSortVal, onPickerSort: e => this.setState({ pickerSort: e.target.value }),
       closePicker: () => this.setState({ pickerSlot: null }),
       pickerClear: () => { const g = Object.assign({}, s.gear); delete g[s.pickerSlot]; this.set({ gear: g }); this.setState({ pickerSlot: null }); },
-      apPool: C.apPool, apPoolColor: C.apPool > 0 ? '#7a2e1d' : '#6b5a41', treeTabs, skillTiers, selSkill, hasSel: !!selSkill,
+      apPool: C.apPool, apPoolColor: C.apPool > 0 ? '#7a2e1d' : '#6b5a41', treeTabs, skillTiers, treeView, hasLayout: !!treeView, noLayout: !treeView, selSkill, hasSel: !!selSkill,
       stancesOn: s.stancesOn, toggleStances: () => this.set({ stancesOn: !s.stancesOn, skillBuffs: {} }),
       stackRows: (() => {
         const rows = [];
