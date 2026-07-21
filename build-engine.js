@@ -4,28 +4,33 @@
 // weapon-tree skills (actives AND passives) require that weapon type equipped;
 // utility-tree and magic-tree passives/spells are global; Dual Wielding requires dual wielding;
 // Shields requires a shield.
+// UNLOCK RULE (wiki, 0.8+): a skill is unlocked by reading its tier's Treatise OR by investing
+// attribute points into the tree's associated attributes (e.g. Dash: Treatise II or 6 pts AGL/VIT;
+// Pyromania: Treatise IV or 18 pts VIT/WIL). Default thresholds 6×(tier−1); per-skill `unlock`
+// data overrides when present. Skills the build's attr allocation never unlocks are flagged
+// as treatise-dependent and slightly penalized.
 
 const CLS2TREE = { sword: 'swords', axe: 'axes', mace: 'maces', dagger: 'daggers', spear: 'spears', staff: 'staves', sword2h: 'swords2h', axe2h: 'axes2h', mace2h: 'maces2h', bow: 'ranged', crossbow: 'ranged', sling: 'ranged' };
 const CLS2FILE = { sword: 'swords', axe: 'axes', mace: 'maces', dagger: 'daggers', spear: 'spears', staff: 'staves', sword2h: 'swords2h', axe2h: 'axes2h', mace2h: 'maces2h', bow: 'bows', crossbow: 'crossbows', sling: 'slings' };
 
 export const GOALS = [
-  { id: 'damage', label: 'Damage', attrW: { str: 3, prc: 1.5, agi: 0.5 }, statW: { wd: 3, bpd: 1, ad: 0.5, ap: 1.5, acc: 1, mhe: 1, ohd: 1, mhd: 1 }, dmgW: 2.5 },
-  { id: 'crit', label: 'Crit', attrW: { prc: 3, str: 1 }, statW: { cc: 3, ce: 2 } },
-  { id: 'evasion', label: 'Dodge & Evasion', attrW: { agi: 3 }, statW: { dg: 3, fum: -1.5, co: 1, mvr: 0.5 } },
-  { id: 'tank', label: 'Tankiness', attrW: { vit: 2.5, str: 1 }, statW: { bc: 1.5, bp: 1, bpr: 0.5, dt: -2, hp: 0.15, fort: 0.5, ctr: 0.5, phr: 1, slr: 0.4, pir: 0.4, crr: 0.4, rer: 0.4, blr: 0.4, pnr: 0.3 }, protW: 1.2 },
-  { id: 'bleed', label: 'Bleed', attrW: { agi: 1.5, prc: 1.5, str: 1 }, statW: { bl: 3 } },
-  { id: 'stun', label: 'Stun', attrW: { str: 2, prc: 1.5 }, statW: { st: 3 } },
-  { id: 'daze', label: 'Daze', attrW: { str: 2, prc: 1.5 }, statW: { dz: 3 } },
-  { id: 'stagger', label: 'Stagger', attrW: { str: 2, prc: 1.5 }, statW: { sg: 3 } },
-  { id: 'knockback', label: 'Knockback', attrW: { str: 2, agi: 1 }, statW: { kb: 3 } },
-  { id: 'immobilize', label: 'Immobilize', attrW: { prc: 2, str: 1 }, statW: { im: 3 } },
-  { id: 'control', label: 'Control (all CC)', attrW: { str: 2, prc: 1.5 }, statW: { st: 1.5, dz: 1.5, sg: 1.5, kb: 1, im: 1.5 } },
-  { id: 'block', label: 'Block', attrW: { str: 2.5, vit: 1 }, statW: { bc: 3, bp: 1.5, bpr: 1 } },
-  { id: 'counter', label: 'Counter', attrW: { agi: 2.5, prc: 1 }, statW: { co: 3, dg: 1 } },
-  { id: 'onhit', label: 'On-Hit Bonus Damage', attrW: { wil: 2, prc: 1.5 }, statW: { ed: 0.8, ld: 0.8 }, xdW: 7 },
+  { id: 'damage', label: 'Damage', attrW: { str: 3, prc: 1.5, agi: 0.5 }, statW: { wd: 3, bpd: 1, ad: 0.5, ap: 1.5, acc: 1, mhe: 1, ohd: 1, mhd: 1 }, dmgW: 2.5, enemyW: { dg: 1, phr: 1.2, mgr: 0.5 } },
+  { id: 'crit', label: 'Crit', attrW: { prc: 3, str: 1 }, statW: { cc: 3, ce: 2 }, enemyW: {} },
+  { id: 'evasion', label: 'Dodge & Evasion', attrW: { agi: 3 }, statW: { dg: 3, fum: -1.5, co: 1, mvr: 0.5 }, enemyW: { acc: 1 } },
+  { id: 'tank', label: 'Tankiness', attrW: { vit: 2.5, str: 1 }, enemyW: { wd: 1, acc: 0.8, cc: 0.5, ce: 0.3, ap: 0.5, bpd: 0.4, ad: 0.4, st: 0.5, dz: 0.4, sg: 0.4 }, statW: { bc: 1.5, bp: 1, bpr: 0.5, dt: -2, hp: 0.15, fort: 0.5, ctr: 0.5, phr: 1, slr: 0.4, pir: 0.4, crr: 0.4, rer: 0.4, blr: 0.4, pnr: 0.3 }, protW: 1.2 },
+  { id: 'bleed', label: 'Bleed', attrW: { agi: 1.5, prc: 1.5, str: 1 }, statW: { bl: 3 }, enemyW: {} },
+  { id: 'stun', label: 'Stun', attrW: { str: 2, prc: 1.5 }, statW: { st: 3 }, enemyW: { ctr: 0.8 } },
+  { id: 'daze', label: 'Daze', attrW: { str: 2, prc: 1.5 }, statW: { dz: 3 }, enemyW: { ctr: 0.8 } },
+  { id: 'stagger', label: 'Stagger', attrW: { str: 2, prc: 1.5 }, statW: { sg: 3 }, enemyW: { ctr: 0.8 } },
+  { id: 'knockback', label: 'Knockback', attrW: { str: 2, agi: 1 }, statW: { kb: 3 }, enemyW: { ctr: 0.6, mvr: 0.6 } },
+  { id: 'immobilize', label: 'Immobilize', attrW: { prc: 2, str: 1 }, statW: { im: 3 }, enemyW: { ctr: 0.6, mvr: 0.8 } },
+  { id: 'control', label: 'Control (all CC)', attrW: { str: 2, prc: 1.5 }, statW: { st: 1.5, dz: 1.5, sg: 1.5, kb: 1, im: 1.5 }, enemyW: { ctr: 1, mvr: 0.5 } },
+  { id: 'block', label: 'Block', attrW: { str: 2.5, vit: 1 }, statW: { bc: 3, bp: 1.5, bpr: 1 }, enemyW: {} },
+  { id: 'counter', label: 'Counter', attrW: { agi: 2.5, prc: 1 }, statW: { co: 3, dg: 1 }, enemyW: {} },
+  { id: 'onhit', label: 'On-Hit Bonus Damage', attrW: { wil: 2, prc: 1.5 }, statW: { ed: 0.8, ld: 0.8 }, xdW: 7, enemyW: { mgr: 1 } },
   { id: 'energy', label: 'Energy Sustain', attrW: { wil: 2.5, vit: 1.5 }, statW: { en: 0.12, er: 1.5, sec: -1.5, spec: -1.5, ed: 1.5 } },
-  { id: 'lifedrain', label: 'Life Drain', attrW: { wil: 2, vit: 1 }, statW: { ld: 3 } },
-  { id: 'magic', label: 'Magic Power', attrW: { wil: 3 }, statW: { mp: 2.5, pyr: 1.5, geo: 1.5, ele: 1.5, arc: 1.5, mic: 0.5, mip: 0.5, bfc: -1, spec: -1 } },
+  { id: 'lifedrain', label: 'Life Drain', attrW: { wil: 2, vit: 1 }, statW: { ld: 3 }, enemyW: {} },
+  { id: 'magic', label: 'Magic Power', attrW: { wil: 3 }, statW: { mp: 2.5, pyr: 1.5, geo: 1.5, ele: 1.5, arc: 1.5, mic: 0.5, mip: 0.5, bfc: -1, spec: -1 }, enemyW: { mgr: 1.5 } },
   { id: 'cooldowns', label: 'Cooldowns', attrW: { wil: 3 }, statW: { cd: -2.5, sec: -0.8, spec: -0.8 } }
 ];
 
@@ -277,7 +282,9 @@ function skillEntry(sk, tid, tree, goals, attrs, evalExpr, chestCls, weaponCls, 
   }
   const { s: base, why } = scoreMods(mods, goals);
   let score = base + score0;
-  // enemy debuffs: inverted sign, half weight, capped ±12 per stat — they're temporary and single-target
+  // enemy debuffs: scored ONLY through each goal's enemyW whitelist — a debuff on the enemy is
+  // never the same thing as the stat on YOU (enemy -30% Counter is not a "counter build" perk).
+  // Half weight, capped ±12 per stat — temporary and single-target.
   // (summon-conditioned enemy debuffs pay only when the build has the summoner)
   const enemyParts = { free: [], cond: [] };
   enemyText.split(/(?<=\.)\s+/).forEach(sen => { (SUMMON_COND.test(sen) ? enemyParts.cond : enemyParts.free).push(sen); });
@@ -285,14 +292,14 @@ function skillEntry(sk, tid, tree, goals, attrs, evalExpr, chestCls, weaponCls, 
   if (enemyParts.cond.length) {
     const cm = extractMods(enemyParts.cond.join(' '));
     let cv = 0;
-    goals.forEach(g => { for (const k in (g.statW || {})) { if (cm[k]) cv += Math.max(-12, Math.min(12, -cm[k] * g.statW[k] * 0.5)); } });
+    goals.forEach(g => { for (const k in (g.enemyW || {})) { if (cm[k]) cv += Math.max(-12, Math.min(12, -cm[k] * g.enemyW[k] * 0.5)); } });
     const ent = (enemyParts.cond.join(' ').match(/\b(boulder|crystal|totem|spike|clone)s?\b/i) || [, 'boulder'])[1].toLowerCase();
     if (cv > 0) needBonus.push({ key: 'summon:' + ent, val: Math.round(cv * 10) / 10 });
   }
   goals.forEach(g => {
-    for (const k in (g.statW || {})) {
+    for (const k in (g.enemyW || {})) {
       const v = eMods[k]; if (!v) continue;
-      const contrib = Math.max(-12, Math.min(12, -v * g.statW[k] * 0.5));
+      const contrib = Math.max(-12, Math.min(12, -v * g.enemyW[k] * 0.5));
       score += contrib;
       if (contrib > 0) why.push({ k, v, contrib, enemy: true });
     }
@@ -361,7 +368,7 @@ function skillEntry(sk, tid, tree, goals, attrs, evalExpr, chestCls, weaponCls, 
   const whyArr = whyTop;
   if (strikes > 1) whyArr.unshift(strikes + ' hits per action');
   else if (stackN > 1) whyArr.push('×' + stackN + ' stacks');
-  return { n: sk.n, tid, treeLabel: tree.label, t: sk.t || 0, type: sk.type || '', score: Math.round(score * 10) / 10, spellBonus: Math.round(Math.max(0, spellBonus) * 10) / 10, needBonus, isSpell: /Spell/i.test(sk.type || ''), isActive: !isPassive, hasSustain: SUSTAIN.test(text), defLayers, applies, consumes, why: whyArr.join(' · '), isStance: /Stance/i.test(sk.type || ''), isTactic: /Tactic/i.test(sk.type || '') };
+  return { n: sk.n, tid, treeLabel: tree.label, t: sk.t || 0, type: sk.type || '', unlock: sk.unlock || null, score: Math.round(score * 10) / 10, spellBonus: Math.round(Math.max(0, spellBonus) * 10) / 10, needBonus, isSpell: /Spell/i.test(sk.type || ''), isActive: !isPassive, hasSustain: SUSTAIN.test(text), defLayers, applies, consumes, why: whyArr.join(' · '), isStance: /Stance/i.test(sk.type || ''), isTactic: /Tactic/i.test(sk.type || '') };
 }
 
 function eligibleTreeIds(D, weaponCls, offMode) {
@@ -399,15 +406,21 @@ function synergyBonus(picked) {
   return { bonus, notes };
 }
 
-function beamSearch(pool, poolAll, budget, synW, freeTiers, maxSpells) {
+function beamSearch(pool, budget, synW, maxSpells, freeTiers) {
   if (!pool.length || budget <= 0) return { picks: [], notes: [] };
   if (maxSpells === undefined) maxSpells = Infinity;
+  freeTiers = freeTiers || {};
+  // in-tree progression (wiki): tier-N skill learnable only with a learned tier-(N-1) skill
+  // in the same tree (free/starting skills count)
+  const chainOk = (st, c) => {
+    const ct = c.t || 1;
+    if (ct <= 1) return true;
+    if ((freeTiers[c.tid] || []).includes(ct - 1)) return true;
+    return st.picks.some(p => p.tid === c.tid && (p.t || 1) === ct - 1);
+  };
   const W = 24;
   pool = pool.slice(0, 48);
   pool.forEach((e, i) => { e._id = i; });
-  // best-first enabler candidates per tree+tier (chain rule: tier T needs every tier below)
-  const enab = {};
-  poolAll.forEach(e => { ((enab[e.tid] = enab[e.tid] || {})[e.t] = enab[e.tid][e.t] || []).push(e); });
   const scoreSum = arr => {
     const hasSpell = arr.some(p => p.isSpell);
     const states = new Set();
@@ -452,21 +465,7 @@ function beamSearch(pool, poolAll, budget, synW, freeTiers, maxSpells) {
     }
     return bonus;
   };
-  const enablersFor = (c, names, tiersHave) => {
-    const ens = [];
-    for (let t = 1; t < c.t; t++) {
-      if (tiersHave[c.tid] && tiersHave[c.tid][t]) continue;
-      const list = (enab[c.tid] || {})[t] || [];
-      let en = null;
-      for (const e of list) { if (e.n !== c.n && !names.has(e.n) && !ens.some(x => x.n === e.n)) { en = e; break; } }
-      if (!en) return null;
-      ens.push(en);
-    }
-    return ens;
-  };
-  const tiers0 = {};
-  for (const tid in freeTiers) { tiers0[tid] = {}; freeTiers[tid].forEach(t => { tiers0[tid][t] = 1; }); }
-  let beam = [{ picks: [], names: new Set(), tiers: tiers0, used: 0, sp: 0, total: 0 }];
+  let beam = [{ picks: [], names: new Set(), used: 0, sp: 0, total: 0 }];
   for (let step = 0; step < budget; step++) {
     const next = [];
     const seen = new Set();
@@ -475,21 +474,17 @@ function beamSearch(pool, poolAll, budget, synW, freeTiers, maxSpells) {
       if (st.used >= budget) continue;
       for (const c of pool) {
         if (st.names.has(c.n)) continue;
-        const ens = enablersFor(c, st.names, st.tiers);
-        if (ens === null) continue;
-        const cost = 1 + ens.length;
-        if (st.used + cost > budget) continue;
-        const spAdd = ens.concat([c]).filter(e => e.isSpell).length;
+        if (st.used + 1 > budget) continue;
+        if (!chainOk(st, c)) continue;
+        const spAdd = c.isSpell ? 1 : 0;
         if (st.sp + spAdd > maxSpells) continue;
-        const picks = st.picks.concat(ens, [c]);
+        const picks = st.picks.concat([c]);
         const key = picks.map(p => p.n).sort().join('|');
         if (seen.has(key)) continue;
         seen.add(key);
         const names = new Set(st.names);
-        const tiers = {};
-        for (const k in st.tiers) tiers[k] = Object.assign({}, st.tiers[k]);
-        ens.concat([c]).forEach(e => { names.add(e.n); (tiers[e.tid] = tiers[e.tid] || {})[e.t] = 1; });
-        next.push({ picks, names, tiers, used: st.used + cost, sp: st.sp + spAdd, total: scoreSum(picks) + synOf(picks) * synW });
+        names.add(c.n);
+        next.push({ picks, names, used: st.used + 1, sp: st.sp + spAdd, total: scoreSum(picks) + synOf(picks) * synW });
       }
     }
     next.sort((a, b) => b.total - a.total);
@@ -598,27 +593,75 @@ export function findBuilds({ D, evalExpr, weaponCls, offMode, goalIds, level, ch
       all.push(skillEntry(sk, tid, tr, goals, attrs, evalExpr, chestCls, weaponCls, offMode));
     });
   });
-  const poolAll = all.slice().sort((a, b) => b.score - a.score); // full pool for chain enablers
+  const poolAll = all.slice().sort((a, b) => b.score - a.score);
+  // unlock gating: per-skill wiki `unlock` data when present, else 6×(tier−1) points into the
+  // tree's scaling attributes (data-driven from its skills' `mod` lists). unlockLv = earliest
+  // level the build's own attr order satisfies it; never → treatise-dependent (penalized, flagged).
+  const A5 = ['str', 'agi', 'prc', 'vit', 'wil'];
+  const norm = a => a === 'agl' ? 'agi' : a;
+  const trAttrPool = {};
+  treeIds.forEach(tid => { const s = new Set(); (D.trees[tid].skills || []).forEach(sk => (sk.mod || []).forEach(a => s.add(norm(a)))); trAttrPool[tid] = [...s].filter(a => A5.includes(a)); });
+  const unlockLvOf = (set, pts) => {
+    if (pts <= 0) return 1;
+    let c = 0;
+    for (let i = 0; i < order.length; i++) { if (set.includes(order[i])) { c++; if (c >= pts) return i + 2; } }
+    return null;
+  };
+  all.forEach(e => {
+    const u = e.unlock || {};
+    const pts = u.pts != null ? u.pts : 6 * Math.max(0, (e.t || 1) - 1);
+    const set = ((u.attrs && u.attrs.length) ? u.attrs.map(norm) : (trAttrPool[e.tid] && trAttrPool[e.tid].length ? trAttrPool[e.tid] : A5));
+    e.unlockLv = unlockLvOf(set, pts);
+    e.needTreatise = e.unlockLv === null;
+    if (e.needTreatise) e.score = Math.round((e.score - 8) * 10) / 10;
+  });
   all = all.filter(e => {
     const potential = e.score + (e.spellBonus || 0) + (e.needBonus || []).reduce((a, b) => a + b.val, 0);
     return e.score >= 5 || potential >= 8;
   }).sort((a, b) => (b.score + (b.spellBonus || 0)) - (a.score + (a.spellBonus || 0))).slice(0, 70);
+  // pool completeness: every tier-N entry needs a learnable tier-(N-1) same-tree entry in the
+  // pool (or a free skill covering it) — pull in the best-scoring bridge skills from poolAll
+  for (let guard = 0; guard < 6; guard++) {
+    let added = false;
+    for (const e of all.slice()) {
+      const t = e.t || 1;
+      if (t <= 1) continue;
+      if ((freeTiers[e.tid] || []).includes(t - 1)) continue;
+      if (all.some(p => p.tid === e.tid && (p.t || 1) === t - 1)) continue;
+      const bridge = poolAll.find(p => p.tid === e.tid && (p.t || 1) === t - 1 && !all.some(x => x.n === p.n));
+      if (bridge) { all.push(bridge); added = true; }
+      else { all = all.filter(x => x.n !== e.n); } // unreachable skill: drop it
+    }
+    if (!added) break;
+  }
   const attrLabels = { str: 'STR', agi: 'AGI', prc: 'PRC', vit: 'VIT', wil: 'WIL' };
   const attrLine = ['str', 'agi', 'prc', 'vit', 'wil'].filter(k => attrs[k] > ch.stats[k]).sort((a, b) => (attrs[b] - ch.stats[b]) - (attrs[a] - ch.stats[a]))
     .map(k => attrLabels[k] + ' ' + ch.stats[k] + '→' + attrs[k]).join(' · ');
 
   const mkVariant = (name, pool, synW, avoid) => {
     const p2 = avoid ? pool.map(e => Object.assign({}, e, { score: e.score * (avoid.has(e.n) ? 0.35 : 1) })) : pool;
-    const res = beamSearch(p2, poolAll, budget, synW, freeTiers, maxSpells);
+    const res = beamSearch(p2, budget, synW, maxSpells, freeTiers);
     if (!res.picks.length) return null;
     const comp = composition(res.picks, wTree);
-    const ordered = res.picks.slice().sort((a, b) => (a.t - b.t) || (b.score - a.score));
+    const ROMAN = ['I', 'II', 'III', 'IV', 'V'];
+    const sorted = res.picks.slice().sort((a, b) => ((a.unlockLv || 99) - (b.unlockLv || 99)) || (a.t - b.t) || (b.score - a.score));
+    // learn order must respect in-tree tier chain: greedy topological emit
+    const ordered = []; const learned = {};
+    while (sorted.length) {
+      let i = sorted.findIndex(p => { const t = p.t || 1; return t <= 1 || (learned[p.tid] || []).includes(t - 1) || (freeTiers[p.tid] || []).includes(t - 1); });
+      if (i < 0) i = 0;
+      const p = sorted.splice(i, 1)[0];
+      (learned[p.tid] = learned[p.tid] || []).push(p.t || 1);
+      ordered.push(p);
+    }
+    const tNeed = [...new Set(ordered.filter(p => p.needTreatise).map(p => p.treeLabel + ' Treatise ' + (ROMAN[(p.t || 1) - 1] || p.t)))];
+    const notes = res.notes.concat(tNeed.length ? ['Requires treatises (buy from scribes / find): ' + tNeed.join(', ')] : []);
     return {
       name, offMeta: comp.offMeta,
       treesLine: comp.trees.map(t => (D.trees[t] ? D.trees[t].label : t) + ' ×' + comp.byTree[t]).join(' · '),
       score: Math.round(res.total || ordered.reduce((a, p) => a + p.score, 0)),
-      skills: ordered.map((p, i) => ({ ord: i + 1, n: p.n, tier: p.t, tree: p.treeLabel, type: p.type, why: p.why })),
-      notes: res.notes,
+      skills: ordered.map((p, i) => ({ ord: i + 1, n: p.n, tier: p.t, tree: p.treeLabel, type: p.type, why: (p.needTreatise ? '⚠ tier-' + p.t + ' treatise needed · ' : (p.unlockLv > 1 ? 'unlocks ~lv ' + p.unlockLv + ' · ' : '')) + p.why })),
+      notes,
       attrLine, attrs, attrOrder: order,
       stages,
       alloc: { str: attrs.str - ch.stats.str, agi: attrs.agi - ch.stats.agi, prc: attrs.prc - ch.stats.prc, vit: attrs.vit - ch.stats.vit, wil: attrs.wil - ch.stats.wil },
