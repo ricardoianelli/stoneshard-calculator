@@ -405,14 +405,13 @@ input[type=range]{accent-color:#7a2e1d;}
             <div style="position:relative;width:100%;max-width:410px;margin:0 auto 10px;">
               <img src="{{ treeView.bg }}" width="{{ treeView.bgw }}" height="{{ treeView.bgh }}" alt="skill tree" style="display:block;width:100%;height:auto;image-rendering:pixelated;border-radius:4px;user-select:none;-webkit-user-drag:none;" />
               <sc-for list="{{ treeView.nodes }}" as="n" hint-placeholder-count="8">
-                <div onClick="{{ n.select }}" title="{{ n.n }}" style="position:absolute;left:{{ n.leftPct }}%;top:{{ n.topPct }}%;width:{{ n.wPct }}%;height:{{ n.hPct }}%;border:2px solid {{ n.frame }};border-radius:8px;background:{{ n.bg }};box-shadow:{{ n.glow }};cursor:pointer;box-sizing:border-box;" style-hover="border-color:#e8c58d;"></div>
+                <div onClick="{{ n.select }}" title="{{ n.n }}" style="position:absolute;left:{{ n.leftPct }}%;top:{{ n.topPct }}%;width:{{ n.wPct }}%;height:{{ n.hPct }}%;border:2px solid {{ n.frame }};border-radius:8px;background:{{ n.bg }};box-shadow:{{ n.glow }};backdrop-filter:{{ n.filter }};-webkit-backdrop-filter:{{ n.filter }};cursor:pointer;box-sizing:border-box;" style-hover="border-color:#e8c58d;"></div>
               </sc-for>
             </div>
-            <div style="display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:center;font-size:9.5px;color:#8a7ba8;margin-bottom:8px;">
-              <span><span style="display:inline-block;width:9px;height:9px;border:2px solid #e8c58d;border-radius:3px;box-shadow:0 0 6px rgba(232,197,141,.6);vertical-align:middle;"></span> learned</span>
-              <span><span style="display:inline-block;width:9px;height:9px;border:2px solid #c3adf2;border-radius:3px;box-shadow:0 0 6px rgba(150,120,225,.55);vertical-align:middle;"></span> ready to learn</span>
-              <span><span style="display:inline-block;width:9px;height:9px;border:2px solid #6a5836;border-radius:3px;vertical-align:middle;"></span> needs treatise / stats</span>
-              <span><span style="display:inline-block;width:9px;height:9px;border:2px solid #2a2338;border-radius:3px;vertical-align:middle;"></span> locked (prereq)</span>
+            <div style="display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:center;font-size:10px;color:#8a7ba8;margin-bottom:8px;">
+              <span><span style="display:inline-block;width:10px;height:10px;border:2px solid #e8c58d;border-radius:3px;box-shadow:0 0 6px rgba(232,197,141,.65);vertical-align:middle;"></span> learned</span>
+              <span><span style="display:inline-block;width:10px;height:10px;border:2px solid #b9a6e6;border-radius:3px;vertical-align:middle;"></span> ready to learn</span>
+              <span><span style="display:inline-block;width:10px;height:10px;border:2px solid #2c2838;border-radius:3px;background:rgba(120,120,130,.35);vertical-align:middle;"></span> locked</span>
             </div>
           </sc-if>
           <sc-if value="{{ noLayout }}" hint-placeholder-val="{{ false }}">
@@ -1349,17 +1348,17 @@ class Component extends DCLogic {
           const sk = byName[nd.n] || { n: nd.n };
           const learned = haveT.has(nd.n), sel = nd.n === selName;
           const met = this.prereqMet(sk, tree, haveT).ok, uok = this.unlockOf(sk).ok || s.treatisesRead;
-          let frame, bg, glow;
-          // only fully-learnable nodes light up (glow); anything not yet learnable stays dim
-          if (learned) { frame = '#e8c58d'; bg = 'transparent'; glow = '0 0 10px rgba(232,197,141,.65)'; }        // learned — gold, lit
-          else if (!met) { frame = '#2a2338'; bg = 'rgba(4,3,9,.74)'; glow = 'none'; }                             // locked: prerequisite — darkest
-          else if (!uok) { frame = '#6a5836'; bg = 'rgba(8,5,10,.66)'; glow = 'none'; }                            // locked: needs treatise / stats — dim amber
-          else { frame = '#c3adf2'; bg = 'rgba(12,10,26,.10)'; glow = '0 0 9px rgba(150,120,225,.55)'; }           // ready to learn — lit violet
-          if (sel) { frame = '#ffffff'; glow = glow === 'none' ? '0 0 8px rgba(255,255,255,.35)' : glow; }
+          const ready = met && uok; // fully learnable: prerequisites AND unlock (level/stats/treatise) met
+          // three states — learned (gold, glow), ready to learn (full colour), locked (greyed & dimmed)
+          let frame, bg, glow, filter = 'none';
+          if (learned) { frame = '#e8c58d'; bg = 'transparent'; glow = '0 0 11px rgba(232,197,141,.75)'; }
+          else if (ready) { frame = '#b9a6e6'; bg = 'transparent'; glow = 'none'; }
+          else { frame = '#2c2838'; bg = 'rgba(10,8,14,.32)'; glow = 'none'; filter = 'grayscale(1) brightness(.5)'; }
+          if (sel) { frame = '#ffffff'; if (glow === 'none') glow = '0 0 8px rgba(255,255,255,.4)'; }
           return { n: nd.n,
             leftPct: +(nd.left / cw * 100).toFixed(3), topPct: +(nd.top / bh * 100).toFixed(3),
             wPct: +(nd.w / cw * 100).toFixed(3), hPct: +(nd.h / bh * 100).toFixed(3),
-            frame, bg, glow, select: () => this.setState({ selSkill: nd.n }) };
+            frame, bg, glow, filter, select: () => this.setState({ selSkill: nd.n }) };
         })
       };
     }
