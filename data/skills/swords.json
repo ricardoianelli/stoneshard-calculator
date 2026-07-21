@@ -69,7 +69,17 @@
      "type": "Passive",
      "req": "one-handed sword",
      "desc": "Grants sword strikes +1.5% Crit Chance, +3% Weapon Damage, and +3% Energy Drain for each negative effect affecting the target.\n\nDoubles the bonuses if the negative effect is Bleeding.",
-     "fx": null
+     "fx": null,
+     "unlock": {
+      "treatise": "Swords Treatise II",
+      "level": 10,
+      "pts": 8,
+      "attrs": [
+       "str",
+       "prc",
+       "vit"
+      ]
+     }
     },
     {
      "n": "Fencer Stance",
@@ -87,6 +97,16 @@
       "dg": 5,
       "bl": 8,
       "stacks": 4
+     },
+     "unlock": {
+      "treatise": "Swords Treatise II",
+      "level": 10,
+      "pts": 8,
+      "attrs": [
+       "str",
+       "agi",
+       "prc"
+      ]
      }
     },
     {
@@ -101,6 +121,15 @@
       "per_stack": {
        "er": 15
       }
+     },
+     "unlock": {
+      "treatise": "Swords Treatise II",
+      "level": 10,
+      "pts": 8,
+      "attrs": [
+       "agi",
+       "vit"
+      ]
      }
     },
     {
@@ -116,6 +145,16 @@
        "bl": 6,
        "ap": 4
       }
+     },
+     "unlock": {
+      "treatise": "Swords Treatise III",
+      "level": 16,
+      "pts": 14,
+      "attrs": [
+       "str",
+       "agi",
+       "prc"
+      ]
      }
     },
     {
@@ -134,7 +173,17 @@
      "req": "one-handed sword",
      "desc": "Charge + strike: +20% Weapon Damage, +15% Armor Pen. On damage: -20% Bleed Res, +10% Damage Taken for 4 turns.",
      "fx": null,
-     "dyn": "Performs a charge towards the target and delivers a strike with +{10+PRC+AGL}% Weapon Damage and +{5+(0.5*AGL)+(0.5*STR)}% Armor Penetration.\n\nIf the target takes damage, applies it with -{2*AGL}% Bleed Resistance and +{PRC}% Damage Taken for 4 turns."
+     "dyn": "Performs a charge towards the target and delivers a strike with +{10+PRC+AGL}% Weapon Damage and +{5+(0.5*AGL)+(0.5*STR)}% Armor Penetration.\n\nIf the target takes damage, applies it with -{2*AGL}% Bleed Resistance and +{PRC}% Damage Taken for 4 turns.",
+     "unlock": {
+      "treatise": "Swords Treatise III",
+      "level": 16,
+      "pts": 14,
+      "attrs": [
+       "str",
+       "agi",
+       "prc"
+      ]
+     }
     }
    ],
    "desc_note": "VERBATIM wiki (tree 0.9.1.19 / formulas 0.9.4.14)"

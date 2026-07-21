@@ -83,7 +83,16 @@
     "dt": -5,
     "sec": -5
    },
-   "dyn": "Grants all Attack skills +3% Accuracy, -3% Fumble Chance, and +3% Crit Chance.\n\nIf equipped with a one-handed melee weapon while the second weapon slot is empty, grants:\n+2% Main Hand Efficiency (+1% per learned Weaponry ability)\n+{0.5*AGL}% Weapon Damage\n+{0.5*STR}% Armor Penetration\n-{0.5*PRC}% Fumble Chance\n-{0.5*VIT}% Damage Taken\n-{0.5*WIL}% Abilities Energy Cost"
+   "dyn": "Grants all Attack skills +3% Accuracy, -3% Fumble Chance, and +3% Crit Chance.\n\nIf equipped with a one-handed melee weapon while the second weapon slot is empty, grants:\n+2% Main Hand Efficiency (+1% per learned Weaponry ability)\n+{0.5*AGL}% Weapon Damage\n+{0.5*STR}% Armor Penetration\n-{0.5*PRC}% Fumble Chance\n-{0.5*VIT}% Damage Taken\n-{0.5*WIL}% Abilities Energy Cost",
+   "unlock": {
+    "treatise": "Warfare II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Offensive Tactic",
@@ -104,6 +113,16 @@
     },
     "stacks": 5,
     "max_stacks": 6
+   },
+   "unlock": {
+    "treatise": "Warfare II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
    }
   },
   {
@@ -125,13 +144,32 @@
     },
     "stacks": 5,
     "max_stacks": 6
+   },
+   "unlock": {
+    "treatise": "Warfare II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "agi",
+     "vit",
+     "wil"
+    ]
    }
   },
   {
    "n": "Intimidation",
    "t": 2,
    "type": "Passive",
-   "desc": "Successful strikes and shots apply their targets with -5% Crit Avoidance and -4% Fortitude for 5 turns.\n\nThe effect stacks up to 5 times.\n\nIncreases the negative impact of the character's actions upon the enemies' Will to Fight by 33%."
+   "desc": "Successful strikes and shots apply their targets with -5% Crit Avoidance and -4% Fortitude for 5 turns.\n\nThe effect stacks up to 5 times.\n\nIncreases the negative impact of the character's actions upon the enemies' Will to Fight by 33%.",
+   "unlock": {
+    "treatise": "Warfare II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "prc",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Finisher",
@@ -148,7 +186,18 @@
     "wil"
    ],
    "desc": "Charge + strike most damaged part: +25% Bodypart Damage, +15% Crit Chance, -20% Fumble, +50% Energy Drain. Executes below 13% HP (max 15). On kill: refresh cooldowns, +15% Max Energy. Spear +1 range.",
-   "dyn": "Performs a charge towards the target and delivers a strike to its most damaged body part with +{2.5*AGL}% Bodypart Damage, +{1.5*STR}% Crit Chance, -{2*PRC}% Fumble Chance, and +{5*WIL}% Energy Drain.\n\nInstantly kills the target if the strike puts its Health below {2.5+0.25*STR+0.25*AGL+0.5*PRC}% (but no more than {0.5*STR+0.5*AGL+0.5*PRC}).\n\nIf the skill kills its target, instantly refreshes all other attack skills, charges, and spells' cooldowns and replenishes {1.5*WIL}% Max Energy.\n\nIf equipped with a spear, grants the skill +1 Range."
+   "dyn": "Performs a charge towards the target and delivers a strike to its most damaged body part with +{2.5*AGL}% Bodypart Damage, +{1.5*STR}% Crit Chance, -{2*PRC}% Fumble Chance, and +{5*WIL}% Energy Drain.\n\nInstantly kills the target if the strike puts its Health below {2.5+0.25*STR+0.25*AGL+0.5*PRC}% (but no more than {0.5*STR+0.5*AGL+0.5*PRC}).\n\nIf the skill kills its target, instantly refreshes all other attack skills, charges, and spells' cooldowns and replenishes {1.5*WIL}% Max Energy.\n\nIf equipped with a spear, grants the skill +1 Range.",
+   "unlock": {
+    "treatise": "Warfare III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "prc",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Tactical Advantage",
@@ -159,7 +208,18 @@
     "wil"
    ],
    "desc": "Tactics +2 turns. Stances & Maneuvers -15% cost, -15% CD. Tactic-swap bonuses (5% HP+15% EN, or +20% WD 3 turns).",
-   "dyn": "Grants additional +2 turns to the duration of \"Defensive Tactic\" and \"Offensive Tactic\".\n\nGrants -15% Energy Cost and -15% Cooldown Duration to all Stances and Maneuvers.\n\nIf affected by \"Offensive Tactic\", using \"Defensive Tactic\" replenishes {0.5*VIT}% Max Health and {5+WIL}% Max Energy.\n\nIf affected by \"Defensive Tactic\", using \"Offensive Tactic\" grants +20% Weapon Damage for 3 turns.\n\nThe effect doesn't stack."
+   "dyn": "Grants additional +2 turns to the duration of \"Defensive Tactic\" and \"Offensive Tactic\".\n\nGrants -15% Energy Cost and -15% Cooldown Duration to all Stances and Maneuvers.\n\nIf affected by \"Offensive Tactic\", using \"Defensive Tactic\" replenishes {0.5*VIT}% Max Health and {5+WIL}% Max Energy.\n\nIf affected by \"Defensive Tactic\", using \"Offensive Tactic\" grants +20% Weapon Damage for 3 turns.\n\nThe effect doesn't stack.",
+   "unlock": {
+    "treatise": "Warfare III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "agi",
+     "prc",
+     "vit",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Against the Odds",
@@ -173,13 +233,32 @@
     "wil"
    ],
    "desc": "2 turns: -50% Damage Taken, +50% Bleed/Move/Control Res, +50% Crit Avoidance; HP can't drop below 25%. Kills: +25% HP/EN. First hit that turn deals no damage.",
-   "dyn": "Activates \"Against the Odds\" for 2 turns:\n-50% Damage Taken\n+50% Bleed Resistance\n+50% Move Resistance\n+50% Control Resistance\n+50% Crit Avoidance\nHealth can't drop below {2.5*VIT}%.\nKilling enemies replenishes {2.5*VIT}% Max Health and {2.5*WIL}% Max Energy.\n\nThe first strike or shot received on the same turn as using the skill will deal no damage."
+   "dyn": "Activates \"Against the Odds\" for 2 turns:\n-50% Damage Taken\n+50% Bleed Resistance\n+50% Move Resistance\n+50% Control Resistance\n+50% Crit Avoidance\nHealth can't drop below {2.5*VIT}%.\nKilling enemies replenishes {2.5*VIT}% Max Health and {2.5*WIL}% Max Energy.\n\nThe first strike or shot received on the same turn as using the skill will deal no damage.",
+   "unlock": {
+    "treatise": "Warfare III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "vit",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Armor Crusher",
    "t": 4,
    "type": "Passive",
-   "desc": "Grants strikes and shots +10% Armor Penetration and +50% Armor Damage if the target's Armor Durability is above 0%.\n\nHitting the target applies it with +10% Damage Taken for 5 turns if it has no Armor or its Armor Durability is 0%.\n\nGrants +5% Crit Chance for 5 turns for each strike or shot blocked by the target.\n\nBoth effects stack up to 3 times."
+   "desc": "Grants strikes and shots +10% Armor Penetration and +50% Armor Damage if the target's Armor Durability is above 0%.\n\nHitting the target applies it with +10% Damage Taken for 5 turns if it has no Armor or its Armor Durability is 0%.\n\nGrants +5% Crit Chance for 5 turns for each strike or shot blocked by the target.\n\nBoth effects stack up to 3 times.",
+   "unlock": {
+    "treatise": "Warfare IV",
+    "level": 22,
+    "pts": 20,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Thirst for Battle",
@@ -188,13 +267,34 @@
    "target": "No Target",
    "en": 30,
    "cd": 30,
-   "desc": "Activates \"Thirst for Battle\" for 8 turns.\n\nEach missing percent of Health grants:\n+0.4% Weapon Damage\n+0.2% Crit Chance\n+0.5% Crit Efficiency\n+0.25% Life Drain\n+0.4% Energy Drain\n\nThe effect's power changes dynamically depending on the current Health.\n\nCritical strikes and shots prolong the effect's duration by 1 turn (up to 8).\n\nThe first strike received on the same turn as using the skill is guaranteed to trigger a counter."
+   "desc": "Activates \"Thirst for Battle\" for 8 turns.\n\nEach missing percent of Health grants:\n+0.4% Weapon Damage\n+0.2% Crit Chance\n+0.5% Crit Efficiency\n+0.25% Life Drain\n+0.4% Energy Drain\n\nThe effect's power changes dynamically depending on the current Health.\n\nCritical strikes and shots prolong the effect's duration by 1 turn (up to 8).\n\nThe first strike received on the same turn as using the skill is guaranteed to trigger a counter.",
+   "unlock": {
+    "treatise": "Warfare IV",
+    "level": 22,
+    "pts": 20,
+    "attrs": [
+     "str",
+     "agi",
+     "vit",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Final Push",
    "t": 4,
    "type": "Passive",
-   "desc": "Grants +5% Weapon Damage and +5% Accuracy for each missing 20% of Health.\n\nGrants -5% Cooldowns Duration and -10% Abilities Energy Cost for each missing 20% of Energy.\n\nGrants +5% Fortitude, +5% Bleed Resistance, +5% Control Resistance, and +5% Move Resistance for each negative effect."
+   "desc": "Grants +5% Weapon Damage and +5% Accuracy for each missing 20% of Health.\n\nGrants -5% Cooldowns Duration and -10% Abilities Energy Cost for each missing 20% of Energy.\n\nGrants +5% Fortitude, +5% Bleed Resistance, +5% Control Resistance, and +5% Move Resistance for each negative effect.",
+   "unlock": {
+    "treatise": "Warfare IV",
+    "level": 22,
+    "pts": 20,
+    "attrs": [
+     "str",
+     "vit",
+     "wil"
+    ]
+   }
   }
  ]
 }

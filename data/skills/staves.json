@@ -58,7 +58,17 @@
    "n": "Now or Never",
    "t": 2,
    "type": "Passive",
-   "desc": "Full and partial dodges and blocks grant +10% Counter Chance and +10% Magic Power for 4 turns.\n\nUsing spells grants +8% Dodge Chance and +8% Block Chance for 4 turns.\n\nBoth effects stack up to 3 times."
+   "desc": "Full and partial dodges and blocks grant +10% Counter Chance and +10% Magic Power for 4 turns.\n\nUsing spells grants +8% Dodge Chance and +8% Block Chance for 4 turns.\n\nBoth effects stack up to 3 times.",
+   "unlock": {
+    "treatise": "Staves II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "agi",
+     "prc",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Unwavering Stance",
@@ -67,7 +77,18 @@
    "target": "No Target",
    "en": 14,
    "cd": 12,
-   "desc": "Activates \"Unwavering Stance\" for 10 turns:\n+10% Magic Resistance\n+10% Nature Resistance\n+5% Counter Chance\n+10% Block Chance\n+10% Max Block Power\n+10% Block Power Recovery\nGrants +100% Knockback Chance to every third strike.\n\nUsing the ability tree's skills grants an extra stack of the effect (up to IV).\n\nBasic staff strikes prolong the effect's duration by 1 turn (up to 10) but reduce its number of stacks (no more than once per turn).\n\nOnly one Stance effect can be active at a time."
+   "desc": "Activates \"Unwavering Stance\" for 10 turns:\n+10% Magic Resistance\n+10% Nature Resistance\n+5% Counter Chance\n+10% Block Chance\n+10% Max Block Power\n+10% Block Power Recovery\nGrants +100% Knockback Chance to every third strike.\n\nUsing the ability tree's skills grants an extra stack of the effect (up to IV).\n\nBasic staff strikes prolong the effect's duration by 1 turn (up to 10) but reduce its number of stacks (no more than once per turn).\n\nOnly one Stance effect can be active at a time.",
+   "unlock": {
+    "treatise": "Staves II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi",
+     "vit",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Triumph",
@@ -81,6 +102,16 @@
      "cc": 12,
      "mic": 12
     }
+   },
+   "unlock": {
+    "treatise": "Staves II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "prc",
+     "wil"
+    ]
    }
   },
   {
@@ -97,7 +128,17 @@
     "prc"
    ],
    "dyn": "Delivers a strike to all adjacent tiles with +{40+STR+AGL}% Stagger Chance and +{50+STR+PRC}% Daze Chance.\n\nThen allows the character to reposition to an adjacent tile.\n\nGrants -10% Backfire Chance, -10% Abilities Energy Cost, and -5% Fumble Chance for 5 turns for each enemy hit by the strike.\n\nThe effect stacks up to 3 times.",
-   "desc": ""
+   "desc": "",
+   "unlock": {
+    "treatise": "Staves III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "wil"
+    ]
+   }
   }
  ]
 }

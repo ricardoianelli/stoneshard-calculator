@@ -85,6 +85,16 @@
      "im": 8
     },
     "stacks": 4
+   },
+   "unlock": {
+    "treatise": "Spears II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "prc",
+     "vit"
+    ]
    }
   },
   {
@@ -97,7 +107,16 @@
    ],
    "req": "spear",
    "desc": "Critical spear strikes: +20% Bodypart Damage; bonus damage = 10% target Max Health (max 20).",
-   "dyn": "Grants critical spear strikes +20% Bodypart Damage.\n\nCritical spear strikes deal additional damage equal to 10% of the target's Max Health (but no more than {STR+AGL})."
+   "dyn": "Grants critical spear strikes +20% Bodypart Damage.\n\nCritical spear strikes deal additional damage equal to 10% of the target's Max Health (but no more than {STR+AGL}).",
+   "unlock": {
+    "treatise": "Spears II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi"
+    ]
+   }
   },
   {
    "n": "Determination",
@@ -114,14 +133,34 @@
    ],
    "req": "spear",
    "desc": "'Determination' 2 turns: free strike (+20% WD, +75% Bleed) vs every enemy moving adjacent; on damage +5% Max Energy, target -20% Move Res 3 turns.",
-   "dyn": "Activates \"Determination\" for 2 turns:\n\nDelivers a free strike with +{AGL+PRC}% Weapon Damage and +{55+(2*STR)}% Bleed Chance to every enemy that moves to adjacent tiles.\n\nIf this strike does damage, replenishes {-5+WIL}% Max Energy and applies the target with -20% Move Resistance for 3 turns."
+   "dyn": "Activates \"Determination\" for 2 turns:\n\nDelivers a free strike with +{AGL+PRC}% Weapon Damage and +{55+(2*STR)}% Bleed Chance to every enemy that moves to adjacent tiles.\n\nIf this strike does damage, replenishes {-5+WIL}% Max Energy and applies the target with -20% Move Resistance for 3 turns.",
+   "unlock": {
+    "treatise": "Spears II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi",
+     "prc",
+     "wil"
+    ]
+   }
   },
   {
    "n": "One at a Time!",
    "t": 3,
    "type": "Passive",
    "req": "spear",
-   "desc": "Grants +5% Weapon Damage, +5% Immobilization Chance, and +3% Crit Chance if there is only one adjacent enemy.\n\nDoubles the bonuses if the adjacent tiles are empty."
+   "desc": "Grants +5% Weapon Damage, +5% Immobilization Chance, and +3% Crit Chance if there is only one adjacent enemy.\n\nDoubles the bonuses if the adjacent tiles are empty.",
+   "unlock": {
+    "treatise": "Spears III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Regroup",
@@ -145,14 +184,33 @@
     },
     "stacks": 4
    },
-   "dyn": "Repositions to an adjacent tile, replenishes {2*VIT}% Max Block Power, and reduces the cooldown of the ability tree's other skills by 1 turn for each visible enemy within 3 tiles.\n\nActivates \"Regroup\" for 10 turns:\n+5% Block Chance\n+5% Max Block Power\n+15% Block Power Recovery\n+5% Counter Chance\n\nGrants an extra stack of the effect (up to IV) for each reduced cooldown."
+   "dyn": "Repositions to an adjacent tile, replenishes {2*VIT}% Max Block Power, and reduces the cooldown of the ability tree's other skills by 1 turn for each visible enemy within 3 tiles.\n\nActivates \"Regroup\" for 10 turns:\n+5% Block Chance\n+5% Max Block Power\n+15% Block Power Recovery\n+5% Counter Chance\n\nGrants an extra stack of the effect (up to IV) for each reduced cooldown.",
+   "unlock": {
+    "treatise": "Spears III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "vit"
+    ]
+   }
   },
   {
    "n": "Stay Back!",
    "t": 3,
    "type": "Passive",
    "req": "spear",
-   "desc": "When enemies move to adjacent tiles, applies them with -10% Piercing Resistance and -10% Crit Avoidance for 4 turn.\n\nThe effect stacks up to 2 times.\n\nGrants spear strikes against adjacent targets +30% Knockback Chance."
+   "desc": "When enemies move to adjacent tiles, applies them with -10% Piercing Resistance and -10% Crit Avoidance for 4 turn.\n\nThe effect stacks up to 2 times.\n\nGrants spear strikes against adjacent targets +30% Knockback Chance.",
+   "unlock": {
+    "treatise": "Spears III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "prc"
+    ]
+   }
   }
  ]
 }

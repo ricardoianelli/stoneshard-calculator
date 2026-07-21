@@ -417,6 +417,9 @@ input[type=range]{accent-color:#7a2e1d;}
                   <div style="font-size:10.5px;color:#6d5f8f;font-style:italic;">{{ selSkill.modBy }}</div>
                 </div>
               </div>
+              <sc-if value="{{ selSkill.hasUnlock }}" hint-placeholder-val="{{ false }}">
+                <div style="font-size:10.5px;line-height:1.4;margin-top:8px;padding:5px 7px;border-radius:3px;background:rgba(15,12,24,.55);border:1px solid #3d3452;color:{{ selSkill.unlockColor }};">{{ selSkill.unlockLine }}</div>
+              </sc-if>
               <div style="font-size:12px;line-height:1.55;color:#c4b898;margin-top:8px;white-space:pre-line;">{{ selSkill.desc }}</div>
               <sc-if value="{{ selSkill.hasFormulas }}" hint-placeholder-val="{{ false }}">
                 <label style="display:flex;gap:6px;align-items:center;margin-top:6px;font-size:10.5px;color:#8a7ba8;cursor:pointer;">
@@ -900,6 +903,21 @@ class Component extends DCLogic {
       .concat((ch && ch.trait && ch.trait.free_skills) || []);
     return names.length ? { survival: Array.from(new Set(names)) } : {};
   }
+  // Skill unlock (wiki, per-skill): a skill is unlockable by reading its Treatise, OR reaching
+  // unlock.level, OR investing unlock.pts allocation points across unlock.attrs. `ok` = satisfied
+  // WITHOUT a treatise by the current build (level + allocated points). Treatise stays an
+  // always-available alternative, so ok:false just means "you'd need the treatise (or more)".
+  unlockOf(sk) {
+    if (sk.free) return { innate: true, ok: true, kind: 'innate' };
+    if (sk.unlocked && !sk.unlock) return { ok: true, kind: 'free-unlock' };
+    const u = sk.unlock;
+    if (!u) return { ok: true, kind: 'unknown' };
+    const alloc = this.state.alloc || {};
+    const invested = (u.attrs || []).reduce((a, k) => a + (alloc[k] || 0), 0);
+    const byAttr = u.pts != null && invested >= u.pts;
+    const byLevel = u.level != null && this.state.level >= u.level;
+    return { ok: byAttr || byLevel, byAttr, byLevel, invested, u, kind: 'gated' };
+  }
   sanitize(b) {
     const out = {};
     ['charId','level','alloc','gear','ench','cond','buffs','skills','activeTree','stancesOn','skillBuffs','enemySel','traitCounters'].forEach(k => { if (b[k] !== undefined) out[k] = b[k]; });
@@ -1295,10 +1313,32 @@ class Component extends DCLogic {
         const have = new Set(after.map(x => x.t || 1));
         return after.some(x => { for (let q = 1; q < (x.t || 1); q++) { if (!have.has(q)) return true; } return false; });
       })();
+      // unlock requirement (per-skill wiki data): read Treatise, reach a level, or invest points
+      const uinfo = this.unlockOf(selSk);
+      const ATTRU = { str: 'STR', agi: 'AGI', prc: 'PRC', vit: 'VIT', wil: 'WIL' };
+      let unlockLine = '', unlockColor = '#8a7ba8', hasUnlock = false;
+      if (uinfo.kind === 'free-unlock') { hasUnlock = true; unlockColor = '#86c977'; unlockLine = '🔓 Unlocked for all characters — no Treatise needed (costs 1 AP)'; }
+      else if (uinfo.kind === 'gated') {
+        hasUnlock = true;
+        const u = uinfo.u;
+        const attrs = (u.attrs || []).map(a => ATTRU[a] || a.toUpperCase()).join('/');
+        const req = 'Unlocks: ' + [u.treatise ? 'Treatise ' + u.treatise : null, u.level != null ? 'Level ' + u.level : null, u.pts != null ? u.pts + ' pts in ' + attrs : null].filter(Boolean).join(' · or ');
+        const hasShortcut = u.level != null || u.pts != null;
+        if (!hasShortcut) { unlockColor = '#c9a9d9'; unlockLine = '🔒 ' + req + ' only — no level/attribute shortcut'; }
+        else if (uinfo.ok) { unlockColor = '#86c977'; unlockLine = '🔓 ' + req + '  —  ✓ met by your build (' + (uinfo.byLevel ? 'Lv ' + s.level : attrs + ' ' + uinfo.invested + '/' + u.pts) + ')'; }
+        else {
+          unlockColor = '#d8a24a';
+          const gaps = [];
+          if (u.pts != null) gaps.push('your ' + attrs + ' ' + uinfo.invested + '/' + u.pts);
+          if (u.level != null) gaps.push('Lv ' + s.level + '/' + u.level);
+          unlockLine = '🔒 ' + req + '  —  needs Treatise (' + gaps.join(', ') + ')';
+        }
+      }
       selSkill = {
         n: selSk.n, icon: this.icon(selSk.ico || selSk.n, 44),
         meta: (selSk.type || '') + (selSk.target ? ' · ' + selSk.target : '') + (selSk.range ? ' · Range ' + selSk.range : '') + (selSk.en ? ' · ' + selSk.en + ' EN / ' + selSk.cd + ' CD' : ''),
         modBy: selSk.mod ? 'Modified by: ' + selSk.mod.map(m => ({ str: 'Strength', agi: 'Agility', prc: 'Perception', vit: 'Vitality', wil: 'Willpower' }[m] || m)).join(', ') : '',
+        unlockLine, unlockColor, hasUnlock,
         desc: this.dynDesc(selSk, C.attrs),
         hasFormulas: !!selSk.dyn,
         btnLabel: isFree ? 'INNATE — ALWAYS LEARNED' : (learned ? (wouldOrphan ? '✓ LEARNED — HIGHER TIERS DEPEND ON IT' : '✓ LEARNED — CLICK TO UNLEARN') : (tierBlocked ? 'REQUIRES A TIER ' + missingTier + ' SKILL IN THIS TREE' : (C.apPool > 0 ? 'LEARN (1 AP)' : 'NO ABILITY POINTS LEFT'))),

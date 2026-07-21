@@ -74,7 +74,16 @@
    "range": 4,
    "en": 26,
    "cd": 20,
-   "desc": "Performs a charge towards the targeted tile.\n\nGrants the skill -1 Range for each adjacent enemy (down to 2 Range).\n\nIf there are adjacent enemies after using the skill, grants +15% Dodge Chance and +15% Counter Chance for 2 turns."
+   "desc": "Performs a charge towards the targeted tile.\n\nGrants the skill -1 Range for each adjacent enemy (down to 2 Range).\n\nIf there are adjacent enemies after using the skill, grants +15% Dodge Chance and +15% Counter Chance for 2 turns.",
+   "unlock": {
+    "treatise": "Athletics II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "agi",
+     "vit"
+    ]
+   }
   },
   {
    "n": "Inner Reserves",
@@ -85,7 +94,16 @@
     "vit"
    ],
    "desc": "Once per 20 turns replenishes 20% Max Energy when Energy <50%.",
-   "dyn": "Once per {25-0.5*VIT} turns, replenishes {10+WIL}% Max Energy when Energy drops below 50%."
+   "dyn": "Once per {25-0.5*VIT} turns, replenishes {10+WIL}% Max Energy when Energy drops below 50%.",
+   "unlock": {
+    "treatise": "Athletics II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "vit",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Sudden Lunge",
@@ -100,7 +118,16 @@
     "prc"
    ],
    "desc": "Strike -50% Weapon Damage, 80% Stagger. Reduces all cooldowns 2 turns. On damage: target abilities on 2-turn cooldown. Spear: +1 range.",
-   "dyn": "Delivers a strike with -50% Weapon Damage and +{40+2*AGL+2*PRC}% Stagger Chance.\n\nReduces all cooldowns by 2 turns.\n\nA successful, damaging hit puts all of the target's abilities on a 2 turn cooldown.\n\nIf equipped with a spear, grants the skill +1 Range."
+   "dyn": "Delivers a strike with -50% Weapon Damage and +{40+2*AGL+2*PRC}% Stagger Chance.\n\nReduces all cooldowns by 2 turns.\n\nA successful, damaging hit puts all of the target's abilities on a 2 turn cooldown.\n\nIf equipped with a spear, grants the skill +1 Range.",
+   "unlock": {
+    "treatise": "Athletics II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Push the Falling",
@@ -110,7 +137,17 @@
     "wil"
    ],
    "desc": "Applying Daze/Stun/Stagger/Confusion/Immobilization/Bleeding via strikes/shots replenishes 4% Max Energy. Mighty Kick prolongs those effects 1-2 turns.",
-   "dyn": "Dazing, Stunning, Staggering, Confusing, Immobilizing, and causing Bleeding with strikes and shots replenishes {-6+WIL}% Max Energy.\n\nUsing \"Mighty Kick\" against targets with these effects prolongs their duration by 1-2 turns, depending on each individual effect's duration cap."
+   "dyn": "Dazing, Stunning, Staggering, Confusing, Immobilizing, and causing Bleeding with strikes and shots replenishes {-6+WIL}% Max Energy.\n\nUsing \"Mighty Kick\" against targets with these effects prolongs their duration by 1-2 turns, depending on each individual effect's duration cap.",
+   "unlock": {
+    "treatise": "Athletics II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "agi",
+     "prc",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Elusiveness",
@@ -125,19 +162,47 @@
     "prc"
    ],
    "desc": "5 stacks 6 turns: +4% Dodge, -2% Damage Taken per stack. Movement adds stacks (up to V); dodges prolong. Adjacent enemies +5% Fumble 4 turns.",
-   "dyn": "Activates 5 stacks of \"Elusiveness\" for 6 turns:\n+{0.4*PRC}% Dodge Chance\n-{0.2*VIT}% Damage Taken\n\nEach dodge as well as received fumbled strikes and shots prolong the effect's duration by 1 turn (up to 6) but reduce its number of stacks.\n\nMoving to other tiles (Charges and Maneuvers count as well) grants an extra stack of the effect for each traveled tile (up to V).\n\nApplies all adjacent enemies with +{0.5*AGL}% Fumble Chance for 4 turns.\n\nThe effect doesn't stack."
+   "dyn": "Activates 5 stacks of \"Elusiveness\" for 6 turns:\n+{0.4*PRC}% Dodge Chance\n-{0.2*VIT}% Damage Taken\n\nEach dodge as well as received fumbled strikes and shots prolong the effect's duration by 1 turn (up to 6) but reduce its number of stacks.\n\nMoving to other tiles (Charges and Maneuvers count as well) grants an extra stack of the effect for each traveled tile (up to V).\n\nApplies all adjacent enemies with +{0.5*AGL}% Fumble Chance for 4 turns.\n\nThe effect doesn't stack.",
+   "unlock": {
+    "treatise": "Athletics III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "agi",
+     "prc",
+     "vit"
+    ]
+   }
   },
   {
    "n": "No Time to Linger",
    "t": 3,
    "type": "Passive",
-   "desc": "Grants strikes and shots against Dazed, Stunned, Staggered, Confused, Immobilized, or Bleeding targets +4% Accuracy, -4% Fumble Chance, and +4% Crit Chance.\n\nUsing \"Sudden Lunge\" against targets with these effects grants the skill +75% Weapon Damage, -50% Cooldown Duration, and -50% Energy Cost."
+   "desc": "Grants strikes and shots against Dazed, Stunned, Staggered, Confused, Immobilized, or Bleeding targets +4% Accuracy, -4% Fumble Chance, and +4% Crit Chance.\n\nUsing \"Sudden Lunge\" against targets with these effects grants the skill +75% Weapon Damage, -50% Cooldown Duration, and -50% Energy Cost.",
+   "unlock": {
+    "treatise": "Athletics III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Sprint Training",
    "t": 4,
    "type": "Passive",
-   "desc": "Grants +1 Range, -33% Energy Cost, and -33% Cooldown Duration to all Charge skills."
+   "desc": "Grants +1 Range, -33% Energy Cost, and -33% Cooldown Duration to all Charge skills.",
+   "unlock": {
+    "treatise": "Athletics IV",
+    "level": 22,
+    "pts": 20,
+    "attrs": [
+     "agi",
+     "vit"
+    ]
+   }
   },
   {
    "n": "Adrenaline Rush",
@@ -151,7 +216,17 @@
     "wil"
    ],
    "desc": "Replenish 10% Max Energy, -20% Pain; 5 turns: -3% Damage Taken, -5% Energy Cost, +10% Energy Restoration, +3% Crit Chance, +10% Pain Res per stack (up to VI; +1 per enemy in Vision, adjacent x2). III: -1 all cooldowns/turn. VI: +4% HP if <40%.",
-   "dyn": "Replenishes Max Energy and reduces Pain based on missing Health (about {2*WIL}% Energy at full Health, doubling as Health drops), then activates \"Adrenaline Rush\" for up to {VIT} turns:\n-3% Damage Taken\n-5% Abilities Energy Cost\n+10% Energy Restoration\n+3% Crit Chance\n+10% Pain Resistance\nIII stacks: reduces all cooldowns by 1 turn.\nVI stacks: replenishes 4% Max Health if the current Health is below 40%.\n\nGrants an extra stack of the effect (up to VI) for each enemy within Vision upon its activation. Adjacent enemies are counted twice.\n\nThe effect's duration as well as the amount of reduced Pain and replenished Energy depend on missing Health."
+   "dyn": "Replenishes Max Energy and reduces Pain based on missing Health (about {2*WIL}% Energy at full Health, doubling as Health drops), then activates \"Adrenaline Rush\" for up to {VIT} turns:\n-3% Damage Taken\n-5% Abilities Energy Cost\n+10% Energy Restoration\n+3% Crit Chance\n+10% Pain Resistance\nIII stacks: reduces all cooldowns by 1 turn.\nVI stacks: replenishes 4% Max Health if the current Health is below 40%.\n\nGrants an extra stack of the effect (up to VI) for each enemy within Vision upon its activation. Adjacent enemies are counted twice.\n\nThe effect's duration as well as the amount of reduced Pain and replenished Energy depend on missing Health.",
+   "unlock": {
+    "treatise": "Athletics IV",
+    "level": 22,
+    "pts": 20,
+    "attrs": [
+     "str",
+     "vit",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Peak Performance",
@@ -163,6 +238,17 @@
     "wd": 10,
     "dg": 10,
     "cd": -10
+   },
+   "unlock": {
+    "treatise": "Athletics IV",
+    "level": 22,
+    "pts": 20,
+    "attrs": [
+     "str",
+     "agi",
+     "vit",
+     "wil"
+    ]
    }
   }
  ]

@@ -69,21 +69,50 @@
     },
     "stacks": 4
    },
-   "dyn": "Activates \"Rampage\" for 10 turns:\n-10% Skills Energy Cost\n+4% Crit Chance\n+15% Bleed Chance\n-3% Fumble Chance\nEvery third strike deals additional damage equal to 15% of the target's Max Health (but no more than {20+0.5*STR}).\n\nUsing the ability tree's skills grants an extra stack of the effect (up to IV).\n\nBasic two-handed axe strikes prolong the effect's duration by 1 turn (up to 10) but reduce its number of stacks (no more than once per turn).\n\nOnly one Stance effect can be active at a time."
+   "dyn": "Activates \"Rampage\" for 10 turns:\n-10% Skills Energy Cost\n+4% Crit Chance\n+15% Bleed Chance\n-3% Fumble Chance\nEvery third strike deals additional damage equal to 15% of the target's Max Health (but no more than {20+0.5*STR}).\n\nUsing the ability tree's skills grants an extra stack of the effect (up to IV).\n\nBasic two-handed axe strikes prolong the effect's duration by 1 turn (up to 10) but reduce its number of stacks (no more than once per turn).\n\nOnly one Stance effect can be active at a time.",
+   "unlock": {
+    "treatise": "Two-Handed Axes II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Fatal Strike",
    "t": 2,
    "type": "Passive",
    "req": "two-handed axe",
-   "desc": "Critical two-handed axe strikes grant -15% Skills Energy Cost for 3 turns and apply their target with +10% Damage Taken for 3 turns.\n\nBoth effects stack up to 2 times."
+   "desc": "Critical two-handed axe strikes grant -15% Skills Energy Cost for 3 turns and apply their target with +10% Damage Taken for 3 turns.\n\nBoth effects stack up to 2 times.",
+   "unlock": {
+    "treatise": "Two-Handed Axes II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Finish `Em!",
    "t": 2,
    "type": "Passive",
    "req": "two-handed axe",
-   "desc": "Grants two-handed axe strikes +15% Bodypart Damage and +4% Accuracy if the target's Health is above 50%.\n\nGrants two-handed axe strikes +10% Weapon Damage and -4% Fumble Chance if the target's Health is below 50%."
+   "desc": "Grants two-handed axe strikes +15% Bodypart Damage and +4% Accuracy if the target's Health is above 50%.\n\nGrants two-handed axe strikes +10% Weapon Damage and -4% Fumble Chance if the target's Health is below 50%.",
+   "unlock": {
+    "treatise": "Two-Handed Axes II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Reign in Blood",
@@ -101,7 +130,17 @@
    ],
    "req": "two-handed axe",
    "desc": "Strike +60% Knockback, +40% Bodypart Damage per Bleeding and per missing 20% HP. 60% chance injured parts Bleed. +5% Max Energy per Bleeding/Injury degree.",
-   "dyn": "Delivers a strike with +{40+2*STR}% Knockback Chance and +{2*AGL+2*PRC}% Bodypart Damage for each Bleeding affecting the target and each missing 20% of its Health.\n\nWith {40+PRC+STR}% chance causes the target's Injured body parts to start Bleeding.\n\nThen replenishes {0.5*WIL}% Max Energy for each Bleeding and degree of Injury affecting the target."
+   "dyn": "Delivers a strike with +{40+2*STR}% Knockback Chance and +{2*AGL+2*PRC}% Bodypart Damage for each Bleeding affecting the target and each missing 20% of its Health.\n\nWith {40+PRC+STR}% chance causes the target's Injured body parts to start Bleeding.\n\nThen replenishes {0.5*WIL}% Max Energy for each Bleeding and degree of Injury affecting the target.",
+   "unlock": {
+    "treatise": "Two-Handed Axes III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Tool of Execution",
@@ -117,6 +156,16 @@
      "ce": 10,
      "cd": -5
     }
+   },
+   "unlock": {
+    "treatise": "Two-Handed Axes III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
    }
   },
   {
@@ -134,7 +183,18 @@
    ],
    "req": "two-handed axe",
    "desc": "3x2 area strike, +15% WD and +20% Armor Pen per Injury degree in area; no knockback. Hit: -5% Bleed Res 6 turns per enemy in area (x6). If kills: repeats once.",
-   "dyn": "Delivers a strike to a 3х2 tile area with -200% Knockback Chance as well as +{1.5*PRC}% Weapon Damage and +{STR+AGL}% Armor Penetration for each degree of Injury affecting the targets within the skill's area of effect.\n\nThis strike can't knock back its targets.\n\nHitting a target applies it with -5% Bleed Resistance for 6 turns for each enemy within the skill's area of effect.\n\nThe effect stacks up to 6 times.\n\nIf the strike kills at least one target, delivers it again to the same area (but no more than once)."
+   "dyn": "Delivers a strike to a 3х2 tile area with -200% Knockback Chance as well as +{1.5*PRC}% Weapon Damage and +{STR+AGL}% Armor Penetration for each degree of Injury affecting the targets within the skill's area of effect.\n\nThis strike can't knock back its targets.\n\nHitting a target applies it with -5% Bleed Resistance for 6 turns for each enemy within the skill's area of effect.\n\nThe effect stacks up to 6 times.\n\nIf the strike kills at least one target, delivers it again to the same area (but no more than once).",
+   "unlock": {
+    "treatise": "Two-Handed Axes III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "prc",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Maim and Kill",
@@ -153,6 +213,16 @@
      "wd": 5,
      "cc": 4
     }
+   },
+   "unlock": {
+    "treatise": "Two-Handed Axes III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
    }
   }
  ]

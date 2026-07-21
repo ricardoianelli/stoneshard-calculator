@@ -60,7 +60,16 @@
    "t": 2,
    "type": "Passive",
    "req": "ranged weapon + ammo",
-   "desc": "Grants +5% Armor Penetration and +5% Bodypart Damage to \"Taking Aim\".\n\nUsing \"Taking Aim\" applies all targets within Vision with -5% Physical Resistance for 4 turns.\n\nIf equipped with a sling, also applies the targets with -5% Control Resistance and -5% Move Resistance for 4 turns.\n\nBoth effects stack up to 2 times."
+   "desc": "Grants +5% Armor Penetration and +5% Bodypart Damage to \"Taking Aim\".\n\nUsing \"Taking Aim\" applies all targets within Vision with -5% Physical Resistance for 4 turns.\n\nIf equipped with a sling, also applies the targets with -5% Control Resistance and -5% Move Resistance for 4 turns.\n\nBoth effects stack up to 2 times.",
+   "unlock": {
+    "treatise": "Ranged Weapons II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Startling Volley",
@@ -76,7 +85,17 @@
    ],
    "req": "ranged weapon + ammo",
    "desc": "Marks 2 tiles (or same twice with bow); shots -30% WD, +40% Daze. Damaged targets: -10% Block Chance, +10% Fumble 5 turns (doubled duration if not double-marked; crossbow reloads + doubles penalties).",
-   "dyn": "Marks a tile (2 different tiles or the same tile twice if equipped with a bow or sling).\n\nThen takes a shot at them with {-40+AGL}% Weapon Damage and +{20+STR+PRC}% Daze Chance.\n\nApplies damaged targets with -{STR}% Block Chance and +{0.5*PRC+0.5*AGL}% Fumble Chance for 5 turns.\n\nIf the same target wasn't marked twice, doubles the applied penalties' duration.\n\nIf equipped with a crossbow, instantly reloads it and doubles the applied penalties."
+   "dyn": "Marks a tile (2 different tiles or the same tile twice if equipped with a bow or sling).\n\nThen takes a shot at them with {-40+AGL}% Weapon Damage and +{20+STR+PRC}% Daze Chance.\n\nApplies damaged targets with -{STR}% Block Chance and +{0.5*PRC+0.5*AGL}% Fumble Chance for 5 turns.\n\nIf the same target wasn't marked twice, doubles the applied penalties' duration.\n\nIf equipped with a crossbow, instantly reloads it and doubles the applied penalties.",
+   "unlock": {
+    "treatise": "Ranged Weapons II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Suppression",
@@ -97,6 +116,15 @@
      "sec": -5
     },
     "stacks": 4
+   },
+   "unlock": {
+    "treatise": "Ranged Weapons II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "agi",
+     "prc"
+    ]
    }
   },
   {
@@ -104,7 +132,15 @@
    "t": 2,
    "type": "Passive",
    "req": "ranged weapon + ammo",
-   "desc": "Damaging shots apply all targets within Vision with -2% Dodge Chance, +2% Fumble Chance, -2% Accuracy, and -2% Crit Chance for 10 turns.\n\nEach missed shot grants +2% Accuracy for 6 turns.\n\nBoth effects stack up to 5 times.\n\nIf equipped with a crossbow or a sling, both effects trigger twice per shot."
+   "desc": "Damaging shots apply all targets within Vision with -2% Dodge Chance, +2% Fumble Chance, -2% Accuracy, and -2% Crit Chance for 10 turns.\n\nEach missed shot grants +2% Accuracy for 6 turns.\n\nBoth effects stack up to 5 times.\n\nIf equipped with a crossbow or a sling, both effects trigger twice per shot.",
+   "unlock": {
+    "treatise": "Ranged Weapons II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "prc"
+    ]
+   }
   },
   {
    "n": "Long Shot",
@@ -120,7 +156,17 @@
    ],
    "req": "ranged weapon + ammo",
    "desc": "Shot +1 Range; per tile of distance +2% WD, +2% Armor Pen, +3% Bodypart Damage. Vs non-hostile: doubled bonuses, 80% Confusion 10 turns.",
-   "dyn": "Takes a shot with +2 Range.\n\nEach tile of distance to the target grants the shot +{0.1*PRC+0.1*AGL}% Weapon Damage, +{0.1*STR+0.1*AGL}% Armor Penetration, and +{0.15*PRC+0.15*AGL}% Bodypart Damage.\n\nIf equipped with a sling, each tile of distance to the target also grants the shot +{0.15*PRC}% Accuracy.\n\nIf the target isn't hostile, doubles all distance-related bonuses and, upon hitting the target, with {60+2*PRC}% chance Confuses it for 10 turns."
+   "dyn": "Takes a shot with +2 Range.\n\nEach tile of distance to the target grants the shot +{0.1*PRC+0.1*AGL}% Weapon Damage, +{0.1*STR+0.1*AGL}% Armor Penetration, and +{0.15*PRC+0.15*AGL}% Bodypart Damage.\n\nIf equipped with a sling, each tile of distance to the target also grants the shot +{0.15*PRC}% Accuracy.\n\nIf the target isn't hostile, doubles all distance-related bonuses and, upon hitting the target, with {60+2*PRC}% chance Confuses it for 10 turns.",
+   "unlock": {
+    "treatise": "Ranged Weapons III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Precision",
@@ -135,6 +181,15 @@
      "acc": 5,
      "wd": 5
     }
+   },
+   "unlock": {
+    "treatise": "Ranged Weapons III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "agi",
+     "prc"
+    ]
    }
   },
   {
@@ -145,14 +200,31 @@
    "en": 18,
    "cd": 16,
    "req": "ranged weapon + ammo",
-   "desc": "Activates \"Thrill of the Hunt\" for 15 turns:\n+10% Bodypart Damage\n+3% Crit Chance\n+10% Crit Efficiency\n\nApplies the target with \"Hunter's Mark\" for 15 turns:\n-10% Bleed Resistance\n-10% Move Resistance\n-10% Control Resistance\n\nThen takes a shot at the target. While affected by \"Thrill of the Hunt\", damaging shots apply their target with \"Hunter's Mark\" or with an extra stack of the effect (up to IV).\n\nKilling targets affected by \"Hunter's Mark\" or applying it to new targets grants an extra stack of \"Thrill of the Hunt\" (up to IV).\n\nSwitching to another loadout doesn't remove the effects."
+   "desc": "Activates \"Thrill of the Hunt\" for 15 turns:\n+10% Bodypart Damage\n+3% Crit Chance\n+10% Crit Efficiency\n\nApplies the target with \"Hunter's Mark\" for 15 turns:\n-10% Bleed Resistance\n-10% Move Resistance\n-10% Control Resistance\n\nThen takes a shot at the target. While affected by \"Thrill of the Hunt\", damaging shots apply their target with \"Hunter's Mark\" or with an extra stack of the effect (up to IV).\n\nKilling targets affected by \"Hunter's Mark\" or applying it to new targets grants an extra stack of \"Thrill of the Hunt\" (up to IV).\n\nSwitching to another loadout doesn't remove the effects.",
+   "unlock": {
+    "treatise": "Ranged Weapons III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Shoot to Kill",
    "t": 4,
    "type": "Passive",
    "req": "ranged weapon + ammo",
-   "desc": "Grants all shots +10% Crit Efficiency, +12% Bodypart Damage, and +5% Armor Penetration for each missing 20% of the target's Health.\n\nGrants all shots +3% Crit Chance for each degree of Injury and each \"Net\", \"Web\", Daze, Stun, Stagger, and Immobilization affecting the target."
+   "desc": "Grants all shots +10% Crit Efficiency, +12% Bodypart Damage, and +5% Armor Penetration for each missing 20% of the target's Health.\n\nGrants all shots +3% Crit Chance for each degree of Injury and each \"Net\", \"Web\", Daze, Stun, Stagger, and Immobilization affecting the target.",
+   "unlock": {
+    "treatise": "Ranged Weapons IV",
+    "level": 22,
+    "pts": 20,
+    "attrs": [
+     "prc"
+    ]
+   }
   },
   {
    "n": "Headshot",
@@ -169,14 +241,34 @@
    ],
    "req": "ranged weapon + ammo",
    "desc": "Head shot +40% Bodypart Damage, +10% Crit Chance, +20% Crit Eff. Kill: +20% Max Energy, crossbow reloads, 'Taking Aim' 1 turn.",
-   "dyn": "Takes a shot at the target's head with +{20+PRC+AGL}% Bodypart Damage, +{0.5*AGL+0.5*STR}% Crit Chance, and +{2*PRC}% Crit Efficiency.\n\nIf the shot kills its target, replenishes {2*WIL}% Max Energy, instantly reloads the equipped crossbow, and activates \"Taking Aim\" for 1 turn."
+   "dyn": "Takes a shot at the target's head with +{20+PRC+AGL}% Bodypart Damage, +{0.5*AGL+0.5*STR}% Crit Chance, and +{2*PRC}% Crit Efficiency.\n\nIf the shot kills its target, replenishes {2*WIL}% Max Energy, instantly reloads the equipped crossbow, and activates \"Taking Aim\" for 1 turn.",
+   "unlock": {
+    "treatise": "Ranged Weapons IV",
+    "level": 22,
+    "pts": 20,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Upper Hand",
    "t": 4,
    "type": "Passive",
    "req": "ranged weapon + ammo",
-   "desc": "While affected by \"Suppression\", grants an extra stack of \"Thrill of the Hunt\" when using \"Hunter's Mark\".\n\nAt the end of the turn, grants an extra stack of \"Suppression\" for each target affected by \"Hunter's Mark\" within Vision.\n\nGrants melee strikes against targets affected by \"Hunter's Mark\" +20% Weapon Damage and +5% Crit Chance."
+   "desc": "While affected by \"Suppression\", grants an extra stack of \"Thrill of the Hunt\" when using \"Hunter's Mark\".\n\nAt the end of the turn, grants an extra stack of \"Suppression\" for each target affected by \"Hunter's Mark\" within Vision.\n\nGrants melee strikes against targets affected by \"Hunter's Mark\" +20% Weapon Damage and +5% Crit Chance.",
+   "unlock": {
+    "treatise": "Ranged Weapons IV",
+    "level": 22,
+    "pts": 20,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   }
  ]
 }

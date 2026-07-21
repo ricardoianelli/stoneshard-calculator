@@ -72,14 +72,33 @@
    ],
    "req": "dagger",
    "desc": "120% chance swap places (grants +15% Counter, +25% Bleed 2 turns); strike +20% WD, +75% Stagger, +10% Crit Chance, +100% Energy Drain.",
-   "dyn": "With {100+2*AGL}% chance swaps places with the target.\n\nIf the swap is successful, grants +15% Counter Chance and +25% Bleed Chance for 2 turns.\n\nThen delivers a strike with +{AGL+PRC}% Weapon Damage, +{55+AGL+STR}% Stagger Chance, +{STR}% Crit Chance, and +100% Energy Drain."
+   "dyn": "With {100+2*AGL}% chance swaps places with the target.\n\nIf the swap is successful, grants +15% Counter Chance and +25% Bleed Chance for 2 turns.\n\nThen delivers a strike with +{AGL+PRC}% Weapon Damage, +{55+AGL+STR}% Stagger Chance, +{STR}% Crit Chance, and +100% Energy Drain.",
+   "unlock": {
+    "treatise": "Daggers II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Weakening Jabs",
    "t": 2,
    "type": "Passive",
    "req": "dagger",
-   "desc": "Damaging dagger strikes apply their targets with -5% Weapon Damage and +7.5% Cooldowns Duration for 6 turns.\n\nThe effect stacks up to 4 times."
+   "desc": "Damaging dagger strikes apply their targets with -5% Weapon Damage and +7.5% Cooldowns Duration for 6 turns.\n\nThe effect stacks up to 4 times.",
+   "unlock": {
+    "treatise": "Daggers II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Painful Stabs",
@@ -99,6 +118,16 @@
      "bl": 12
     },
     "stacks": 4
+   },
+   "unlock": {
+    "treatise": "Daggers II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
    }
   },
   {
@@ -113,6 +142,15 @@
     "per_stack": {
      "co": 5
     }
+   },
+   "unlock": {
+    "treatise": "Daggers III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "agi",
+     "prc"
+    ]
    }
   },
   {
@@ -128,6 +166,16 @@
      "dg": 4,
      "dt": 5
     }
+   },
+   "unlock": {
+    "treatise": "Daggers III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
    }
   },
   {
@@ -145,7 +193,17 @@
    ],
    "req": "dagger",
    "desc": "Body/head strike +20% Armor Pen, +20% Bodypart Damage per Bleeding, +1.5% WD per missing 1% target HP. Kill: free turn, +25% Crit Chance 4 turns.",
-   "dyn": "Delivers a strike to the target's body or head with +{2*STR}% Armor Penetration, +{2*PRC}% Bodypart Damage for each Bleeding affecting the target, and +{1+0.025*AGL+0.025*PRC}% Weapon Damage for each missing percent of its Health.\n\nIf the strike kills its target, it doesn't take a turn and grants +25% Crit Chance for 4 turns."
+   "dyn": "Delivers a strike to the target's body or head with +{2*STR}% Armor Penetration, +{2*PRC}% Bodypart Damage for each Bleeding affecting the target, and +{1+0.025*AGL+0.025*PRC}% Weapon Damage for each missing percent of its Health.\n\nIf the strike kills its target, it doesn't take a turn and grants +25% Crit Chance for 4 turns.",
+   "unlock": {
+    "treatise": "Daggers III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   }
  ]
 }

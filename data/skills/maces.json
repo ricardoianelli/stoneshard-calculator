@@ -66,7 +66,17 @@
    ],
    "req": "one-handed mace",
    "desc": "Dazing/Stunning/Staggering with mace strikes replenishes 7% Max Energy.",
-   "dyn": "Grants mace strikes +5% Daze Chance and +10% Stagger Chance for each degree of Injury affecting the target.\n\nDazing, Stunning, or Staggering targets with mace strikes replenishes {-3+WIL}% Max Energy."
+   "dyn": "Grants mace strikes +5% Daze Chance and +10% Stagger Chance for each degree of Injury affecting the target.\n\nDazing, Stunning, or Staggering targets with mace strikes replenishes {-3+WIL}% Max Energy.",
+   "unlock": {
+    "treatise": "Maces Treatise II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "agi",
+     "prc",
+     "wil"
+    ]
+   }
   },
   {
    "n": "Hammer and Anvil",
@@ -86,6 +96,16 @@
      "sg": 10
     },
     "stacks": 4
+   },
+   "unlock": {
+    "treatise": "Maces Treatise II",
+    "level": 10,
+    "pts": 8,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
    }
   },
   {
@@ -103,14 +123,34 @@
    ],
    "req": "one-handed mace",
    "desc": "Head strike +25% WD, +80% Stagger, +10% Crit Chance (+10% WD/Daze turn, +50% WD/Stun turn). On damage: all target abilities on cooldown, Daze +4 turns, Stun +1.",
-   "dyn": "Delivers a strike to the target's head with +25% Weapon Damage, +{40+2*STR+2*AGL}% Stagger Chance, and +{5+0.5*AGL}% Crit Chance.\n\nGrants the strike additional +{PRC}% Weapon Damage for each turn of Daze affecting the target and +{5*PRC}% Weapon Damage for each turn of Stun.\n\nIf the target takes damage, puts all its abilities on cooldown and prolongs its Daze by 4 turns and Stun by 1 turn."
+   "dyn": "Delivers a strike to the target's head with +25% Weapon Damage, +{40+2*STR+2*AGL}% Stagger Chance, and +{5+0.5*AGL}% Crit Chance.\n\nGrants the strike additional +{PRC}% Weapon Damage for each turn of Daze affecting the target and +{5*PRC}% Weapon Damage for each turn of Stun.\n\nIf the target takes damage, puts all its abilities on cooldown and prolongs its Daze by 4 turns and Stun by 1 turn.",
+   "unlock": {
+    "treatise": "Maces Treatise III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   },
   {
    "n": "Concussion",
    "t": 3,
    "type": "Passive",
    "req": "one-handed mace",
-   "desc": "If using the ability tree's Attack skill fails to Daze, Stun, or Stagger the target, applies it with -6% Control Resistance, -8% Move Resistance, and -10% Crit Avoidance for 6 turns.\n\nThis effect stacks up to 3 times."
+   "desc": "If using the ability tree's Attack skill fails to Daze, Stun, or Stagger the target, applies it with -6% Control Resistance, -8% Move Resistance, and -10% Crit Avoidance for 6 turns.\n\nThis effect stacks up to 3 times.",
+   "unlock": {
+    "treatise": "Maces Treatise III",
+    "level": 16,
+    "pts": 14,
+    "attrs": [
+     "str",
+     "agi",
+     "prc"
+    ]
+   }
   }
  ]
 }
