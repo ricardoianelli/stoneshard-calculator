@@ -79,7 +79,12 @@
        "prc",
        "vit"
       ]
-     }
+     },
+     "pre": [
+      [
+       "Cleaving Strike"
+      ]
+     ]
     },
     {
      "n": "Fencer Stance",
@@ -107,7 +112,12 @@
        "agi",
        "prc"
       ]
-     }
+     },
+     "pre": [
+      [
+       "Blade Maintenance"
+      ]
+     ]
     },
     {
      "n": "Steady Tempo",
@@ -130,7 +140,12 @@
        "agi",
        "vit"
       ]
-     }
+     },
+     "pre": [
+      [
+       "Keeping Distance"
+      ]
+     ]
     },
     {
      "n": "Honed Edge",
@@ -155,7 +170,13 @@
        "agi",
        "prc"
       ]
-     }
+     },
+     "pre": [
+      [
+       "Gloat",
+       "Fencer Stance"
+      ]
+     ]
     },
     {
      "n": "Onrush",
@@ -183,7 +204,13 @@
        "agi",
        "prc"
       ]
-     }
+     },
+     "pre": [
+      [
+       "Fencer Stance",
+       "Steady Tempo"
+      ]
+     ]
     }
    ],
    "desc_note": "VERBATIM wiki (tree 0.9.1.19 / formulas 0.9.4.14)"

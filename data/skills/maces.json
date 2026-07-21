@@ -76,7 +76,13 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Onslaught",
+     "Dazing Strikes"
+    ]
+   ]
   },
   {
    "n": "Hammer and Anvil",
@@ -106,7 +112,13 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Armor Break",
+     "Moment of Weakness"
+    ]
+   ]
   },
   {
    "n": "Knock Out",
@@ -133,7 +145,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Respite"
+    ]
+   ]
   },
   {
    "n": "Concussion",
@@ -150,7 +167,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Hammer and Anvil"
+    ]
+   ]
   }
  ]
 }

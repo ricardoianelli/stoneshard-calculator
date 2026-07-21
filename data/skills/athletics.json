@@ -83,7 +83,12 @@
      "agi",
      "vit"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Disengage"
+    ]
+   ]
   },
   {
    "n": "Inner Reserves",
@@ -103,7 +108,12 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Leg Sweep"
+    ]
+   ]
   },
   {
    "n": "Sudden Lunge",
@@ -127,7 +137,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Not This Time"
+    ]
+   ]
   },
   {
    "n": "Push the Falling",
@@ -147,7 +162,12 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Mighty Kick"
+    ]
+   ]
   },
   {
    "n": "Elusiveness",
@@ -172,7 +192,12 @@
      "prc",
      "vit"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Inner Reserves"
+    ]
+   ]
   },
   {
    "n": "No Time to Linger",
@@ -187,7 +212,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Sudden Lunge"
+    ]
+   ]
   },
   {
    "n": "Sprint Training",
@@ -202,7 +232,15 @@
      "agi",
      "vit"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Elusiveness"
+    ],
+    [
+     "No Time to Linger"
+    ]
+   ]
   },
   {
    "n": "Adrenaline Rush",
@@ -226,7 +264,15 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Elusiveness"
+    ],
+    [
+     "No Time to Linger"
+    ]
+   ]
   },
   {
    "n": "Peak Performance",
@@ -249,7 +295,15 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Elusiveness"
+    ],
+    [
+     "No Time to Linger"
+    ]
+   ]
   }
  ]
 }

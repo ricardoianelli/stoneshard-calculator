@@ -82,7 +82,13 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Quick Hands",
+     "Double Lunge"
+    ]
+   ]
   },
   {
    "n": "Weakening Jabs",
@@ -98,7 +104,13 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Double Lunge",
+     "Gaping Wound"
+    ]
+   ]
   },
   {
    "n": "Painful Stabs",
@@ -128,7 +140,13 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Gaping Wound",
+     "From the Shadows"
+    ]
+   ]
   },
   {
    "n": "Counterattack Mastery",
@@ -151,7 +169,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Deadly Trick"
+    ]
+   ]
   },
   {
    "n": "Danse Macabre",
@@ -176,7 +199,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Deadly Trick"
+    ]
+   ]
   },
   {
    "n": "Coup de Grace",
@@ -203,7 +231,13 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Weakening Jabs",
+     "Painful Stabs"
+    ]
+   ]
   }
  ]
 }

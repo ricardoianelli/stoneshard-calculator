@@ -95,7 +95,12 @@
      "prc",
      "vit"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Precise Hits"
+    ]
+   ]
   },
   {
    "n": "Wounding Spearhead",
@@ -116,7 +121,13 @@
      "str",
      "agi"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Nail Down",
+     "Impaling Lunge"
+    ]
+   ]
   },
   {
    "n": "Determination",
@@ -144,7 +155,12 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "No Retreat"
+    ]
+   ]
   },
   {
    "n": "One at a Time!",
@@ -160,7 +176,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Pikeman Stance"
+    ]
+   ]
   },
   {
    "n": "Regroup",
@@ -194,7 +215,12 @@
      "agi",
      "vit"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Wounding Spearhead"
+    ]
+   ]
   },
   {
    "n": "Stay Back!",
@@ -210,7 +236,12 @@
      "str",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Determination"
+    ]
+   ]
   }
  ]
 }

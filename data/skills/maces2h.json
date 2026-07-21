@@ -69,7 +69,14 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Keep Them Coming",
+     "Mighty Swing",
+     "Unstoppable Force"
+    ]
+   ]
   },
   {
    "n": "Bonebreaker",
@@ -85,7 +92,15 @@
      "str",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Keep Them Coming",
+     "Mighty Swing",
+     "Unstoppable Force",
+     "Unbalance"
+    ]
+   ]
   },
   {
    "n": "Forceful Slam",
@@ -111,7 +126,14 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Unstoppable Force",
+     "Unbalance",
+     "Mighty Swing"
+    ]
+   ]
   },
   {
    "n": "Revel in Battle",
@@ -132,7 +154,12 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Striker Stance"
+    ]
+   ]
   },
   {
    "n": "Skull Crusher",
@@ -158,7 +185,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Bonebreaker"
+    ]
+   ]
   },
   {
    "n": "Severe Concussion",
@@ -174,7 +206,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Forceful Slam"
+    ]
+   ]
   }
  ]
 }

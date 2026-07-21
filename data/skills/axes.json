@@ -83,7 +83,14 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Mutilating Lunge",
+     "Ferocity",
+     "Cut Through"
+    ]
+   ]
   },
   {
    "n": "Massacre",
@@ -113,7 +120,14 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Cut Through",
+     "No Mercy",
+     "Ferocity"
+    ]
+   ]
   },
   {
    "n": "Execution",
@@ -142,7 +156,12 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Reprisal"
+    ]
+   ]
   },
   {
    "n": "Tormenting Swings",
@@ -159,7 +178,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Massacre"
+    ]
+   ]
   }
  ]
 }

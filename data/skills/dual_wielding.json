@@ -67,7 +67,15 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Flurry of Strikes"
+    ],
+    [
+     "Dual Wielding Training"
+    ]
+   ]
   },
   {
    "n": "Concentration",
@@ -86,7 +94,15 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Flurry of Strikes"
+    ],
+    [
+     "Dual Wielding Training"
+    ]
+   ]
   },
   {
    "n": "Berserk Tradition",
@@ -111,7 +127,13 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Deflect",
+     "Dying Fervor"
+    ]
+   ]
   },
   {
    "n": "Unstoppable",
@@ -133,7 +155,12 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Enough for Everyone"
+    ]
+   ]
   },
   {
    "n": "Whirlwind",
@@ -159,7 +186,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Concentration"
+    ]
+   ]
   },
   {
    "n": "More Blood!",
@@ -175,7 +207,12 @@
      "agi",
      "prc"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Berserk Tradition"
+    ]
+   ]
   }
  ]
 }

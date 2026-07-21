@@ -71,7 +71,12 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Fire Barrage"
+    ]
+   ]
   },
   {
    "n": "Flame Wave",
@@ -95,7 +100,12 @@
      "agi",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Flame Saturation"
+    ]
+   ]
   },
   {
    "n": "Magma Rain",
@@ -120,7 +130,15 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Baptism by Fire"
+    ],
+    [
+     "Ring of Fire"
+    ]
+   ]
   },
   {
    "n": "Scorch",
@@ -135,7 +153,15 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Ring of Fire"
+    ],
+    [
+     "Baptism by Fire"
+    ]
+   ]
   },
   {
    "n": "Incineration",
@@ -160,7 +186,13 @@
      "agi",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Feed the Flames",
+     "Flame Wave"
+    ]
+   ]
   },
   {
    "n": "From Blaze to Furnace",
@@ -175,7 +207,13 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Flame Wave",
+     "Magma Rain"
+    ]
+   ]
   },
   {
    "n": "Melting Ray",
@@ -200,7 +238,13 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Magma Rain",
+     "Scorch"
+    ]
+   ]
   },
   {
    "n": "Excess Heat",
@@ -222,7 +266,13 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Incineration",
+     "From Blaze to Furnace"
+    ]
+   ]
   },
   {
    "n": "Inferno",
@@ -247,7 +297,14 @@
      "agi",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Incineration",
+     "From Blaze to Furnace",
+     "Melting Ray"
+    ]
+   ]
   },
   {
    "n": "Pyromania",
@@ -262,7 +319,13 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "From Blaze to Furnace",
+     "Melting Ray"
+    ]
+   ]
   }
  ]
 }

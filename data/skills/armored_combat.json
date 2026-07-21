@@ -64,7 +64,12 @@
      "prc",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Brace for Impact!"
+    ]
+   ]
   },
   {
    "n": "Battle-Forged",
@@ -81,7 +86,15 @@
      "vit",
      "wil"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Brace for Impact!"
+    ],
+    [
+     "Hard Target"
+    ]
+   ]
   },
   {
    "n": "Unyielding Defense",
@@ -101,7 +114,15 @@
      "agi",
      "vit"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Brace for Impact!"
+    ],
+    [
+     "Hard Target"
+    ]
+   ]
   },
   {
    "n": "Battering Ram",
@@ -130,7 +151,13 @@
      "prc",
      "vit"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Flexible Defense",
+     "Battle-Forged"
+    ]
+   ]
   },
   {
    "n": "Custom Adjustments",
@@ -161,7 +188,13 @@
      "agi",
      "vit"
     ]
-   }
+   },
+   "pre": [
+    [
+     "Battle-Forged",
+     "Unyielding Defense"
+    ]
+   ]
   }
  ]
 }
