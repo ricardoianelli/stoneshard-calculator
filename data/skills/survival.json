@@ -5,7 +5,7 @@
   "page_patch": "0.9.1.11",
   "focus": "Support, Survivability",
   "source": "https://stoneshard.com/wiki/Survival_(skill_tree)",
-  "note": "Butchering/Make a Halt/Cauterize Wounds unlocked for all characters (no AP cost). fx = always-on passive stat effects used by the calculator; Vigor-conditional bonuses are excluded from fx.",
+  "note": "Butchering + Make a Halt are innately learned by all characters (free:true, no AP). Cauterize Wounds is unlocked for all characters (unlocked:true — no Treatise needed) but still costs 1 AP to learn. fx = always-on passive stat effects used by the calculator; Vigor-conditional bonuses are excluded from fx.",
   "desc_note": "VERBATIM game data (0.9.4.x)"
  },
  "skills": [
@@ -31,7 +31,7 @@
    "type": "Active",
    "target": "No Target",
    "cd": 10,
-   "free": true,
+   "unlocked": true,
    "desc": "Stops all Bleedings and removes the effect of \"Gaping Wound\".\n\nWorsens the Condition of the affected body parts by 3% and grants them +33% Bleed Resistance for 240 turns.\n\nThe effect doesn't stack.\n\nGrants +10% Pain for each stopped Bleeding.\n\nIf affected by \"Vigor\", halves the Pain from stopped Bleedings and prolongs the duration of the Bleed Resistance bonus to 360 turns."
   },
   {
