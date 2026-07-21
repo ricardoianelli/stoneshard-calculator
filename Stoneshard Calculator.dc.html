@@ -730,10 +730,16 @@ class Component extends DCLogic {
         .concat((((this.D.trees.survival || {}).skills) || []).filter(x => x.free).map(x => x.n))
         .concat(['Butchering', 'Craft', 'Torch Strike', 'Trap Search']) // universal defaults every character has
         .map(s => s.toLowerCase().replace(/[^a-z0-9]/g, '')));
+      // whitelist: only skills that exist in the skill-tree data are player-learnable.
+      // Anything else (e.g. Hilda's Bone Charm 'Sudden Attacks') is system-granted — the game
+      // re-adds it on load, so "unlearning" it would just mint free skill points.
+      const knownNames = new Set();
+      Object.values(this.D.trees || {}).forEach(tr => (tr.skills || []).forEach(x => knownNames.add(x.n.toLowerCase().replace(/[^a-z0-9]/g, ''))));
       const checked = {};
       const hidden = new Set();
       this._seMod.learnedSkills(res.obj).forEach(sk => {
-        if (freeNames.has(sk.name.toLowerCase().replace(/[^a-z0-9]/g, ''))) hidden.add(sk.id);
+        const key = sk.name.toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (freeNames.has(key) || !knownNames.has(key)) hidden.add(sk.id);
         else checked[sk.id] = false;
       });
       this._sav = null;
@@ -994,6 +1000,9 @@ class Component extends DCLogic {
     const mods = {}; const mmul = { sec: [], spec: [], cd: [] }; const add = (k, v) => { if (typeof v === 'number') { mods[k] = (mods[k] || 0) + v; if (mmul[k]) mmul[k].push(v); } };
     Object.keys(tcFx).forEach(k => { if (k !== 'school') add(k, tcFx[k]); });
     const dmg = {}; let mainItem = null, offItem = null, protTotal = 0, cfMain = 1, cfOff = 1;
+    // per-weapon offensive stats: kept per hand, scaled by that hand's efficiency (wiki: Dual Wielding mechanic)
+    const wepS = { main: {}, off: {} }; const wepDmgMain = {};
+    const OFFK = ['acc','cc','ap','wd','bl','dz','st','sg','kb','bpd','ad','fum','imm','ce'];
     const protBy = { head: 0, chest: 0, gloves: 0, boots: 0 }; // per-bodypart: helmet→head, chest→torso, gloves→arms, boots→legs
     const bodySlots = ['head','cloak','chest','gloves','boots'];
     const partRes = ['phr','slr','pir','crr','rer','ntr','fir','frr','shr','por','car','mgr','arr','unr','sar','psr','blr'];
@@ -1002,19 +1011,22 @@ class Component extends DCLogic {
       const n = s.gear[slot]; if (!n) return;
       const item = this.find(this.allItems(slot), n); if (!item) return;
       const cf = Math.max(1, Math.min(100, (s.cond && s.cond[slot]) || 100)) / 100;
-      // weapon stats & enchants also scale with hand efficiency (verified: full-condition halberd bpd 20→21, stun ench 5→5.3 at 105% MH eff)
-      const hf = ((slot === 'main' || slot === 'off') && item._cls !== 'shield') ? (100 + 2.5 * th(attrs.agi)) / 100 : 1;
+      const isWep = (slot === 'main' || slot === 'off') && item._cls !== 'shield';
       // per-bodypart armor resistances average over 4 body parts (matches in-game sheet)
-      const addS = (k, v) => add(k, v * cf * hf * (bodySlots.includes(slot) && partRes.includes(k) ? 0.25 : 1));
+      const addS = (k, v) => {
+        if (isWep && OFFK.includes(k)) { wepS[slot][k] = (wepS[slot][k] || 0) + v * cf; return; }
+        add(k, v * cf * (bodySlots.includes(slot) && partRes.includes(k) ? 0.25 : 1));
+      };
       if (slot === 'main') { mainItem = item; cfMain = cf; }
       if (slot === 'off') { offItem = item; cfOff = cf; }
       if (item.prot) { protTotal += item.prot * cf; if (protBy[slot] !== undefined) protBy[slot] += item.prot * cf; }
       Object.keys(item.s || {}).forEach(k => addS(k, item.s[k]));
-      if ((slot === 'main' || slot === 'ammo') && item.d) Object.keys(item.d).forEach(t => { dmg[t] = (dmg[t] || 0) + item.d[t] * cf * hf; });
+      if (slot === 'main' && item.d) Object.keys(item.d).forEach(t => { wepDmgMain[t] = (wepDmgMain[t] || 0) + item.d[t] * cf; });
+      if (slot === 'ammo' && item.d) Object.keys(item.d).forEach(t => { dmg[t] = (dmg[t] || 0) + item.d[t] * cf; });
       const en = s.ench[slot]; if (en) {
         const pool = slot === 'main' || (slot === 'off' && item._cls !== 'shield') ? D.ench.weapon : (slot === 'amulet' || slot.startsWith('ring') ? D.ench.jewelry : D.ench.armor);
         const e = this.find(pool, en);
-        if (e) { Object.keys(e.s || {}).forEach(k => { if (k === 'prot_add') protTotal += e.s[k] * cf; else addS(k, e.s[k]); }); if (slot === 'main' && e.d) Object.keys(e.d).forEach(t => { dmg[t] = (dmg[t] || 0) + e.d[t] * cf * hf; }); }
+        if (e) { Object.keys(e.s || {}).forEach(k => { if (k === 'prot_add') protTotal += e.s[k] * cf; else addS(k, e.s[k]); }); if (slot === 'main' && e.d) Object.keys(e.d).forEach(t => { wepDmgMain[t] = (wepDmgMain[t] || 0) + e.d[t] * cf; }); }
       }
     });
     const twoHanded = mainItem && mainItem._hands === 2;
@@ -1069,22 +1081,39 @@ class Component extends DCLogic {
     const clampCap = (v, c) => c !== undefined ? Math.min(v, c) : v;
     const dstr = attrs.str - 10, dagi = attrs.agi - 10, dprc = attrs.prc - 10, dvit = attrs.vit - 10, dwil = attrs.wil - 10;
 
+    // Dual Wielding Penalty (wiki Dual_Wielding mechanic page): MH Eff -25%, OH Eff -50%, +15% Cooldowns, +10% Backfire, +5% Fumble.
+    // DW Training (same weapon type): +MH Eff (1% + 0.5% per learned Weaponry ability), -3% Fumble.
+    const dwield = !!(mainItem && offItem && offItem._cls !== 'shield' && !twoHanded);
+    const dwTrained = dwield && ((s.skills.dual_wielding || []).includes('Dual Wielding Training'));
+    const dwSame = dwield && offItem._cls === mainItem._cls;
+    const mhe = (dwield ? 75 + (dwTrained && dwSame ? 1 + 0.5 * Math.max(0, catCount.weapon - 1) : 0) : 100) + 2.5 * th(attrs.agi) + M('mhe');
+    const ohe = (dwield ? 50 : 100) + 2.5 * th(attrs.agi) + M('ohe');
+    // each hand's weapon bonuses (incl. penalties) scale with that hand's efficiency; skill/gear bonuses don't
+    const Wm = k => (wepS.main[k] || 0) * mhe / 100, Wo = k => (wepS.off[k] || 0) * ohe / 100;
+    Object.keys(wepDmgMain).forEach(t => { dmg[t] = (dmg[t] || 0) + wepDmgMain[t] * mhe / 100; });
     const hp = Math.round(cal.base_health_lvl1 + cal.health_per_vit_point * dvit + 15 * th(attrs.vit) + M('hp'));
     const en = Math.round(cal.base_energy_lvl1 + cal.energy_per_vit_point * dvit + M('en'));
-    const wd = clampCap(100 + 1.5 * dstr + M('wd'), cap.weapon_damage_pct);
-    const acc = clampCap(cal.base_accuracy_pct + 1.5 * dprc + M('acc'), cap.accuracy_pct);
-    const cc = cal.base_crit_chance_pct + 5 * th(attrs.prc) + M('cc');
-    const ce = clampCap(cal.base_crit_efficiency_pct + 10 * th(attrs.str) + M('ce'), 100 + cap.crit_efficiency_pct);
-    const fum = Math.max(0, cal.base_fumble_pct - 1.5 * dagi + M('fum'));
+    const wdB = 100 + 1.5 * dstr + M('wd');
+    const wd = clampCap(wdB + Wm('wd'), cap.weapon_damage_pct), wdOff = clampCap(wdB + Wo('wd'), cap.weapon_damage_pct);
+    const accB = cal.base_accuracy_pct + 1.5 * dprc + M('acc');
+    const acc = clampCap(accB + Wm('acc'), cap.accuracy_pct), accOff = clampCap(accB + Wo('acc'), cap.accuracy_pct);
+    const ccB = cal.base_crit_chance_pct + 5 * th(attrs.prc) + M('cc');
+    const cc = ccB + Wm('cc'), ccOff = ccB + Wo('cc');
+    const ceB = cal.base_crit_efficiency_pct + 10 * th(attrs.str) + M('ce');
+    const ce = clampCap(ceB + Wm('ce'), 100 + cap.crit_efficiency_pct), ceOff = clampCap(ceB + Wo('ce'), 100 + cap.crit_efficiency_pct);
+    const fumB = Math.max(0, cal.base_fumble_pct - 1.5 * dagi + M('fum') + (dwield ? 5 - (dwTrained && dwSame ? 3 : 0) : 0));
+    const fum = Math.max(0, fumB + Wm('fum')), fumOff = Math.max(0, fumB + Wo('fum'));
     const co = cal.base_counter_pct + 1.5 * dagi + M('co');
-    const dodge = cal.base_dodge_pct + 5 * th(attrs.agi) + M('dg');
+    const dodge = dagi + 5 * th(attrs.agi) + M('dg'); // +1%/AGL pt over 10 (verified: Mahir AGL11 -3 boots = -2%)
     const bc = 1.5 * dstr + M('bc');
-    const bp = cal.base_block_power + cal.block_power_per_str * attrs.str + M('bp');
-    const ap_ = 1.5 * dprc + M('ap');
-    const bpd = 7.5 * th(attrs.str) + M('bpd');
-    const ad = 15 * th(attrs.str) + M('ad');
+    const bp = 0.5 * attrs.str + M('bp'); // verified in-game: 5 at STR 10 with no shield
+    const apB = 1.5 * dprc + M('ap');
+    const ap_ = apB + Wm('ap'), apOff = apB + Wo('ap');
+    const bleed = M('bl') + Wm('bl'), bleedOff = M('bl') + Wo('bl');
+    const bpd = 7.5 * th(attrs.str) + M('bpd') + Wm('bpd');
+    const ad = 15 * th(attrs.str) + M('ad') + Wm('ad');
     const mp = clampCap(100 + 7.5 * th(attrs.wil) + M('mp'), cap.magic_power_pct);
-    const cdr = Math.max(cap.cooldowns_duration_pct - 100, mulStack('cd', -1.5 * dwil));
+    const cdr = Math.max(cap.cooldowns_duration_pct - 100, mulStack('cd', -1.5 * dwil) + (dwield ? 15 : 0));
     const secost = Math.max(cap.abilities_energy_cost_pct - 100, mulStack('sec', -1.5 * dwil));
     const spcost = Math.max(cap.abilities_energy_cost_pct - 100, mulStack('spec', -1.5 * dwil));
     const er = cal.base_energy_restoration_pct + 2 * dvit + M('er');
@@ -1097,13 +1126,11 @@ class Component extends DCLogic {
     const vision = clampCap(cal.base_vision + th(attrs.prc) + M('vis'), 15);
     const rng = th(attrs.prc) + (M('rng') ? Math.round(M('rng') / 5) : 0);
     const mic = 5 + 5 * th(attrs.prc) + M('mic');
-    const bfc = Math.max(0, (cal.base_backfire_chance_pct || 19) - 1.5 * dagi + M('bfc'));
+    const bfc = Math.max(0, (cal.base_backfire_chance_pct || 19) - 1.5 * dagi + M('bfc') + (dwield ? 10 : 0));
     const bfd = Math.max(0, (cal.base_backfire_damage_pct || 5) + M('bfd'));
-    const mhe = 100 + 2.5 * th(attrs.agi) + M('mhe');
-    const ohe = 100 + 2.5 * th(attrs.agi) + M('ohe');
     const sumd = d => d ? Object.values(d).reduce((a, b) => a + b, 0) : 0;
-    const mhDmg = mainItem ? Math.round(sumd(mainItem.d) * cfMain * (100 + 1.5 * dstr + M('wd')) / 100 * mhe / 100) : 0;
-    const ohDmg = (offItem && offItem._cls !== 'shield') ? Math.round(sumd(offItem.d) * cfOff * (100 + 1.5 * dstr + M('wd')) / 100 * ohe / 100) : (twoHanded ? mhDmg : 0);
+    const mhDmg = mainItem ? Math.round(sumd(mainItem.d) * cfMain * wd / 100 * mhe / 100) : 0;
+    const ohDmg = (offItem && offItem._cls !== 'shield') ? Math.round(sumd(offItem.d) * cfOff * wdOff / 100 * ohe / 100) : (twoHanded ? mhDmg : 0);
     const spellAcc = 90 + 1.5 * dprc;
     const spellAp = 1.5 * dprc;
     const cav = M('cav');
@@ -1120,7 +1147,8 @@ class Component extends DCLogic {
 
     return { ch, attrs, th, statPool, apPool, mods, dmg, mainItem, offItem, twoHanded, protTotal, free,
       hp, en, wd, acc, cc, ce, fum, co, dodge, bc, bp, ap_, bpd, ad, mp, cdr, secost, spcost, er, hr, fort, pnr, ctr, mvr, bpr, vision, rng, mic, bfc, res, xp, xpGain, mip, schoolPower,
-      bfd, mhe, ohe, mhDmg, ohDmg, spellAcc, spellAp, cav, dtaken, heff, ldrain, edrain, protBy };
+      bfd, mhe, ohe, mhDmg, ohDmg, spellAcc, spellAp, cav, dtaken, heff, ldrain, edrain, protBy,
+      dwield, wdOff, accOff, ccOff, ceOff, fumOff, apOff, bleed, bleedOff };
   }
 
   buffByName(n) { const c = this.D.cons; for (const g of ['potions','food','beverages','drugs','psyche']) { const f = (c[g] || []).find(x => x.n === n); if (f) return f; } return null; }
@@ -1132,6 +1160,7 @@ class Component extends DCLogic {
     const D = this.D;
     const C = this.computed();
     const pct = v => (v >= 0 ? '' : '') + (Math.round(v * 10) / 10) + '%';
+    const pair = (a, b) => C.dwield ? pct(a) + ' / ' + pct(b) : pct(a);
     const gold = '#d8c391', red = '#e8a58d', green = '#a5c98d';
 
     const charCards = D.chars.filter(c => !c.prologue_only).map(c => ({
@@ -1140,7 +1169,7 @@ class Component extends DCLogic {
       pick: () => this.set({ charId: c.id, alloc: { str: 0, agi: 0, prc: 0, vit: 0, wil: 0 }, skills: this.freeSeed(c.id), gear: this.startGear(c), ench: {} })
     }));
 
-    const statLabels = { str: ['Strength', '+1.5% Weapon Dmg & Block Chance /pt; thresholds: +7.5% Bodypart Dmg, +10% Crit Eff, +15% Armor Dmg'], agi: ['Agility', '+1.5% Counter, −1.5% Fumble & Backfire /pt; thresholds: +5% Dodge, +2.5% Hands Eff, +7.5% Move Res'], prc: ['Perception', '+1.5% Accuracy & Armor Pen /pt; thresholds: +1 Vision/Range, +5% Crit & Miracle Chance'], vit: ['Vitality', '+4 Max Energy, +2% Energy Resto /pt; thresholds: +15 Max HP, +5% BP Recovery, +7.5% Control Res'], wil: ['Willpower', '−1.5% Cooldowns & Energy Cost /pt; thresholds: +7.5% Magic Power, Pain Res, Fortitude'] };
+    const statLabels = { str: ['Strength', '+1.5% Weapon Dmg & Block Chance /pt; thresholds: +7.5% Bodypart Dmg, +10% Crit Eff, +15% Armor Dmg'], agi: ['Agility', '+1.5% Counter, +1% Dodge, −1.5% Fumble & Backfire /pt; thresholds: +5% Dodge, +2.5% Hands Eff, +7.5% Move Res'], prc: ['Perception', '+1.5% Accuracy & Armor Pen /pt; thresholds: +1 Vision/Range, +5% Crit & Miracle Chance'], vit: ['Vitality', '+4 Max Energy, +2% Energy Resto /pt; thresholds: +15 Max HP, +5% BP Recovery, +7.5% Control Res'], wil: ['Willpower', '−1.5% Cooldowns & Energy Cost /pt; thresholds: +7.5% Magic Power, Pain Res, Fortitude'] };
     const statRows = ['str','agi','prc','vit','wil'].map(k => ({
       label: statLabels[k][0], tip: statLabels[k][1], val: C.attrs[k],
       color: C.attrs[k] >= 20 ? '#7a2e1d' : '#3a2b16',
@@ -1304,9 +1333,10 @@ class Component extends DCLogic {
       { name: 'OFFENSE', rows: rows([
         ['Main Hand Damage', String(C.mhDmg)], ['Off-Hand Damage', C.ohDmg ? String(C.ohDmg) : '—'],
         ['Main Hand Efficiency', pct(C.mhe), C.mhe > 100 ? green : gold], ['Off-Hand Efficiency', pct(C.ohe), C.ohe > 100 ? green : gold],
-        ['Weapon Damage', pct(C.wd), C.wd > 100 ? green : gold], ['Accuracy', pct(C.acc)],
-        ['Crit Chance', pct(C.cc)], ['Crit Efficiency', pct(C.ce)],
-        ['Armor Penetration', pct(C.ap_)], ['Fumble Chance', pct(C.fum), C.fum > 5 ? red : gold],
+        ['Weapon Damage', pair(C.wd, C.wdOff), C.wd > 100 ? green : gold], ['Accuracy', pair(C.acc, C.accOff)],
+        ['Crit Chance', pair(C.cc, C.ccOff)], ['Crit Efficiency', pair(C.ce, C.ceOff)],
+        ['Armor Penetration', pair(C.ap_, C.apOff)], ['Fumble Chance', pair(C.fum, C.fumOff), C.fum > 5 ? red : gold],
+        ['Bleed Chance', pair(C.bleed, C.bleedOff)],
         ['Counter Chance', pct(C.co)], ['Bodypart Damage', pct(C.bpd)],
         ['Armor Damage', pct(C.ad)], ['Bonus Range', '+' + C.rng]
       ]) },
