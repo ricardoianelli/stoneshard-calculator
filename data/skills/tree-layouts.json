@@ -1,0 +1,1812 @@
+{
+ "$meta": {
+  "note": "Exact in-game skill-tree layouts parsed from the official wiki tree pages (the game screenshot as background + icon hotspots at absolute left/top within a cw-wide box). bg.src is the tree screenshot (contains the connection lines). Node names match data/skills/*.json. Used to render the visual skill tree.",
+  "source": "stoneshard.com/wiki/<Tree>_(skill_tree)"
+ },
+ "swords": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/4/4c/Swords_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Cleaving Strike",
+    "left": 38,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Blade Maintenance",
+    "left": 138,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Keeping Distance",
+    "left": 238,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Gloat",
+    "left": 38,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Fencer Stance",
+    "left": 138,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Steady Tempo",
+    "left": 238,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Honed Edge",
+    "left": 88,
+    "top": 376,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Onrush",
+    "left": 190,
+    "top": 376,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "axes": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/b/b6/Axes_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Mutilating Lunge",
+    "left": 24,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Ferocity",
+    "left": 100,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Cut Through",
+    "left": 176,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "No Mercy",
+    "left": 252,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Reprisal",
+    "left": 86,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Massacre",
+    "left": 192,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Execution",
+    "left": 86,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Tormenting Swings",
+    "left": 192,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "maces": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/c/c2/Maces_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Onslaught",
+    "left": 24,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Dazing Strikes",
+    "left": 100,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Armor Break",
+    "left": 176,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Moment of Weakness",
+    "left": 252,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Respite",
+    "left": 62,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Hammer and Anvil",
+    "left": 214,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Knock Out",
+    "left": 62,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Concussion",
+    "left": 214,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "daggers": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/d/dd/Daggers_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Quick Hands",
+    "left": 24,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Double Lunge",
+    "left": 100,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Gaping Wound",
+    "left": 176,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "From the Shadows",
+    "left": 252,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Deadly Trick",
+    "left": 62,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Weakening Jabs",
+    "left": 138,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Painful Stabs",
+    "left": 214,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Counterattack Mastery",
+    "left": 24,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Danse Macabre",
+    "left": 100,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Coup de Grace",
+    "left": 214,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "swords2h": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/a/ab/Greatswords_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Hewing Strike",
+    "left": 62,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Revanche",
+    "left": 138,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Parry",
+    "left": 214,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Recklessness",
+    "left": 24,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Feast of Steel",
+    "left": 100,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Arc Cleave",
+    "left": 176,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Fight to the Death",
+    "left": 252,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Taste of Victory",
+    "left": 24,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Heroic Charge",
+    "left": 138,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Courage",
+    "left": 252,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "axes2h": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/c/ca/Greataxes_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Hooking Chop",
+    "left": 62,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Shieldbreaker",
+    "left": 138,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Dismember",
+    "left": 214,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Rampage",
+    "left": 24,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Fatal Strike",
+    "left": 100,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Finish `Em!",
+    "left": 176,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Reign in Blood",
+    "left": 252,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Tool of Execution",
+    "left": 24,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Make Space",
+    "left": 138,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Maim and Kill",
+    "left": 252,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "maces2h": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/1/18/Two-handed_maces_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Keep Them Coming",
+    "left": 24,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Mighty Swing",
+    "left": 100,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Unstoppable Force",
+    "left": 176,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Unbalance",
+    "left": 252,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Striker Stance",
+    "left": 62,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Bonebreaker",
+    "left": 138,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Forceful Slam",
+    "left": 214,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Revel in Battle",
+    "left": 62,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Skull Crusher",
+    "left": 138,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Severe Concussion",
+    "left": 214,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "spears": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/a/a2/Spears_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Precise Hits",
+    "left": 24,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Nail Down",
+    "left": 100,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Impaling Lunge",
+    "left": 176,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "No Retreat",
+    "left": 252,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Pikeman Stance",
+    "left": 24,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Wounding Spearhead",
+    "left": 138,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Determination",
+    "left": 252,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "One at a Time!",
+    "left": 24,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Regroup",
+    "left": 138,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Stay Back!",
+    "left": 252,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "staves": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/3/3a/Staves_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Destabilizing Hits",
+    "left": 24,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Hail of Blows",
+    "left": 100,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Step Aside!",
+    "left": 176,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Battle Trance",
+    "left": 252,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Now or Never",
+    "left": 24,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Unwavering Stance",
+    "left": 138,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Triumph",
+    "left": 252,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Peacemaker",
+    "left": 138,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "ranged": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/4/41/Ranged_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Taking Aim",
+    "left": 24,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Constant Practice",
+    "left": 100,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Dexterity",
+    "left": 176,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Distracting Shot",
+    "left": 252,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Spot Weakness",
+    "left": 24,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Startling Volley",
+    "left": 100,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Suppression",
+    "left": 176,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Anticipation",
+    "left": 252,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Long Shot",
+    "left": 62,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Precision",
+    "left": 138,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Hunter's Mark",
+    "left": 214,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Shoot to Kill",
+    "left": 62,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Headshot",
+    "left": 138,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Upper Hand",
+    "left": 214,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "shields": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/d/d4/Shields_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Raise Shield",
+    "left": 24,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Embodiment of Resilience",
+    "left": 100,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Breakthrough",
+    "left": 176,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Moment of Retribution",
+    "left": 252,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Last Bastion",
+    "left": 62,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Shield Bash",
+    "left": 176,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Hold the Line!",
+    "left": 62,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Retaliation",
+    "left": 176,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "dual_wielding": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/4/44/Dual_wielding_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Flurry of Strikes",
+    "left": 24,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Dual Wielding Training",
+    "left": 100,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Deflect",
+    "left": 176,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Dying Fervor",
+    "left": 252,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Enough for Everyone",
+    "left": 24,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Concentration",
+    "left": 100,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Berserk Tradition",
+    "left": 214,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Unstoppable",
+    "left": 24,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Whirlwind",
+    "left": 118,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "More Blood!",
+    "left": 194,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "athletics": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/f/f6/Athletics_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Disengage",
+    "left": 24,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Leg Sweep",
+    "left": 100,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Not This Time",
+    "left": 176,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Mighty Kick",
+    "left": 252,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Dash",
+    "left": 24,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Inner Reserves",
+    "left": 100,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Sudden Lunge",
+    "left": 176,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Push the Falling",
+    "left": 252,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Elusiveness",
+    "left": 100,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "No Time to Linger",
+    "left": 176,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Sprint Training",
+    "left": 62,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Adrenaline Rush",
+    "left": 138,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Peak Performance",
+    "left": 214,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "warfare": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/5/5e/Warfare_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Seize the Initiative",
+    "left": 24,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Opportune Moment",
+    "left": 100,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Setup",
+    "left": 176,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "War Cry",
+    "left": 252,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Right on Target",
+    "left": 24,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Offensive Tactic",
+    "left": 100,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Defensive Tactic",
+    "left": 176,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Intimidation",
+    "left": 252,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Finisher",
+    "left": 62,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Tactical Advantage",
+    "left": 138,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Against the Odds",
+    "left": 214,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Armor Crusher",
+    "left": 62,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Thirst for Battle",
+    "left": 138,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Final Push",
+    "left": 214,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "armored_combat": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/5/5f/Armored_Combat_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Self-Repair",
+    "left": 38,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Brace for Impact!",
+    "left": 138,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Hard Target",
+    "left": 238,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Flexible Defense",
+    "left": 38,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Battle-Forged",
+    "left": 138,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Unyielding Defense",
+    "left": 238,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Battering Ram",
+    "left": 88,
+    "top": 376,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Custom Adjustments",
+    "left": 190,
+    "top": 376,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "magic_mastery": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/b/b7/Magic_Mastery_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Seal of Finesse",
+    "left": 24,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Precise Movements",
+    "left": 100,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Dissipation",
+    "left": 176,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Seal of Power",
+    "left": 252,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Seal of Insight",
+    "left": 24,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Lingering Incantations",
+    "left": 100,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Seal of Cleansing",
+    "left": 176,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Body and Spirit",
+    "left": 252,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Thaumaturgy",
+    "left": 100,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Seal of Reflection",
+    "left": 176,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Seal of Shackles",
+    "left": 100,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Forgotten Lore",
+    "left": 176,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "survival": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/9/97/Survival_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Butchering",
+    "left": 24,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Make a Halt",
+    "left": 138,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Cauterize Wounds",
+    "left": 252,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Pathfinder",
+    "left": 100,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Resourcefulness",
+    "left": 24,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Austerity",
+    "left": 176,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "First Aid",
+    "left": 252,
+    "top": 231,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Huntmaster",
+    "left": 24,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Ever Vigilant",
+    "left": 100,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Adaptability",
+    "left": 176,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Will to Survive",
+    "left": 252,
+    "top": 377,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "pyromancy": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/4/42/Pyromancy_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Fire Barrage",
+    "left": 24,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Flame Saturation",
+    "left": 100,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Baptism by Fire",
+    "left": 176,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Ring of Fire",
+    "left": 252,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Feed the Flames",
+    "left": 24,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Flame Wave",
+    "left": 100,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Magma Rain",
+    "left": 176,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Scorch",
+    "left": 252,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Incineration",
+    "left": 62,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "From Blaze to Furnace",
+    "left": 138,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Melting Ray",
+    "left": 214,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Excess Heat",
+    "left": 62,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Inferno",
+    "left": 138,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Pyromania",
+    "left": 214,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "geomancy": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/2/2b/Geomancy_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Runic Boulder",
+    "left": 100,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Stone Armor",
+    "left": 252,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Rune of Fortifying",
+    "left": 24,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Stone Spikes",
+    "left": 100,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Rune of Enfeeblement",
+    "left": 176,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Rune of Sustention",
+    "left": 252,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Earthquake",
+    "left": 24,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Rune of Binding",
+    "left": 100,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Rune of Unity",
+    "left": 176,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Petrification",
+    "left": 252,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Rune of Cycle",
+    "left": 24,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Runic Explosion",
+    "left": 100,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Boulder Toss",
+    "left": 176,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Rune of Absorption",
+    "left": 252,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "electromancy": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/6/61/Electromancy_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Jolt",
+    "left": 60,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Impulse",
+    "left": 214,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Residual Charge",
+    "left": 24,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Short Circuit",
+    "left": 100,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Static Field",
+    "left": 176,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Potential Difference",
+    "left": 252,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Chain Lightning",
+    "left": 24,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Unlimited Power",
+    "left": 100,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Conductivity",
+    "left": 176,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Ball Lightning",
+    "left": 252,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Chain Reaction",
+    "left": 24,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Resonance Cascade",
+    "left": 100,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Tempest",
+    "left": 176,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Recharge",
+    "left": 252,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ },
+ "arcanistics": {
+  "bg": {
+   "src": "https://stoneshard.com/wiki/images/c/c3/Arcanistics_skilltree.png",
+   "w": 338,
+   "h": 522
+  },
+  "cw": 338,
+  "nodes": [
+   {
+    "n": "Wormhole",
+    "left": 24,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Dimensional Shift",
+    "left": 138,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Arcane Might",
+    "left": 252,
+    "top": 85,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Time Echo",
+    "left": 24,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Schism",
+    "left": 100,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Transcendental Anchoring",
+    "left": 176,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Aether Shield",
+    "left": 252,
+    "top": 197,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Astral Tides",
+    "left": 62,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Mana Crystal",
+    "left": 138,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Stasis",
+    "left": 214,
+    "top": 309,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Phantasm",
+    "left": 24,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Entropy Flare",
+    "left": 100,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Aether Harmony",
+    "left": 176,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   },
+   {
+    "n": "Beyond the Veil",
+    "left": 252,
+    "top": 421,
+    "w": 62,
+    "h": 62
+   }
+  ]
+ }
+}
