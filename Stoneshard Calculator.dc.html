@@ -495,6 +495,25 @@ input[type=range]{accent-color:#7a2e1d;}
             <div style="font-family:'Cinzel',serif;font-weight:900;font-size:24px;color:#a5cfe3;">{{ en }}</div>
           </div>
         </div>
+        <div style="background:linear-gradient(rgba(52,86,46,.30),rgba(28,44,26,.30));border:1px solid #3e6b34;border-radius:4px;padding:7px 10px;margin-bottom:8px;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px;">
+            <span style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:1.5px;color:#8fbf7a;">NATURAL REGENERATION</span>
+            <span style="font-size:9px;color:#6f9060;font-style:italic;">out of combat</span>
+          </div>
+          <sc-if value="{{ regen.active }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;">
+              <span style="font-family:'Cinzel',serif;font-weight:900;font-size:20px;color:#a6e08d;line-height:1;">+{{ regen.tick }}</span>
+              <span style="font-size:11.5px;color:#9fbf8a;">HP every <b style="color:#cfe3ba;">{{ regen.interval }}</b> turns</span>
+            </div>
+            <div style="font-size:11px;color:#8a9a7a;margin-top:3px;">≈ <b style="color:#cfe3ba;">{{ regen.rate }}</b> HP/turn · full heal in ~<b style="color:#cfe3ba;">{{ regen.full }}</b> turns</div>
+            <sc-if value="{{ regen.modified }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:10px;margin-top:3px;color:{{ regen.heffColor }};">Healing Efficiency {{ regen.heff }}% applied to each tick</div>
+            </sc-if>
+          </sc-if>
+          <sc-if value="{{ regen.off }}" hint-placeholder-val="{{ false }}">
+            <div style="font-size:11px;color:#c07a5e;">No natural regeneration (Health Restoration or Healing Efficiency at 0%).</div>
+          </sc-if>
+        </div>
         <sc-for list="{{ statGroups }}" as="g" hint-placeholder-count="4">
           <div style="margin-bottom:8px;">
             <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:#a98a4a;border-bottom:1px solid #3a2f23;padding-bottom:3px;margin-bottom:4px;">{{ g.name }}</div>
@@ -1622,6 +1641,28 @@ class Component extends DCLogic {
       border: armorMode === k ? '#c9a959' : '#4a3d2e', bg: armorMode === k ? 'rgba(201,169,89,.18)' : '#241e18', color: armorMode === k ? '#e8d8b0' : '#8a7a5e'
     }));
 
+    // Natural regeneration (out of combat, wiki-verified): a hidden accumulator fills by Health
+    // Restoration % each turn; at 100% it restores 5% of Max HP, scaled by Healing Efficiency
+    // ("coefficient of healing received from all sources"). Overflow carries to the next tick.
+    const regen = (() => {
+      const hr = C.hr, heff = C.heff, hpMax = C.hp;
+      const active = hr > 0 && hpMax > 0 && heff > 0;
+      const tickAmt = 0.05 * hpMax * (heff / 100);      // HP restored per tick
+      const interval = hr > 0 ? 100 / hr : Infinity;    // turns per tick (avg)
+      const rate = active ? tickAmt / interval : 0;     // effective HP / turn
+      const f1 = n => Math.round(n * 10) / 10;
+      return {
+        active, off: !active,
+        tick: f1(tickAmt),
+        interval: f1(interval),
+        rate: rate.toFixed(2),
+        full: rate > 0 ? Math.round(hpMax / rate) : 0,
+        heff: Math.round(heff),
+        modified: Math.round(heff) !== 100,
+        heffColor: heff > 100 ? '#86c977' : (heff < 100 ? '#d88a6a' : '#8a9a7a')
+      };
+    })();
+
     return {
       gameVersion: D.mech.$meta.game_version,
       loading: false, loaded: true, loadError: null,
@@ -1667,7 +1708,7 @@ class Component extends DCLogic {
       })(),
 
       showFormulas: s.showFormulas, toggleFormulas: () => this.setState({ showFormulas: !s.showFormulas }),
-      hp: C.hp, en: C.en, statGroups,
+      hp: C.hp, en: C.en, statGroups, regen,
       libOpen: s.libOpen, toggleLib: () => this.setState({ libOpen: !s.libOpen }),
       libName: s.libName || '', onLibName: e => this.setState({ libName: e.target.value }),
       saveToLib: () => {
