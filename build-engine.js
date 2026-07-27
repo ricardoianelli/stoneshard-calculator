@@ -309,7 +309,7 @@ function skillEntry(sk, tid, tree, goals, attrs, evalExpr, chestCls, weaponCls, 
   // counterproductive — a ranged character keeps distance. Detected from the skill's own delivery text.
   if (!isPassive && ['bow', 'crossbow', 'sling'].includes(weaponCls) && tree.cat !== 'weapon') {
     const meleeDelivery = /performs?\s+a\s+charge|charge\s+towards|delivers?\s+a\s+strike|adjacent\s+targets?|strikes?\s+to\s+(?:two|three)\s+adjacent\s+tiles/i.test(stateText);
-    if (meleeDelivery) return { n: sk.n, tid, treeLabel: tree.label, t: sk.t || 0, type: sk.type || '', score: 0, spellBonus: 0, isSpell: false, isActive: true, hasSustain: false, defLayers: [], applies: [], consumes: [], why: 'melee delivery — excluded for ranged', isStance: false, isTactic: false };
+    if (meleeDelivery) return { name: sk.name, tid, treeLabel: tree.label, tier: sk.tier || 0, type: sk.type || '', score: 0, spellBonus: 0, isSpell: false, isActive: true, hasSustain: false, defLayers: [], applies: [], consumes: [], why: 'melee delivery — excluded for ranged', isStance: false, isTactic: false };
   }
   if (isPassive) score *= 1.15; // always-on, no energy/slot cost
   // multi-strike attacks: 2-3 strikes per action ≈ action-economy multiplier + proc engine
@@ -368,7 +368,7 @@ function skillEntry(sk, tid, tree, goals, attrs, evalExpr, chestCls, weaponCls, 
   const whyArr = whyTop;
   if (strikes > 1) whyArr.unshift(strikes + ' hits per action');
   else if (stackN > 1) whyArr.push('×' + stackN + ' stacks');
-  return { n: sk.n, tid, treeLabel: tree.label, t: sk.t || 0, type: sk.type || '', unlock: sk.unlock || null, score: Math.round(score * 10) / 10, spellBonus: Math.round(Math.max(0, spellBonus) * 10) / 10, needBonus, isSpell: /Spell/i.test(sk.type || ''), isActive: !isPassive, hasSustain: SUSTAIN.test(text), defLayers, applies, consumes, why: whyArr.join(' · '), isStance: /Stance/i.test(sk.type || ''), isTactic: /Tactic/i.test(sk.type || '') };
+  return { name: sk.name, tid, treeLabel: tree.label, tier: sk.tier || 0, type: sk.type || '', unlock: sk.unlock || null, score: Math.round(score * 10) / 10, spellBonus: Math.round(Math.max(0, spellBonus) * 10) / 10, needBonus, isSpell: /Spell/i.test(sk.type || ''), isActive: !isPassive, hasSustain: SUSTAIN.test(text), defLayers, applies, consumes, why: whyArr.join(' · '), isStance: /Stance/i.test(sk.type || ''), isTactic: /Tactic/i.test(sk.type || '') };
 }
 
 function eligibleTreeIds(D, weaponCls, offMode) {
@@ -389,11 +389,11 @@ function eligibleTreeIds(D, weaponCls, offMode) {
 function synergyBonus(picked) {
   let bonus = 0; const notes = [];
   const states = {};
-  picked.forEach(p => p.applies.forEach(st => { (states[st] = states[st] || { a: [], c: [] }).a.push(p.n); }));
-  picked.forEach(p => p.consumes.forEach(st => { (states[st] = states[st] || { a: [], c: [] }).c.push(p.n); }));
+  picked.forEach(p => p.applies.forEach(st => { (states[st] = states[st] || { a: [], c: [] }).a.push(p.name); }));
+  picked.forEach(p => p.consumes.forEach(st => { (states[st] = states[st] || { a: [], c: [] }).c.push(p.name); }));
   for (const st in states) {
     const { a, c } = states[st];
-    const validC = c.filter(n => a.some(x => x !== n));
+    const validC = c.filter(name => a.some(x => x !== name));
     if (a.length && validC.length) {
       bonus += 12 * Math.min(a.length, validC.length, 3);
       notes.push(validC[0] + ' feeds on ' + st + ' from ' + a.filter(x => x !== validC[0]).slice(0, 2).join(', '));
@@ -413,10 +413,10 @@ function beamSearch(pool, budget, synW, maxSpells, freeTiers) {
   // in-tree progression (wiki): tier-N skill learnable only with a learned tier-(N-1) skill
   // in the same tree (free/starting skills count)
   const chainOk = (st, c) => {
-    const ct = c.t || 1;
+    const ct = c.tier || 1;
     if (ct <= 1) return true;
     if ((freeTiers[c.tid] || []).includes(ct - 1)) return true;
-    return st.picks.some(p => p.tid === c.tid && (p.t || 1) === ct - 1);
+    return st.picks.some(p => p.tid === c.tid && (p.tier || 1) === ct - 1);
   };
   const W = 24;
   pool = pool.slice(0, 48);
@@ -433,11 +433,11 @@ function beamSearch(pool, budget, synW, maxSpells, freeTiers) {
   };
   const synOf = picks => {
     let bonus = 0; const st = {};
-    picks.forEach(p => { p.applies.forEach(x => (st[x] = st[x] || [[], []])[0].push(p.n)); p.consumes.forEach(x => (st[x] = st[x] || [[], []])[1].push(p.n)); });
+    picks.forEach(p => { p.applies.forEach(x => (st[x] = st[x] || [[], []])[0].push(p.name)); p.consumes.forEach(x => (st[x] = st[x] || [[], []])[1].push(p.name)); });
     for (const k in st) {
       const [a, c] = st[k];
       // a consumer needs an applier that is a DIFFERENT skill
-      const validC = c.filter(n => a.some(x => x !== n)).length;
+      const validC = c.filter(name => a.some(x => x !== name)).length;
       if (validC) bonus += 12 * Math.min(a.length, validC, 3);
     }
     let nSt = 0, nTa = 0;
@@ -458,7 +458,7 @@ function beamSearch(pool, budget, synW, maxSpells, freeTiers) {
     for (const k in st) {
       const [, c] = st[k];
       c.forEach(cn => {
-        const p = picks.find(x => x.n === cn);
+        const p = picks.find(x => x.name === cn);
         if (!p) return;
         p.applies.forEach(y => { if (y !== k && st[y] && st[y][1].some(n2 => n2 !== cn)) bonus += 8; });
       });
@@ -473,17 +473,17 @@ function beamSearch(pool, budget, synW, maxSpells, freeTiers) {
       next.push(st);
       if (st.used >= budget) continue;
       for (const c of pool) {
-        if (st.names.has(c.n)) continue;
+        if (st.names.has(c.name)) continue;
         if (st.used + 1 > budget) continue;
         if (!chainOk(st, c)) continue;
         const spAdd = c.isSpell ? 1 : 0;
         if (st.sp + spAdd > maxSpells) continue;
         const picks = st.picks.concat([c]);
-        const key = picks.map(p => p.n).sort().join('|');
+        const key = picks.map(p => p.name).sort().join('|');
         if (seen.has(key)) continue;
         seen.add(key);
         const names = new Set(st.names);
-        names.add(c.n);
+        names.add(c.name);
         next.push({ picks, names, used: st.used + 1, sp: st.sp + spAdd, total: scoreSum(picks) + synOf(picks) * synW });
       }
     }
@@ -516,7 +516,7 @@ function scoreItem(item, goals) {
   goals.forEach(g => {
     for (const k in (g.statW || {})) { if (mods[k]) s += mods[k] * g.statW[k]; }
     if (g.dmgW && item.d) s += Object.values(item.d).reduce((a, b) => a + b, 0) * g.dmgW;
-    if (g.xdW && item.d) { for (const t in item.d) { if (!PHYS_D[t]) s += item.d[t] * g.xdW; } }
+    if (g.xdW && item.d) { for (const dmgType in item.d) { if (!PHYS_D[dmgType]) s += item.d[dmgType] * g.xdW; } }
     if (g.protW && item.prot) s += item.prot * g.protW;
   });
   return s;
@@ -536,22 +536,22 @@ function gearStages(D, goals, weaponCls, offMode, level) {
     const picks = [];
     const gear = {};
     slots.forEach(slot => {
-      const list = itemList(D, slot, weaponCls, offMode).filter(i => i.t <= st.maxT);
+      const list = itemList(D, slot, weaponCls, offMode).filter(i => i.tier <= st.maxT);
       if (!list.length) return;
-      const ranked = list.map(i => ({ i, s: scoreItem(i, goals) })).sort((a, b) => b.s - a.s || b.i.t - a.i.t);
+      const ranked = list.map(i => ({ i, s: scoreItem(i, goals) })).sort((a, b) => b.s - a.s || b.i.tier - a.i.tier);
       // prefer items that actually contribute; fall back to best late protection/damage, not first-listed junk
-      const top = ranked[0].s > 0 ? ranked : list.map(i => ({ i, s: (i.d ? Object.values(i.d).reduce((a, b) => a + b, 0) : 0) + (i.prot || 0) * 3 + (i.t || 0) * 2 })).sort((a, b) => b.s - a.s);
+      const top = ranked[0].s > 0 ? ranked : list.map(i => ({ i, s: (i.d ? Object.values(i.d).reduce((a, b) => a + b, 0) : 0) + (i.prot || 0) * 3 + (i.tier || 0) * 2 })).sort((a, b) => b.s - a.s);
       const pick = top[0].i;
-      picks.push({ slot, n: pick.n, t: pick.t, uniq: pick.r === 'U', cls: pick.cls });
-      if (slot === 'ring') { gear.ring1 = pick.n; if (top[1]) { gear.ring2 = top[1].i.n; } }
-      else gear[slot] = pick.n;
+      picks.push({ slot, name: pick.name, tier: pick.tier, uniq: pick.r === 'U', cls: pick.cls });
+      if (slot === 'ring') { gear.ring1 = pick.name; if (top[1]) { gear.ring2 = top[1].i.name; } }
+      else gear[slot] = pick.name;
     });
     // weapon enchant: scored from the same goal weights over the enchant's own stats/damage
     let ench = null;
     const wench = (D.ench && D.ench.weapon) || [];
     if (wench.length) {
       const er = wench.map(e => ({ e, s: scoreItem(e, goals) })).sort((a, b) => b.s - a.s);
-      if (er[0].s > 0) { ench = er[0].e.n; picks.push({ slot: 'enchant', n: er[0].e.n + ' (' + er[0].e.desc + ')' }); }
+      if (er[0].s > 0) { ench = er[0].e.name; picks.push({ slot: 'enchant', name: er[0].e.name + ' (' + er[0].e.desc + ')' }); }
     }
     return { id: st.id, label: st.label, picks, gear, ench };
   });
@@ -574,7 +574,7 @@ export function findBuilds({ D, evalExpr, weaponCls, offMode, goalIds, level, ch
   const { attrs, order } = recommendAttrs(goals, ch, level);
   const wTree = CLS2TREE[weaponCls];
   const treeIds = eligibleTreeIds(D, weaponCls, offMode);
-  const free = ((ch.trait && ch.trait.free_skills) || []).concat((((D.trees.survival || {}).skills) || []).filter(x => x.free).map(x => x.n));
+  const free = ((ch.trait && ch.trait.free_skills) || []).concat((((D.trees.survival || {}).skills) || []).filter(x => x.free).map(x => x.name));
   const budget = level + 1; // 2 AP at level 1, +1 per level-up
   // physical builds keep at most 2 spells (utility splash); magic-focused builds are uncapped
   const maxSpells = goals.some(g => g.id === 'magic') ? Infinity : 2;
@@ -589,7 +589,7 @@ export function findBuilds({ D, evalExpr, weaponCls, offMode, goalIds, level, ch
   treeIds.forEach(tid => {
     const tr = D.trees[tid];
     tr.skills.forEach(sk => {
-      if (free.includes(sk.n) || sk.free) { (freeTiers[tid] = freeTiers[tid] || []).push(sk.t || 1); return; }
+      if (free.includes(sk.name) || sk.free) { (freeTiers[tid] = freeTiers[tid] || []).push(sk.tier || 1); return; }
       all.push(skillEntry(sk, tid, tr, goals, attrs, evalExpr, chestCls, weaponCls, offMode));
     });
   });
@@ -609,7 +609,7 @@ export function findBuilds({ D, evalExpr, weaponCls, offMode, goalIds, level, ch
   };
   all.forEach(e => {
     const u = e.unlock || {};
-    const pts = u.pts != null ? u.pts : 6 * Math.max(0, (e.t || 1) - 1);
+    const pts = u.pts != null ? u.pts : 6 * Math.max(0, (e.tier || 1) - 1);
     const set = ((u.attrs && u.attrs.length) ? u.attrs.map(norm) : (trAttrPool[e.tid] && trAttrPool[e.tid].length ? trAttrPool[e.tid] : A5));
     e.unlockLv = unlockLvOf(set, pts);
     e.needTreatise = e.unlockLv === null;
@@ -624,13 +624,13 @@ export function findBuilds({ D, evalExpr, weaponCls, offMode, goalIds, level, ch
   for (let guard = 0; guard < 6; guard++) {
     let added = false;
     for (const e of all.slice()) {
-      const t = e.t || 1;
-      if (t <= 1) continue;
-      if ((freeTiers[e.tid] || []).includes(t - 1)) continue;
-      if (all.some(p => p.tid === e.tid && (p.t || 1) === t - 1)) continue;
-      const bridge = poolAll.find(p => p.tid === e.tid && (p.t || 1) === t - 1 && !all.some(x => x.n === p.n));
+      const tier = e.tier || 1;
+      if (tier <= 1) continue;
+      if ((freeTiers[e.tid] || []).includes(tier - 1)) continue;
+      if (all.some(p => p.tid === e.tid && (p.tier || 1) === tier - 1)) continue;
+      const bridge = poolAll.find(p => p.tid === e.tid && (p.tier || 1) === tier - 1 && !all.some(x => x.name === p.name));
       if (bridge) { all.push(bridge); added = true; }
-      else { all = all.filter(x => x.n !== e.n); } // unreachable skill: drop it
+      else { all = all.filter(x => x.name !== e.name); } // unreachable skill: drop it
     }
     if (!added) break;
   }
@@ -639,34 +639,34 @@ export function findBuilds({ D, evalExpr, weaponCls, offMode, goalIds, level, ch
     .map(k => attrLabels[k] + ' ' + ch.stats[k] + '→' + attrs[k]).join(' · ');
 
   const mkVariant = (name, pool, synW, avoid) => {
-    const p2 = avoid ? pool.map(e => Object.assign({}, e, { score: e.score * (avoid.has(e.n) ? 0.35 : 1) })) : pool;
+    const p2 = avoid ? pool.map(e => Object.assign({}, e, { score: e.score * (avoid.has(e.name) ? 0.35 : 1) })) : pool;
     const res = beamSearch(p2, budget, synW, maxSpells, freeTiers);
     if (!res.picks.length) return null;
     const comp = composition(res.picks, wTree);
     const ROMAN = ['I', 'II', 'III', 'IV', 'V'];
-    const sorted = res.picks.slice().sort((a, b) => ((a.unlockLv || 99) - (b.unlockLv || 99)) || (a.t - b.t) || (b.score - a.score));
+    const sorted = res.picks.slice().sort((a, b) => ((a.unlockLv || 99) - (b.unlockLv || 99)) || (a.tier - b.tier) || (b.score - a.score));
     // learn order must respect in-tree tier chain: greedy topological emit
     const ordered = []; const learned = {};
     while (sorted.length) {
-      let i = sorted.findIndex(p => { const t = p.t || 1; return t <= 1 || (learned[p.tid] || []).includes(t - 1) || (freeTiers[p.tid] || []).includes(t - 1); });
+      let i = sorted.findIndex(p => { const tier = p.tier || 1; return tier <= 1 || (learned[p.tid] || []).includes(tier - 1) || (freeTiers[p.tid] || []).includes(tier - 1); });
       if (i < 0) i = 0;
       const p = sorted.splice(i, 1)[0];
-      (learned[p.tid] = learned[p.tid] || []).push(p.t || 1);
+      (learned[p.tid] = learned[p.tid] || []).push(p.tier || 1);
       ordered.push(p);
     }
-    const tNeed = [...new Set(ordered.filter(p => p.needTreatise).map(p => p.treeLabel + ' Treatise ' + (ROMAN[(p.t || 1) - 1] || p.t)))];
+    const tNeed = [...new Set(ordered.filter(p => p.needTreatise).map(p => p.treeLabel + ' Treatise ' + (ROMAN[(p.tier || 1) - 1] || p.tier)))];
     const notes = res.notes.concat(tNeed.length ? ['Requires treatises (buy from scribes / find): ' + tNeed.join(', ')] : []);
     return {
       name, offMeta: comp.offMeta,
-      treesLine: comp.trees.map(t => (D.trees[t] ? D.trees[t].label : t) + ' ×' + comp.byTree[t]).join(' · '),
+      treesLine: comp.trees.map(treeId => (D.trees[treeId] ? D.trees[treeId].label : treeId) + ' ×' + comp.byTree[treeId]).join(' · '),
       score: Math.round(res.total || ordered.reduce((a, p) => a + p.score, 0)),
-      skills: ordered.map((p, i) => ({ ord: i + 1, n: p.n, tier: p.t, tree: p.treeLabel, type: p.type, why: (p.needTreatise ? '⚠ tier-' + p.t + ' treatise needed · ' : (p.unlockLv > 1 ? 'unlocks ~lv ' + p.unlockLv + ' · ' : '')) + p.why })),
+      skills: ordered.map((p, i) => ({ ord: i + 1, name: p.name, tier: p.tier, tree: p.treeLabel, type: p.type, why: (p.needTreatise ? '⚠ tier-' + p.tier + ' treatise needed · ' : (p.unlockLv > 1 ? 'unlocks ~lv ' + p.unlockLv + ' · ' : '')) + p.why })),
       notes,
       attrLine, attrs, attrOrder: order,
       stages,
       alloc: { str: attrs.str - ch.stats.str, agi: attrs.agi - ch.stats.agi, prc: attrs.prc - ch.stats.prc, vit: attrs.vit - ch.stats.vit, wil: attrs.wil - ch.stats.wil },
-      skillsByTree: (() => { const o = {}; ordered.forEach(p => { (o[p.tid] = o[p.tid] || []).push(p.n); }); return o; })(),
-      _key: ordered.map(p => p.n).sort().join('|')
+      skillsByTree: (() => { const o = {}; ordered.forEach(p => { (o[p.tid] = o[p.tid] || []).push(p.name); }); return o; })(),
+      _key: ordered.map(p => p.name).sort().join('|')
     };
   };
 
@@ -676,7 +676,7 @@ export function findBuilds({ D, evalExpr, weaponCls, offMode, goalIds, level, ch
   const simTo = (v, x) => {
     const names = v._key.split('|');
     const xNames = new Set(x._key.split('|'));
-    return names.filter(n => xNames.has(n)).length / Math.max(names.length, xNames.size);
+    return names.filter(name => xNames.has(name)).length / Math.max(names.length, xNames.size);
   };
   const push = v => {
     if (!v) return;
@@ -696,7 +696,7 @@ export function findBuilds({ D, evalExpr, weaponCls, offMode, goalIds, level, ch
   }
   // synergy-max: triple weight on state-combo chains, also avoiding the shared utility core
   const usedAll = new Set();
-  variants.forEach(v => v._key.split('|').forEach(n => usedAll.add(n)));
+  variants.forEach(v => v._key.split('|').forEach(name => usedAll.add(name)));
   push(mkVariant('COMBO CHAINS', all, 3, usedAll.size ? usedAll : undefined));
 
   // adaptive fallback: never show a single lonely build if a merely-similar alternative exists

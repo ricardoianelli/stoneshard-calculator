@@ -156,8 +156,8 @@
     runtime.setRootName(rootName);
     runtime.adoptParsed(rootName, parsed);
     if (!window.__resources) {
-      fetch(location.href).then((res) => res.ok ? res.text() : "").then((t) => {
-        const raw = t ? parseDcText(t) : null;
+      fetch(location.href).then((res) => res.ok ? res.text() : "").then((text) => {
+        const raw = text ? parseDcText(text) : null;
         if (raw?.template) runtime.updateHtml(rootName, raw.template);
       }).catch(() => {
       });
@@ -176,7 +176,7 @@
     function StandaloneRoot() {
       const [, setTick] = React.useState(0);
       React.useEffect(() => {
-        const sub = () => setTick((n) => n + 1);
+        const sub = () => setTick((prev) => prev + 1);
         entry.subs.add(sub);
         return () => {
           entry.subs.delete(sub);
@@ -372,7 +372,7 @@
   function encodeCase(html) {
     html = html.replace(
       IMPORT_SELF_CLOSE_RE,
-      (_, t, a) => "<" + t + a + "></" + t + ">"
+      (_, tag, attrs) => "<" + tag + attrs + "></" + tag + ">"
     );
     html = html.replace(/<helmet(\s|>)/gi, "<sc-helmet$1");
     html = html.replace(/<\/helmet\s*>/gi, "</sc-helmet>");
@@ -1043,7 +1043,7 @@
       function Dispatcher(p) {
         const [, setTick] = React.useState(0);
         React.useEffect(() => {
-          const sub = () => setTick((n) => n + 1);
+          const sub = () => setTick((prev) => prev + 1);
           registry.get(name).subs.add(sub);
           return () => {
             registry.get(name).subs.delete(sub);
@@ -1083,7 +1083,7 @@
   }
 
   // src/external.ts
-  var isCustomElementName = (n) => !n.includes(".") && n.includes("-");
+  var isCustomElementName = (name) => !name.includes(".") && name.includes("-");
   function isRenderableType(g) {
     if (typeof g === "function") return !isElementClass(g);
     return typeof g === "object" && g !== null && typeof g.$$typeof === "symbol";
@@ -1337,9 +1337,9 @@
     window.addEventListener("message", (e) => {
       const type = e.data && e.data.type;
       if (type === "__dc_theme") {
-        const t = e.data.theme;
-        if (t === "light" || t === "dark") {
-          appTheme = t;
+        const theme = e.data.theme;
+        if (theme === "light" || theme === "dark") {
+          appTheme = theme;
           applyCanvasBg();
         }
         return;
@@ -1428,7 +1428,7 @@
   function createPseudoSheet(doc) {
     let el = null;
     const cache = /* @__PURE__ */ new Map();
-    let n = 0;
+    let seq = 0;
     return (pseudo, css) => {
       const k = pseudo + "|" + css;
       const hit = cache.get(k);
@@ -1437,7 +1437,7 @@
         el = doc.createElement("style");
         doc.head.appendChild(el);
       }
-      const cls = "scp" + (n++).toString(36);
+      const cls = "scp" + (seq++).toString(36);
       const sel = pseudo === "before" || pseudo === "after" ? "." + cls + "::" + pseudo : "." + cls + ":" + pseudo;
       el.sheet.insertRule(sel + "{" + css + "}", el.sheet.cssRules.length);
       cache.set(k, cls);
@@ -1470,7 +1470,7 @@
       get,
       bump,
       bumpAll() {
-        for (const n in entries) bump(n);
+        for (const name in entries) bump(name);
       }
     };
   }
@@ -1517,9 +1517,9 @@
           return "";
         }
         return res2.text();
-      })).then((t) => {
-        if (!t) return;
-        const parsed = parseDcText(t);
+      })).then((text) => {
+        if (!text) return;
+        const parsed = parseDcText(text);
         if (!parsed) {
           console.error(
             '[dc-runtime] sibling fetch for "' + name + '":',
@@ -1584,8 +1584,8 @@
       if (kind === "html") r.htmlStreaming = !!on;
       else r.jsStreaming = !!on;
       let any = false;
-      for (const n in registry.entries) {
-        const e = registry.entries[n];
+      for (const name in registry.entries) {
+        const e = registry.entries[name];
         if (e && (e.htmlStreaming || e.jsStreaming)) {
           any = true;
           break;
@@ -1648,11 +1648,11 @@
   // src/stream-state.ts
   function createStreamTracker(staleMs = 6e4, now = Date.now) {
     const since = /* @__PURE__ */ new Map();
-    const liveOne = (n) => {
-      const t = since.get(n);
-      if (t === void 0) return false;
-      if (now() - t > staleMs) {
-        since.delete(n);
+    const liveOne = (name) => {
+      const ts = since.get(name);
+      if (ts === void 0) return false;
+      if (now() - ts > staleMs) {
+        since.delete(name);
         return false;
       }
       return true;
@@ -1665,7 +1665,7 @@
       },
       live(name) {
         if (name !== void 0) return liveOne(name);
-        for (const n of [...since.keys()]) if (liveOne(n)) return true;
+        for (const name of [...since.keys()]) if (liveOne(name)) return true;
         return false;
       }
     };

@@ -27,7 +27,7 @@ function md5Core(state, dv, from, to) {
   }
   return [A, B, C, D];
 }
-const md5Hex = st => st.map(n => { let s = ''; for (let i = 0; i < 4; i++) s += (n >>> i * 8 & 0xff).toString(16).padStart(2, '0'); return s; }).join('');
+const md5Hex = st => st.map(word => { let s = ''; for (let i = 0; i < 4; i++) s += (word >>> i * 8 & 0xff).toString(16).padStart(2, '0'); return s; }).join('');
 
 export function md5Salted(jsonBytes, salt) {
   const enc = new TextEncoder();
@@ -73,10 +73,10 @@ export async function parseSav(arrayBuffer) {
   const d2s = [];
   for (let i = 0; i <= 9; i++) d2s.push('exitsave_' + i, 'save_' + i, 'autosave_' + i, 'bedsave_' + i);
   outer:
-  for (let n = 1; n <= 40; n++) {
+  for (let charNum = 1; charNum <= 40; charNum++) {
     for (const d2 of d2s) {
-      const s = 'stOne!characters_v1!character_' + n + '!' + d2 + '!shArd';
-      if (tryTail(s) === fileHash) { salt = s; dirs = ['character_' + n, d2]; break outer; }
+      const s = 'stOne!characters_v1!character_' + charNum + '!' + d2 + '!shArd';
+      if (tryTail(s) === fileHash) { salt = s; dirs = ['character_' + charNum, d2]; break outer; }
     }
   }
   return { obj, jsonText, fileHash, salt, dirs };
@@ -115,7 +115,7 @@ export async function buildSav(obj, salt) {
 // ---- character cloning ----
 // Every signed file's salt is 'stOne!' + its directory path segments (from characters_v1) joined by '!' + '!shArd'.
 // Cloning = copy folder tree, re-sign each .sav/.map with the destination folder name. preview.png etc. copy verbatim.
-const CRC_T = (() => { const t = new Int32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ c >>> 1 : c >>> 1; t[n] = c; } return t; })();
+const CRC_T = (() => { const table = new Int32Array(256); for (let i = 0; i < 256; i++) { let c = i; for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ c >>> 1 : c >>> 1; table[i] = c; } return table; })();
 export function crc32(u8) { let c = -1; for (let i = 0; i < u8.length; i++) c = CRC_T[(c ^ u8[i]) & 0xff] ^ c >>> 8; return (c ^ -1) >>> 0; }
 
 export async function resignFile(bytes, dirs) {
@@ -206,14 +206,14 @@ export function learnedSkills(obj) {
 export function unlearnSkills(obj, ids) {
   const sl = obj.skillsDataMap.skillsAllDataList;
   const set = new Set(ids);
-  let n = 0;
-  for (let i = 0; i < sl.length; i += 5) { if (set.has(sl[i]) && (sl[i + 1] === 1 || sl[i + 1] === true)) { sl[i + 1] = sl[i + 1] === true ? false : 0; n++; } }
-  obj.characterDataMap.SP = (obj.characterDataMap.SP || 0) + n; // in the save, "SP" = ability/skill points (the game UI shows it as AP)
+  let count = 0;
+  for (let i = 0; i < sl.length; i += 5) { if (set.has(sl[i]) && (sl[i + 1] === 1 || sl[i + 1] === true)) { sl[i + 1] = sl[i + 1] === true ? false : 0; count++; } }
+  obj.characterDataMap.SP = (obj.characterDataMap.SP || 0) + count; // in the save, "SP" = ability/skill points (the game UI shows it as AP)
   // also clear them from the quickbar panels so the game doesn't reference unlearned skills
   const panels = obj.skillsDataMap.skillsPanelDataList;
   const bare = new Set(ids.map(x => x.replace(/_ico$/, '')));
   if (Array.isArray(panels)) panels.forEach(row => { if (Array.isArray(row)) row.forEach((cell, i2) => { if (typeof cell === 'string' && (bare.has(cell) || set.has(cell))) row[i2] = '0'; }); });
-  return n;
+  return count;
 }
 export function resetAttributes(obj, base) {
   // base: {STR, AGL, PRC, Vitality, WIL}; refunds the difference into SP
@@ -238,4 +238,4 @@ export function listItems(obj) {
   });
 }
 export function repairItem(obj, idx) { const e = obj.inventoryDataList[idx]; if (e && e[1] && e[1].MaxDuration > 0) e[1].Duration = e[1].MaxDuration; }
-export function repairAll(obj) { let n = 0; obj.inventoryDataList.forEach(e => { const p = e[1]; if (p && p.MaxDuration > 0 && p.Duration < p.MaxDuration) { p.Duration = p.MaxDuration; n++; } }); return n; }
+export function repairAll(obj) { let count = 0; obj.inventoryDataList.forEach(e => { const p = e[1]; if (p && p.MaxDuration > 0 && p.Duration < p.MaxDuration) { p.Duration = p.MaxDuration; count++; } }); return count; }

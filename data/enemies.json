@@ -8,7 +8,7 @@
  },
  "enemies": [
   {
-   "n": "Goon (Club)",
+   "name": "Goon (Club)",
    "tier": 1,
    "hp": 70,
    "energy": 60,
@@ -36,7 +36,7 @@
    "note": "basic brigand fodder"
   },
   {
-   "n": "Wolf",
+   "name": "Wolf",
    "tier": 2,
    "hp": 90,
    "energy": 100,
@@ -68,7 +68,7 @@
    "note": "pack hunter; Howl, Dash, Pack Sense"
   },
   {
-   "n": "Thug (Spear)",
+   "name": "Thug (Spear)",
    "tier": 2,
    "hp": 90,
    "energy": 70,
@@ -106,7 +106,7 @@
    "note": "Impaling Lunge, Nail Down, No Retreat"
   },
   {
-   "n": "Bear",
+   "name": "Bear",
    "tier": 5,
    "hp": 500,
    "energy": 200,
@@ -153,7 +153,7 @@
    "note": "Rend Flesh (+100% bodypart dmg); Dying Rage below 40% HP"
   },
   {
-   "n": "Gulon",
+   "name": "Gulon",
    "tier": 5,
    "hp": 400,
    "energy": 100,
@@ -184,7 +184,7 @@
    "note": "level 10 beast; core stats verbatim (corroborated official + datamine). Damage-type resistances not published in fetched snippet — full-page fetch pending."
   },
   {
-   "n": "Ghoul",
+   "name": "Ghoul",
    "tier": 3,
    "hp": 90,
    "energy": 80,
@@ -237,7 +237,7 @@
    "note": "cursed carrion-eater; +3 Unholy; devours corpses to grow; weak to Fire/Sacred; skills: Necrophage, Flurry of Strikes, Bone Throw"
   },
   {
-   "n": "Restless",
+   "name": "Restless",
    "tier": 1,
    "hp": 80,
    "energy": 40,
@@ -271,7 +271,7 @@
    "note": "Strangling Grasp (charge, 71% immobilize), Abominable Vitality (53% to survive lethal damage), Dark Vision"
   },
   {
-   "n": "Boar",
+   "name": "Boar",
    "tier": 3,
    "hp": 120,
    "energy": 150,
@@ -311,7 +311,7 @@
    "note": "Ramming Charge (bonus dmg/stun per tile traveled); Dying Rage below 40% HP"
   },
   {
-   "n": "Harpy",
+   "name": "Harpy",
    "tier": 3,
    "hp": 90,
    "energy": 150,
@@ -362,7 +362,7 @@
    "note": "Rapid Flight, Peck (blinds), Baleful Scream (psionic daze), Elusive Predators (+50% dodge, +25% counter unless wings injured)"
   },
   {
-   "n": "Wraith",
+   "name": "Wraith",
    "tier": 1,
    "hp": 15,
    "energy": 115,
@@ -411,7 +411,7 @@
    "note": "Spectre: 70% phys res but very low HP; weak to Magic/Sacred. Grave Chill (immobilize), Spectral Haunting (vanish & ambush)"
   },
   {
-   "n": "Bison",
+   "name": "Bison",
    "tier": 5,
    "hp": 500,
    "energy": 150,
@@ -458,7 +458,7 @@
    "note": "Ramming Charge (bonus per tile), Rend Flesh (+100% bodypart dmg)"
   },
   {
-   "n": "Cutthroat",
+   "name": "Cutthroat",
    "tier": 3,
    "hp": 95,
    "energy": 110,
@@ -501,7 +501,7 @@
    "note": "Dagger duelist: Double Lunge, Deadly Trick (swap places), Seize the Initiative, Elusiveness, Dash, Dagger Throw"
   },
   {
-   "n": "Deserter (Sword)",
+   "name": "Deserter (Sword)",
    "tier": 4,
    "hp": 125,
    "energy": 110,
@@ -559,7 +559,7 @@
    "note": "Tier 4 Brigand; +27 Slashing; shield user (Cleaving Strike, Onrush, Fencer Stance, Raise Shield, Shield Bash); weak to Shock"
   },
   {
-   "n": "Marksman",
+   "name": "Marksman",
    "tier": 4,
    "hp": 115,
    "energy": 95,
@@ -599,7 +599,7 @@
    "note": "Elite bowman (replaces Archer/Crossbowman/Skeleton Archer stand-ins): Taking Aim, Long Shot, Headshot, Suppression, Hard Target"
   },
   {
-   "n": "Manticore",
+   "name": "Manticore",
    "tier": 5,
    "boss": true,
    "hp": 2000,
@@ -655,7 +655,7 @@
    "note": "BOSS (Burial Cave): Lion Leap, Primal Aether, Vengeance of the Dead, Animated Servant, Bone Pyres, Deadly Tail (poison/curse), Indomitable"
   },
   {
-   "n": "Necromancer (Staff)",
+   "name": "Necromancer (Staff)",
    "tier": 2,
    "miniboss": true,
    "hp": 80,
@@ -703,7 +703,7 @@
    "note": "Mini-boss: Lesser Ritual of Resurrection (reanimates undead), Binding Sigil, Steal Essence, Hail of Blows"
   },
   {
-   "n": "Young Troll",
+   "name": "Young Troll",
    "tier": 5,
    "hp": 600,
    "energy": 400,
@@ -756,7 +756,7 @@
    "note": "Claw Swipe (range 3, huge bonuses above 10% energy), Earthshaking Strike (AoE stun/daze); 35% res to everything"
   },
   {
-   "n": "Crawler",
+   "name": "Crawler",
    "tier": 4,
    "hp": 70,
    "energy": 120,
@@ -792,15 +792,15 @@
    "dmg": [
     {
      "v": 16,
-     "t": "pi"
+     "type": "pi"
     },
     {
      "v": 8,
-     "t": "po"
+     "type": "po"
     },
     {
      "v": 4,
-     "t": "ca"
+     "type": "ca"
     }
    ],
    "acc": 78,
@@ -823,7 +823,7 @@
    "note": "Tier 4 giant spider; +16 Piercing +8 Poison +4 Caustic; regenerating carapace; 65% Immob chance (web spit)"
   },
   {
-   "n": "Matriarch",
+   "name": "Matriarch",
    "tier": 2,
    "hp": 155,
    "energy": 100,
@@ -859,11 +859,11 @@
    "dmg": [
     {
      "v": 15,
-     "t": "pi"
+     "type": "pi"
     },
     {
      "v": 3,
-     "t": "un"
+     "type": "un"
     }
    ],
    "acc": 66,
@@ -893,7 +893,7 @@
    "note": "Tier 2 Proselyte matriarch; +15 Piercing +3 Unholy; life/energy leech; weak to Sacred (-60%)"
   },
   {
-   "n": "Zealot (Spear)",
+   "name": "Zealot (Spear)",
    "tier": 2,
    "hp": 95,
    "energy": 95,
@@ -947,7 +947,7 @@
    "note": "Proselyte spearman (replaces Proselyte stand-in): Nail Down, Bloodthirst, Blood Scent, Precise Hits; weak to Sacred"
   },
   {
-   "n": "Ascended Archon",
+   "name": "Ascended Archon",
    "tier": 5,
    "boss": true,
    "hp": 169,
@@ -993,7 +993,7 @@
    "note": "Prologue final boss (Phase 2): Bestial Charge (666% dmg line), Wild Swipe, Jump Away, Corpse Devourment, Phantom Bats; weak to Sacred"
   },
   {
-   "n": "Goon (Cleaver)",
+   "name": "Goon (Cleaver)",
    "tier": 1,
    "hp": 70,
    "energy": 60,
@@ -1024,7 +1024,7 @@
    "note": "basic brigand fodder; slashing, causes bleed"
   },
   {
-   "n": "Goon (Flail)",
+   "name": "Goon (Flail)",
    "tier": 1,
    "hp": 70,
    "energy": 60,
@@ -1055,7 +1055,7 @@
    "note": "basic brigand fodder; crushing, dazes"
   },
   {
-   "n": "Rebel",
+   "name": "Rebel",
    "tier": 1,
    "hp": 70,
    "energy": 60,
@@ -1086,7 +1086,7 @@
    "note": "PRC 11; skill: Impaling Lunge (2x1 strike, +Bodypart/AP/Bleed)"
   },
   {
-   "n": "Brute",
+   "name": "Brute",
    "tier": 1,
    "boss": "mini",
    "hp": 90,
@@ -1125,7 +1125,7 @@
    "note": "mini-boss; skills: Mighty Kick, Armor Break, Onslaught"
   },
   {
-   "n": "Madman",
+   "name": "Madman",
    "tier": 1,
    "boss": "mini",
    "hp": 75,
@@ -1159,7 +1159,7 @@
    "note": "mini-boss; AGL 14; +2 Poison dmg; skills: Double Lunge, Sudden Lunge, Disengage"
   },
   {
-   "n": "Henchman (Axe)",
+   "name": "Henchman (Axe)",
    "tier": 2,
    "hp": 90,
    "energy": 75,
@@ -1198,7 +1198,7 @@
    "note": "shielded; skills: Cut Through, Raise Shield, Shield Bash"
   },
   {
-   "n": "Henchman (Mace)",
+   "name": "Henchman (Mace)",
    "tier": 2,
    "hp": 90,
    "energy": 75,
@@ -1236,7 +1236,7 @@
    "note": "shielded; skills: Mighty Kick, Onslaught, Raise Shield (formerly Sidekick)"
   },
   {
-   "n": "Henchman (Flail)",
+   "name": "Henchman (Flail)",
    "tier": 2,
    "hp": 90,
    "energy": 75,
@@ -1276,7 +1276,7 @@
    "note": "shielded; skills: Mighty Kick, Onslaught, Moment of Weakness"
   },
   {
-   "n": "War Dog",
+   "name": "War Dog",
    "tier": 2,
    "hp": 45,
    "energy": 100,
@@ -1307,7 +1307,7 @@
    "note": "beast; AGL/PRC 18; skills: Loud Barking, Grab 'Em! (immobilize/disarm)"
   },
   {
-   "n": "Thug (Two-Handed Axe)",
+   "name": "Thug (Two-Handed Axe)",
    "tier": 2,
    "hp": 90,
    "energy": 75,
@@ -1344,7 +1344,7 @@
    "note": "2H axe; skills: Hooking Chop, Reign in Blood, Shieldbreaker"
   },
   {
-   "n": "Thug (Two-Handed Sword)",
+   "name": "Thug (Two-Handed Sword)",
    "tier": 2,
    "hp": 90,
    "energy": 75,
@@ -1383,7 +1383,7 @@
    "note": "2H sword; skills: Hewing Strike, Seize the Initiative, Not This Time"
   },
   {
-   "n": "Restless Peasant (Dagger)",
+   "name": "Restless Peasant (Dagger)",
    "tier": 1,
    "hp": 80,
    "energy": 40,
@@ -1416,7 +1416,7 @@
    "note": "undead; +1 Unholy; skills: Strangling Grasp, Abominable Vitality (53%), Dark Vision"
   },
   {
-   "n": "Restless Peasant (Axe)",
+   "name": "Restless Peasant (Axe)",
    "tier": 1,
    "hp": 80,
    "energy": 40,
@@ -1451,7 +1451,7 @@
    "note": "undead; +1 Unholy; skills: Strangling Grasp, Abominable Vitality (53%), Dark Vision"
   },
   {
-   "n": "Restless Peasant (Pitchfork)",
+   "name": "Restless Peasant (Pitchfork)",
    "tier": 1,
    "hp": 80,
    "energy": 40,
@@ -1485,7 +1485,7 @@
    "note": "undead; +1 Unholy; skills: Strangling Grasp, Abominable Vitality (75%)"
   },
   {
-   "n": "Restless Guard (Sword)",
+   "name": "Restless Guard (Sword)",
    "tier": 2,
    "hp": 90,
    "energy": 45,
@@ -1530,7 +1530,7 @@
    "note": "undead; +1 Unholy; skills: Strangling Grasp, Abominable Vitality (56%), Dark Vision"
   },
   {
-   "n": "Restless Brigand",
+   "name": "Restless Brigand",
    "tier": 2,
    "hp": 80,
    "energy": 45,
@@ -1576,7 +1576,7 @@
    "note": "undead; +1 Unholy; skills: Strangling Grasp, Abominable Vitality (56%), Dark Vision"
   },
   {
-   "n": "Risen Watchman",
+   "name": "Risen Watchman",
    "tier": 2,
    "hp": 75,
    "energy": 50,
@@ -1629,7 +1629,7 @@
    "note": "skeleton; +2 Unholy; skills: Impaling Lunge, Dark Vision"
   },
   {
-   "n": "Risen Recruit (Sword)",
+   "name": "Risen Recruit (Sword)",
    "tier": 2,
    "hp": 75,
    "energy": 50,
@@ -1681,7 +1681,7 @@
    "note": "skeleton; +2 Unholy; shielded; skills: Cleaving Strike, Raise Shield, Dark Vision"
   },
   {
-   "n": "Wraith Squire",
+   "name": "Wraith Squire",
    "tier": 2,
    "hp": 20,
    "energy": 130,
@@ -1731,7 +1731,7 @@
    "note": "spectre; +3 Frost +3 Unholy; skills: Grave Chill, Spectral Haunting, Nail Down, Dark Vision"
   },
   {
-   "n": "Risen Guardsman (Sword)",
+   "name": "Risen Guardsman (Sword)",
    "tier": 5,
    "hp": 145,
    "energy": 110,
@@ -1785,7 +1785,7 @@
    "note": "T5 armored undead knight; +6 Unholy; heavy shield kit (Cleaving Strike, Raise Shield, Shield Bash, Hold the Line, Unyielding Defense...)"
   },
   {
-   "n": "Ghast",
+   "name": "Ghast",
    "tier": 3,
    "hp": 65,
    "energy": 120,
@@ -1834,7 +1834,7 @@
    "note": "undead caster (WIL 26); +7 Unholy; heals allies; skills: Death Touch, Unholy Blessing, Binding Sigil, Curse of Agony"
   },
   {
-   "n": "Husk",
+   "name": "Husk",
    "tier": 3,
    "boss": "mini",
    "hp": 190,
@@ -1888,7 +1888,7 @@
    "note": "mini-boss; STR 33 tank; +3 Unholy; skills: Mighty Swing, Brace for Impact, Fall of Giants, Unsteady Gait"
   },
   {
-   "n": "Mortician",
+   "name": "Mortician",
    "tier": 4,
    "boss": "mini",
    "hp": 100,
@@ -1936,7 +1936,7 @@
    "note": "mini-boss necromancer (WIL 18); +13 Unholy; resurrects undead; skills: Defiled Remains, Rituals of Resurrection, Death Touch, Steal Essence, Binding Sigil"
   },
   {
-   "n": "Wraith Warrior",
+   "name": "Wraith Warrior",
    "tier": 3,
    "hp": 25,
    "energy": 150,
@@ -1989,7 +1989,7 @@
    "note": "spectre; +3 Frost +5 Unholy; near-immune to physical, weak to Sacred/Magic/Arcane; skills: Grave Chill, Spectral Haunting, Cleaving Strike, Gloat"
   },
   {
-   "n": "Occultist",
+   "name": "Occultist",
    "tier": 1,
    "hp": 65,
    "energy": 95,
@@ -2033,7 +2033,7 @@
    "note": "cultist dagger-caster (WIL 14); +1 Unholy; skills: Curse of Decay, Desecration, Double Lunge"
   },
   {
-   "n": "Undertaker",
+   "name": "Undertaker",
    "tier": 3,
    "boss": "mini",
    "hp": 90,
@@ -2080,7 +2080,7 @@
    "note": "mini-boss necromancer (WIL 16); +9 Unholy; raises skeletons & resurrects; skills: Defiled Remains, Ritual of Resurrection, Death Touch, Steal Essence"
   },
   {
-   "n": "Flagellant",
+   "name": "Flagellant",
    "tier": 1,
    "hp": 95,
    "energy": 90,
@@ -2115,7 +2115,7 @@
    "note": "vampire cultist (AGL 17); +5 Rending +1 Unholy; gets stronger when hurt; skills: Lash Blessing, Lacerate, Driven by Pain"
   },
   {
-   "n": "Cultist",
+   "name": "Cultist",
    "tier": 1,
    "hp": 33,
    "energy": 40,
@@ -2142,7 +2142,7 @@
    "note": "weak vampire neophyte; +1 Unholy; no skills; also appears as a quest enemy"
   },
   {
-   "n": "Martyr",
+   "name": "Martyr",
    "tier": 1,
    "hp": 40,
    "energy": 0,
@@ -2173,7 +2173,7 @@
    "note": "self-sacrificing support (PRC 17); heals allies when hurt, buffs ally on death; becomes Dead Martyr; no loot"
   },
   {
-   "n": "Sanguimage",
+   "name": "Sanguimage",
    "tier": 3,
    "hp": 115,
    "energy": 150,
@@ -2227,7 +2227,7 @@
    "note": "vampire heresiarch caster (WIL 23); +5 Unholy; summons Blood Golems, life-drain; skills: Summon Blood Golem, Draining Sigil, Mark of the Feast, Life Leech, Bloodthirst"
   },
   {
-   "n": "Chosen",
+   "name": "Chosen",
    "tier": 3,
    "hp": 145,
    "energy": 130,
@@ -2281,7 +2281,7 @@
    "note": "vampire elite bruiser; +3 Unholy; life/energy drain; skills: Wild Swipe, Life Leech, Bloodthirst, Flurry of Strikes, Mighty Kick"
   },
   {
-   "n": "Juggernaut",
+   "name": "Juggernaut",
    "tier": 4,
    "boss": "mini",
    "hp": 315,
@@ -2338,7 +2338,7 @@
    "note": "mini-boss giant (STR 42, 315 HP); +6 Unholy; Psionic fear/immob; skills: Face of Horror, Devastating Power, Herald of Ruination, Bloodthirst, Final Push"
   },
   {
-   "n": "Immolated",
+   "name": "Immolated",
    "tier": 1,
    "hp": 65,
    "energy": 45,
@@ -2370,7 +2370,7 @@
    "note": "self-sacrificing cultist; +1 Unholy; buffs Proselytes on death (Blood Oath); heals allies when hurt"
   },
   {
-   "n": "Abomination",
+   "name": "Abomination",
    "tier": 3,
    "boss": "mini",
    "hp": 190,
@@ -2425,7 +2425,7 @@
    "note": "mini-boss flesh-horror (STR 26 VIT 33); +9 Rending +3 Unholy; caps dmg/turn & spawns Blood Golems, revives on death; skills: Bound by Blood, Wild Swipe, Rend Flesh, Bloodthirst"
   },
   {
-   "n": "Ancient Troll",
+   "name": "Ancient Troll",
    "tier": 25,
    "boss": "world",
    "hp": 3000,
@@ -2481,7 +2481,7 @@
    "note": "quest boss (Troll Hunt), one per map near Signal Tower; regenerates below 75% HP — interrupt with a melee hit to make it take ~2× damage; +40 Rending"
   },
   {
-   "n": "Marauder (Two-Handed Sword)",
+   "name": "Marauder (Two-Handed Sword)",
    "tier": 3,
    "hp": 105,
    "energy": 85,
@@ -2540,7 +2540,7 @@
    "note": "Tier 3 Brigand; +28 Slashing; weak to Shock"
   },
   {
-   "n": "Crawler Broodmother",
+   "name": "Crawler Broodmother",
    "tier": 5,
    "hp": 210,
    "energy": 200,
@@ -2576,15 +2576,15 @@
    "dmg": [
     {
      "v": 26,
-     "t": "pi"
+     "type": "pi"
     },
     {
      "v": 6,
-     "t": "po"
+     "type": "po"
     },
     {
      "v": 2,
-     "t": "ca"
+     "type": "ca"
     }
    ],
    "acc": 82,
@@ -2605,7 +2605,7 @@
    "note": "Tier 5 spider matriarch; +26 Piercing +6 Poison +2 Caustic; regenerating carapace (high phys res + 300% Pain Res); 50% Immob, 70% Bleed chance"
   },
   {
-   "n": "Crawler Burrow",
+   "name": "Crawler Burrow",
    "tier": 4,
    "spawner": true,
    "hp": 80,
@@ -2657,7 +2657,7 @@
    "note": "Tier 4 spawner — creates Crawlers; immobile; weak to Fire; near-immune to Poison/Psionic; destroy to stop spawns"
   },
   {
-   "n": "Deer",
+   "name": "Deer",
    "tier": 0,
    "hp": 80,
    "energy": 100,
@@ -2682,7 +2682,7 @@
    "note": "Beast"
   },
   {
-   "n": "Saiga",
+   "name": "Saiga",
    "tier": 0,
    "hp": 75,
    "energy": 100,
@@ -2707,7 +2707,7 @@
    "note": "Beast"
   },
   {
-   "n": "Horse",
+   "name": "Horse",
    "tier": 0,
    "hp": 5,
    "dodge": -25,
@@ -2730,7 +2730,7 @@
    "note": "Beast"
   },
   {
-   "n": "Pig",
+   "name": "Pig",
    "tier": 0,
    "hp": 5,
    "dodge": -25,
@@ -2752,7 +2752,7 @@
    "note": "Beast"
   },
   {
-   "n": "Sheep",
+   "name": "Sheep",
    "tier": 0,
    "hp": 5,
    "dodge": -25,
@@ -2774,7 +2774,7 @@
    "note": "Beast"
   },
   {
-   "n": "Cow",
+   "name": "Cow",
    "tier": 0,
    "hp": 5,
    "dodge": -25,
@@ -2799,7 +2799,7 @@
    "note": "Beast"
   },
   {
-   "n": "Fox",
+   "name": "Fox",
    "tier": 0,
    "hp": 50,
    "energy": 100,
@@ -2822,7 +2822,7 @@
    "note": "Beast"
   },
   {
-   "n": "Rabbit",
+   "name": "Rabbit",
    "tier": 0,
    "hp": 10,
    "energy": 100,
@@ -2848,7 +2848,7 @@
    "note": "Beast"
   },
   {
-   "n": "Squirrel",
+   "name": "Squirrel",
    "tier": 0,
    "hp": 10,
    "energy": 100,
@@ -2874,7 +2874,7 @@
    "note": "Beast"
   },
   {
-   "n": "Hedgehog",
+   "name": "Hedgehog",
    "tier": 0,
    "hp": 10,
    "energy": 100,
@@ -2902,7 +2902,7 @@
    "note": "Beast"
   },
   {
-   "n": "Cat",
+   "name": "Cat",
    "tier": 0,
    "hp": 5,
    "dodge": 50,
@@ -2925,7 +2925,7 @@
    "note": "Beast"
   },
   {
-   "n": "Dog",
+   "name": "Dog",
    "tier": 0,
    "hp": 5,
    "energy": 100,
@@ -2949,7 +2949,7 @@
    "note": "Beast; Loud Barking, Grab ’Em!"
   },
   {
-   "n": "Chicken",
+   "name": "Chicken",
    "tier": 0,
    "hp": 5,
    "dodge": 20,
@@ -2972,7 +2972,7 @@
    "note": "Beast"
   },
   {
-   "n": "Rooster",
+   "name": "Rooster",
    "tier": 0,
    "hp": 5,
    "dodge": 20,
@@ -2995,7 +2995,7 @@
    "note": "Beast"
   },
   {
-   "n": "Tit",
+   "name": "Tit",
    "tier": 0,
    "hp": 5,
    "dodge": 70,
@@ -3018,7 +3018,7 @@
    "note": "Beast"
   },
   {
-   "n": "Bunting",
+   "name": "Bunting",
    "tier": 0,
    "hp": 5,
    "dodge": 90,
@@ -3041,7 +3041,7 @@
    "note": "Beast"
   },
   {
-   "n": "Raven",
+   "name": "Raven",
    "tier": 0,
    "hp": 5,
    "dodge": 50,
@@ -3064,7 +3064,7 @@
    "note": "Beast"
   },
   {
-   "n": "Pigeon",
+   "name": "Pigeon",
    "tier": 0,
    "hp": 5,
    "dodge": 30,
@@ -3087,7 +3087,7 @@
    "note": "Beast"
   },
   {
-   "n": "Sparrow",
+   "name": "Sparrow",
    "tier": 0,
    "hp": 5,
    "dodge": 70,
@@ -3110,7 +3110,7 @@
    "note": "Beast"
   },
   {
-   "n": "Swallow",
+   "name": "Swallow",
    "tier": 0,
    "hp": 5,
    "dodge": 70,
@@ -3133,7 +3133,7 @@
    "note": "Beast"
   },
   {
-   "n": "Thrush",
+   "name": "Thrush",
    "tier": 0,
    "hp": 5,
    "dodge": 70,
@@ -3156,7 +3156,7 @@
    "note": "Beast"
   },
   {
-   "n": "Wren",
+   "name": "Wren",
    "tier": 0,
    "hp": 5,
    "dodge": 70,
@@ -3179,7 +3179,7 @@
    "note": "Beast"
   },
   {
-   "n": "Jay",
+   "name": "Jay",
    "tier": 0,
    "hp": 5,
    "dodge": 70,
@@ -3202,7 +3202,7 @@
    "note": "Beast"
   },
   {
-   "n": "Seagull",
+   "name": "Seagull",
    "tier": 0,
    "hp": 5,
    "dodge": 20,
@@ -3225,7 +3225,7 @@
    "note": "Beast"
   },
   {
-   "n": "Mallard",
+   "name": "Mallard",
    "tier": 0,
    "hp": 5,
    "dodge": 50,
@@ -3248,7 +3248,7 @@
    "note": "Beast"
   },
   {
-   "n": "Owl",
+   "name": "Owl",
    "tier": 0,
    "hp": 5,
    "dodge": 50,
@@ -3271,7 +3271,7 @@
    "note": "Beast"
   },
   {
-   "n": "Spiderling",
+   "name": "Spiderling",
    "tier": 2,
    "hp": 25,
    "energy": 50,
@@ -3325,7 +3325,7 @@
    "note": "Arachnid; Corrosive Blood"
   },
   {
-   "n": "Deathstinger Swarm",
+   "name": "Deathstinger Swarm",
    "tier": 2,
    "hp": 20,
    "energy": 20,
@@ -3369,7 +3369,7 @@
    "note": "Beast; Swarm"
   },
   {
-   "n": "Rat Swarm",
+   "name": "Rat Swarm",
    "tier": 1,
    "hp": 50,
    "energy": 50,
@@ -3407,7 +3407,7 @@
    "note": "Beast; Swarm (rats), Dark Vision, Fear of Fire"
   },
   {
-   "n": "Moose",
+   "name": "Moose",
    "tier": 4,
    "hp": 350,
    "energy": 150,
@@ -3455,7 +3455,7 @@
    "note": "Beast"
   },
   {
-   "n": "Feral Dog",
+   "name": "Feral Dog",
    "tier": 1,
    "hp": 40,
    "energy": 90,
@@ -3488,7 +3488,7 @@
    "note": "Beast; Loud Barking, Grab ’Em!, Pack Sense (dogs)"
   },
   {
-   "n": "Bat Swarm",
+   "name": "Bat Swarm",
    "tier": 1,
    "hp": 40,
    "energy": 50,
@@ -3528,7 +3528,7 @@
    "note": "Beast"
   },
   {
-   "n": "Miner",
+   "name": "Miner",
    "tier": 1,
    "hp": 65,
    "energy": 50,
@@ -3555,7 +3555,7 @@
    "note": "Human"
   },
   {
-   "n": "Scout",
+   "name": "Scout",
    "tier": 1,
    "hp": 70,
    "energy": 60,
@@ -3588,7 +3588,7 @@
    "note": "Human; Torch Strike"
   },
   {
-   "n": "Overseer",
+   "name": "Overseer",
    "tier": 1,
    "hp": 95,
    "energy": 65,
@@ -3622,7 +3622,7 @@
    "note": "Human; Lash Blessing, Mighty Kick, Sudden Lunge"
   },
   {
-   "n": "Enforcer (Two-Handed Mace)",
+   "name": "Enforcer (Two-Handed Mace)",
    "tier": 1,
    "hp": 75,
    "energy": 60,
@@ -3655,7 +3655,7 @@
    "note": "Human; Mighty Swing, Mighty Kick"
   },
   {
-   "n": "Enforcer (Two-Handed Axe)",
+   "name": "Enforcer (Two-Handed Axe)",
    "tier": 1,
    "hp": 75,
    "energy": 60,
@@ -3688,7 +3688,7 @@
    "note": "Human; Mighty Kick, Hooking Chop"
   },
   {
-   "n": "Enforcer (Two-Handed Sword)",
+   "name": "Enforcer (Two-Handed Sword)",
    "tier": 1,
    "hp": 75,
    "energy": 60,
@@ -3720,7 +3720,7 @@
    "note": "Human; Hewing Strike, Mighty Kick"
   },
   {
-   "n": "Poacher",
+   "name": "Poacher",
    "tier": 1,
    "hp": 70,
    "energy": 60,
@@ -3752,7 +3752,7 @@
    "note": "Human; Taking Aim"
   },
   {
-   "n": "Firestarter",
+   "name": "Firestarter",
    "tier": 2,
    "hp": 100,
    "energy": 85,
@@ -3791,7 +3791,7 @@
    "note": "Human"
   },
   {
-   "n": "Rabble-Rouser",
+   "name": "Rabble-Rouser",
    "tier": 2,
    "hp": 85,
    "energy": 100,
@@ -3831,7 +3831,7 @@
    "note": "Human"
   },
   {
-   "n": "Thug (Two-Handed Flail)",
+   "name": "Thug (Two-Handed Flail)",
    "tier": 2,
    "hp": 90,
    "energy": 75,
@@ -3869,7 +3869,7 @@
    "note": "Human; Mighty Swing, Unstoppable Force, Unbalance"
   },
   {
-   "n": "Thug (Two-Handed Mace)",
+   "name": "Thug (Two-Handed Mace)",
    "tier": 2,
    "hp": 90,
    "energy": 75,
@@ -3907,7 +3907,7 @@
    "note": "Human; Mighty Swing, Unstoppable Force, Setup"
   },
   {
-   "n": "Mancatcher",
+   "name": "Mancatcher",
    "tier": 2,
    "hp": 90,
    "energy": 75,
@@ -3944,7 +3944,7 @@
    "note": "Human; Nail Down, Seize the Initiative, Dash, Net Throw, Sic!"
   },
   {
-   "n": "Raider",
+   "name": "Raider",
    "tier": 2,
    "hp": 110,
    "energy": 70,
@@ -3985,7 +3985,7 @@
    "note": "Human; Mutilating Lunge, Cut Through, Shield Bash, Raise Shield, Moment of Retribution, No Mercy"
   },
   {
-   "n": "Crook",
+   "name": "Crook",
    "tier": 2,
    "hp": 80,
    "energy": 85,
@@ -4025,7 +4025,7 @@
    "note": "Human; Double Lunge, Seize the Initiative, Dash, Dagger Throw"
   },
   {
-   "n": "Outlaw",
+   "name": "Outlaw",
    "tier": 2,
    "hp": 90,
    "energy": 85,
@@ -4061,7 +4061,7 @@
    "note": "Human; Taking Aim, Long Shot, Constant Practice"
   },
   {
-   "n": "Slinger (Axe)",
+   "name": "Slinger (Axe)",
    "tier": 2,
    "hp": 90,
    "energy": 85,
@@ -4099,7 +4099,7 @@
    "note": "Human"
   },
   {
-   "n": "Slinger (Mace)",
+   "name": "Slinger (Mace)",
    "tier": 2,
    "hp": 90,
    "energy": 85,
@@ -4137,7 +4137,7 @@
    "note": "Human; Seize the Initiative, Taking Aim, Constant Practice"
   },
   {
-   "n": "Bonebreaker (Two-Handed Axe)",
+   "name": "Bonebreaker (Two-Handed Axe)",
    "tier": 3,
    "hp": 145,
    "energy": 80,
@@ -4177,7 +4177,7 @@
    "note": "Human"
   },
   {
-   "n": "Bonebreaker (Two-Handed Mace)",
+   "name": "Bonebreaker (Two-Handed Mace)",
    "tier": 3,
    "hp": 135,
    "energy": 75,
@@ -4218,7 +4218,7 @@
    "note": "Human"
   },
   {
-   "n": "Marauder (Two-Handed Mace)",
+   "name": "Marauder (Two-Handed Mace)",
    "tier": 3,
    "hp": 105,
    "energy": 85,
@@ -4259,7 +4259,7 @@
    "note": "Human; Mighty Swing, Unstoppable Force, Skull Crusher, Setup"
   },
   {
-   "n": "Marauder (Two-Handed Axe)",
+   "name": "Marauder (Two-Handed Axe)",
    "tier": 3,
    "hp": 105,
    "energy": 85,
@@ -4299,7 +4299,7 @@
    "note": "Human; Hooking Chop, Dismember, Reign in Blood, Shieldbreaker"
   },
   {
-   "n": "Marauder (Two-Handed Flail)",
+   "name": "Marauder (Two-Handed Flail)",
    "tier": 3,
    "hp": 105,
    "energy": 85,
@@ -4339,7 +4339,7 @@
    "note": "Human; Mighty Swing, Unstoppable Force, Unbalance, Skull Crusher"
   },
   {
-   "n": "Marauder (Halberd)",
+   "name": "Marauder (Halberd)",
    "tier": 3,
    "hp": 105,
    "energy": 85,
@@ -4382,7 +4382,7 @@
    "note": "Human; Nail Down, Regroup, Seize the Initiative, No Retreat"
   },
   {
-   "n": "Marauder (Spear)",
+   "name": "Marauder (Spear)",
    "tier": 3,
    "hp": 105,
    "energy": 85,
@@ -4424,7 +4424,7 @@
    "note": "Human; Nail Down, Impaling Lunge, Regroup, Precise Hits"
   },
   {
-   "n": "Prospector",
+   "name": "Prospector",
    "tier": 3,
    "hp": 95,
    "energy": 80,
@@ -4460,7 +4460,7 @@
    "note": "Human; Mighty Swing, Mighty Kick, Dash, Not This Time, Setup"
   },
   {
-   "n": "Spelunker",
+   "name": "Spelunker",
    "tier": 3,
    "hp": 95,
    "energy": 80,
@@ -4496,7 +4496,7 @@
    "note": "Human; Torch Strike, Dash, Double Lunge, Instigate, Dagger Throw, Disengage, Weakening Jabs"
   },
   {
-   "n": "Turncoat (Sword)",
+   "name": "Turncoat (Sword)",
    "tier": 3,
    "hp": 105,
    "energy": 90,
@@ -4538,7 +4538,7 @@
    "note": "Human; Onrush, Cleaving Strike, Fencer Stance, Raise Shield, Seize the Initiative, Gloat"
   },
   {
-   "n": "Turncoat (Axe)",
+   "name": "Turncoat (Axe)",
    "tier": 3,
    "hp": 105,
    "energy": 85,
@@ -4580,7 +4580,7 @@
    "note": "Human; Cut Through, Mutilating Lunge, Raise Shield, Dash, Reprisal, Ferocity"
   },
   {
-   "n": "Turncoat (Mace)",
+   "name": "Turncoat (Mace)",
    "tier": 3,
    "hp": 105,
    "energy": 85,
@@ -4623,7 +4623,7 @@
    "note": "Human; Onslaught, Armor Break, Raise Shield, Sudden Lunge, Shield Bash, Dazing Strikes"
   },
   {
-   "n": "Turncoat (Flail)",
+   "name": "Turncoat (Flail)",
    "tier": 3,
    "hp": 105,
    "energy": 85,
@@ -4666,7 +4666,7 @@
    "note": "Human; Onslaught, Armor Break, Raise Shield, Mighty Kick, Shield Bash, Moment of Weakness"
   },
   {
-   "n": "Brigand Warlock",
+   "name": "Brigand Warlock",
    "tier": 3,
    "hp": 115,
    "energy": 150,
@@ -4725,7 +4725,7 @@
    "note": "Human"
   },
   {
-   "n": "Torturer",
+   "name": "Torturer",
    "tier": 3,
    "hp": 130,
    "energy": 70,
@@ -4769,7 +4769,7 @@
    "note": "Human; Mighty Swing, Unstoppable Force, Skull Crusher, Striker Stance, Mighty Kick, Unbalance, Severe Concussion, Push the Falling, Driven by Pain"
   },
   {
-   "n": "Hired Sorcerer (Pyromancer)",
+   "name": "Hired Sorcerer (Pyromancer)",
    "tier": 3,
    "hp": 85,
    "energy": 125,
@@ -4808,7 +4808,7 @@
    "note": "Human; Fire Barrage, Flame Wave, Dissipation, Flame Saturation, Scorch"
   },
   {
-   "n": "Hired Sorcerer (Electromancer)",
+   "name": "Hired Sorcerer (Electromancer)",
    "tier": 3,
    "hp": 80,
    "energy": 135,
@@ -4847,7 +4847,7 @@
    "note": "Human; Jolt, Short Circuit, Impulse, Residual Charge, Dissipation"
   },
   {
-   "n": "Drummer",
+   "name": "Drummer",
    "tier": 3,
    "hp": 90,
    "energy": 110,
@@ -4886,7 +4886,7 @@
    "note": "Human; Sudden Lunge, Onslaught, Flexible Defense, Instigate, Drums of War, Hard Target, Not This Time"
   },
   {
-   "n": "Ambusher",
+   "name": "Ambusher",
    "tier": 3,
    "hp": 105,
    "energy": 90,
@@ -4926,7 +4926,7 @@
    "note": "Human; Taking Aim, Leg Sweep, Setup, Constant Practice, Hard Target, Spot Weakness, Cleaving Strike, Gloat"
   },
   {
-   "n": "Beast Trapper",
+   "name": "Beast Trapper",
    "tier": 4,
    "hp": 120,
    "energy": 95,
@@ -4972,7 +4972,7 @@
    "note": "Human"
   },
   {
-   "n": "Rogue Knight",
+   "name": "Rogue Knight",
    "tier": 4,
    "hp": 165,
    "energy": 90,
@@ -5025,7 +5025,7 @@
    "note": "Human"
   },
   {
-   "n": "Deserter (Axe)",
+   "name": "Deserter (Axe)",
    "tier": 4,
    "hp": 125,
    "energy": 100,
@@ -5067,7 +5067,7 @@
    "note": "Human; Cut Through, Mutilating Lunge, Raise Shield, Offensive Tactic, Dash, Reprisal, Ferocity, Sprint Training"
   },
   {
-   "n": "Deserter (Flail)",
+   "name": "Deserter (Flail)",
    "tier": 4,
    "hp": 125,
    "energy": 100,
@@ -5110,7 +5110,7 @@
    "note": "Human; Onslaught, Armor Break, Raise Shield, Dash, Moment of Weakness, Dazing Strikes, Sprint Training"
   },
   {
-   "n": "Deserter (Two-Handed Flail)",
+   "name": "Deserter (Two-Handed Flail)",
    "tier": 4,
    "hp": 125,
    "energy": 100,
@@ -5150,7 +5150,7 @@
    "note": "Human; Mighty Swing, Unstoppable Force, Skull Crusher, Striker Stance, Unbalance, Severe Concussion, No Time to Linger"
   },
   {
-   "n": "Magistrate Deserter (Halberd)",
+   "name": "Magistrate Deserter (Halberd)",
    "tier": 4,
    "hp": 130,
    "energy": 100,
@@ -5192,7 +5192,7 @@
    "note": "Human; Nail Down, Impaling Lunge, Pikeman Stance, Regroup, Flexible Defense, One at a Time!, Coordinated Advance, Peak Performance"
   },
   {
-   "n": "Magistrate Deserter (Two-Handed Axe)",
+   "name": "Magistrate Deserter (Two-Handed Axe)",
    "tier": 4,
    "hp": 130,
    "energy": 100,
@@ -5234,7 +5234,7 @@
    "note": "Human; Hooking Chop, Reign in Blood, Dismember, Rampage, Flexible Defense, Battering Ram, Coordinated Advance, Peak Performance"
   },
   {
-   "n": "Magistrate Deserter (Two-Handed Mace)",
+   "name": "Magistrate Deserter (Two-Handed Mace)",
    "tier": 4,
    "hp": 130,
    "energy": 100,
@@ -5277,7 +5277,7 @@
    "note": "Human; Mighty Swing, Unstoppable Force, Striker Stance, Skull Crusher, Flexible Defense, Battering Ram, Coordinated Advance, Peak Performance"
   },
   {
-   "n": "Banneret",
+   "name": "Banneret",
    "tier": 4,
    "hp": 115,
    "energy": 95,
@@ -5320,7 +5320,7 @@
    "note": "Human; Nail Down, Banners High!, Seize the Initiative, Instigate, Stay Back!, Peak Performance, No Retreat, Final Push"
   },
   {
-   "n": "Magehunter",
+   "name": "Magehunter",
    "tier": 4,
    "hp": 115,
    "energy": 120,
@@ -5373,7 +5373,7 @@
    "note": "Human"
   },
   {
-   "n": "Brigand Geomancer",
+   "name": "Brigand Geomancer",
    "tier": 4,
    "hp": 115,
    "energy": 180,
@@ -5429,7 +5429,7 @@
    "note": "Human; Runic Boulder, Stone Armor, Stone Spikes, Boulder Toss, Step Aside!, Dissipation, Now or Never, Battle Trance"
   },
   {
-   "n": "Brigand Electromancer",
+   "name": "Brigand Electromancer",
    "tier": 4,
    "hp": 100,
    "energy": 190,
@@ -5481,7 +5481,7 @@
    "note": "Human; Jolt, Impulse, Short Circuit, Chain Lightning, Seal of Power, Dissipation, Unlimited Power, Inner Reserves"
   },
   {
-   "n": "Heavy Slinger (Axe)",
+   "name": "Heavy Slinger (Axe)",
    "tier": 4,
    "hp": 115,
    "energy": 95,
@@ -5523,7 +5523,7 @@
    "note": "Human; Seize the Initiative, Taking Aim, Startling Volley, Suppression, Distracting Shot, Hard Target, Constant Practice, Spot Weakness, Precision, Shoot to Kill, Heavy Slinger (Axe) (Melee), Mutilating Lunge"
   },
   {
-   "n": "Heavy Slinger (Mace)",
+   "name": "Heavy Slinger (Mace)",
    "tier": 4,
    "hp": 115,
    "energy": 95,
@@ -5565,7 +5565,7 @@
    "note": "Human; Seize the Initiative, Taking Aim, Startling Volley, Suppression, Distracting Shot, Hard Target, Constant Practice, Spot Weakness, Precision, Shoot to Kill, Heavy Slinger (Mace) (Melee), Onslaught"
   },
   {
-   "n": "Paymaster",
+   "name": "Paymaster",
    "tier": 4,
    "hp": 140,
    "energy": 95,
@@ -5608,7 +5608,7 @@
    "note": "Human"
   },
   {
-   "n": "Wolfhound",
+   "name": "Wolfhound",
    "tier": 4,
    "hp": 75,
    "energy": 95,
@@ -5645,7 +5645,7 @@
    "note": "Beast; Loud Barking, Grab ’Em!, Dash (animal), Disengage, No Time to Linger, Dying Rage, Dark Vision"
   },
   {
-   "n": "Robber Baron (Two-Handed Sword)",
+   "name": "Robber Baron (Two-Handed Sword)",
    "tier": 5,
    "hp": 200,
    "energy": 125,
@@ -5698,7 +5698,7 @@
    "note": "Human"
   },
   {
-   "n": "Robber Baron (Two-Handed Mace)",
+   "name": "Robber Baron (Two-Handed Mace)",
    "tier": 5,
    "hp": 200,
    "energy": 125,
@@ -5751,7 +5751,7 @@
    "note": "Human"
   },
   {
-   "n": "Ringleader (Sword)",
+   "name": "Ringleader (Sword)",
    "tier": 5,
    "hp": 180,
    "energy": 145,
@@ -5793,7 +5793,7 @@
    "note": "Human; Cleaving Strike, Onrush, Fencer Stance, Raise Shield, Dash, Offensive Tactic, Instigate, Gloat, Sprint Training, Honed Edge"
   },
   {
-   "n": "Ringleader (Axe)",
+   "name": "Ringleader (Axe)",
    "tier": 5,
    "hp": 180,
    "energy": 145,
@@ -5835,7 +5835,7 @@
    "note": "Human; Cut Through, Mutilating Lunge, Execution, Raise Shield, Instigate, Dash, Offensive Tactic, Reprisal, Sprint Training, Tormenting Swings"
   },
   {
-   "n": "Renegade (Two-Handed Sword)",
+   "name": "Renegade (Two-Handed Sword)",
    "tier": 5,
    "hp": 150,
    "energy": 130,
@@ -5878,7 +5878,7 @@
    "note": "Human"
   },
   {
-   "n": "Renegade (Two-Handed Axe)",
+   "name": "Renegade (Two-Handed Axe)",
    "tier": 5,
    "hp": 150,
    "energy": 130,
@@ -5918,7 +5918,7 @@
    "note": "Human; Hooking Chop, Reign in Blood, Dismember, Rampage, Unyielding Defense, Battering Ram, Fatal Strike, Peak Performance, Shieldbreaker, Finish `Em!"
   },
   {
-   "n": "Renegade (Two-Handed Mace)",
+   "name": "Renegade (Two-Handed Mace)",
    "tier": 5,
    "hp": 150,
    "energy": 130,
@@ -5961,7 +5961,7 @@
    "note": "Human; Mighty Swing, Unstoppable Force, Skull Crusher, Striker Stance, Forceful Slam, Unbalance, Severe Concussion, Setup, Push the Falling, Battle-Forged"
   },
   {
-   "n": "Renegade (Halberd)",
+   "name": "Renegade (Halberd)",
    "tier": 5,
    "hp": 150,
    "energy": 130,
@@ -6003,7 +6003,7 @@
    "note": "Human; Nail Down, Impaling Lunge, Pikeman Stance, Regroup, Flexible Defense, Sudden Lunge, One at a Time!, Peak Performance, Wounding Spearhead, No Time to Linger"
   },
   {
-   "n": "Renegade (Two-Handed Flail)",
+   "name": "Renegade (Two-Handed Flail)",
    "tier": 5,
    "hp": 150,
    "energy": 130,
@@ -6044,7 +6044,7 @@
    "note": "Human; Mighty Swing, Unstoppable Force, Skull Crusher, Striker Stance, Flexible Defense, Unbalance, Severe Concussion, Setup, Intimidation, Push the Falling"
   },
   {
-   "n": "Robber Baron (Mace)",
+   "name": "Robber Baron (Mace)",
    "tier": 5,
    "hp": 200,
    "energy": 125,
@@ -6098,7 +6098,7 @@
    "note": "Human"
   },
   {
-   "n": "Rogue Witchfinder",
+   "name": "Rogue Witchfinder",
    "tier": 5,
    "hp": 175,
    "energy": 110,
@@ -6154,7 +6154,7 @@
    "note": "Human"
   },
   {
-   "n": "Duelist",
+   "name": "Duelist",
    "tier": 5,
    "hp": 130,
    "energy": 145,
@@ -6196,7 +6196,7 @@
    "note": "Human; Onrush, Flurry of Strikes, Double Lunge, Gaping Wound, Seize the Initiative, Dash, Honed Edge, Counterattack Mastery, Disengage, Gloat"
   },
   {
-   "n": "Heavy Crossbowman",
+   "name": "Heavy Crossbowman",
    "tier": 5,
    "hp": 115,
    "energy": 130,
@@ -6237,7 +6237,7 @@
    "note": "Human; Taking Aim, Suppression, Headshot, Distracting Shot, Leg Sweep, Seize the Initiative, Hard Target, Constant Practice, Shoot to Kill, Setup, Spot Weakness, Precision"
   },
   {
-   "n": "Brigand Pyromancer",
+   "name": "Brigand Pyromancer",
    "tier": 5,
    "hp": 105,
    "energy": 175,
@@ -6289,7 +6289,7 @@
    "note": "Human; Fire Barrage, Ring of Fire, Flame Wave, Magma Rain, Melting Ray, Seal of Power, Dissipation, Feed the Flames, Scorch, Baptism by Fire"
   },
   {
-   "n": "Brigand Arcanist",
+   "name": "Brigand Arcanist",
    "tier": 5,
    "hp": 145,
    "energy": 220,
@@ -6346,7 +6346,7 @@
    "note": "Human; Dimensional Shift, Aether Shield, Mana Crystal, Phantasm, Seal of Power, Seal of Reflection, Seal of Shackles, Peacemaker, Aether Harmony, Arcane Might, Dissipation, Lingering Incantations"
   },
   {
-   "n": "Archivist",
+   "name": "Archivist",
    "tier": 2,
    "hp": 75,
    "energy": 120,
@@ -6392,7 +6392,7 @@
    "note": "Human"
   },
   {
-   "n": "Wraith Monk",
+   "name": "Wraith Monk",
    "tier": 2,
    "hp": 20,
    "energy": 130,
@@ -6446,7 +6446,7 @@
    "note": "Spectre; Grave Chill, Spectral Haunting, Unholy Blessing, Dark Vision"
   },
   {
-   "n": "Small Ghoul",
+   "name": "Small Ghoul",
    "tier": 2,
    "hp": 70,
    "energy": 60,
@@ -6492,7 +6492,7 @@
    "note": "Undead"
   },
   {
-   "n": "Restless Guard (Spear)",
+   "name": "Restless Guard (Spear)",
    "tier": 2,
    "hp": 90,
    "energy": 45,
@@ -6538,7 +6538,7 @@
    "note": "Undead; Strangling Grasp, Abominable Vitality, Dark Vision"
   },
   {
-   "n": "Restless Guard (Halberd)",
+   "name": "Restless Guard (Halberd)",
    "tier": 2,
    "hp": 90,
    "energy": 45,
@@ -6585,7 +6585,7 @@
    "note": "Undead; Strangling Grasp, Abominable Vitality, Dark Vision"
   },
   {
-   "n": "Risen Monk",
+   "name": "Risen Monk",
    "tier": 2,
    "hp": 65,
    "energy": 70,
@@ -6634,7 +6634,7 @@
    "note": "Undead; Desecration, Dark Vision"
   },
   {
-   "n": "Risen Recruit (Axe)",
+   "name": "Risen Recruit (Axe)",
    "tier": 2,
    "hp": 75,
    "energy": 50,
@@ -6687,7 +6687,7 @@
    "note": "Undead; Raise Shield, Cut Through, Dark Vision"
   },
   {
-   "n": "Risen Recruit (Mace)",
+   "name": "Risen Recruit (Mace)",
    "tier": 2,
    "hp": 75,
    "energy": 50,
@@ -6740,7 +6740,7 @@
    "note": "Undead; Raise Shield, Armor Break, Dark Vision"
   },
   {
-   "n": "Risen Archer",
+   "name": "Risen Archer",
    "tier": 2,
    "hp": 70,
    "energy": 50,
@@ -6791,7 +6791,7 @@
    "note": "Undead; Taking Aim, Dark Vision"
   },
   {
-   "n": "Ritualist",
+   "name": "Ritualist",
    "tier": 3,
    "hp": 95,
    "energy": 125,
@@ -6839,7 +6839,7 @@
    "note": "Human"
   },
   {
-   "n": "Wraith Sergeant",
+   "name": "Wraith Sergeant",
    "tier": 3,
    "hp": 25,
    "energy": 150,
@@ -6893,7 +6893,7 @@
    "note": "Spectre; Grave Chill, Spectral Haunting, Hewing Strike, Sudden Lunge, Dark Vision"
   },
   {
-   "n": "Wraith Cleric",
+   "name": "Wraith Cleric",
    "tier": 3,
    "hp": 25,
    "energy": 150,
@@ -6948,7 +6948,7 @@
    "note": "Spectre; Grave Chill, Spectral Haunting, Unholy Blessing, Curse of Decay, Dark Vision"
   },
   {
-   "n": "Restless Soldier (Mace)",
+   "name": "Restless Soldier (Mace)",
    "tier": 3,
    "hp": 95,
    "energy": 50,
@@ -6993,7 +6993,7 @@
    "note": "Undead; Onslaught, Strangling Grasp, Abominable Vitality, Dark Vision"
   },
   {
-   "n": "Restless Soldier (Axe)",
+   "name": "Restless Soldier (Axe)",
    "tier": 3,
    "hp": 95,
    "energy": 50,
@@ -7038,7 +7038,7 @@
    "note": "Undead; Mutilating Lunge, Strangling Grasp, Abominable Vitality, Dark Vision"
   },
   {
-   "n": "Restless Soldier (Halberd)",
+   "name": "Restless Soldier (Halberd)",
    "tier": 3,
    "hp": 110,
    "energy": 50,
@@ -7084,7 +7084,7 @@
    "note": "Undead; Impaling Lunge, Strangling Grasp, Abominable Vitality, Dark Vision"
   },
   {
-   "n": "Risen Priest",
+   "name": "Risen Priest",
    "tier": 3,
    "hp": 80,
    "energy": 85,
@@ -7133,7 +7133,7 @@
    "note": "Undead; Desecration, Blasphemous Sigil, Seal of Power, Lingering Incantations, Dark Vision"
   },
   {
-   "n": "Risen Squire (Sword)",
+   "name": "Risen Squire (Sword)",
    "tier": 3,
    "hp": 90,
    "energy": 60,
@@ -7187,7 +7187,7 @@
    "note": "Undead; Cleaving Strike, Raise Shield, Shield Bash, Embodiment of Resilience, Gloat, Dark Vision"
   },
   {
-   "n": "Risen Squire (Axe)",
+   "name": "Risen Squire (Axe)",
    "tier": 3,
    "hp": 90,
    "energy": 60,
@@ -7241,7 +7241,7 @@
    "note": "Undead; Cut Through, Raise Shield, Shield Bash, Embodiment of Resilience, No Mercy, Dark Vision"
   },
   {
-   "n": "Risen Squire (Mace)",
+   "name": "Risen Squire (Mace)",
    "tier": 3,
    "hp": 90,
    "energy": 60,
@@ -7295,7 +7295,7 @@
    "note": "Undead; Armor Break, Shield Bash, Raise Shield, Hold the Line!, Embodiment of Resilience, Dark Vision"
   },
   {
-   "n": "Risen Sariant",
+   "name": "Risen Sariant",
    "tier": 3,
    "hp": 90,
    "energy": 60,
@@ -7349,7 +7349,7 @@
    "note": "Undead; Impaling Lunge, Nail Down, Seize the Initiative, One at a Time!, No Retreat, Dark Vision"
   },
   {
-   "n": "Risen Bowman",
+   "name": "Risen Bowman",
    "tier": 3,
    "hp": 80,
    "energy": 60,
@@ -7402,7 +7402,7 @@
    "note": "Undead; Taking Aim, Spot Weakness, Dark Vision, Cleaving Strike"
   },
   {
-   "n": "Crypt Keeper",
+   "name": "Crypt Keeper",
    "tier": 4,
    "hp": 175,
    "energy": 190,
@@ -7462,7 +7462,7 @@
    "note": "Undead"
   },
   {
-   "n": "Restless Hero",
+   "name": "Restless Hero",
    "tier": 4,
    "hp": 315,
    "energy": 95,
@@ -7516,7 +7516,7 @@
    "note": "Undead"
   },
   {
-   "n": "Wraith Templar",
+   "name": "Wraith Templar",
    "tier": 4,
    "hp": 30,
    "energy": 180,
@@ -7572,7 +7572,7 @@
    "note": "Spectre"
   },
   {
-   "n": "Wraith Seer",
+   "name": "Wraith Seer",
    "tier": 4,
    "hp": 30,
    "energy": 180,
@@ -7627,7 +7627,7 @@
    "note": "Spectre; Grave Chill, Spectral Haunting, Desecration, Unholy Blessing, Curse of Decay, Deadly Premonition, Dark Vision"
   },
   {
-   "n": "Large Ghoul",
+   "name": "Large Ghoul",
    "tier": 4,
    "hp": 120,
    "energy": 100,
@@ -7682,7 +7682,7 @@
    "note": "Undead"
   },
   {
-   "n": "Accursed Ghast",
+   "name": "Accursed Ghast",
    "tier": 4,
    "hp": 75,
    "energy": 145,
@@ -7733,7 +7733,7 @@
    "note": "Undead; Soul Sacrifice, Death Touch, Unholy Blessing, Binding Sigil, Curse of Agony, Steal Essence, Dissipation, Dark Vision"
   },
   {
-   "n": "Putrid Restless Soldier (Two-Handed Mace)",
+   "name": "Putrid Restless Soldier (Two-Handed Mace)",
    "tier": 4,
    "hp": 115,
    "energy": 60,
@@ -7781,7 +7781,7 @@
    "note": "Undead; Mighty Swing, Unstoppable Force, Strangling Grasp, Abominable Vitality, Putrid Odor, Dark Vision"
   },
   {
-   "n": "Putrid Restless Soldier (Two-Handed Axe)",
+   "name": "Putrid Restless Soldier (Two-Handed Axe)",
    "tier": 4,
    "hp": 115,
    "energy": 60,
@@ -7828,7 +7828,7 @@
    "note": "Undead; Hooking Chop, Dismember, Strangling Grasp, Abominable Vitality, Putrid Odor, Dark Vision"
   },
   {
-   "n": "Putrid Restless Soldier (Halberd)",
+   "name": "Putrid Restless Soldier (Halberd)",
    "tier": 4,
    "hp": 115,
    "energy": 60,
@@ -7876,7 +7876,7 @@
    "note": "Undead; Nail Down, Impaling Lunge, Strangling Grasp, Abominable Vitality, Putrid Odor, Dark Vision"
   },
   {
-   "n": "Risen Chaplain",
+   "name": "Risen Chaplain",
    "tier": 4,
    "hp": 95,
    "energy": 100,
@@ -7925,7 +7925,7 @@
    "note": "Undead; Desecration, Blasphemous Sigil, Curse of Decay, Curse of Agony, Seal of Power, Lingering Incantations, Thaumaturgy, Dark Vision"
   },
   {
-   "n": "Risen Companion (Sword)",
+   "name": "Risen Companion (Sword)",
    "tier": 4,
    "hp": 105,
    "energy": 70,
@@ -7979,7 +7979,7 @@
    "note": "Undead; Cleaving Strike, Raise Shield, Shield Bash, Breakthrough, Embodiment of Resilience, Gloat, Moment of Retribution, Dark Vision"
   },
   {
-   "n": "Risen Companion (Axe)",
+   "name": "Risen Companion (Axe)",
    "tier": 4,
    "hp": 105,
    "energy": 70,
@@ -8033,7 +8033,7 @@
    "note": "Undead; Cut Through, Raise Shield, Shield Bash, Breakthrough, No Mercy, Embodiment of Resilience, Moment of Retribution, Dark Vision"
   },
   {
-   "n": "Risen Companion (Mace)",
+   "name": "Risen Companion (Mace)",
    "tier": 4,
    "hp": 105,
    "energy": 70,
@@ -8087,7 +8087,7 @@
    "note": "Undead; Armor Break, Raise Shield, Breakthrough, Shield Bash, Embodiment of Resilience, Dazing Strikes, Moment of Retribution, Dark Vision"
   },
   {
-   "n": "Risen Sergeant",
+   "name": "Risen Sergeant",
    "tier": 4,
    "hp": 105,
    "energy": 70,
@@ -8142,7 +8142,7 @@
    "note": "Undead; Impaling Lunge, Nail Down, Seize the Initiative, Pikeman Stance, Flexible Defense, Stay Back!, One at a Time!, Dark Vision"
   },
   {
-   "n": "Risen Crossbowman",
+   "name": "Risen Crossbowman",
    "tier": 4,
    "hp": 95,
    "energy": 70,
@@ -8195,7 +8195,7 @@
    "note": "Undead; Taking Aim, Long Shot, Suppression, Spot Weakness, Shoot to Kill, Dark Vision, Cleaving Strike, Gloat"
   },
   {
-   "n": "Risen Marshal",
+   "name": "Risen Marshal",
    "tier": 5,
    "hp": 180,
    "energy": 160,
@@ -8254,7 +8254,7 @@
    "note": "Undead"
   },
   {
-   "n": "Wraithbinder",
+   "name": "Wraithbinder",
    "tier": 5,
    "hp": 135,
    "energy": 220,
@@ -8305,7 +8305,7 @@
    "note": "Human"
   },
   {
-   "n": "Spectral Herald",
+   "name": "Spectral Herald",
    "tier": 5,
    "hp": 55,
    "energy": 100,
@@ -8360,7 +8360,7 @@
    "note": "Spectre"
   },
   {
-   "n": "Wraith Commander",
+   "name": "Wraith Commander",
    "tier": 5,
    "hp": 40,
    "energy": 220,
@@ -8414,7 +8414,7 @@
    "note": "Spectre; Grave Chill, Spectral Haunting, Steal Essence, Wraith Summoning, Curse of Decay, Dismember"
   },
   {
-   "n": "Ancient Ghast",
+   "name": "Ancient Ghast",
    "tier": 5,
    "hp": 90,
    "energy": 175,
@@ -8463,7 +8463,7 @@
    "note": "Undead; Lesser Ritual of Resurrection, Soul Sacrifice, Death Touch, Unholy Blessing, Binding Sigil, Curse of Agony, Steal Essence, Life Leech, Dissipation, Aura of Demise, Dark Vision"
   },
   {
-   "n": "Risen Knight-Brother (Two-Handed Axe)",
+   "name": "Risen Knight-Brother (Two-Handed Axe)",
    "tier": 5,
    "hp": 130,
    "energy": 100,
@@ -8517,7 +8517,7 @@
    "note": "Undead; Hooking Chop, Dismember, Reign in Blood, Rampage, Flexible Defense, Thirst for Battle, Shieldbreaker, Finish `Em!, Setup, Intimidation, Dark Vision"
   },
   {
-   "n": "Risen Knight-Brother (Two-Handed Mace)",
+   "name": "Risen Knight-Brother (Two-Handed Mace)",
    "tier": 5,
    "hp": 130,
    "energy": 100,
@@ -8571,7 +8571,7 @@
    "note": "Undead; Mighty Swing, Unstoppable Force, Striker Stance, Offensive Tactic, Thirst for Battle, Flexible Defense, Unbalance, Severe Concussion, Setup, Intimidation, Dark Vision"
   },
   {
-   "n": "Risen Knight-Brother (Two-Handed Sword)",
+   "name": "Risen Knight-Brother (Two-Handed Sword)",
    "tier": 5,
    "hp": 130,
    "energy": 100,
@@ -8625,7 +8625,7 @@
    "note": "Undead; Hewing Strike, Parry, Arc Cleave, Feast of Steel, Thirst for Battle, Flexible Defense, Taste of Victory, Fight to the Death, Courage, Setup, Intimidation, Dark Vision"
   },
   {
-   "n": "Risen Guardsman (Two-Handed Axe)",
+   "name": "Risen Guardsman (Two-Handed Axe)",
    "tier": 5,
    "hp": 145,
    "energy": 110,
@@ -8679,7 +8679,7 @@
    "note": "Undead; Hooking Chop, Dismember, Against the Odds, Unyielding Defense, Brace for Impact!, Shieldbreaker, Battle-Forged, Setup, Final Push, Armor Crusher, Dark Vision"
   },
   {
-   "n": "Risen Guardsman (Mace)",
+   "name": "Risen Guardsman (Mace)",
    "tier": 5,
    "hp": 145,
    "energy": 110,
@@ -8734,7 +8734,7 @@
    "note": "Undead; Armor Break, Onslaught, Hammer and Anvil, Shield Bash, Breakthrough, Unyielding Defense, Brace for Impact!, Dazing Strikes, Embodiment of Resilience, Moment of Retribution, Dark Vision"
   },
   {
-   "n": "Risen Guardsman (Spear)",
+   "name": "Risen Guardsman (Spear)",
    "tier": 5,
    "hp": 145,
    "energy": 110,
@@ -8788,7 +8788,7 @@
    "note": "Undead; Nail Down, Impaling Lunge, Pikeman Stance, Regroup, Against the Odds, Unyielding Defense, Brace for Impact!, One at a Time!, No Retreat, Stay Back!, Dark Vision"
   },
   {
-   "n": "Apostate",
+   "name": "Apostate",
    "tier": 1,
    "hp": 90,
    "energy": 115,
@@ -8823,7 +8823,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Reject",
+   "name": "Reject",
    "tier": 1,
    "hp": 105,
    "energy": 85,
@@ -8876,7 +8876,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Harbinger",
+   "name": "Harbinger",
    "tier": 1,
    "hp": 80,
    "energy": 85,
@@ -8909,7 +8909,7 @@
    "note": "Vampire; Baleful Scream, Life Leech"
   },
   {
-   "n": "Outcast",
+   "name": "Outcast",
    "tier": 1,
    "hp": 70,
    "energy": 90,
@@ -8946,7 +8946,7 @@
    "note": "Vampire; Lacerate, Bloodthirst, Dark Vision"
   },
   {
-   "n": "Dead Martyr",
+   "name": "Dead Martyr",
    "tier": 1,
    "hp": 40,
    "dodge": -100,
@@ -8974,7 +8974,7 @@
    "note": "Vampire; Blessed in Death"
   },
   {
-   "n": "Neophyte (Club)",
+   "name": "Neophyte (Club)",
    "tier": 1,
    "hp": 80,
    "energy": 85,
@@ -9007,7 +9007,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Neophyte (Dagger)",
+   "name": "Neophyte (Dagger)",
    "tier": 1,
    "hp": 80,
    "energy": 85,
@@ -9040,7 +9040,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Neophyte (Plank)",
+   "name": "Neophyte (Plank)",
    "tier": 1,
    "hp": 80,
    "energy": 85,
@@ -9073,7 +9073,7 @@
    "note": "Vampire; Mighty Swing"
   },
   {
-   "n": "Disciple (Staff)",
+   "name": "Disciple (Staff)",
    "tier": 1,
    "hp": 90,
    "energy": 85,
@@ -9107,7 +9107,7 @@
    "note": "Vampire; Life Leech, Step Aside!"
   },
   {
-   "n": "Disciple (Two-Handed Axe)",
+   "name": "Disciple (Two-Handed Axe)",
    "tier": 1,
    "hp": 90,
    "energy": 85,
@@ -9141,7 +9141,7 @@
    "note": "Vampire; Life Leech, Hooking Chop"
   },
   {
-   "n": "Disciple (Two-Handed Flail)",
+   "name": "Disciple (Two-Handed Flail)",
    "tier": 1,
    "hp": 90,
    "energy": 85,
@@ -9175,7 +9175,7 @@
    "note": "Undead; Life Leech, Mighty Swing"
   },
   {
-   "n": "Seer",
+   "name": "Seer",
    "tier": 2,
    "hp": 110,
    "energy": 130,
@@ -9227,7 +9227,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Zealot (Flail)",
+   "name": "Zealot (Flail)",
    "tier": 2,
    "hp": 95,
    "energy": 95,
@@ -9283,7 +9283,7 @@
    "note": "Vampire; Onslaught, Bloodthirst, Moment of Weakness, Blood Scent"
   },
   {
-   "n": "Toller",
+   "name": "Toller",
    "tier": 2,
    "hp": 90,
    "energy": 95,
@@ -9338,7 +9338,7 @@
    "note": "Vampire; For Whom the Bell Tolls, Unholy Anthems, Life Leech, Bloodthirst"
   },
   {
-   "n": "Adept (Dagger)",
+   "name": "Adept (Dagger)",
    "tier": 2,
    "hp": 105,
    "energy": 110,
@@ -9392,7 +9392,7 @@
    "note": "Vampire; Double Lunge, Sacrificial Blood, Life Leech, Bloodthirst"
   },
   {
-   "n": "Adept (Torch)",
+   "name": "Adept (Torch)",
    "tier": 2,
    "hp": 105,
    "energy": 110,
@@ -9448,7 +9448,7 @@
    "note": "Vampire; Sacrificial Blood, Life Leech, Bloodthirst"
   },
   {
-   "n": "Tormentor (Chain)",
+   "name": "Tormentor (Chain)",
    "tier": 2,
    "hp": 85,
    "energy": 100,
@@ -9504,7 +9504,7 @@
    "note": "Vampire; Chain Strike, Lacerate, Bloodthirst, Blood Scent"
   },
   {
-   "n": "Tormentor (Cleaver)",
+   "name": "Tormentor (Cleaver)",
    "tier": 2,
    "hp": 85,
    "energy": 100,
@@ -9559,7 +9559,7 @@
    "note": "Vampire; Cleaving Strike, Lacerate, Bloodthirst, Blood Scent"
   },
   {
-   "n": "Blood Golem",
+   "name": "Blood Golem",
    "tier": 2,
    "hp": 75,
    "energy": 45,
@@ -9604,7 +9604,7 @@
    "note": "Undead; Flesh Explosion, Dark Vision"
   },
   {
-   "n": "Stone-Thrower",
+   "name": "Stone-Thrower",
    "tier": 2,
    "hp": 80,
    "energy": 95,
@@ -9658,7 +9658,7 @@
    "note": "Vampire; Taking Aim, Bloodthirst, Double Lunge"
   },
   {
-   "n": "Brander",
+   "name": "Brander",
    "tier": 3,
    "hp": 170,
    "energy": 125,
@@ -9716,7 +9716,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Fury",
+   "name": "Fury",
    "tier": 3,
    "hp": 115,
    "energy": 100,
@@ -9771,7 +9771,7 @@
    "note": "Vampire; Vengeful Lash, Lash Blessing, Lacerate, Baleful Scream, Life Leech, Bloodthirst, Driven by Pain"
   },
   {
-   "n": "Executioner (Chain)",
+   "name": "Executioner (Chain)",
    "tier": 3,
    "hp": 120,
    "energy": 115,
@@ -9826,7 +9826,7 @@
    "note": "Vampire; Symphony of Pain, Lacerate, Chain Strike, Bloodthirst, Delight in Suffering, Driven by Pain, Blood Craze"
   },
   {
-   "n": "Executioner (Two-Handed Sword)",
+   "name": "Executioner (Two-Handed Sword)",
    "tier": 3,
    "hp": 120,
    "energy": 115,
@@ -9884,7 +9884,7 @@
    "note": "Vampire; Symphony of Pain, Hewing Strike, Lacerate, Bloodthirst, Delight in Suffering, Blood Craze, Fight to the Death"
   },
   {
-   "n": "Amalgam (Winged)",
+   "name": "Amalgam (Winged)",
    "tier": 3,
    "hp": 115,
    "energy": 110,
@@ -9939,7 +9939,7 @@
    "note": "Vampire; Flurry of Strikes, Dash, Bloodthirst, No Time to Linger, Dark Vision"
   },
   {
-   "n": "Amalgam (Tongue)",
+   "name": "Amalgam (Tongue)",
    "tier": 3,
    "hp": 115,
    "energy": 110,
@@ -9994,7 +9994,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Admonisher",
+   "name": "Admonisher",
    "tier": 3,
    "hp": 140,
    "energy": 200,
@@ -10050,7 +10050,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Supplicant",
+   "name": "Supplicant",
    "tier": 3,
    "hp": 65,
    "energy": 20,
@@ -10094,7 +10094,7 @@
    "note": "Vampire; Worship, Willing Sacrifice"
   },
   {
-   "n": "Liturgist",
+   "name": "Liturgist",
    "tier": 3,
    "hp": 135,
    "energy": 100,
@@ -10148,7 +10148,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Flesh Chunk",
+   "name": "Flesh Chunk",
    "tier": 3,
    "hp": 22,
    "dodge": -25,
@@ -10186,7 +10186,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Flesh Mound",
+   "name": "Flesh Mound",
    "tier": 3,
    "hp": 95,
    "dodge": -25,
@@ -10224,7 +10224,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Wormbearer",
+   "name": "Wormbearer",
    "tier": 4,
    "hp": 275,
    "energy": 240,
@@ -10281,7 +10281,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Anmarrak",
+   "name": "Anmarrak",
    "tier": 4,
    "hp": 220,
    "energy": 150,
@@ -10337,7 +10337,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Fiend (Two-Handed Axe)",
+   "name": "Fiend (Two-Handed Axe)",
    "tier": 4,
    "hp": 150,
    "energy": 150,
@@ -10395,7 +10395,7 @@
    "note": "Vampire; Hooking Chop, Dismember, Reign in Blood, Bloodthirst, Witness His Might!, Anthems of Bloodshed, Finish `Em!, Dark Vision"
   },
   {
-   "n": "Fiend (Two-Handed Mace)",
+   "name": "Fiend (Two-Handed Mace)",
    "tier": 4,
    "hp": 150,
    "energy": 150,
@@ -10453,7 +10453,7 @@
    "note": "Vampire; Mighty Swing, Unstoppable Force, Skull Crusher, Bloodthirst, Witness His Might!, Anthems of Bloodshed, Unbalance, Dark Vision"
   },
   {
-   "n": "Saggul",
+   "name": "Saggul",
    "tier": 4,
    "hp": 125,
    "energy": 130,
@@ -10503,7 +10503,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Impaler",
+   "name": "Impaler",
    "tier": 4,
    "hp": 140,
    "energy": 140,
@@ -10561,7 +10561,7 @@
    "note": "Vampire; Lacerate, Impaling Lunge, Sudden Lunge, Dash, Elusiveness, Net Throw, Bloodthirst, Blood Scent, No Time to Linger, Sprint Training, Dark Vision"
   },
   {
-   "n": "Girrud",
+   "name": "Girrud",
    "tier": 4,
    "hp": 125,
    "energy": 130,
@@ -10615,7 +10615,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Murkstalker",
+   "name": "Murkstalker",
    "tier": 4,
    "hp": 130,
    "energy": 155,
@@ -10670,7 +10670,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Thrall",
+   "name": "Thrall",
    "tier": 4,
    "hp": 100,
    "energy": 120,
@@ -10725,7 +10725,7 @@
    "note": "Vampire; Inevitable Doom, Flesh Explosion, Immolation, Willing Sacrifice, Driven by Pain, Dark Vision"
   },
   {
-   "n": "Ecclesiarch",
+   "name": "Ecclesiarch",
    "tier": 4,
    "hp": 140,
    "energy": 240,
@@ -10778,7 +10778,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Chainbound",
+   "name": "Chainbound",
    "tier": 4,
    "hp": 165,
    "energy": 150,
@@ -10834,7 +10834,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Unchained",
+   "name": "Unchained",
    "tier": 4,
    "hp": 150,
    "energy": 150,
@@ -10891,7 +10891,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Leech Worm",
+   "name": "Leech Worm",
    "tier": 3,
    "hp": 33,
    "energy": 50,
@@ -10949,7 +10949,7 @@
    "note": "Vampire; Feed the Host, Dark Vision"
   },
   {
-   "n": "Spitter Worm",
+   "name": "Spitter Worm",
    "tier": 4,
    "hp": 33,
    "energy": 60,
@@ -11006,7 +11006,7 @@
    "note": "Vampire; Blood Spit, Dark Vision"
   },
   {
-   "n": "Bloodgorger Worm",
+   "name": "Bloodgorger Worm",
    "tier": 4,
    "hp": 66,
    "energy": 60,
@@ -11064,7 +11064,7 @@
    "note": "Vampire; Feed the Host, Bursting with Blood, Dark Vision"
   },
   {
-   "n": "Tentacle Arm",
+   "name": "Tentacle Arm",
    "tier": 4,
    "hp": 90,
    "energy": 60,
@@ -11120,7 +11120,7 @@
    "note": "Vampire; Lacerate, Rend Flesh, One Body, Feed the Host, Dark Vision"
   },
   {
-   "n": "Apostle",
+   "name": "Apostle",
    "tier": 5,
    "hp": 190,
    "energy": 305,
@@ -11175,7 +11175,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Nakkatar",
+   "name": "Nakkatar",
    "tier": 5,
    "hp": 220,
    "energy": 220,
@@ -11233,7 +11233,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Cherub (Spear)",
+   "name": "Cherub (Spear)",
    "tier": 5,
    "hp": 200,
    "energy": 175,
@@ -11291,7 +11291,7 @@
    "note": "Vampire; Judgement Day, Cull the Weak, Swoop In, Nail Down, Impaling Lunge, Seize the Initiative, Life Leech, Bloodthirst, Fall from Grace, Witness His Might!, Anthems of Bloodshed, Precise Hits"
   },
   {
-   "n": "Cherub (Two-Handed Axe)",
+   "name": "Cherub (Two-Handed Axe)",
    "tier": 5,
    "hp": 200,
    "energy": 175,
@@ -11349,7 +11349,7 @@
    "note": "Vampire; Judgement Day, Cull the Weak, Swoop In, Hooking Chop, Dismember, Reign in Blood, Life Leech, Bloodthirst, Fall from Grace, Witness His Might!, Anthems of Bloodshed, Precise Hits"
   },
   {
-   "n": "Anointed",
+   "name": "Anointed",
    "tier": 5,
    "hp": 165,
    "energy": 290,
@@ -11408,7 +11408,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Templar (Sword)",
+   "name": "Templar (Sword)",
    "tier": 5,
    "hp": 220,
    "energy": 125,
@@ -11466,7 +11466,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Templar (Mace)",
+   "name": "Templar (Mace)",
    "tier": 5,
    "hp": 220,
    "energy": 125,
@@ -11525,7 +11525,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Bloodhunter",
+   "name": "Bloodhunter",
    "tier": 5,
    "hp": 175,
    "energy": 220,
@@ -11581,7 +11581,7 @@
    "note": "Vampire; Frenzied Hunt, Bloodthirst, Wild Swipe, Jump Away, Dash, Sudden Lunge, Adrenaline Rush, Blood Craze, Blood Scent, Rip and Tear, Delight in Suffering, Disengage"
   },
   {
-   "n": "Yagram",
+   "name": "Yagram",
    "tier": 5,
    "hp": 265,
    "energy": 150,
@@ -11640,7 +11640,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Leechlord",
+   "name": "Leechlord",
    "tier": 5,
    "hp": 330,
    "energy": 245,
@@ -11700,7 +11700,7 @@
    "note": "Vampire"
   },
   {
-   "n": "Cursed Bell",
+   "name": "Cursed Bell",
    "tier": 3,
    "hp": 50,
    "energy": 200,
@@ -11743,7 +11743,7 @@
    "note": "Spawner; Unholy Anthems, For Whom the Bell Tolls, Maddening Peal, Dark Vision"
   },
   {
-   "n": "Rockeater Queen",
+   "name": "Rockeater Queen",
    "tier": 5,
    "hp": 650,
    "energy": 200,
@@ -11792,7 +11792,7 @@
    "note": "Beast; Summon the Hive, Motherly Blessing, Regurgitate, Guards! Guards!"
   },
   {
-   "n": "Rockeater Worker",
+   "name": "Rockeater Worker",
    "tier": 2,
    "hp": 110,
    "energy": 70,
@@ -11844,7 +11844,7 @@
    "note": "Beast; Tunnel Through, Predigest, Regurgitate, Protect the Hive"
   },
   {
-   "n": "Rockeater Soldier",
+   "name": "Rockeater Soldier",
    "tier": 4,
    "hp": 180,
    "energy": 120,
@@ -11901,7 +11901,7 @@
    "note": "Beast; Undermine, Protect the Hive, Toxic Salvo, Combat Pheromones"
   },
   {
-   "n": "Rockeater Hunter",
+   "name": "Rockeater Hunter",
    "tier": 3,
    "hp": 140,
    "energy": 90,
@@ -11954,7 +11954,7 @@
    "note": "Beast; Tunnel Through, Toxic Salvo, Poisoned Spike"
   },
   {
-   "n": "Deathstinger Hive",
+   "name": "Deathstinger Hive",
    "tier": 2,
    "hp": 80,
    "dodge": -100,
@@ -11989,7 +11989,7 @@
    "note": "Spawner"
   },
   {
-   "n": "Harpies Nest",
+   "name": "Harpies Nest",
    "tier": 3,
    "hp": 80,
    "dodge": -100,
@@ -12024,7 +12024,7 @@
    "note": "Spawner"
   },
   {
-   "n": "Desecrator",
+   "name": "Desecrator",
    "tier": 3,
    "hp": 90,
    "energy": 160,
@@ -12077,7 +12077,7 @@
    "note": "Human; Desecration, Defiled Remains, Curse of Decay, Curse of Agony, Lesser Ritual of Resurrection, Steal Essence, Death Touch, Aura of Undeath, Aura of Demise, Body and Spirit"
   },
   {
-   "n": "Ritual Restless",
+   "name": "Ritual Restless",
    "tier": 1,
    "hp": 25,
    "energy": 15,
@@ -12108,7 +12108,7 @@
    "note": "Undead"
   },
   {
-   "n": "Risen Axonian",
+   "name": "Risen Axonian",
    "tier": 2,
    "hp": 80,
    "energy": 40,
@@ -12155,7 +12155,7 @@
    "note": "Undead"
   },
   {
-   "n": "Phantasm",
+   "name": "Phantasm",
    "tier": 1,
    "hp": 45,
    "energy": 1000,
@@ -12206,7 +12206,7 @@
    "note": "Arcane Tether, Mana Siphon, Consonance"
   },
   {
-   "n": "Straw Dummy (Medium)",
+   "name": "Straw Dummy (Medium)",
    "tier": 1,
    "hp": 1000,
    "energy": 1000,
@@ -12244,7 +12244,7 @@
    "xp": 0
   },
   {
-   "n": "Straw Dummy (Armored)",
+   "name": "Straw Dummy (Armored)",
    "tier": 1,
    "hp": 1000,
    "energy": 1000,

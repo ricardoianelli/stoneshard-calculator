@@ -1,7 +1,7 @@
 # Data schema (compact keys)
 
 Item files: `data/weapons/*.json`, `data/armor/*.json`, `data/jewelry/*.json`.
-Each item: `{ "n": name, "t": tier(1-5), "r": "C"|"U" (Common/Unique), "d": {damage}, "du": durability, "p": price, "s": {stat props} }`
+Each item: `{ "name": name, "tier": tier(1-5), "r": "C"|"U" (Common/Unique), "d": {damage}, "du": durability, "p": price, "s": {stat props} }`
 Image URL (hotlinked, no hosting): `https://stoneshard.com/wiki/Special:FilePath/` + name with spaces→underscores + `.png`
 Wiki URL: `https://stoneshard.com/wiki/` + name with spaces→underscores
 

@@ -16,7 +16,7 @@
  },
  "effects": [
   {
-   "n": "Battle Rage",
+   "name": "Battle Rage",
    "type": "Physical",
    "buff": true,
    "mods": {
@@ -27,7 +27,7 @@
    "note": "verbatim: +20% Crit Efficiency, +5% Crit Chance, +10% Weapon Damage; from Potion of Rage, Henbane, War Cry, Cannibalistic Craze"
   },
   {
-   "n": "Blood Oath",
+   "name": "Blood Oath",
    "type": "Magical",
    "buff": true,
    "mods": {
@@ -39,7 +39,7 @@
    "note": "granted to Proselytes on Immolated/Martyr death; +33% Life Drain, +33% Healing Eff, -33% Ability Energy Cost"
   },
   {
-   "n": "Vampiric Blood",
+   "name": "Vampiric Blood",
    "type": "Magical",
    "buff": true,
    "mods": {
@@ -49,7 +49,7 @@
    "note": "from Bloodthirst; +9% Life Drain, restores 3% Max HP & Energy/turn"
   },
   {
-   "n": "Mark of the Feast",
+   "name": "Mark of the Feast",
    "type": "Magical",
    "debuff": true,
    "mods": {
@@ -60,7 +60,7 @@
    "note": "Sanguimage; -26% Bleed Res, -13% Dodge, attackers gain +9% Life Drain"
   },
   {
-   "n": "Seized Initiative",
+   "name": "Seized Initiative",
    "type": "Mental",
    "buff": true,
    "mods": {
@@ -73,7 +73,7 @@
    "note": "from Seize the Initiative"
   },
   {
-   "n": "Initiative Loss",
+   "name": "Initiative Loss",
    "type": "Mental",
    "debuff": true,
    "mods": {
@@ -86,7 +86,7 @@
    "note": "paired debuff from Seize the Initiative"
   },
   {
-   "n": "Mighty Swing",
+   "name": "Mighty Swing",
    "type": "Physical",
    "buff": true,
    "mods": {
@@ -101,7 +101,7 @@
    "note": "Husk"
   },
   {
-   "n": "Bleeding",
+   "name": "Bleeding",
    "type": "Physical",
    "debuff": true,
    "mods": {
@@ -112,7 +112,7 @@
    "note": "one per body part, stacks; -5% Energy Restoration, -30% Healing Eff; -1% body-part condition/turn; no duration (permanent until healed via Rag/Bandage)"
   },
   {
-   "n": "Poisoning",
+   "name": "Poisoning",
    "type": "Physical",
    "debuff": true,
    "mods": {
@@ -122,7 +122,7 @@
    "note": "+4% Intoxication/turn; duration stacks with itself; can spread & prolong; cured by Antidote / Potion of Purification"
   },
   {
-   "n": "Burning",
+   "name": "Burning",
    "type": "Physical",
    "debuff": true,
    "mods": {
@@ -135,7 +135,7 @@
    "note": "+100% Skills/Spells Energy Cost, +35% Fumble, +100% Cooldowns Duration; duration stacks & can self-prolong; removed by stepping into Rain"
   },
   {
-   "n": "Immobilization",
+   "name": "Immobilization",
    "type": "Physical",
    "debuff": true,
    "mods": {
@@ -144,14 +144,14 @@
    "note": "can't move; -200% Dodge; from Immobilization Chance (bow crits, Nail Down, Bear Trap)"
   },
   {
-   "n": "Stun",
+   "name": "Stun",
    "type": "Mental",
    "debuff": true,
    "maxDur": 2,
    "note": "can't act; from Stun Chance, dazing an already-dazed target, or knockback into a wall/obstacle; max 2 turns"
   },
   {
-   "n": "Daze",
+   "name": "Daze",
    "type": "Mental",
    "debuff": true,
    "maxDur": 3,
@@ -164,7 +164,7 @@
    "note": "can't use abilities; -25% Control/Move Res, -10% Acc, +10% Fumble, +1 Swimming Cost; re-applying Daze to a dazed target applies Stun; max 3 turns"
   },
   {
-   "n": "Stagger",
+   "name": "Stagger",
    "type": "Physical",
    "debuff": true,
    "mods": {
@@ -179,7 +179,7 @@
    "note": "-50% Crit/Counter/Dodge/Block Chance, +50% Fumble & Backfire, -2.5% Block Power Recovery (formerly Clumsy/Clumsiness)"
   },
   {
-   "n": "Confusion",
+   "name": "Confusion",
    "type": "Mental",
    "debuff": true,
    "mods": {
@@ -192,14 +192,14 @@
    "note": "-15% Counter/Dodge/Block, +15% Fumble & Backfire; Stumbling (chance to step randomly when walking); War Cry can apply for 10 turns"
   },
   {
-   "n": "Satiety",
+   "name": "Satiety",
    "type": "Condition",
    "buff": true,
    "unverified": true,
    "note": "well-fed state (from eating above the Fullness threshold); prevents Hunger accumulation while active; lasts ~3.6 turns per % difference, capped at 91. Exact stat bonuses not verified verbatim."
   },
   {
-   "n": "Vigor",
+   "name": "Vigor",
    "type": "Mental",
    "buff": true,
    "mods": {
@@ -210,7 +210,7 @@
    "note": "after sleeping; +5 Max Energy, +5% Energy Restoration, +10% Fatigue Res; 150 stacks/hr slept (30/hr if already vigorous), cap 1500, -1 stack/turn; Survival tree adds more effects"
   },
   {
-   "n": "Weakness",
+   "name": "Weakness",
    "type": "Physical",
    "debuff": true,
    "mods": {
@@ -222,7 +222,7 @@
    "note": "-10% Weapon Dmg, -10% Crit Chance, +10% Fumble, -10% Block Chance"
   },
   {
-   "n": "Pain",
+   "name": "Pain",
    "type": "Condition",
    "debuff": true,
    "mods": {
@@ -233,84 +233,84 @@
    "note": "accumulates from injuries; +7.5% Fumble, -15% Healing Eff, +10% Damage Taken (scales with Pain level)"
   },
   {
-   "n": "Hunger",
+   "name": "Hunger",
    "type": "State",
    "debuff": true,
    "unverified": true,
    "note": "applied at Hunger 25% (until 50%). Stat penalties apply but exact values not verified verbatim."
   },
   {
-   "n": "Terrible Hunger",
+   "name": "Terrible Hunger",
    "type": "State",
    "debuff": true,
    "unverified": true,
    "note": "applied at Hunger 50% (until 75%). Stat penalties apply but exact values not verified verbatim."
   },
   {
-   "n": "Starvation",
+   "name": "Starvation",
    "type": "State",
    "debuff": true,
    "unverified": true,
    "note": "applied at Hunger 75%; Near Death — Max HP reduced 1% every 4 turns (verbatim); removing the condition restores lost Max HP instantly. Other stat penalties not published on the wiki tooltip."
   },
   {
-   "n": "Thirst",
+   "name": "Thirst",
    "type": "State",
    "debuff": true,
    "unverified": true,
    "note": "applied at Thirst 25%. Thirst rises ~1 per 33 turns moving. Exact stat penalties not verified verbatim."
   },
   {
-   "n": "Terrible Thirst",
+   "name": "Terrible Thirst",
    "type": "State",
    "debuff": true,
    "unverified": true,
    "note": "applied at Thirst 50%. Exact stat penalties not verified verbatim."
   },
   {
-   "n": "Tiredness",
+   "name": "Tiredness",
    "type": "State",
    "debuff": true,
    "unverified": true,
    "note": "low Fatigue tier. Exact stat penalties not verified verbatim."
   },
   {
-   "n": "Exhaustion",
+   "name": "Exhaustion",
    "type": "State",
    "debuff": true,
    "unverified": true,
    "note": "high Fatigue tier; relieved by sleeping. Exact stat penalties not verified verbatim."
   },
   {
-   "n": "Weariness",
+   "name": "Weariness",
    "type": "State",
    "debuff": true,
    "unverified": true,
    "note": "fatigue-related. Exact stat penalties not verified verbatim."
   },
   {
-   "n": "Drunkenness",
+   "name": "Drunkenness",
    "type": "Condition",
    "debuff": true,
    "unverified": true,
    "note": "from alcohol; reduces Stress, raises Intoxication; overconsumption causes Nausea. Exact stat modifiers not verified verbatim."
   },
   {
-   "n": "Hangover",
+   "name": "Hangover",
    "type": "Condition",
    "debuff": true,
    "unverified": true,
    "note": "after Drunkenness wears off. Exact stat penalties not verified verbatim."
   },
   {
-   "n": "Vomiting",
+   "name": "Vomiting",
    "type": "Condition",
    "debuff": true,
    "unverified": true,
    "note": "purges Satiety/Fullness & hydration; from overeating, excess alcohol, or toxins. Exact stat modifiers not verified verbatim."
   },
   {
-   "n": "Fencer's Stance",
+   "name": "Fencer's Stance",
    "type": "Physical",
    "buff": true,
    "maxStacks": 4,
@@ -323,7 +323,7 @@
    "note": "per stack (up to 4): +5% Counter Chance, +5% Block Chance, +5% Dodge Chance, +3.5% Weapon Damage; basic sword attacks reduce stacks but +1 turn duration; only one stance active at a time"
   },
   {
-   "n": "Seal of Pyromancy",
+   "name": "Seal of Pyromancy",
    "type": "Magical",
    "buff": true,
    "mods": {
@@ -335,7 +335,7 @@
    "note": "transformed Seal of Power (Pyromancy): +15% Pyromantic Power, +(0.2*WIL) Fire Dmg to strikes/shots, +3% Miracle Chance, +3% Crit Chance"
   },
   {
-   "n": "Seal of Geomancy",
+   "name": "Seal of Geomancy",
    "type": "Magical",
    "buff": true,
    "mods": {
@@ -347,7 +347,7 @@
    "note": "transformed Seal of Power (Geomancy): +15% Geomantic Power, -10% Damage Taken, +10% Damage Reflection, -5% Backfire Damage Change"
   },
   {
-   "n": "Seal of Electromancy",
+   "name": "Seal of Electromancy",
    "type": "Magical",
    "buff": true,
    "mods": {
@@ -359,7 +359,7 @@
    "note": "transformed Seal of Power (Electromancy): +15% Electromantic Power, +(0.2*WIL) Shock Dmg to strikes/shots, -4% Backfire Chance, -4% Fumble Chance"
   },
   {
-   "n": "Seal of Power",
+   "name": "Seal of Power",
    "type": "Magical",
    "buff": true,
    "mods": {
@@ -370,7 +370,7 @@
    "note": "base Magic Mastery seal, 5 turns: +15% Magic Power, +(0.1*WIL) Arcane Dmg to strikes/shots, +1 Bonus Range; casting a school's spell transforms it into that school's Seal (+3 turns, up to 9)"
   },
   {
-   "n": "Thirst for Battle",
+   "name": "Thirst for Battle",
    "type": "Physical",
    "buff": true,
    "scaling": {
@@ -382,7 +382,7 @@
    "note": "verbatim: +[0.15×missing HP%] Crit Chance, +[0.2×missing HP%] Life Drain, +[0.3×missing HP%] Weapon Damage, +[0.3×missing HP%] Energy Drain; strength scales with missing Health"
   },
   {
-   "n": "Adrenaline Rush",
+   "name": "Adrenaline Rush",
    "type": "Physical",
    "buff": true,
    "maxStacks": 6,
@@ -396,7 +396,7 @@
    "note": "verbatim (per stack, up to VI): -3% Damage Taken, -5% Abilities Energy Cost, +10% Energy Restoration, +3% Crit Chance, +10% Pain Resistance; III stacks: -1 turn all cooldowns; VI stacks: +4% Max HP if HP<40%"
   },
   {
-   "n": "Taking Aim",
+   "name": "Taking Aim",
    "type": "Physical",
    "buff": true,
    "mods": {
@@ -411,7 +411,7 @@
    "note": "verbatim, 1 turn: +(59+AP)% Accuracy, +(PRC)% Weapon Damage, +1 Range; each enemy within 4 tiles adds +(3×STR)% Knockback, +(3×AGL)% Immobilization, +(3×PRC)% Stagger Chance; removed if not wielding a ranged weapon"
   },
   {
-   "n": "Blessing",
+   "name": "Blessing",
    "type": "Mental",
    "buff": true,
    "dur": 1440,
@@ -421,7 +421,7 @@
    "note": "verbatim: +10% Healing Efficiency for 1440 turns; from praying at a Shrine (also an immediate Sanity & Morale boost on use); cannot stack with an existing Blessing"
   },
   {
-   "n": "Blood Craze",
+   "name": "Blood Craze",
    "type": "Magical",
    "buff": true,
    "maxStacks": 6,
@@ -433,7 +433,7 @@
    "note": "verbatim (per stack, up to VI): +6% Weapon Damage, +3% Crit Chance; each hit adds a stack & refreshes the 3-turn duration"
   },
   {
-   "n": "Offensive Tactic",
+   "name": "Offensive Tactic",
    "type": "Physical",
    "buff": true,
    "mods": {
@@ -442,7 +442,7 @@
    "note": "per stack: +4% Crit Chance (wiki notes this is a known bug — intended to grant +10% Crit Efficiency). Full per-stack stat list not published verbatim. Only one Tactic active at a time; lasts while enemies are in vision"
   },
   {
-   "n": "Rampage",
+   "name": "Rampage",
    "type": "Physical",
    "buff": true,
    "maxStacks": 5,
@@ -455,7 +455,7 @@
    "note": "verbatim (per stack, up to 5, 8 turns): +10% Bodypart Damage, +10% Crit Efficiency, -5% Two-handed Axes Cooldowns Duration; one stack per enemy within 5 tiles on activation"
   },
   {
-   "n": "Elusiveness",
+   "name": "Elusiveness",
    "type": "Physical",
    "buff": true,
    "maxStacks": 5,
@@ -463,7 +463,7 @@
    "note": "skill grants +100% Dodge Chance for 1 turn, then only the stacked Dodge bonus; +2 turns per dodged attack (cap 15 turns); +1 stack each turn you don't Block/Dodge or on taking damage. Potion of Elusiveness = same effect for up to 15 turns. Exact per-stack Dodge value not published on the wiki."
   },
   {
-   "n": "Hammer and Anvil",
+   "name": "Hammer and Anvil",
    "type": "Physical",
    "buff": true,
    "maxStacks": 4,
@@ -477,7 +477,7 @@
    "note": "verbatim (per stack, up to IV, 8 turns): -3% Fumble Chance, +25% Armor Damage, +10% Daze Chance, +10% Stagger Chance; mace stance — basic mace strikes +1 turn duration (up to 12) but -1 stack; one stance at a time"
   },
   {
-   "n": "Suppression",
+   "name": "Suppression",
    "type": "Physical",
    "buff": true,
    "maxStacks": 4,
@@ -492,7 +492,7 @@
    "note": "verbatim (per stack, up to IV, 12 turns / 15 with crossbow): +5% Immobilization Chance, +10% Knockback Chance, +10% Bleed Chance, -5% Cooldowns Duration, -5% Skills Energy Cost; ranged stance — one stance at a time"
   },
   {
-   "n": "Painful Stabs",
+   "name": "Painful Stabs",
    "type": "Physical",
    "buff": true,
    "maxStacks": 4,
@@ -506,7 +506,7 @@
    "note": "verbatim (live page, per stack up to IV, 10 turns): +4% Crit Chance, +10% Crit Efficiency, +5% Weapon Damage, +12% Bleed Chance; dagger stance — one stance at a time"
   },
   {
-   "n": "Massacre",
+   "name": "Massacre",
    "type": "Physical",
    "buff": true,
    "maxStacks": 4,
@@ -518,7 +518,7 @@
    "note": "axe stance. Per-stack values from a 2020 patch note (+30% Bodypart Damage, +3% Crit Chance) — NOT confirmed against the current live page; verify before relying on numbers"
   },
   {
-   "n": "Unwavering Stance",
+   "name": "Unwavering Stance",
    "type": "Physical",
    "buff": true,
    "maxStacks": 4,
@@ -530,21 +530,21 @@
    "note": "staff stance. Per-stack values from a 2020 patch note (+12.5% Block Chance, +15% Block Power) — NOT confirmed against the current live page; verify before relying on numbers"
   },
   {
-   "n": "Apathy",
+   "name": "Apathy",
    "type": "State",
    "debuff": true,
    "unverified": true,
    "note": "low-Morale/high-Sanity psyche state; triggered by idling — skipping turns, Rest Mode overuse, no enemies in sight. Documented penalty: -25% Bonus Experience (2018 devlog, likely stale). Cured by continuous fighting. Full stat list not published."
   },
   {
-   "n": "Anxiety",
+   "name": "Anxiety",
    "type": "State",
    "debuff": true,
    "unverified": true,
    "note": "psyche state; requires Apathy first. Activation chance rises with lower Health & Morale. Exact stat modifiers not published on the wiki."
   },
   {
-   "n": "Despair",
+   "name": "Despair",
    "type": "State",
    "debuff": true,
    "unverified": true,

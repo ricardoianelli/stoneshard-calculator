@@ -1,218 +1,243 @@
 {
- "$meta": {
-  "tree": "Dual Wielding",
-  "cat": "weapon",
-  "page_patch": "0.9.4",
-  "focus": "Two one-handed weapons, attack tempo",
-  "source": "https://stoneshard.com/wiki/Dual_Wielding_(skill_tree)",
-  "desc_note": "VERBATIM official wiki + formulas from generated game data (0.9.4.x)"
- },
- "skills": [
-  {
-   "n": "Flurry of Strikes",
-   "t": 1,
-   "type": "Attack",
-   "target": "Target Object",
-   "range": 1,
-   "en": 14,
-   "cd": 12,
-   "desc": "Delivers two dual strikes with reduced Hands Efficiency (-30%, improved by 1% per learned Weaponry ability), -5% Accuracy, and +5% Fumble Chance.\n\nEach successful hit grants +2% Hands Efficiency for 2 turns.\n\nThe effect stacks up to 4 times.\n\nIf all hits are successful, delivers an additional dual strike with the same penalty."
-  },
-  {
-   "n": "Dual Wielding Training",
-   "t": 1,
-   "type": "Passive",
-   "desc": "Using Attack skills (except this ability tree's skills) also delivers a strike with a weapon in another hand.\n\nIf the equipped weapons belong to the same type, grants +Main Hand Efficiency (1% + 0.5% per learned Weaponry ability) and -3% Fumble Chance.\n\nIf the equipped weapons belong to different types, grants +20% Off-Hand Efficiency when using Attack skills and -Cooldowns Duration (1% + 0.5% per learned Weaponry ability)."
-  },
-  {
-   "n": "Deflect",
-   "t": 1,
-   "type": "Maneuver",
-   "target": "No Target",
-   "en": 8,
-   "cd": 8,
-   "mod": [
-    "str"
-   ],
-   "dyn": "Activates \"Deflect\" until the next turn:\n+{STR}% Max Block Power for each enemy within 2 tiles.\n+0.4 × (Main Hand Efficiency + Off-Hand Efficiency)% Block Chance\n\nFully replenishes Block Power.\n\nWhile affected by \"Deflect\", each blocked strike or full dodge replenishes 25% Max Block Power, grants +5% Hands Efficiency, and +10% Counter Chance for 3 turns.\nFull blocks also reduce the ability tree's cooldowns and cooldowns of all Attack skills by 1 turn.\n\nEach missing 25% of Health reduces the skill's cooldown by 1 turn.",
-   "desc": ""
-  },
-  {
-   "n": "Dying Fervor",
-   "t": 1,
-   "type": "Passive",
-   "desc": "Grants +20% Hands Efficiency and +3% Crit Chance if Health is below 60%.\n\nAdditionally grants +7% Crit Chance, +15% Counter Chance, and +15% Crit Avoidance if Health is below 40%."
-  },
-  {
-   "n": "Enough for Everyone",
-   "t": 2,
-   "type": "Attack / Maneuver",
-   "target": "Target Object",
-   "range": 1,
-   "en": 16,
-   "cd": 6,
-   "mod": [
-    "agi",
-    "prc",
-    "vit"
-   ],
-   "dyn": "Applies the target with \"Enough for Everyone\" and delivers a dual strike.\n\nIf there's more than one adjacent enemy, each target with this effect grants:\n+5% Hands Efficiency\n+{0.5*AGL}% Counter Chance\n+{0.5*PRC}% Dodge Chance\n-{0.5*VIT}% Damage Taken\n\nWhile the target affected by \"Enough for Everyone\" is adjacent, basic strikes and using Attack skills against other enemies will deliver a dual strike to it as well.\n\nThe effect remains active until the target's death and while equipped with dual weapons.",
-   "desc": "",
-   "unlock": {
-    "treatise": "Dual Wielding II",
-    "level": 10,
-    "pts": 8,
-    "attrs": [
-     "str",
-     "agi",
-     "prc"
-    ]
-   },
-   "pre": [
-    [
-     "Flurry of Strikes"
-    ],
-    [
-     "Dual Wielding Training"
-    ]
-   ]
-  },
-  {
-   "n": "Concentration",
-   "t": 2,
-   "type": "Maneuver",
-   "target": "No Target",
-   "en": 14,
-   "cd": 12,
-   "desc": "Activates \"Concentration\" for 12 turns:\n+4% Hands Efficiency\n+3% Accuracy\n-3% Fumble Chance\n\nUsing Weaponry Attack skills grants an extra stack of the effect (up to IV).\nUsing the ability tree's Attack skills reduces the number of stacks by 2.\n\nKilling enemies prolongs the effect's duration by 2 turns.",
-   "unlock": {
-    "treatise": "Dual Wielding II",
-    "level": 10,
-    "pts": 8,
-    "attrs": [
-     "agi",
-     "prc",
-     "wil"
-    ]
-   },
-   "pre": [
-    [
-     "Flurry of Strikes"
-    ],
-    [
-     "Dual Wielding Training"
-    ]
-   ]
-  },
-  {
-   "n": "Berserk Tradition",
-   "t": 2,
-   "type": "Passive",
-   "desc": "Grants:\n-0.3% Damage Taken for each missing percent of Health\n+4% Crit Chance for 10 turns for each missed or fumbled strike (the effect stacks up to 5 times)\n+1% Weapon Damage for each percent of Pain\n+10% Dodge Chance for each degree of Injury\n+3% Counter Chance for 10 turns for each received strike (the effect stacks up to 5 times)\n+10% Crit Efficiency for each adjacent enemy",
-   "fx": {
-    "buff": true,
-    "stacks": 5,
-    "per_stack": {
-     "dt": -0.3,
-     "cc": 4
+  "$meta": {
+    "tree": "Dual Wielding",
+    "cat": "weapon",
+    "page_patch": "0.9.4",
+    "focus": "Two one-handed weapons, attack tempo",
+    "source": "https://stoneshard.com/wiki/Dual_Wielding_(skill_tree)",
+    "desc_note": "VERBATIM official wiki + formulas from generated game data (0.9.4.x)",
+    "id": "dual_wielding",
+    "label": "Dual Wielding",
+    "grid": {
+      "cols": 4,
+      "rows": 3,
+      "node": 62,
+      "canvas": {
+        "w": 338,
+        "h": 522
+      }
     }
-   },
-   "unlock": {
-    "treatise": "Dual Wielding II",
-    "level": 10,
-    "pts": 8,
-    "attrs": [
-     "str",
-     "agi",
-     "vit",
-     "wil"
-    ]
-   },
-   "pre": [
-    [
-     "Deflect",
-     "Dying Fervor"
-    ]
-   ]
   },
-  {
-   "n": "Unstoppable",
-   "t": 3,
-   "type": "Passive",
-   "mod": [
-    "vit",
-    "wil"
-   ],
-   "dyn": "If a target affected by \"Enough for Everyone\" dies, replenishes {0.5*VIT}% Max Health and {1.5*WIL}% Max Energy, then delivers a free dual strike to a random adjacent enemy and applies it with the same effect (no more than once per turn).",
-   "desc": "",
-   "unlock": {
-    "treatise": "Dual Wielding III",
-    "level": 16,
-    "pts": 14,
-    "attrs": [
-     "agi",
-     "prc",
-     "vit",
-     "wil"
-    ]
-   },
-   "pre": [
-    [
-     "Enough for Everyone"
-    ]
-   ]
-  },
-  {
-   "n": "Whirlwind",
-   "t": 3,
-   "type": "Attack / Maneuver",
-   "target": "Target Object",
-   "range": 1,
-   "en": 30,
-   "cd": 30,
-   "mod": [
-    "str",
-    "agi",
-    "prc"
-   ],
-   "dyn": "Applies the target with -{2*(AGL+PRC)}% Counter Chance until the next turn, delivers a dual strike with +{80+2*STR}% Stagger Chance, and with {100+3*AGL}% chance swaps places with the target.\n\nThen proceeds delivering strikes with the same effects to random adjacent targets (prioritizing new ones) until one of them is struck twice.\n\nIf this skill kills a target, allows the character to repeat the strike 2 more times without restrictions.",
-   "desc": "",
-   "unlock": {
-    "treatise": "Dual Wielding III",
-    "level": 16,
-    "pts": 14,
-    "attrs": [
-     "str",
-     "agi",
-     "prc"
-    ]
-   },
-   "pre": [
-    [
-     "Concentration"
-    ]
-   ]
-  },
-  {
-   "n": "More Blood!",
-   "t": 3,
-   "type": "Passive",
-   "desc": "Killing enemies grants +Hands Efficiency and -Abilities Energy Cost (1% + 1% per learned Weaponry ability) for 3 turns, and also reduces the ability tree's cooldowns by 2 turns and cooldowns of all Attack skills by 2 turns.\n\nThe effect stacks up to 2 times.",
-   "unlock": {
-    "treatise": "Dual Wielding III",
-    "level": 16,
-    "pts": 14,
-    "attrs": [
-     "str",
-     "agi",
-     "prc"
-    ]
-   },
-   "pre": [
-    [
-     "Berserk Tradition"
-    ]
-   ]
-  }
- ]
+  "skills": [
+    {
+      "id": "flurry_of_strikes",
+      "name": "Flurry of Strikes",
+      "row": 1,
+      "col": 1,
+      "tier": 1,
+      "type": "Attack",
+      "target": "Target Object",
+      "range": 1,
+      "en": 14,
+      "cd": 12,
+      "desc": "Delivers two dual strikes with reduced Hands Efficiency (-30%, improved by 1% per learned Weaponry ability), -5% Accuracy, and +5% Fumble Chance.\n\nEach successful hit grants +2% Hands Efficiency for 2 turns.\n\nThe effect stacks up to 4 times.\n\nIf all hits are successful, delivers an additional dual strike with the same penalty."
+    },
+    {
+      "id": "dual_wielding_training",
+      "name": "Dual Wielding Training",
+      "row": 1,
+      "col": 2,
+      "tier": 1,
+      "type": "Passive",
+      "desc": "Using Attack skills (except this ability tree's skills) also delivers a strike with a weapon in another hand.\n\nIf the equipped weapons belong to the same type, grants +Main Hand Efficiency (1% + 0.5% per learned Weaponry ability) and -3% Fumble Chance.\n\nIf the equipped weapons belong to different types, grants +20% Off-Hand Efficiency when using Attack skills and -Cooldowns Duration (1% + 0.5% per learned Weaponry ability)."
+    },
+    {
+      "id": "deflect",
+      "name": "Deflect",
+      "row": 1,
+      "col": 3,
+      "tier": 1,
+      "type": "Maneuver",
+      "target": "No Target",
+      "en": 8,
+      "cd": 8,
+      "mod": [
+        "str"
+      ],
+      "desc": "",
+      "dyn": "Activates \"Deflect\" until the next turn:\n+{STR}% Max Block Power for each enemy within 2 tiles.\n+0.4 × (Main Hand Efficiency + Off-Hand Efficiency)% Block Chance\n\nFully replenishes Block Power.\n\nWhile affected by \"Deflect\", each blocked strike or full dodge replenishes 25% Max Block Power, grants +5% Hands Efficiency, and +10% Counter Chance for 3 turns.\nFull blocks also reduce the ability tree's cooldowns and cooldowns of all Attack skills by 1 turn.\n\nEach missing 25% of Health reduces the skill's cooldown by 1 turn."
+    },
+    {
+      "id": "dying_fervor",
+      "name": "Dying Fervor",
+      "row": 1,
+      "col": 4,
+      "tier": 1,
+      "type": "Passive",
+      "desc": "Grants +20% Hands Efficiency and +3% Crit Chance if Health is below 60%.\n\nAdditionally grants +7% Crit Chance, +15% Counter Chance, and +15% Crit Avoidance if Health is below 40%."
+    },
+    {
+      "id": "enough_for_everyone",
+      "name": "Enough for Everyone",
+      "row": 2,
+      "col": 1,
+      "tier": 2,
+      "type": "Attack / Maneuver",
+      "target": "Target Object",
+      "range": 1,
+      "en": 16,
+      "cd": 6,
+      "mod": [
+        "agi",
+        "prc",
+        "vit"
+      ],
+      "requires_all": [
+        "flurry_of_strikes",
+        "dual_wielding_training"
+      ],
+      "unlock": {
+        "treatise": "Dual Wielding II",
+        "level": 10,
+        "pts": 8,
+        "attrs": [
+          "str",
+          "agi",
+          "prc"
+        ]
+      },
+      "desc": "",
+      "dyn": "Applies the target with \"Enough for Everyone\" and delivers a dual strike.\n\nIf there's more than one adjacent enemy, each target with this effect grants:\n+5% Hands Efficiency\n+{0.5*AGL}% Counter Chance\n+{0.5*PRC}% Dodge Chance\n-{0.5*VIT}% Damage Taken\n\nWhile the target affected by \"Enough for Everyone\" is adjacent, basic strikes and using Attack skills against other enemies will deliver a dual strike to it as well.\n\nThe effect remains active until the target's death and while equipped with dual weapons."
+    },
+    {
+      "id": "concentration",
+      "name": "Concentration",
+      "row": 2,
+      "col": 2,
+      "tier": 2,
+      "type": "Maneuver",
+      "target": "No Target",
+      "en": 14,
+      "cd": 12,
+      "requires_all": [
+        "flurry_of_strikes",
+        "dual_wielding_training"
+      ],
+      "unlock": {
+        "treatise": "Dual Wielding II",
+        "level": 10,
+        "pts": 8,
+        "attrs": [
+          "agi",
+          "prc",
+          "wil"
+        ]
+      },
+      "desc": "Activates \"Concentration\" for 12 turns:\n+4% Hands Efficiency\n+3% Accuracy\n-3% Fumble Chance\n\nUsing Weaponry Attack skills grants an extra stack of the effect (up to IV).\nUsing the ability tree's Attack skills reduces the number of stacks by 2.\n\nKilling enemies prolongs the effect's duration by 2 turns."
+    },
+    {
+      "id": "berserk_tradition",
+      "name": "Berserk Tradition",
+      "row": 2,
+      "col": 3.5,
+      "tier": 2,
+      "type": "Passive",
+      "requires_any": [
+        "deflect",
+        "dying_fervor"
+      ],
+      "unlock": {
+        "treatise": "Dual Wielding II",
+        "level": 10,
+        "pts": 8,
+        "attrs": [
+          "str",
+          "agi",
+          "vit",
+          "wil"
+        ]
+      },
+      "desc": "Grants:\n-0.3% Damage Taken for each missing percent of Health\n+4% Crit Chance for 10 turns for each missed or fumbled strike (the effect stacks up to 5 times)\n+1% Weapon Damage for each percent of Pain\n+10% Dodge Chance for each degree of Injury\n+3% Counter Chance for 10 turns for each received strike (the effect stacks up to 5 times)\n+10% Crit Efficiency for each adjacent enemy",
+      "fx": {
+        "buff": true,
+        "stacks": 5,
+        "per_stack": {
+          "dt": -0.3,
+          "cc": 4
+        }
+      }
+    },
+    {
+      "id": "unstoppable",
+      "name": "Unstoppable",
+      "row": 3,
+      "col": 1,
+      "tier": 3,
+      "type": "Passive",
+      "mod": [
+        "vit",
+        "wil"
+      ],
+      "requires_all": [
+        "enough_for_everyone"
+      ],
+      "unlock": {
+        "treatise": "Dual Wielding III",
+        "level": 16,
+        "pts": 14,
+        "attrs": [
+          "agi",
+          "prc",
+          "vit",
+          "wil"
+        ]
+      },
+      "desc": "",
+      "dyn": "If a target affected by \"Enough for Everyone\" dies, replenishes {0.5*VIT}% Max Health and {1.5*WIL}% Max Energy, then delivers a free dual strike to a random adjacent enemy and applies it with the same effect (no more than once per turn)."
+    },
+    {
+      "id": "whirlwind",
+      "name": "Whirlwind",
+      "row": 3,
+      "col": 2,
+      "tier": 3,
+      "type": "Attack / Maneuver",
+      "target": "Target Object",
+      "range": 1,
+      "en": 30,
+      "cd": 30,
+      "mod": [
+        "str",
+        "agi",
+        "prc"
+      ],
+      "requires_all": [
+        "concentration"
+      ],
+      "unlock": {
+        "treatise": "Dual Wielding III",
+        "level": 16,
+        "pts": 14,
+        "attrs": [
+          "str",
+          "agi",
+          "prc"
+        ]
+      },
+      "desc": "",
+      "dyn": "Applies the target with -{2*(AGL+PRC)}% Counter Chance until the next turn, delivers a dual strike with +{80+2*STR}% Stagger Chance, and with {100+3*AGL}% chance swaps places with the target.\n\nThen proceeds delivering strikes with the same effects to random adjacent targets (prioritizing new ones) until one of them is struck twice.\n\nIf this skill kills a target, allows the character to repeat the strike 2 more times without restrictions."
+    },
+    {
+      "id": "more_blood",
+      "name": "More Blood!",
+      "row": 3,
+      "col": 3,
+      "tier": 3,
+      "type": "Passive",
+      "requires_all": [
+        "berserk_tradition"
+      ],
+      "unlock": {
+        "treatise": "Dual Wielding III",
+        "level": 16,
+        "pts": 14,
+        "attrs": [
+          "str",
+          "agi",
+          "prc"
+        ]
+      },
+      "desc": "Killing enemies grants +Hands Efficiency and -Abilities Energy Cost (1% + 1% per learned Weaponry ability) for 3 turns, and also reduces the ability tree's cooldowns by 2 turns and cooldowns of all Attack skills by 2 turns.\n\nThe effect stacks up to 2 times."
+    }
+  ]
 }

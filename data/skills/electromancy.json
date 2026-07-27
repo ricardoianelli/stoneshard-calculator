@@ -1,376 +1,373 @@
 {
- "$meta": {
-  "tree": "Electromancy",
-  "cat": "magic",
-  "school": "ele",
-  "page_patch": "0.9.4.x (re-extracted 2026-07)",
-  "focus": "Crowd Control, Energy Drain, Chained Damage",
-  "formula": "dmg = base * MP/100 * (1 + EP/100); effect chances scale (MP+EP)/100",
-  "source": "https://stoneshard.com/wiki/Electromancy_(skill_tree)",
-  "desc_note": "VERBATIM game data, re-extracted from the current official wiki tooltips (Values view). The tree was reworked since the previous 0.9.4.14 capture: full 14-skill roster restored (added Residual Charge, Short Circuit, Potential Difference, Unlimited Power; removed the obsolete Cellular Excitation/Superconductivity entries). desc is the verbatim in-game tooltip. dyn (attribute-scaling formulas) is intentionally omitted: the wiki no longer publishes per-skill formulas for this tree, so no scaling is invented — desc carries the exact base values."
- },
- "skills": [
-  {
-   "n": "Jolt",
-   "t": 1,
-   "type": "Spell",
-   "target": "Target Tile",
-   "range": 7,
-   "en": 8,
-   "cd": 2,
-   "mod": [
-    "mp",
-    "ele",
-    "prc",
-    "rng"
-   ],
-   "desc": "Shoots a bolt of electricity, dealing 7 Shock Damage with 110% Accuracy.\n\nHitting the target with 35% Chance knocks it back and with 70% chance applies it with \"Resonance\" for 8 turns:\n\n-20% Shock Resistance\n-7.5% Move Resistance\n-5% Control Resistance\n+10% Cooldowns Duration\n\nIf the target is affected by \"Impulse\", prolongs its duration by 6 turns without applying \"Resonance\"."
+  "$meta": {
+    "tree": "Electromancy",
+    "cat": "magic",
+    "school": "ele",
+    "page_patch": "0.9.4.x (re-extracted 2026-07)",
+    "focus": "Crowd Control, Energy Drain, Chained Damage",
+    "formula": "dmg = base * MP/100 * (1 + EP/100); effect chances scale (MP+EP)/100",
+    "source": "https://stoneshard.com/wiki/Electromancy_(skill_tree)",
+    "desc_note": "VERBATIM game data, re-extracted from the current official wiki tooltips (Values view). The tree was reworked since the previous 0.9.4.14 capture: full 14-skill roster restored (added Residual Charge, Short Circuit, Potential Difference, Unlimited Power; removed the obsolete Cellular Excitation/Superconductivity entries). desc is the verbatim in-game tooltip. dyn (attribute-scaling formulas) is intentionally omitted: the wiki no longer publishes per-skill formulas for this tree, so no scaling is invented — desc carries the exact base values.",
+    "id": "electromancy",
+    "label": "Electromancy",
+    "grid": {
+      "cols": 4,
+      "rows": 4,
+      "node": 62,
+      "canvas": {
+        "w": 338,
+        "h": 522
+      }
+    }
   },
-  {
-   "n": "Impulse",
-   "t": 1,
-   "type": "Spell",
-   "target": "Target Area",
-   "range": 1,
-   "en": 12,
-   "cd": 10,
-   "mod": [
-    "mp",
-    "ele"
-   ],
-   "desc": "Deals 10 Shock Damage to all adjacent tiles. With 40% chance to knocks the affected targets back or with 100% chance Staggers them if the knockback fails. \n\nWith 85% chance applies all affected targets with \"Impulse\" for 8 turns: \n\n-25% Shock Resistance \n-15% Move Resistance \n-10% Control Resistance \n+20% Cooldowns Duration \nDeals 2 Shock Damage\nHas 15% chance to knock back from the caster.\n\nIf the targets affected by \"Resonance\", transforms it into \"Impulse\", inheriting most of the remaining duration. Target with \"Impulse\" are treated as Resonating by the ability tree's spells."
-  },
-  {
-   "n": "Residual Charge",
-   "t": 2,
-   "type": "Passive",
-   "desc": "Using the ability tree's spells grants strikes and shots 2 Shock Damage for 4 turns.\n\nThe effect doesn't stack.\n\nWhile this effect is active, strikes and shots apply their targets with -0.5% Shock Resistance for each learned Electromancy ability for 6 turns.\n\nThe effect stacks up to 5 times.\n\nLightning strikes within Vision grant +10% Electromantic Power for 1200 turns.\n\nThe effect doesn't stack.",
-   "unlock": {
-    "treatise": "Electromancy II",
-    "level": 10,
-    "pts": 8,
-    "attrs": [
-     "str",
-     "agi",
-     "prc",
-     "wil"
-    ]
-   },
-   "pre": [
-    [
-     "Jolt"
-    ]
-   ]
-  },
-  {
-   "n": "Short Circuit",
-   "t": 2,
-   "type": "Spell",
-   "target": "No Target",
-   "en": 24,
-   "cd": 16,
-   "mod": [
-    "mp",
-    "ele"
-   ],
-   "desc": "Deals 6 Shock Damage to all Resonating targets within Vision and with 40% chance Daze them.\n\nThe spell's damage increases by 25% for each Resonating target within Vision.\n\nIf Resonating targets are adjacent to each other, the spell deals double damage to them.",
-   "unlock": {
-    "treatise": "Electromancy II",
-    "level": 10,
-    "pts": 8,
-    "attrs": [
-     "agi",
-     "prc",
-     "wil"
-    ]
-   },
-   "pre": [
-    [
-     "Jolt"
-    ]
-   ]
-  },
-  {
-   "n": "Static Field",
-   "t": 2,
-   "type": "Spell",
-   "target": "No Target",
-   "en": 18,
-   "cd": 12,
-   "mod": [
-    "mp",
-    "ele"
-   ],
-   "desc": "Applies all Resonating targets within Vision with \"Static Field\" for 5 turns, creating a 3x3 tiles area around them.\n\nRemaining in the spell's area of effect:\n\nDeals 2 Shock Damage\napplies with -4% Shock Resistance for 10 turns (This effect stacks up to 5 times).\nHas 7% chance to cause Immobilization.\n\n\"Static Field\" doesn't affect the caster and deals double damage to Immobilized targets.",
-   "unlock": {
-    "treatise": "Electromancy II",
-    "level": 10,
-    "pts": 8,
-    "attrs": [
-     "agi",
-     "prc",
-     "wil"
-    ]
-   },
-   "pre": [
-    [
-     "Impulse"
-    ]
-   ]
-  },
-  {
-   "n": "Potential Difference",
-   "t": 2,
-   "type": "Passive",
-   "desc": "Increases the damage dealt by \"Impulse\" by 100% for each Resonating enemy within Vision.\n\nIf \"Impulse\" successfully knocks a target back, with 50% chance also Immobilizes it.",
-   "unlock": {
-    "treatise": "Electromancy II",
-    "level": 10,
-    "pts": 8,
-    "attrs": [
-     "wil"
-    ]
-   },
-   "pre": [
-    [
-     "Impulse"
-    ]
-   ]
-  },
-  {
-   "n": "Chain Lightning",
-   "t": 3,
-   "type": "Spell",
-   "target": "Target Object",
-   "range": 6,
-   "en": 60,
-   "cd": 22,
-   "mod": [
-    "mp",
-    "ele",
-    "rng"
-   ],
-   "desc": "Deals 9 Shock Damage and with 80% applies the target with \"Resonance\" for 4 turns.\n\nThen jumps to all Resonating targets within 8 tiles, starting with the closest ones, dealing damage and prolonging the duration of \"Resonance\" by 3 turns.\n\nWith 50% chance Staggers all affected targets and reduces the ability tree's cooldowns by 2 for each affected target.\n\nThe spell doesn't affect the same target twice.",
-   "unlock": {
-    "treatise": "Electromancy III",
-    "level": 16,
-    "pts": 14,
-    "attrs": [
-     "prc",
-     "wil"
-    ]
-   },
-   "pre": [
-    [
-     "Residual Charge"
-    ],
-    [
-     "Short Circuit"
-    ]
-   ]
-  },
-  {
-   "n": "Unlimited Power",
-   "t": 3,
-   "type": "Passive",
-   "desc": "Grants +0.1% Magic Power for each remaining percent of Max Energy and +0.1% Energy Restoration for each missing percent.",
-   "unlock": {
-    "treatise": "Electromancy III",
-    "level": 16,
-    "pts": 14,
-    "attrs": [
-     "vit",
-     "wil"
-    ]
-   },
-   "pre": [
-    [
-     "Residual Charge"
-    ],
-    [
-     "Short Circuit"
-    ]
-   ]
-  },
-  {
-   "n": "Conductivity",
-   "t": 3,
-   "type": "Passive",
-   "desc": "While targets are within the \"Static Field\" area of effect, burns their Energy for 20% of the Shock Damage dealt to them with the ability tree's spells and replenishes the same amount of Energy to the character.\n\nKilling enemies within the \"Static Field\" area of effect reduces the ability tree's cooldowns by 3 turns.",
-   "unlock": {
-    "treatise": "Electromancy III",
-    "level": 16,
-    "pts": 14,
-    "attrs": [
-     "vit",
-     "wil"
-    ]
-   },
-   "pre": [
-    [
-     "Static Field"
-    ],
-    [
-     "Potential Difference"
-    ]
-   ]
-  },
-  {
-   "n": "Ball Lightning",
-   "t": 3,
-   "type": "Spell",
-   "target": "Target Tile",
-   "range": 4,
-   "en": 48,
-   "cd": 26,
-   "mod": [
-    "mp",
-    "ele"
-   ],
-   "desc": "Creates a ball lightning on the targeted tile, which persists for 4 turns (+1 turn for each Resonating enemy within Vision).\n\nEach turn the ball lightning deals 3 Shock Damage to all targets within 2 tiles and with 14% chance pulls them closer.\n\nThe ball lightning deals 25% more damage to adjacent targets and 200% of its damage when targets are puled or knocked back into it.",
-   "unlock": {
-    "treatise": "Electromancy III",
-    "level": 16,
-    "pts": 14,
-    "attrs": [
-     "agi",
-     "wil"
-    ]
-   },
-   "pre": [
-    [
-     "Static Field"
-    ],
-    [
-     "Potential Difference"
-    ]
-   ]
-  },
-  {
-   "n": "Chain Reaction",
-   "t": 4,
-   "type": "Passive",
-   "desc": "Using the ability tree's spells applies all affected targets with -10% Shock Resistance for 6 turns for each Resonating target within Vision.\n\nThe effect stacks up to 3 times.",
-   "unlock": {
-    "treatise": "Electromancy IV",
-    "level": 22,
-    "pts": 20,
-    "attrs": [
-     "agi",
-     "prc",
-     "wil"
-    ]
-   },
-   "pre": [
-    [
-     "Chain Lightning"
-    ],
-    [
-     "Unlimited Power"
-    ],
-    [
-     "Conductivity"
-    ],
-    [
-     "Ball Lightning"
-    ]
-   ]
-  },
-  {
-   "n": "Resonance Cascade",
-   "t": 4,
-   "type": "Passive",
-   "desc": "Each third use of the ability tree's spells with 75% chance applies \"Resonance\" for 3 turns to a random enemy within Vision without this effect.\n\nIf there are no such enemies, prolonging the duration of \"Resonance\" or \"Impulse\" affecting a random Resonating target within Vision by 3 turns.",
-   "unlock": {
-    "treatise": "Electromancy IV",
-    "level": 22,
-    "pts": 20,
-    "attrs": [
-     "prc",
-     "wil"
-    ]
-   },
-   "pre": [
-    [
-     "Chain Lightning"
-    ],
-    [
-     "Unlimited Power"
-    ],
-    [
-     "Conductivity"
-    ],
-    [
-     "Ball Lightning"
-    ]
-   ]
-  },
-  {
-   "n": "Tempest",
-   "t": 4,
-   "type": "Spell",
-   "target": "Target Object",
-   "range": 5,
-   "en": 72,
-   "cd": 32,
-   "mod": [
-    "mp",
-    "ele",
-    "rng"
-   ],
-   "desc": "Deals 10 Shock Damage to the chosen and two random targets, prioritizing the ones affected by \"Resonance\".\n\nRemoves \"Resonance\" from the affected targets and with 20% chance Stuns them.\n\nEach turn of removed \"Resonance\" increases the damage and the Stun chance by 5%.\n\nIf the spell Stuns the target, repeats it against a random target within Vision.\n\nInstantly kills the target if the spell puts its Health below 16% (but no more than 20).",
-   "unlock": {
-    "treatise": "Electromancy IV",
-    "level": 22,
-    "pts": 20,
-    "attrs": [
-     "agi",
-     "wil"
-    ]
-   },
-   "pre": [
-    [
-     "Conductivity"
-    ],
-    [
-     "Ball Lightning"
-    ],
-    [
-     "Chain Lightning"
-    ],
-    [
-     "Unlimited Power"
-    ]
-   ]
-  },
-  {
-   "n": "Recharge",
-   "t": 4,
-   "type": "Passive",
-   "desc": "Grants +3% Miracle Chance for each Resonating target within Vision.\n\nKilling enemies with this ability tree's spells grants -5% Spells Energy Cost and -5% Cooldowns Duration for 8 turns for each Resonating target within Vision.",
-   "unlock": {
-    "treatise": "Electromancy IV",
-    "level": 22,
-    "pts": 20,
-    "attrs": [
-     "vit",
-     "wil"
-    ]
-   },
-   "pre": [
-    [
-     "Conductivity"
-    ],
-    [
-     "Ball Lightning"
-    ],
-    [
-     "Chain Lightning"
-    ],
-    [
-     "Unlimited Power"
-    ]
-   ]
-  }
- ]
+  "skills": [
+    {
+      "id": "jolt",
+      "name": "Jolt",
+      "row": 1,
+      "col": 1.5,
+      "tier": 1,
+      "type": "Spell",
+      "target": "Target Tile",
+      "range": 7,
+      "en": 8,
+      "cd": 2,
+      "mod": [
+        "mp",
+        "ele",
+        "prc",
+        "rng"
+      ],
+      "desc": "Shoots a bolt of electricity, dealing 7 Shock Damage with 110% Accuracy.\n\nHitting the target with 35% Chance knocks it back and with 70% chance applies it with \"Resonance\" for 8 turns:\n\n-20% Shock Resistance\n-7.5% Move Resistance\n-5% Control Resistance\n+10% Cooldowns Duration\n\nIf the target is affected by \"Impulse\", prolongs its duration by 6 turns without applying \"Resonance\"."
+    },
+    {
+      "id": "impulse",
+      "name": "Impulse",
+      "row": 1,
+      "col": 3.5,
+      "tier": 1,
+      "type": "Spell",
+      "target": "Target Area",
+      "range": 1,
+      "en": 12,
+      "cd": 10,
+      "mod": [
+        "mp",
+        "ele"
+      ],
+      "desc": "Deals 10 Shock Damage to all adjacent tiles. With 40% chance to knocks the affected targets back or with 100% chance Staggers them if the knockback fails. \n\nWith 85% chance applies all affected targets with \"Impulse\" for 8 turns: \n\n-25% Shock Resistance \n-15% Move Resistance \n-10% Control Resistance \n+20% Cooldowns Duration \nDeals 2 Shock Damage\nHas 15% chance to knock back from the caster.\n\nIf the targets affected by \"Resonance\", transforms it into \"Impulse\", inheriting most of the remaining duration. Target with \"Impulse\" are treated as Resonating by the ability tree's spells."
+    },
+    {
+      "id": "residual_charge",
+      "name": "Residual Charge",
+      "row": 2,
+      "col": 1,
+      "tier": 2,
+      "type": "Passive",
+      "requires_all": [
+        "jolt"
+      ],
+      "unlock": {
+        "treatise": "Electromancy II",
+        "level": 10,
+        "pts": 8,
+        "attrs": [
+          "str",
+          "agi",
+          "prc",
+          "wil"
+        ]
+      },
+      "desc": "Using the ability tree's spells grants strikes and shots 2 Shock Damage for 4 turns.\n\nThe effect doesn't stack.\n\nWhile this effect is active, strikes and shots apply their targets with -0.5% Shock Resistance for each learned Electromancy ability for 6 turns.\n\nThe effect stacks up to 5 times.\n\nLightning strikes within Vision grant +10% Electromantic Power for 1200 turns.\n\nThe effect doesn't stack."
+    },
+    {
+      "id": "short_circuit",
+      "name": "Short Circuit",
+      "row": 2,
+      "col": 2,
+      "tier": 2,
+      "type": "Spell",
+      "target": "No Target",
+      "en": 24,
+      "cd": 16,
+      "mod": [
+        "mp",
+        "ele"
+      ],
+      "requires_all": [
+        "jolt"
+      ],
+      "unlock": {
+        "treatise": "Electromancy II",
+        "level": 10,
+        "pts": 8,
+        "attrs": [
+          "agi",
+          "prc",
+          "wil"
+        ]
+      },
+      "desc": "Deals 6 Shock Damage to all Resonating targets within Vision and with 40% chance Daze them.\n\nThe spell's damage increases by 25% for each Resonating target within Vision.\n\nIf Resonating targets are adjacent to each other, the spell deals double damage to them."
+    },
+    {
+      "id": "static_field",
+      "name": "Static Field",
+      "row": 2,
+      "col": 3,
+      "tier": 2,
+      "type": "Spell",
+      "target": "No Target",
+      "en": 18,
+      "cd": 12,
+      "mod": [
+        "mp",
+        "ele"
+      ],
+      "requires_all": [
+        "impulse"
+      ],
+      "unlock": {
+        "treatise": "Electromancy II",
+        "level": 10,
+        "pts": 8,
+        "attrs": [
+          "agi",
+          "prc",
+          "wil"
+        ]
+      },
+      "desc": "Applies all Resonating targets within Vision with \"Static Field\" for 5 turns, creating a 3x3 tiles area around them.\n\nRemaining in the spell's area of effect:\n\nDeals 2 Shock Damage\napplies with -4% Shock Resistance for 10 turns (This effect stacks up to 5 times).\nHas 7% chance to cause Immobilization.\n\n\"Static Field\" doesn't affect the caster and deals double damage to Immobilized targets."
+    },
+    {
+      "id": "potential_difference",
+      "name": "Potential Difference",
+      "row": 2,
+      "col": 4,
+      "tier": 2,
+      "type": "Passive",
+      "requires_all": [
+        "impulse"
+      ],
+      "unlock": {
+        "treatise": "Electromancy II",
+        "level": 10,
+        "pts": 8,
+        "attrs": [
+          "wil"
+        ]
+      },
+      "desc": "Increases the damage dealt by \"Impulse\" by 100% for each Resonating enemy within Vision.\n\nIf \"Impulse\" successfully knocks a target back, with 50% chance also Immobilizes it."
+    },
+    {
+      "id": "chain_lightning",
+      "name": "Chain Lightning",
+      "row": 3,
+      "col": 1,
+      "tier": 3,
+      "type": "Spell",
+      "target": "Target Object",
+      "range": 6,
+      "en": 60,
+      "cd": 22,
+      "mod": [
+        "mp",
+        "ele",
+        "rng"
+      ],
+      "requires_all": [
+        "residual_charge",
+        "short_circuit"
+      ],
+      "unlock": {
+        "treatise": "Electromancy III",
+        "level": 16,
+        "pts": 14,
+        "attrs": [
+          "prc",
+          "wil"
+        ]
+      },
+      "desc": "Deals 9 Shock Damage and with 80% applies the target with \"Resonance\" for 4 turns.\n\nThen jumps to all Resonating targets within 8 tiles, starting with the closest ones, dealing damage and prolonging the duration of \"Resonance\" by 3 turns.\n\nWith 50% chance Staggers all affected targets and reduces the ability tree's cooldowns by 2 for each affected target.\n\nThe spell doesn't affect the same target twice."
+    },
+    {
+      "id": "unlimited_power",
+      "name": "Unlimited Power",
+      "row": 3,
+      "col": 2,
+      "tier": 3,
+      "type": "Passive",
+      "requires_all": [
+        "residual_charge",
+        "short_circuit"
+      ],
+      "unlock": {
+        "treatise": "Electromancy III",
+        "level": 16,
+        "pts": 14,
+        "attrs": [
+          "vit",
+          "wil"
+        ]
+      },
+      "desc": "Grants +0.1% Magic Power for each remaining percent of Max Energy and +0.1% Energy Restoration for each missing percent."
+    },
+    {
+      "id": "conductivity",
+      "name": "Conductivity",
+      "row": 3,
+      "col": 3,
+      "tier": 3,
+      "type": "Passive",
+      "requires_all": [
+        "static_field",
+        "potential_difference"
+      ],
+      "unlock": {
+        "treatise": "Electromancy III",
+        "level": 16,
+        "pts": 14,
+        "attrs": [
+          "vit",
+          "wil"
+        ]
+      },
+      "desc": "While targets are within the \"Static Field\" area of effect, burns their Energy for 20% of the Shock Damage dealt to them with the ability tree's spells and replenishes the same amount of Energy to the character.\n\nKilling enemies within the \"Static Field\" area of effect reduces the ability tree's cooldowns by 3 turns."
+    },
+    {
+      "id": "ball_lightning",
+      "name": "Ball Lightning",
+      "row": 3,
+      "col": 4,
+      "tier": 3,
+      "type": "Spell",
+      "target": "Target Tile",
+      "range": 4,
+      "en": 48,
+      "cd": 26,
+      "mod": [
+        "mp",
+        "ele"
+      ],
+      "requires_all": [
+        "static_field",
+        "potential_difference"
+      ],
+      "unlock": {
+        "treatise": "Electromancy III",
+        "level": 16,
+        "pts": 14,
+        "attrs": [
+          "agi",
+          "wil"
+        ]
+      },
+      "desc": "Creates a ball lightning on the targeted tile, which persists for 4 turns (+1 turn for each Resonating enemy within Vision).\n\nEach turn the ball lightning deals 3 Shock Damage to all targets within 2 tiles and with 14% chance pulls them closer.\n\nThe ball lightning deals 25% more damage to adjacent targets and 200% of its damage when targets are puled or knocked back into it."
+    },
+    {
+      "id": "chain_reaction",
+      "name": "Chain Reaction",
+      "row": 4,
+      "col": 1,
+      "tier": 4,
+      "type": "Passive",
+      "requires_all": [
+        "chain_lightning",
+        "unlimited_power",
+        "conductivity",
+        "ball_lightning"
+      ],
+      "unlock": {
+        "treatise": "Electromancy IV",
+        "level": 22,
+        "pts": 20,
+        "attrs": [
+          "agi",
+          "prc",
+          "wil"
+        ]
+      },
+      "desc": "Using the ability tree's spells applies all affected targets with -10% Shock Resistance for 6 turns for each Resonating target within Vision.\n\nThe effect stacks up to 3 times."
+    },
+    {
+      "id": "resonance_cascade",
+      "name": "Resonance Cascade",
+      "row": 4,
+      "col": 2,
+      "tier": 4,
+      "type": "Passive",
+      "requires_all": [
+        "chain_lightning",
+        "unlimited_power",
+        "conductivity",
+        "ball_lightning"
+      ],
+      "unlock": {
+        "treatise": "Electromancy IV",
+        "level": 22,
+        "pts": 20,
+        "attrs": [
+          "prc",
+          "wil"
+        ]
+      },
+      "desc": "Each third use of the ability tree's spells with 75% chance applies \"Resonance\" for 3 turns to a random enemy within Vision without this effect.\n\nIf there are no such enemies, prolonging the duration of \"Resonance\" or \"Impulse\" affecting a random Resonating target within Vision by 3 turns."
+    },
+    {
+      "id": "tempest",
+      "name": "Tempest",
+      "row": 4,
+      "col": 3,
+      "tier": 4,
+      "type": "Spell",
+      "target": "Target Object",
+      "range": 5,
+      "en": 72,
+      "cd": 32,
+      "mod": [
+        "mp",
+        "ele",
+        "rng"
+      ],
+      "requires_all": [
+        "conductivity",
+        "ball_lightning",
+        "chain_lightning",
+        "unlimited_power"
+      ],
+      "unlock": {
+        "treatise": "Electromancy IV",
+        "level": 22,
+        "pts": 20,
+        "attrs": [
+          "agi",
+          "wil"
+        ]
+      },
+      "desc": "Deals 10 Shock Damage to the chosen and two random targets, prioritizing the ones affected by \"Resonance\".\n\nRemoves \"Resonance\" from the affected targets and with 20% chance Stuns them.\n\nEach turn of removed \"Resonance\" increases the damage and the Stun chance by 5%.\n\nIf the spell Stuns the target, repeats it against a random target within Vision.\n\nInstantly kills the target if the spell puts its Health below 16% (but no more than 20)."
+    },
+    {
+      "id": "recharge",
+      "name": "Recharge",
+      "row": 4,
+      "col": 4,
+      "tier": 4,
+      "type": "Passive",
+      "requires_all": [
+        "conductivity",
+        "ball_lightning",
+        "chain_lightning",
+        "unlimited_power"
+      ],
+      "unlock": {
+        "treatise": "Electromancy IV",
+        "level": 22,
+        "pts": 20,
+        "attrs": [
+          "vit",
+          "wil"
+        ]
+      },
+      "desc": "Grants +3% Miracle Chance for each Resonating target within Vision.\n\nKilling enemies with this ability tree's spells grants -5% Spells Energy Cost and -5% Cooldowns Duration for 8 turns for each Resonating target within Vision."
+    }
+  ]
 }
