@@ -132,7 +132,7 @@
       "col": 3.5,
       "tier": 2,
       "type": "Passive",
-      "requires_any": [
+      "requires_all": [
         "deflect",
         "dying_fervor"
       ],
@@ -202,7 +202,8 @@
         "prc"
       ],
       "requires_all": [
-        "concentration"
+        "concentration",
+        "berserk_tradition"
       ],
       "unlock": {
         "treatise": "Dual Wielding III",
@@ -225,6 +226,7 @@
       "tier": 3,
       "type": "Passive",
       "requires_all": [
+        "concentration",
         "berserk_tradition"
       ],
       "unlock": {

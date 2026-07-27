@@ -104,7 +104,7 @@
       "tier": 2,
       "type": "Passive",
       "req": "shield",
-      "requires_any": [
+      "requires_all": [
         "raise_shield",
         "embodiment_of_resilience"
       ],
@@ -136,8 +136,9 @@
         "vit"
       ],
       "req": "shield",
-      "requires_all": [
-        "breakthrough"
+      "requires_any": [
+        "breakthrough",
+        "moment_of_retribution"
       ],
       "unlock": {
         "treatise": "Shields II",

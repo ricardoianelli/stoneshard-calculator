@@ -234,7 +234,7 @@
         "prc",
         "wil"
       ],
-      "requires_any": [
+      "requires_all": [
         "schism",
         "transcendental_anchoring"
       ],
@@ -320,7 +320,7 @@
       "col": 2,
       "tier": 4,
       "type": "Passive",
-      "requires_any": [
+      "requires_all": [
         "astral_tides",
         "mana_crystal"
       ],

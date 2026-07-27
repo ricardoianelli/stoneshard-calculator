@@ -235,7 +235,7 @@
         "prc",
         "wil"
       ],
-      "requires_any": [
+      "requires_all": [
         "right_on_target",
         "offensive_tactic"
       ],
@@ -264,7 +264,7 @@
         "vit",
         "wil"
       ],
-      "requires_any": [
+      "requires_all": [
         "offensive_tactic",
         "defensive_tactic"
       ],
@@ -296,7 +296,7 @@
         "vit",
         "wil"
       ],
-      "requires_any": [
+      "requires_all": [
         "defensive_tactic",
         "intimidation"
       ],

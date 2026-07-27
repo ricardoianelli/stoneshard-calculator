@@ -161,9 +161,10 @@
         "vit",
         "dodge"
       ],
-      "requires_any": [
+      "requires_all": [
         "flexible_defense",
-        "battle_forged"
+        "battle_forged",
+        "unyielding_defense"
       ],
       "unlock": {
         "treatise": "Armored Combat III",
@@ -186,7 +187,8 @@
       "col": 3,
       "tier": 3,
       "type": "Passive",
-      "requires_any": [
+      "requires_all": [
+        "flexible_defense",
         "battle_forged",
         "unyielding_defense"
       ],

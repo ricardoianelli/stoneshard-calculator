@@ -84,7 +84,7 @@
       "col": 2,
       "tier": 1,
       "type": "Passive",
-      "requires_any": [
+      "requires_all": [
         "butchering",
         "make_a_halt"
       ],
@@ -108,7 +108,7 @@
       "col": 3,
       "tier": 1,
       "type": "Passive",
-      "requires_any": [
+      "requires_all": [
         "make_a_halt",
         "cauterize_wounds"
       ],

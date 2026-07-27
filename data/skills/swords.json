@@ -173,7 +173,7 @@
       "tier": 3,
       "type": "Passive",
       "req": "one-handed sword",
-      "requires_any": [
+      "requires_all": [
         "gloat",
         "fencer_stance"
       ],
@@ -214,7 +214,7 @@
         "prc"
       ],
       "req": "one-handed sword",
-      "requires_any": [
+      "requires_all": [
         "fencer_stance",
         "steady_tempo"
       ],

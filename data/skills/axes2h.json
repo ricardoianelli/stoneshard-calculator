@@ -243,7 +243,7 @@
         "prc"
       ],
       "req": "two-handed axe",
-      "requires_any": [
+      "requires_all": [
         "fatal_strike",
         "finish_em"
       ],

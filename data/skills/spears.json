@@ -138,7 +138,7 @@
         "agi"
       ],
       "req": "spear",
-      "requires_any": [
+      "requires_all": [
         "nail_down",
         "impaling_lunge"
       ],

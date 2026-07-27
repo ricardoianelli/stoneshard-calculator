@@ -109,7 +109,7 @@
       "target": "No Target",
       "en": 14,
       "cd": 12,
-      "requires_any": [
+      "requires_all": [
         "hail_of_blows",
         "step_aside"
       ],

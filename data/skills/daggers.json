@@ -97,7 +97,7 @@
         "prc"
       ],
       "req": "dagger",
-      "requires_any": [
+      "requires_all": [
         "quick_hands",
         "double_lunge"
       ],
@@ -122,7 +122,7 @@
       "tier": 2,
       "type": "Passive",
       "req": "dagger",
-      "requires_any": [
+      "requires_all": [
         "double_lunge",
         "gaping_wound"
       ],
@@ -148,7 +148,7 @@
       "en": 14,
       "cd": 12,
       "req": "dagger",
-      "requires_any": [
+      "requires_all": [
         "gaping_wound",
         "from_the_shadows"
       ],
@@ -251,7 +251,7 @@
         "prc"
       ],
       "req": "dagger",
-      "requires_any": [
+      "requires_all": [
         "weakening_jabs",
         "painful_stabs"
       ],

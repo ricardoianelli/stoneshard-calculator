@@ -187,7 +187,7 @@
       "mod": [
         "wil"
       ],
-      "requires_any": [
+      "requires_all": [
         "seal_of_insight",
         "lingering_incantations"
       ],
@@ -220,7 +220,7 @@
       "mod": [
         "rng"
       ],
-      "requires_any": [
+      "requires_all": [
         "seal_of_cleansing",
         "body_and_spirit"
       ],

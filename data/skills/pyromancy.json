@@ -202,7 +202,7 @@
         "pyr",
         "rng"
       ],
-      "requires_any": [
+      "requires_all": [
         "feed_the_flames",
         "flame_wave"
       ],
@@ -225,7 +225,7 @@
       "col": 2.5,
       "tier": 3,
       "type": "Passive",
-      "requires_any": [
+      "requires_all": [
         "flame_wave",
         "magma_rain"
       ],
@@ -256,7 +256,7 @@
         "pyr",
         "rng"
       ],
-      "requires_any": [
+      "requires_all": [
         "magma_rain",
         "scorch"
       ],
@@ -279,9 +279,8 @@
       "col": 1.5,
       "tier": 4,
       "type": "Passive",
-      "requires_any": [
-        "incineration",
-        "from_blaze_to_furnace"
+      "requires_all": [
+        "incineration"
       ],
       "unlock": {
         "treatise": "Pyromancy IV",
@@ -317,7 +316,7 @@
         "pyr",
         "rng"
       ],
-      "requires_any": [
+      "requires_all": [
         "incineration",
         "from_blaze_to_furnace",
         "melting_ray"
@@ -341,8 +340,7 @@
       "col": 3.5,
       "tier": 4,
       "type": "Passive",
-      "requires_any": [
-        "from_blaze_to_furnace",
+      "requires_all": [
         "melting_ray"
       ],
       "unlock": {

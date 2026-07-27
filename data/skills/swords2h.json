@@ -217,9 +217,8 @@
       "tier": 3,
       "type": "Passive",
       "req": "two-handed sword",
-      "requires_any": [
-        "recklessness",
-        "feast_of_steel"
+      "requires_all": [
+        "recklessness"
       ],
       "unlock": {
         "treatise": "Two-Handed Swords III",
@@ -250,7 +249,7 @@
         "prc"
       ],
       "req": "two-handed sword",
-      "requires_any": [
+      "requires_all": [
         "recklessness",
         "feast_of_steel",
         "arc_cleave",
@@ -277,8 +276,7 @@
       "tier": 3,
       "type": "Passive",
       "req": "two-handed sword",
-      "requires_any": [
-        "arc_cleave",
+      "requires_all": [
         "fight_to_the_death"
       ],
       "unlock": {

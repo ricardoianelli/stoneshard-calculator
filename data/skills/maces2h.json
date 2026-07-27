@@ -85,10 +85,11 @@
       "target": "No Target",
       "en": 14,
       "cd": 12,
-      "requires_any": [
+      "requires_all": [
         "keep_them_coming",
         "mighty_swing",
-        "unstoppable_force"
+        "unstoppable_force",
+        "unbalance"
       ],
       "unlock": {
         "treatise": "Two-Handed Maces II",
@@ -109,7 +110,7 @@
       "col": 2.5,
       "tier": 2,
       "type": "Passive",
-      "requires_any": [
+      "requires_all": [
         "keep_them_coming",
         "mighty_swing",
         "unstoppable_force",
@@ -143,10 +144,11 @@
         "agi",
         "prc"
       ],
-      "requires_any": [
+      "requires_all": [
+        "keep_them_coming",
+        "mighty_swing",
         "unstoppable_force",
-        "unbalance",
-        "mighty_swing"
+        "unbalance"
       ],
       "unlock": {
         "treatise": "Two-Handed Maces II",

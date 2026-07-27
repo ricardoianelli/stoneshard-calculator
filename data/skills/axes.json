@@ -92,10 +92,11 @@
       "tier": 2,
       "type": "Passive",
       "req": "one-handed axe",
-      "requires_any": [
+      "requires_all": [
         "mutilating_lunge",
         "ferocity",
-        "cut_through"
+        "cut_through",
+        "no_mercy"
       ],
       "unlock": {
         "treatise": "Axes Treatise II",
@@ -127,10 +128,11 @@
       "en": 14,
       "cd": 12,
       "req": "one-handed axe",
-      "requires_any": [
+      "requires_all": [
+        "mutilating_lunge",
+        "ferocity",
         "cut_through",
-        "no_mercy",
-        "ferocity"
+        "no_mercy"
       ],
       "unlock": {
         "treatise": "Axes Treatise II",

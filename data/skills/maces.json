@@ -91,7 +91,7 @@
         "wil"
       ],
       "req": "one-handed mace",
-      "requires_any": [
+      "requires_all": [
         "onslaught",
         "dazing_strikes"
       ],
@@ -119,7 +119,7 @@
       "en": 14,
       "cd": 12,
       "req": "one-handed mace",
-      "requires_any": [
+      "requires_all": [
         "armor_break",
         "moment_of_weakness"
       ],
