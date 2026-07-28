@@ -362,6 +362,24 @@ input[type=range]{accent-color:#7a2e1d;}
           </sc-for>
         </div>
       </div>
+
+      <div style="background:linear-gradient(#efe2bf,#e2d0a4);border:1px solid #9b8354;border-radius:5px;box-shadow:0 4px 16px rgba(0,0,0,.5), inset 0 0 40px rgba(122,86,40,.12);padding:12px;">
+        <div style="font-family:'Cinzel',serif;font-weight:700;font-size:13px;letter-spacing:2px;color:#5a4426;border-bottom:1px solid #b89d68;padding-bottom:6px;margin-bottom:8px;">HP OVER TIME</div>
+        <div style="font-size:10.5px;color:#8a7350;font-style:italic;margin-bottom:6px;">Regeneration buffs &amp; damage-over-time debuffs. Set stacks — the character sheet shows the net HP/turn (regen scales with Healing Efficiency; DoTs are reduced by Resistances &amp; Damage Taken).</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <sc-for list="{{ hotRows }}" as="h" hint-placeholder-count="4">
+            <div style="display:grid;grid-template-columns:1fr 24px 22px 24px;gap:5px;align-items:center;background:rgba(90,68,38,.08);border-radius:3px;padding:3px 6px;">
+              <div style="min-width:0;">
+                <div style="font-size:12.5px;font-weight:700;color:#4a3a26;">{{ h.name }}</div>
+                <div style="font-size:10px;color:#8a7350;">{{ h.desc }}</div>
+              </div>
+              <button onClick="{{ h.dec }}" style="background:#c9b283;border:1px solid #9b8354;border-radius:3px;cursor:pointer;font-weight:700;color:#5a4426;height:22px;line-height:1;">−</button>
+              <div style="text-align:center;font-family:'Cinzel',serif;font-weight:900;font-size:15px;color:{{ h.color }};">{{ h.cur }}</div>
+              <button onClick="{{ h.inc }}" style="background:#c9b283;border:1px solid #9b8354;border-radius:3px;cursor:pointer;font-weight:700;color:#5a4426;height:22px;line-height:1;">+</button>
+            </div>
+          </sc-for>
+        </div>
+      </div>
     </div>
 
     <div style="display:flex;flex-direction:column;gap:12px;">
@@ -496,14 +514,11 @@ input[type=range]{accent-color:#7a2e1d;}
           </div>
         </div>
         <div style="background:linear-gradient(rgba(52,86,46,.30),rgba(28,44,26,.30));border:1px solid #3e6b34;border-radius:4px;padding:7px 10px;margin-bottom:8px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px;">
-            <span style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:1.5px;color:#8fbf7a;">NATURAL REGENERATION</span>
-            <span style="font-size:9px;color:#6f9060;font-style:italic;">out of combat</span>
-          </div>
+          <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:1.5px;color:#8fbf7a;margin-bottom:3px;">HP OVER TIME</div>
           <sc-if value="{{ regen.active }}" hint-placeholder-val="{{ true }}">
             <div style="display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;">
               <span style="font-family:'Cinzel',serif;font-weight:900;font-size:20px;color:#a6e08d;line-height:1;">+{{ regen.tick }}</span>
-              <span style="font-size:11.5px;color:#9fbf8a;">HP every <b style="color:#cfe3ba;">{{ regen.interval }}</b> turns</span>
+              <span style="font-size:11.5px;color:#9fbf8a;">HP every <b style="color:#cfe3ba;">{{ regen.interval }}</b> turns <span style="color:#6f9060;font-style:italic;">· passive, out of combat</span></span>
             </div>
             <div style="font-size:11px;color:#8a9a7a;margin-top:3px;">≈ <b style="color:#cfe3ba;">{{ regen.rate }}</b> HP/turn · full heal in ~<b style="color:#cfe3ba;">{{ regen.full }}</b> turns</div>
             <sc-if value="{{ regen.modified }}" hint-placeholder-val="{{ false }}">
@@ -511,7 +526,27 @@ input[type=range]{accent-color:#7a2e1d;}
             </sc-if>
           </sc-if>
           <sc-if value="{{ regen.off }}" hint-placeholder-val="{{ false }}">
-            <div style="font-size:11px;color:#c07a5e;">No natural regeneration (Health Restoration or Healing Efficiency at 0%).</div>
+            <div style="font-size:11px;color:#c07a5e;">No passive regeneration (Health Restoration or Healing Efficiency at 0%).</div>
+          </sc-if>
+          <sc-if value="{{ regen.hasHot }}" hint-placeholder-val="{{ false }}">
+            <div style="border-top:1px solid rgba(90,120,70,.3);margin-top:6px;padding-top:5px;">
+              <sc-for list="{{ regen.rows }}" as="r" hint-placeholder-count="0">
+                <div style="display:flex;justify-content:space-between;font-size:11px;padding:1px 0;">
+                  <span style="color:#a9b89a;">{{ r.name }}</span>
+                  <span style="color:{{ r.color }};font-weight:700;white-space:nowrap;">{{ r.sign }}{{ r.amt }} HP/turn</span>
+                </div>
+              </sc-for>
+              <div style="display:flex;justify-content:space-between;font-size:11.5px;margin-top:4px;padding-top:4px;border-top:1px dotted rgba(90,120,70,.35);">
+                <span style="color:#8fbf7a;font-weight:700;">Net · out of combat</span>
+                <span style="color:{{ regen.netOutColor }};font-weight:900;white-space:nowrap;">{{ regen.netOut }} HP/turn</span>
+              </div>
+              <sc-if value="{{ regen.inCombat }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;justify-content:space-between;font-size:11.5px;padding-top:2px;">
+                  <span style="color:#a98f6a;font-weight:700;">Net · in combat</span>
+                  <span style="color:{{ regen.netInColor }};font-weight:900;white-space:nowrap;">{{ regen.netIn }} HP/turn</span>
+                </div>
+              </sc-if>
+            </div>
           </sc-if>
         </div>
         <sc-for list="{{ statGroups }}" as="g" hint-placeholder-count="4">
@@ -702,7 +737,7 @@ class Component extends DCLogic {
     charId: 'velmir', level: 1, treatisesRead: false,
     alloc: { str: 0, agi: 0, prc: 0, vit: 0, wil: 0 },
     gear: {}, ench: {}, cond: {}, buffs: {}, skills: {}, activeTree: 'swords',
-    stancesOn: false, skillBuffs: {}, enemySel: 'Goon', armorMode: 'intact',
+    stancesOn: false, skillBuffs: {}, hot: {}, enemySel: 'Goon', armorMode: 'intact',
     pickerSlot: null, pickerCat: 'all', pickerSearch: '', traitCounters: {}, selSkill: null, showFormulas: false, libOpen: false, libName: '', pinnedStats: null,
     ioOpen: false, ioMode: 'export', ioText: '', ioStatus: '',
     finderOpen: false, finderWeapon: 'sword', finderOff: 'none', finderGoals: ['damage'], finderResults: null, finderStatus: '', finderLvl: 30,
@@ -990,10 +1025,10 @@ class Component extends DCLogic {
   }
   sanitize(b) {
     const out = {};
-    ['charId','level','treatisesRead','alloc','gear','ench','cond','buffs','skills','activeTree','stancesOn','skillBuffs','enemySel','traitCounters'].forEach(k => { if (b[k] !== undefined) out[k] = b[k]; });
+    ['charId','level','treatisesRead','alloc','gear','ench','cond','buffs','skills','activeTree','stancesOn','skillBuffs','hot','enemySel','traitCounters'].forEach(k => { if (b[k] !== undefined) out[k] = b[k]; });
     return out;
   }
-  buildObj() { const s = this.state; return { skillBuffs: s.skillBuffs, charId: s.charId, level: s.level, treatisesRead: s.treatisesRead, alloc: s.alloc, gear: s.gear, ench: s.ench, cond: s.cond, buffs: s.buffs, skills: s.skills, activeTree: s.activeTree, stancesOn: s.stancesOn, enemySel: s.enemySel, traitCounters: s.traitCounters }; }
+  buildObj() { const s = this.state; return { skillBuffs: s.skillBuffs, charId: s.charId, level: s.level, treatisesRead: s.treatisesRead, alloc: s.alloc, gear: s.gear, ench: s.ench, cond: s.cond, buffs: s.buffs, skills: s.skills, activeTree: s.activeTree, stancesOn: s.stancesOn, hot: s.hot, enemySel: s.enemySel, traitCounters: s.traitCounters }; }
   persist() { localStorage.setItem('ss-calc-build-v1', JSON.stringify(this.buildObj())); }
   readLib() { try { return JSON.parse(localStorage.getItem('ss-calc-library-v1')) || {}; } catch (e) { return {}; } }
   writeLib(lib) { localStorage.setItem('ss-calc-library-v1', JSON.stringify(lib)); this.forceUpdate(); }
@@ -1240,6 +1275,15 @@ class Component extends DCLogic {
   }
 
   buffByName(name) { const c = this.D.cons; for (const g of ['potions','food','beverages','drugs','psyche']) { const f = (c[g] || []).find(x => x.name === name); if (f) return f; } return null; }
+  // Health-over-time effects (wiki-verified per-turn values). regen is scaled by Healing Efficiency;
+  // DoTs are typed damage, reduced by the matching Resistance and by Damage Taken. Bleeding is one
+  // stack per wounded body part; Poison/Burning can stack from repeated applications.
+  get HOT() { return this._HOT || (this._HOT = [
+    { id: 'bloodthirst', name: 'Bloodthirst', kind: 'regen', pct: 3, max: 1, desc: '+3% Max HP / turn (Sanguimancy)' },
+    { id: 'bleeding', name: 'Bleeding', kind: 'dot', flat: 3, pct: 1, res: 'phr', max: 6, desc: '−(3 + 1% Max HP) / turn · Physical · one per body part' },
+    { id: 'poison', name: 'Poison', kind: 'dot', pct: 3, res: 'por', max: 4, desc: '−3% Max HP / turn · Poison' },
+    { id: 'burning', name: 'Burning', kind: 'dot', flat: 5, pct: 1, res: 'fir', max: 3, desc: '−(5 + 1% Max HP) / turn · Fire' }
+  ]); }
 
   renderVals() {
     const s = this.state;
@@ -1641,27 +1685,65 @@ class Component extends DCLogic {
       border: armorMode === k ? '#c9a959' : '#4a3d2e', bg: armorMode === k ? 'rgba(201,169,89,.18)' : '#241e18', color: armorMode === k ? '#e8d8b0' : '#8a7a5e'
     }));
 
-    // Natural regeneration (out of combat, wiki-verified): a hidden accumulator fills by Health
-    // Restoration % each turn; at 100% it restores 5% of Max HP, scaled by Healing Efficiency
-    // ("coefficient of healing received from all sources"). Overflow carries to the next tick.
+    // ---- HP over time -------------------------------------------------------
+    // (1) Passive natural regeneration (out of combat, wiki-verified): a hidden accumulator fills by
+    //     Health Restoration % each turn; at 100% it restores 5% of Max HP, scaled by Healing
+    //     Efficiency ("coefficient of healing received from all sources"); overflow carries over.
+    // (2) Flat per-turn effects (regen buffs + DoT debuffs) the player toggles; these apply in and
+    //     out of combat. Regen scales with Healing Efficiency; DoTs are reduced by the matching
+    //     Resistance and by Damage Taken.
+    const f1 = n => Math.round(n * 10) / 10;
+    const hotState = s.hot || {};
+    const hotDefs = this.HOT;
+    const hotActive = hotDefs.map(e => {
+      const n = Math.max(0, Math.min(e.max, (hotState[e.id] || 0)));
+      if (!n) return null;
+      let perTurn, detail;
+      if (e.kind === 'regen') {
+        perTurn = (e.pct / 100 * C.hp) * (C.heff / 100) * n;   // healing -> scaled by Healing Efficiency
+        detail = e.name;
+      } else {
+        const rawPerStack = (e.flat || 0) + (e.pct || 0) / 100 * C.hp;
+        const resPct = Math.max(-100, Math.min(75, C.res[e.res] || 0));
+        perTurn = -(rawPerStack * (1 - resPct / 100) * (C.dtaken / 100) * n);   // damage per turn
+        detail = e.name + (n > 1 ? ' ×' + n : '');
+      }
+      return { name: detail, perTurn, sign: perTurn >= 0 ? '+' : '−', amt: f1(Math.abs(perTurn)),
+        color: perTurn >= 0 ? '#8fbf7a' : '#d88a6a' };
+    }).filter(Boolean);
+    const flatNet = hotActive.reduce((a, r) => a + r.perTurn, 0);
+
     const regen = (() => {
       const hr = C.hr, heff = C.heff, hpMax = C.hp;
       const active = hr > 0 && hpMax > 0 && heff > 0;
-      const tickAmt = 0.05 * hpMax * (heff / 100);      // HP restored per tick
+      const tickAmt = 0.05 * hpMax * (heff / 100);      // HP restored per passive tick
       const interval = hr > 0 ? 100 / hr : Infinity;    // turns per tick (avg)
-      const rate = active ? tickAmt / interval : 0;     // effective HP / turn
-      const f1 = n => Math.round(n * 10) / 10;
+      const passiveRate = active ? tickAmt / interval : 0; // effective passive HP / turn
+      const netOut = passiveRate + flatNet;             // out of combat: passive + flat effects
+      const netIn = flatNet;                            // in combat: flat effects only (no passive)
+      const fmtNet = v => (v >= 0 ? '+' : '−') + Math.abs(v).toFixed(1);
+      const netColor = v => v > 0.001 ? '#86c977' : (v < -0.001 ? '#d88a6a' : '#9aa88a');
       return {
         active, off: !active,
         tick: f1(tickAmt),
         interval: f1(interval),
-        rate: rate.toFixed(2),
-        full: rate > 0 ? Math.round(hpMax / rate) : 0,
+        rate: passiveRate.toFixed(2),
+        full: passiveRate > 0 ? Math.round(hpMax / passiveRate) : 0,
         heff: Math.round(heff),
         modified: Math.round(heff) !== 100,
-        heffColor: heff > 100 ? '#86c977' : (heff < 100 ? '#d88a6a' : '#8a9a7a')
+        heffColor: heff > 100 ? '#86c977' : (heff < 100 ? '#d88a6a' : '#8a9a7a'),
+        rows: hotActive, hasHot: hotActive.length > 0,
+        netOut: fmtNet(netOut), netOutColor: netColor(netOut),
+        netIn: fmtNet(netIn), netInColor: netColor(netIn), inCombat: Math.abs(flatNet) > 0.001
       };
     })();
+    const hotRows = hotDefs.map(e => {
+      const cur = Math.max(0, Math.min(e.max, (hotState[e.id] || 0)));
+      const set = v => this.set({ hot: Object.assign({}, s.hot, { [e.id]: Math.max(0, Math.min(e.max, v)) }) });
+      return { name: e.name, desc: e.desc, kind: e.kind, cur, max: e.max,
+        color: cur > 0 ? (e.kind === 'regen' ? '#3a6b34' : '#7a2e1d') : '#8a7350',
+        dec: () => set(cur - 1), inc: () => set(cur + 1) };
+    });
 
     return {
       gameVersion: D.mech.$meta.game_version,
@@ -1708,7 +1790,7 @@ class Component extends DCLogic {
       })(),
 
       showFormulas: s.showFormulas, toggleFormulas: () => this.setState({ showFormulas: !s.showFormulas }),
-      hp: C.hp, en: C.en, statGroups, regen,
+      hp: C.hp, en: C.en, statGroups, regen, hotRows,
       libOpen: s.libOpen, toggleLib: () => this.setState({ libOpen: !s.libOpen }),
       libName: s.libName || '', onLibName: e => this.setState({ libName: e.target.value }),
       saveToLib: () => {
