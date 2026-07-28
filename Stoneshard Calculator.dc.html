@@ -365,7 +365,7 @@ input[type=range]{accent-color:#7a2e1d;}
 
       <div style="background:linear-gradient(#efe2bf,#e2d0a4);border:1px solid #9b8354;border-radius:5px;box-shadow:0 4px 16px rgba(0,0,0,.5), inset 0 0 40px rgba(122,86,40,.12);padding:12px;">
         <div style="font-family:'Cinzel',serif;font-weight:700;font-size:13px;letter-spacing:2px;color:#5a4426;border-bottom:1px solid #b89d68;padding-bottom:6px;margin-bottom:8px;">HP OVER TIME</div>
-        <div style="font-size:10.5px;color:#8a7350;font-style:italic;margin-bottom:6px;">Regeneration buffs &amp; damage-over-time debuffs. Set stacks — the character sheet shows the net HP/turn (regen scales with Healing Efficiency; DoTs are reduced by Resistances &amp; Damage Taken).</div>
+        <div style="font-size:10.5px;color:#8a7350;font-style:italic;margin-bottom:6px;">Damage-over-time debuffs. Set stacks — the character sheet nets them against your passive regen (DoTs are reduced by the matching Resistance &amp; Damage Taken).</div>
         <div style="display:flex;flex-direction:column;gap:4px;">
           <sc-for list="{{ hotRows }}" as="h" hint-placeholder-count="4">
             <div style="display:grid;grid-template-columns:1fr 24px 22px 24px;gap:5px;align-items:center;background:rgba(90,68,38,.08);border-radius:3px;padding:3px 6px;">
@@ -1275,11 +1275,12 @@ class Component extends DCLogic {
   }
 
   buffByName(name) { const c = this.D.cons; for (const g of ['potions','food','beverages','drugs','psyche']) { const f = (c[g] || []).find(x => x.name === name); if (f) return f; } return null; }
-  // Health-over-time effects (wiki-verified per-turn values). regen is scaled by Healing Efficiency;
-  // DoTs are typed damage, reduced by the matching Resistance and by Damage Taken. Bleeding is one
-  // stack per wounded body part; Poison/Burning can stack from repeated applications.
+  // Player-applicable HP-over-time effects (wiki-verified per-turn values). DoTs are typed damage,
+  // reduced by the matching Resistance and by Damage Taken. Bleeding is one stack per wounded body
+  // part; Poison/Burning can stack from repeated applications. `kind:'regen'` is supported (scaled by
+  // Healing Efficiency) for future player regen buffs — the only flat-regen effects in 0.9.4
+  // (Bloodthirst/Vampiric Blood, Troll Regeneration) are enemy-only, so none are listed.
   get HOT() { return this._HOT || (this._HOT = [
-    { id: 'bloodthirst', name: 'Bloodthirst', kind: 'regen', pct: 3, max: 1, desc: '+3% Max HP / turn (Sanguimancy)' },
     { id: 'bleeding', name: 'Bleeding', kind: 'dot', flat: 3, pct: 1, res: 'phr', max: 6, desc: '−(3 + 1% Max HP) / turn · Physical · one per body part' },
     { id: 'poison', name: 'Poison', kind: 'dot', pct: 3, res: 'por', max: 4, desc: '−3% Max HP / turn · Poison' },
     { id: 'burning', name: 'Burning', kind: 'dot', flat: 5, pct: 1, res: 'fir', max: 3, desc: '−(5 + 1% Max HP) / turn · Fire' }
