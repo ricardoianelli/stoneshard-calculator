@@ -95,6 +95,17 @@ input[type=range]{accent-color:#7a2e1d;}
             <div style="font-size:12.5px;color:#e8d8b0;">{{ seSummary }}</div>
             <div style="font-size:11px;color:{{ seSaltColor }};">{{ seSaltMsg }}</div>
             <div style="border:1px solid #3a2f28;border-radius:4px;padding:10px;">
+              <div style="font-size:10px;letter-spacing:1px;color:#a98a4a;margin-bottom:6px;">LEVEL — add levels (each grants +1 attribute point &amp; +1 ability point)</div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;">
+                <div style="display:flex;flex-direction:column;gap:2px;">
+                  <div style="font-size:10px;color:#8a7a5e;">Current level {{ seLevel }}</div>
+                  <input type="number" min="1" max="29" value="{{ seAddLevels }}" onChange="{{ seOnAddLevels }}" title="How many levels to add" style="width:56px;background:#171310;color:#c9b58a;border:1px solid #4a3d2e;padding:3px;"></input>
+                </div>
+                <button onClick="{{ seLevelUp }}" style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;background:#5a3a20;color:#e7d8b4;border:1px solid #8a7350;border-radius:3px;padding:6px 12px;cursor:pointer;" style-hover="background:#6b4626;">{{ seLevelUpLabel }}</button>
+              </div>
+              <div style="font-size:10px;color:#6b5a41;margin-top:5px;font-style:italic;">{{ seLevelHint }}</div>
+            </div>
+            <div style="border:1px solid #3a2f28;border-radius:4px;padding:10px;">
               <div style="font-size:10px;letter-spacing:1px;color:#a98a4a;margin-bottom:6px;">ATTRIBUTES — reset to base, refund into stat points</div>
               <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;">
                 <sc-for list="{{ seAttrs }}" as="a" hint-placeholder-count="0">
@@ -744,7 +755,7 @@ class Component extends DCLogic {
     pickerSlot: null, pickerCat: 'all', pickerSearch: '', traitCounters: {}, selSkill: null, showFormulas: false, libOpen: false, libName: '', pinnedStats: null,
     ioOpen: false, ioMode: 'export', ioText: '', ioStatus: '',
     finderOpen: false, finderWeapon: 'sword', finderOff: 'none', finderGoals: ['damage'], finderResults: null, finderStatus: '', finderLvl: 30,
-    expOpen: false, seOpen: false, seLoaded: false, seStatus: '', seTick: 0, seLog: '',
+    expOpen: false, seOpen: false, seLoaded: false, seStatus: '', seTick: 0, seLog: '', seAddLevels: 1,
     clScanned: false, clTarget: 1, clSource: '', clMsg: '', clOpen: false
   };
   D = null;
@@ -808,22 +819,24 @@ class Component extends DCLogic {
       if (!this._seMod) this._seMod = await import('./save-editor.js');
       const res = await this._seMod.parseSav(await file.arrayBuffer());
       const c = res.obj.characterDataMap;
-      // innate/free skills (trait free skills + always-free survival skills like Butchering) are hidden — they can't be unlearned
+      // Hide only skills that are innate / auto-granted — those refund nothing real because the game
+      // re-adds them on load (unlearning them would just mint free points). Everything else the save
+      // marks as learned is shown, because the game's internal skill IDs don't map cleanly to our
+      // wiki display names (e.g. save "power_kick" vs data "Mighty Kick", "offensive_tactics" vs
+      // "Offensive Tactic", "pikemans_stance" vs "Pikeman Stance") — an earlier data-whitelist wrongly
+      // hid most real skills. Blocklist = universal defaults + character-trait free skills + known
+      // trait/charm-granted skills.
       const ch = (this.D.chars || []).find(x => x.name === c.nameKey) || null;
-      const freeNames = new Set(((ch && ch.trait && ch.trait.free_skills) || [])
+      const norm = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+      const innate = new Set(((ch && ch.trait && ch.trait.free_skills) || [])
         .concat((((this.D.trees.survival || {}).skills) || []).filter(x => x.free).map(x => x.name))
         .concat(['Butchering', 'Craft', 'Torch Strike', 'Trap Search']) // universal defaults every character has
-        .map(s => s.toLowerCase().replace(/[^a-z0-9]/g, '')));
-      // whitelist: only skills that exist in the skill-tree data are player-learnable.
-      // Anything else (e.g. Hilda's Bone Charm 'Sudden Attacks') is system-granted — the game
-      // re-adds it on load, so "unlearning" it would just mint free skill points.
-      const knownNames = new Set();
-      Object.values(this.D.trees || {}).forEach(tr => (tr.skills || []).forEach(x => knownNames.add(x.name.toLowerCase().replace(/[^a-z0-9]/g, ''))));
+        .concat(['Sudden Attacks']) // trait/charm-granted skills the game auto-adds (e.g. Hilda's Wild Hunt)
+        .map(norm));
       const checked = {};
       const hidden = new Set();
       this._seMod.learnedSkills(res.obj).forEach(sk => {
-        const key = sk.name.toLowerCase().replace(/[^a-z0-9]/g, '');
-        if (freeNames.has(key) || !knownNames.has(key)) hidden.add(sk.id);
+        if (innate.has(norm(sk.name))) hidden.add(sk.id);
         else checked[sk.id] = false;
       });
       this._sav = null;
@@ -1877,7 +1890,7 @@ class Component extends DCLogic {
       seDownload: () => this.seDownload(),
       ...(() => {
         const sv = this._sav;
-        if (!s.seLoaded || !sv) return { seSummary: '', seSaltMsg: '', seSaltColor: '#8a9a6e', seAttrs: [], seSkills: [], seItems: [], seSkillCount: 0, seAttrRefund: 0, seRefundAttrs: () => {}, seRespec: () => {} };
+        if (!s.seLoaded || !sv) return { seSummary: '', seSaltMsg: '', seSaltColor: '#8a9a6e', seAttrs: [], seSkills: [], seItems: [], seSkillCount: 0, seAttrRefund: 0, seRefundAttrs: () => {}, seRespec: () => {}, seLevel: 1, seAddLevels: 1, seOnAddLevels: () => {}, seLevelUp: () => {}, seLevelUpLabel: 'ADD LEVELS', seLevelHint: '' };
         const M = this._seMod, c = sv.obj.characterDataMap;
         const tick = () => this.setState({ seTick: s.seTick + 1 });
         const AK = ['STR', 'AGL', 'PRC', 'Vitality', 'WIL'];
@@ -1888,6 +1901,18 @@ class Component extends DCLogic {
           seSummary: c.nameKey + ' — ' + c.classKey + ', level ' + c.LVL + ' (' + c.XP + ' XP) · HP ' + c.HP + ' · ' + AK.map(k => k.slice(0, 3).toUpperCase() + ' ' + c[k]).join(' · ') + ' · ' + c.AP + ' attribute pts, ' + c.SP + ' skill pts unspent',
           seSaltMsg: sv.salt ? '✓ checksum verified — save folder detected as ' + sv.dirs.join(' / ') + '. The edited file must go back into that same folder.' : '✗ could not verify this file\'s checksum — editing disabled to avoid corrupting your save.',
           seSaltColor: sv.salt ? '#8a9a6e' : '#c98a75',
+          seLevel: c.LVL,
+          seAddLevels: s.seAddLevels || 1,
+          seOnAddLevels: e => this.setState({ seAddLevels: Math.max(1, Math.min(29, Math.round(+e.target.value || 1))) }),
+          seLevelUp: () => {
+            const n = Math.max(1, Math.min(29, Math.round(s.seAddLevels || 1)));
+            const r = M.addLevels(sv.obj, n);
+            this.setState({ seLog: r.applied > 0
+              ? ('added ' + r.applied + ' level' + (r.applied > 1 ? 's' : '') + ' → level ' + r.level + ' (now ' + r.statPoints + ' attribute pts, ' + r.abilityPoints + ' ability pts unspent)' + (r.atCap ? ' — max level reached' : ''))
+              : 'already at max level 30 — no levels added' });
+          },
+          seLevelUpLabel: c.LVL >= 30 ? 'MAX LEVEL 30' : '⬆ ADD ' + Math.max(1, Math.min(29, Math.round(s.seAddLevels || 1))) + ' LEVEL' + (Math.round(s.seAddLevels || 1) > 1 ? 'S' : ''),
+          seLevelHint: c.LVL >= 30 ? 'Character is at the level cap (30).' : ('Bumps level ' + c.LVL + ' → ' + Math.min(30, c.LVL + Math.max(1, Math.min(29, Math.round(s.seAddLevels || 1)))) + ', adding an attribute point and an ability point per level. XP progress is preserved; no HP/Energy is auto-granted (level-ups only give points).'),
           seAttrs: AK.map(k => ({ k: k.slice(0, 3).toUpperCase(), cur: c[k], base: sv.base[k], set: e => { sv.base[k] = Math.max(1, Math.min(30, +e.target.value || 10)); tick(); } })),
           seAttrRefund: refund,
           seRefundAttrs: () => { const count = M.resetAttributes(sv.obj, sv.base); this.setState({ seLog: 'refunded ' + count + ' attribute points (now ' + sv.obj.characterDataMap.AP + ' unspent)' }); },

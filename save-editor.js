@@ -226,6 +226,21 @@ export function resetAttributes(obj, base) {
   c.AP = (c.AP || 0) + refund; // in the save, "AP" = attribute/stat points (the game UI shows it as SP)
   return refund;
 }
+// Add levels to the character. Each level-up grants 1 attribute/stat point (save "AP") and 1
+// ability/skill point (save "SP") — matching the calculator's leveling model (stat points = LVL-1,
+// ability points = LVL+1). Clamped to max level 30. XP is per-level progress in the save (not
+// cumulative), so it stays valid as LVL rises; we leave it untouched. Returns the applied result.
+export function addLevels(obj, n, maxLevel = 30) {
+  const c = obj.characterDataMap;
+  const cur = c.LVL || 1;
+  const applied = Math.max(0, Math.min(n | 0, maxLevel - cur));
+  if (applied > 0) {
+    c.LVL = cur + applied;
+    c.AP = (c.AP || 0) + applied; // +1 attribute/stat point per level
+    c.SP = (c.SP || 0) + applied; // +1 ability/skill point per level
+  }
+  return { applied, level: c.LVL, statPoints: c.AP, abilityPoints: c.SP, atCap: c.LVL >= maxLevel };
+}
 export function listItems(obj) {
   return obj.inventoryDataList.map((e, i) => {
     const p = e[1] || {};
