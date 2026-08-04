@@ -665,7 +665,7 @@ input[type=range]{accent-color:#7a2e1d;}
         <div style="font-size:10px;color:#5a4c38;margin-top:4px;font-style:italic;line-height:1.4;">{{ dmgNote }}</div>
       </div>
 
-      <div style="font-size:10.5px;color:#5a4c38;padding:0 4px;line-height:1.5;">Formulas per the official wiki (Combat Formulas, attribute pages). Base HP/Energy growth uses documented community calibration — see data/mechanics.json. Not affiliated with Ink Stains Games.</div>
+      <div style="font-size:10.5px;color:#5a4c38;padding:0 4px;line-height:1.5;">Calculator <b style="color:#7a6a4e;">v{{ appVersion }}</b> · game data {{ gameVersion }} · Formulas per the official wiki (Combat Formulas, attribute pages). Base HP/Energy growth uses documented community calibration — see data/mechanics.json. Not affiliated with Ink Stains Games.</div>
     </div>
   </div>
   <sc-if value="{{ pickerOpen }}" hint-placeholder-val="{{ false }}">
@@ -746,6 +746,10 @@ input[type=range]{accent-color:#7a2e1d;}
 </div></x-dc>
 <script type="text/x-dc" data-dc-script data-props="{}">
 class Component extends DCLogic {
+  // App version — single source of truth. Bump on every user-facing release: patch (x.y.Z) for
+  // fixes/data tweaks, minor (x.Y.0) for new features, major (X.0.0) for overhauls. Tag the
+  // release commit `vX.Y.Z` to match. Shown in the footer.
+  static APP_VERSION = '1.0.0';
   state = {
     loaded: false, loadError: null,
     charId: 'velmir', level: 1, treatisesRead: false,
@@ -1781,7 +1785,7 @@ class Component extends DCLogic {
     });
 
     return {
-      gameVersion: D.mech.$meta.game_version,
+      gameVersion: D.mech.$meta.game_version, appVersion: Component.APP_VERSION,
       loading: false, loaded: true, loadError: null,
       charCards, charBigImg: React.createElement('img', { src: (C.ch.img_big || C.ch.img), alt: 'portrait', style: { width: '100%', display: 'block', borderRadius: '3px' } }), charName: C.ch.name, charTitle: C.ch.title, charRace: C.ch.race, charUrl: C.ch.url,
       traitName: C.ch.trait.name, traitSummary: C.ch.trait.summary,
