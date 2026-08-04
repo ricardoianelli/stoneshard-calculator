@@ -462,6 +462,9 @@ input[type=range]{accent-color:#7a2e1d;}
               <sc-if value="{{ selSkill.hasUnlock }}" hint-placeholder-val="{{ false }}">
                 <div style="font-size:10.5px;line-height:1.4;margin-top:8px;padding:5px 7px;border-radius:3px;background:rgba(15,12,24,.55);border:1px solid #3d3452;color:{{ selSkill.unlockColor }};">{{ selSkill.unlockLine }}</div>
               </sc-if>
+              <sc-if value="{{ selSkill.isSpell }}" hint-placeholder-val="{{ false }}">
+                <div style="font-size:10.5px;line-height:1.4;margin-top:8px;padding:5px 7px;border-radius:3px;background:rgba(42,30,58,.55);border:1px solid #4a3a6b;color:#b9a6d9;">✦ {{ selSkill.spellLine }}</div>
+              </sc-if>
               <div style="font-size:12px;line-height:1.55;color:#c4b898;margin-top:8px;white-space:pre-line;">{{ selSkill.desc }}</div>
               <sc-if value="{{ selSkill.hasFormulas }}" hint-placeholder-val="{{ false }}">
                 <label style="display:flex;gap:6px;align-items:center;margin-top:6px;font-size:10.5px;color:#8a7ba8;cursor:pointer;">
@@ -1266,10 +1269,18 @@ class Component extends DCLogic {
     const xpGain = M('xp');
     const mip = clampCap(125 + M('mip'), 150);
     const schoolPower = tcFx.school || 0;
+    // Per-school Power (%): base 100 + universal School Power (traits) + that school's own bonus
+    // (gear/enchants/passives). Spell damage scales by (SchoolPower/100) × (MagicPower/100), and
+    // spell crits multiply by Miracle Potency at Miracle Chance. Feed Magic Power + school powers
+    // into `attrs` so the dyn spell formulas ({..*MP/100*(1+(PYR-100)/100)}) evaluate on the build.
+    const schoolKeys = ['pyr','geo','ele','arc','ven','cry','ast','psi','chr'];
+    const schools = {};
+    schoolKeys.forEach(k => { schools[k] = 100 + schoolPower + M(k); attrs[k] = schools[k]; });
+    attrs.mp = mp;
     let xp = 0; for (let l = 1; l < lvl; l++) xp += 250 * l;
 
     return { ch, attrs, th, statPool, apPool, mods, dmg, mainItem, offItem, twoHanded, protTotal, free,
-      hp, en, wd, acc, cc, ce, fum, co, dodge, bc, bp, ap_, bpd, ad, mp, cdr, secost, spcost, er, hr, fort, pnr, ctr, mvr, bpr, vision, rng, mic, bfc, res, xp, xpGain, mip, schoolPower,
+      hp, en, wd, acc, cc, ce, fum, co, dodge, bc, bp, ap_, bpd, ad, mp, cdr, secost, spcost, er, hr, fort, pnr, ctr, mvr, bpr, vision, rng, mic, bfc, res, xp, xpGain, mip, schoolPower, schools,
       bfd, mhe, ohe, mhDmg, ohDmg, spellAcc, spellAp, cav, dtaken, heff, ldrain, edrain, protBy,
       dwield, wdOff, accOff, ccOff, ceOff, fumOff, apOff, bleed, bleedOff };
   }
@@ -1507,7 +1518,11 @@ class Component extends DCLogic {
       selSkill = {
         name: selSk.name, icon: this.icon(selSk.ico || selSk.name, 44),
         meta: (selSk.type || '') + (selSk.target ? ' · ' + selSk.target : '') + (selSk.range ? ' · Range ' + selSk.range : '') + (selSk.en ? ' · ' + selSk.en + ' EN / ' + selSk.cd + ' CD' : ''),
-        modBy: selSk.mod ? 'Modified by: ' + selSk.mod.map(m => ({ str: 'Strength', agi: 'Agility', prc: 'Perception', vit: 'Vitality', wil: 'Willpower' }[m] || m)).join(', ') : '',
+        modBy: selSk.mod ? 'Modified by: ' + selSk.mod.map(m => ({ str: 'Strength', agi: 'Agility', prc: 'Perception', vit: 'Vitality', wil: 'Willpower', mp: 'Magic Power', rng: 'Bonus Range', pyr: 'Pyromantic Power', geo: 'Geomantic Power', ele: 'Electromantic Power', arc: 'Arcanistic Power', ven: 'Venomantic Power', cry: 'Cryomantic Power', ast: 'Astromantic Power', psi: 'Psionic Power', chr: 'Chronomantic Power' }[m] || m)).join(', ') : '',
+        // Spell crit uses the Miracle system: on a Miracle (chance = Miracle Chance) the spell's
+        // damage is multiplied by Miracle Potency. Surfaced so the magic crit formula is visible.
+        isSpell: /Spell/i.test(selSk.type || ''),
+        spellLine: 'Magic crit ×' + (C.mip / 100).toFixed(2) + ' (Miracle Potency) at ' + Math.round(Math.max(0, Math.min(100, C.mic))) + '% Miracle Chance · Spell Accuracy ' + Math.round(C.spellAcc) + '%',
         unlockLine, unlockColor, hasUnlock,
         desc: this.dynDesc(selSk, C.attrs),
         hasFormulas: !!selSk.dyn,
@@ -1539,6 +1554,11 @@ class Component extends DCLogic {
       }
       return row;
     });
+    // per-school Power rows — only surfaced for schools boosted above (or dropped below) the 100% base,
+    // so equipping e.g. Geomantic gear visibly raises "Geomantic Power" here.
+    const schoolNames = { pyr: 'Pyromantic', geo: 'Geomantic', ele: 'Electromantic', arc: 'Arcanistic', ven: 'Venomantic', cry: 'Cryomantic', ast: 'Astromantic', psi: 'Psionic', chr: 'Chronomantic' };
+    const schoolRows = Object.keys(C.schools).filter(k => Math.round(C.schools[k]) !== 100)
+      .map(k => [schoolNames[k] + ' Power', pct(C.schools[k]), C.schools[k] > 100 ? green : red, 'Base 100% + universal School Power + ' + schoolNames[k] + ' bonuses from gear/enchants/passives. Multiplies spell damage of this school.']);
     const statGroups = [
       { name: 'OFFENSE', rows: rows([
         ['Main Hand Damage', String(C.mhDmg)], ['Off-Hand Damage', C.ohDmg ? String(C.ohDmg) : '—'],
@@ -1561,7 +1581,8 @@ class Component extends DCLogic {
       ]) },
       { name: 'MAGIC', rows: rows([
         ['Magic Power', pct(C.mp), C.mp > 100 ? green : gold], ['School Power', '+' + pct(C.schoolPower), C.schoolPower > 0 ? green : gold],
-        ['Miracle Potency', pct(C.mip)], ['Miracle Chance', pct(C.mic)],
+        ...schoolRows,
+        ['Miracle Potency', pct(C.mip), gold, 'Spell crit multiplier — a magic crit deals this × the spell’s damage'], ['Miracle Chance', pct(C.mic), gold, 'Spell crit chance'],
         ['Spell Accuracy', pct(C.spellAcc)], ['Spell Armor Piercing', pct(C.spellAp)],
         ['Backfire Damage', pct(C.bfd)], ['Life Drain', pct(C.ldrain)], ['Energy Drain', pct(C.edrain)],
         ['XP Gain', '+' + pct(C.xpGain), C.xpGain > 0 ? green : gold],
